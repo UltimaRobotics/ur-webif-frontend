@@ -1,0 +1,1508 @@
+<!-- Attached IP Devices Section -->
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+        <div class="flex items-center">
+            <i class="fa-solid fa-video mr-3 text-neutral-600"></i>
+            <h1 class="text-2xl text-neutral-900">Attached IP Devices</h1>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span
+                id="devices-status"
+                class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800"
+            >
+                <i class="fa-solid fa-circle text-xs mr-2"></i>
+                <span id="devices-count">Loading...</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Auto-refresh Controls -->
+    <div
+        id="auto-refresh-controls"
+        class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4"
+    >
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <input
+                        type="checkbox"
+                        id="auto-refresh-toggle"
+                        class="rounded border-neutral-300 mr-2"
+                    />
+                    <label
+                        for="auto-refresh-toggle"
+                        class="text-sm text-neutral-700"
+                        >Auto Refresh</label
+                    >
+                </div>
+                <div class="flex items-center space-x-2">
+                    <label
+                        for="refresh-interval"
+                        class="text-sm text-neutral-700"
+                        >Interval:</label
+                    >
+                    <select
+                        id="refresh-interval"
+                        class="border border-neutral-300 rounded px-2 py-1 text-sm"
+                    >
+                        <option value="5000">5 seconds</option>
+                        <option value="10000">10 seconds</option>
+                        <option value="30000" selected>30 seconds</option>
+                        <option value="60000">1 minute</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button
+                    id="manual-refresh-btn"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm"
+                >
+                    <i class="fa-solid fa-refresh mr-1"></i>
+                    Refresh Now
+                </button>
+                <div id="refresh-status" class="text-xs text-neutral-500">
+                    Ready
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IP Devices Table Section -->
+    <div class="bg-white rounded-lg border border-neutral-200">
+        <!-- Section Header -->
+        <div class="p-6 border-b border-neutral-200">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-list mr-3 text-neutral-600"></i>
+                    <div>
+                        <h2 class="text-lg text-neutral-900">IP Devices</h2>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button
+                        id="add-device-btn"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm flex items-center"
+                    >
+                        <i class="fa-solid fa-plus mr-2"></i>
+                        Add Device
+                    </button>
+                    <button
+                        id="discover-devices-btn"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm flex items-center"
+                    >
+                        <i class="fa-solid fa-search mr-2"></i>
+                        Discover
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="overflow-x-auto">
+            <table class="w-full" id="ip-devices-table">
+                <thead class="bg-neutral-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Device Name</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">IP Address</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Type</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Role</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">RTSP URL</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ip-devices-table-body" class="bg-white divide-y divide-neutral-200">
+                    <!-- Dynamic device rows will be rendered here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty state display -->
+        <div id="no-devices-message" class="p-8 text-center hidden">
+            <div class="text-center text-neutral-600">
+                <i class="fa-solid fa-video text-4xl mb-4 text-neutral-400"></i>
+                <h3 class="text-lg text-neutral-700 mb-2">No IP Devices Found</h3>
+                <p class="text-sm text-neutral-500 mb-4">Add your first IP device to get started</p>
+                <button
+                    id="add-first-device-btn"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm"
+                >
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    Add Device
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-6 py-4 border-t border-neutral-200 bg-neutral-50">
+            <p class="text-sm text-neutral-500">
+                Use Add Device to register a new camera. Modify opens
+                configuration. Delete removes from this list.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Add Device Modal -->
+<div
+    id="add-ip-device-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden"
+    role="dialog"
+    aria-labelledby="add-device-modal-title"
+    aria-modal="true"
+>
+    <div
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+    >
+        <!-- Modal Header -->
+        <header
+            class="border-b border-neutral-200 px-6 py-4 sticky top-0 bg-white z-10"
+        >
+            <div class="flex items-center justify-between">
+                <h2 id="add-device-modal-title" class="text-xl text-neutral-900">Add IP Device</h2>
+                <button
+                    id="close-add-modal"
+                    class="text-neutral-400 hover:text-neutral-600"
+                >
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <div class="p-6">
+            <form id="add-device-form">
+                <div class="space-y-4">
+                    <div>
+                        <label for="device-name" class="block text-sm font-medium text-neutral-700 mb-1">Device Name</label>
+                        <input
+                            type="text"
+                            id="device-name"
+                            name="name"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="Enter device name"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="device-ip" class="block text-sm font-medium text-neutral-700 mb-1">IP Address</label>
+                        <input
+                            type="text"
+                            id="device-ip"
+                            name="ip_address"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="192.168.1.100"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="device-type" class="block text-sm font-medium text-neutral-700 mb-1">Device Type</label>
+                        <select
+                            id="device-type"
+                            name="device_type"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                        >
+                            <option value="IP Camera">IP Camera</option>
+                            <option value="Edge Device">Edge Device</option>
+                            <option value="NVR">NVR</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="device-role" class="block text-sm font-medium text-neutral-700 mb-1">Device Role</label>
+                        <select
+                            id="device-role"
+                            name="device_role"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                        >
+                            <option value="Primary Camera">Primary Camera</option>
+                            <option value="Support Camera">Support Camera</option>
+                            <option value="Companion Computer">Companion Computer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="rtsp-url" class="block text-sm font-medium text-neutral-700 mb-1">RTSP URL (Optional)</label>
+                        <input
+                            type="text"
+                            id="rtsp-url"
+                            name="rtsp_url"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="rtsp://192.168.1.100:554/stream"
+                        />
+                    </div>
+                    <div>
+                        <label for="device-notes" class="block text-sm font-medium text-neutral-700 mb-1">Notes (Optional)</label>
+                        <textarea
+                            id="device-notes"
+                            name="notes"
+                            rows="3"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="Additional notes about this device"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button
+                        type="button"
+                        id="cancel-add-device"
+                        class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+                    >
+                        Add Device
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modify Device Modal -->
+<div
+    id="modify-device-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden"
+    role="dialog"
+    aria-labelledby="modify-device-modal-title"
+    aria-modal="true"
+>
+    <div
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+    >
+        <!-- Modal Header -->
+        <header
+            class="border-b border-neutral-200 px-6 py-4 sticky top-0 bg-white z-10"
+        >
+            <div class="flex items-center justify-between">
+                <h2 id="modify-device-modal-title" class="text-xl text-neutral-900">Modify IP Device</h2>
+                <button
+                    id="close-modify-modal"
+                    class="text-neutral-400 hover:text-neutral-600"
+                >
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <div class="p-6">
+            <form id="modify-device-form">
+                 <input type="hidden" id="modify-device-id" name="device_id" />
+                <div class="space-y-4">
+                    <div>
+                        <label for="modify-device-name" class="block text-sm font-medium text-neutral-700 mb-1">Device Name</label>
+                        <input
+                            type="text"
+                            id="modify-device-name"
+                            name="name"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="Enter device name"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="modify-device-ip" class="block text-sm font-medium text-neutral-700 mb-1">IP Address</label>
+                        <input
+                            type="text"
+                            id="modify-device-ip"
+                            name="ip_address"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="192.168.1.100"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="modify-device-type" class="block text-sm font-medium text-neutral-700 mb-1">Device Type</label>
+                        <select
+                            id="modify-device-type"
+                            name="device_type"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                        >
+                            <option value="IP Camera">IP Camera</option>
+                            <option value="Edge Device">Edge Device</option>
+                            <option value="NVR">NVR</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="modify-device-role" class="block text-sm font-medium text-neutral-700 mb-1">Device Role</label>
+                        <select
+                            id="modify-device-role"
+                            name="device_role"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                        >
+                            <option value="Primary Camera">Primary Camera</option>
+                            <option value="Support Camera">Support Camera</option>
+                            <option value="Companion Computer">Companion Computer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="modify-rtsp-url" class="block text-sm font-medium text-neutral-700 mb-1">RTSP URL (Optional)</label>
+                        <input
+                            type="text"
+                            id="modify-rtsp-url"
+                            name="rtsp_url"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="rtsp://192.168.1.100:554/stream"
+                        />
+                    </div>
+                    <div>
+                        <label for="modify-device-notes" class="block text-sm font-medium text-neutral-700 mb-1">Notes (Optional)</label>
+                        <textarea
+                            id="modify-device-notes"
+                            name="notes"
+                            rows="3"
+                            class="w-full border border-neutral-300 rounded-md px-3 py-2"
+                            placeholder="Additional notes about this device"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button
+                        type="button"
+                        id="cancel-modify-device"
+                        class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete Device Modal -->
+<div
+    id="delete-device-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden"
+    role="dialog"
+    aria-labelledby="delete-device-modal-title"
+    aria-modal="true"
+>
+    <div class="bg-white rounded-lg shadow-xl max-w-sm w-full mx-4">
+        <!-- Modal Header -->
+        <header class="border-b border-neutral-200 px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-trash mr-2 text-red-600"></i>
+                    <h1
+                        class="text-lg font-semibold text-neutral-900"
+                        id="delete-device-modal-title"
+                    >
+                        Delete IP Device
+                    </h1>
+                </div>
+                <button
+                    id="close-delete-modal"
+                    class="text-neutral-400 hover:text-neutral-600 transition-colors"
+                    aria-label="Close delete IP device modal"
+                >
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="px-6 py-6 text-center">
+            <p class="text-neutral-600 mb-4">
+                Are you sure you want to delete
+                <strong id="delete-device-name"></strong>? This action cannot be
+                undone.
+            </p>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer class="border-t border-neutral-200 px-6 py-4 bg-neutral-50">
+            <div class="flex items-center justify-end space-x-3">
+                <button
+                    type="button"
+                    id="cancel-delete-device"
+                    class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50"
+                >
+                    <i class="fa-solid fa-xmark mr-2"></i>
+                    Cancel
+                </button>
+                <button
+                    type="button"
+                    id="confirm-delete-device"
+                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                >
+                    <i class="fa-solid fa-trash mr-2"></i>
+                    Delete Device
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- Discovery Modal -->
+<div
+    id="discovery-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden"
+    role="dialog"
+    aria-labelledby="discovery-modal-title"
+    aria-modal="true"
+>
+    <div
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+    >
+        <!-- Modal Header -->
+        <header
+            class="border-b border-neutral-200 px-6 py-4 sticky top-0 bg-white z-10"
+        >
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-search mr-2 text-purple-600"></i>
+                    <h1
+                        class="text-lg font-semibold text-neutral-900"
+                        id="discovery-modal-title"
+                    >
+                        Device Discovery
+                    </h1>
+                </div>
+                <button
+                    id="close-discovery-modal"
+                    class="text-neutral-400 hover:text-neutral-600 transition-colors"
+                    aria-label="Close discovery modal"
+                >
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="px-6 py-6">
+            <div class="space-y-4">
+                <div>
+                    <label
+                        for="discovery-subnet"
+                        class="block text-sm font-medium text-neutral-700 mb-2"
+                    >
+                        Subnet to Scan
+                    </label>
+                    <input
+                        type="text"
+                        id="discovery-subnet"
+                        name="subnet"
+                        class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                        placeholder="192.168.1.0/24"
+                        value="192.168.1.0/24"
+                    />
+                    <p class="text-xs text-neutral-500 mt-1">
+                        Network subnet to scan for devices
+                    </p>
+                </div>
+                <div id="discovery-results" class="hidden">
+                    <h3 class="text-sm font-medium text-neutral-700 mb-2">
+                        Discovered Devices
+                    </h3>
+                    <div
+                        id="discovery-devices-list"
+                        class="space-y-2 max-h-60 overflow-y-auto"
+                    ></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer
+            class="border-t border-neutral-200 px-6 py-4 bg-neutral-50 sticky bottom-0"
+        >
+            <div class="flex items-center justify-end space-x-3">
+                <button
+                    type="button"
+                    id="cancel-discovery-btn"
+                    class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50"
+                >
+                    <i class="fa-solid fa-xmark mr-2"></i>
+                    Cancel
+                </button>
+                <button
+                    type="button"
+                    id="start-discovery-btn"
+                    class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700"
+                >
+                    <i class="fa-solid fa-search mr-2"></i>
+                    Start Discovery
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    console.log('[IP-DEVICES] Initializing IP Devices section...');
+
+    // Configuration
+    const CONFIG = {
+        API_ENDPOINT: '/api/ip-devices',
+        AUTO_REFRESH_INTERVAL: 30000,
+        STATUS_COLORS: {
+            'Online': 'text-green-600',
+            'Offline': 'text-red-600',
+            'Unknown': 'text-neutral-600'
+        },
+        STATUS_DOTS: {
+            'Online': 'bg-green-500',
+            'Offline': 'bg-red-500',
+            'Unknown': 'bg-neutral-500'
+        }
+    };
+
+    // State
+    let autoRefreshInterval = null;
+    let devices = [];
+    let isLoading = false;
+
+    // DOM Elements
+    const elements = {
+        devicesCount: document.getElementById('devices-count'),
+        devicesStatus: document.getElementById('devices-status'),
+        autoRefreshToggle: document.getElementById('auto-refresh-toggle'),
+        refreshInterval: document.getElementById('refresh-interval'),
+        manualRefreshBtn: document.getElementById('manual-refresh-btn'),
+        refreshStatus: document.getElementById('refresh-status'),
+        tableBody: document.getElementById('ip-devices-table-body'),
+        noDevicesMessage: document.getElementById('no-devices-message'),
+        addDeviceBtn: document.getElementById('add-device-btn'),
+        addFirstDeviceBtn: document.getElementById('add-first-device-btn'),
+        discoverDevicesBtn: document.getElementById('discover-devices-btn'),
+        addDeviceModal: document.getElementById('add-ip-device-modal'),
+        addDeviceForm: document.getElementById('add-device-form'),
+        closeAddModal: document.getElementById('close-add-modal'),
+        cancelAddDevice: document.getElementById('cancel-add-device'),
+        // Add other modal elements as needed
+        modifyDeviceModal: document.getElementById('modify-device-modal'),
+        modifyDeviceForm: document.getElementById('modify-device-form'),
+        closeModifyModal: document.getElementById('close-modify-modal'),
+        cancelModifyDevice: document.getElementById('cancel-modify-device'),
+        deleteDeviceModal: document.getElementById('delete-device-modal'),
+        closeDeleteModal: document.getElementById('close-delete-modal'),
+        cancelDeleteDevice: document.getElementById('cancel-delete-device'),
+        confirmDeleteDevice: document.getElementById('confirm-delete-device'),
+        deleteDeviceName: document.getElementById('delete-device-name'),
+        discoveryModal: document.getElementById('discovery-modal'),
+        discoverySubnet: document.getElementById('discovery-subnet'),
+        discoveryResults: document.getElementById('discovery-results'),
+        discoveryDevicesList: document.getElementById('discovery-devices-list'),
+        closeDiscoveryModal: document.getElementById('close-discovery-modal'),
+        cancelDiscoveryBtn: document.getElementById('cancel-discovery-btn'),
+        startDiscoveryBtn: document.getElementById('start-discovery-btn'),
+    };
+
+    // IP Devices Manager Class
+    class IpDevicesManager {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            console.log('[IP-DEVICES] Initializing manager...');
+            this.bindEvents();
+            this.loadDevices();
+        }
+
+        bindEvents() {
+            // Auto refresh toggle
+            if (elements.autoRefreshToggle) {
+                elements.autoRefreshToggle.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        this.startAutoRefresh();
+                    } else {
+                        this.stopAutoRefresh();
+                    }
+                });
+            }
+
+            // Refresh interval change
+            if (elements.refreshInterval) {
+                elements.refreshInterval.addEventListener('change', (e) => {
+                    CONFIG.AUTO_REFRESH_INTERVAL = parseInt(e.target.value);
+                    if (elements.autoRefreshToggle?.checked) {
+                        this.stopAutoRefresh();
+                        this.startAutoRefresh();
+                    }
+                });
+            }
+
+            // Manual refresh
+            if (elements.manualRefreshBtn) {
+                elements.manualRefreshBtn.addEventListener('click', () => {
+                    this.loadDevices();
+                });
+            }
+
+            // Add device buttons
+            if (elements.addDeviceBtn) {
+                elements.addDeviceBtn.addEventListener('click', () => {
+                    this.openAddDeviceModal();
+                });
+            }
+
+            if (elements.addFirstDeviceBtn) {
+                elements.addFirstDeviceBtn.addEventListener('click', () => {
+                    this.openAddDeviceModal();
+                });
+            }
+
+            // Modal events - Add Device
+            if (elements.closeAddModal) {
+                elements.closeAddModal.addEventListener('click', () => {
+                    this.closeAddDeviceModal();
+                });
+            }
+            if (elements.cancelAddDevice) {
+                elements.cancelAddDevice.addEventListener('click', () => {
+                    this.closeAddDeviceModal();
+                });
+            }
+            // Add Device Form submission
+            if (elements.addDeviceForm) {
+                elements.addDeviceForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addDevice();
+                });
+            }
+
+            // Modal events - Modify Device
+            if (elements.closeModifyModal) {
+                elements.closeModifyModal.addEventListener('click', () => {
+                    this.closeModifyDeviceModal();
+                });
+            }
+            if (elements.cancelModifyDevice) {
+                elements.cancelModifyDevice.addEventListener('click', () => {
+                    this.closeModifyDeviceModal();
+                });
+            }
+            // Modify Device Form submission
+            if (elements.modifyDeviceForm) {
+                elements.modifyDeviceForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.modifyDevice();
+                });
+            }
+
+            // Modal events - Delete Device
+            if (elements.closeDeleteModal) {
+                elements.closeDeleteModal.addEventListener('click', () => {
+                    this.closeDeleteDeviceModal();
+                });
+            }
+            if (elements.cancelDeleteDevice) {
+                elements.cancelDeleteDevice.addEventListener('click', () => {
+                    this.closeDeleteDeviceModal();
+                });
+            }
+            if (elements.confirmDeleteDevice) {
+                elements.confirmDeleteDevice.addEventListener('click', () => {
+                    this.handleDeleteDevice();
+                });
+            }
+
+            // Modal events - Discovery
+            if (elements.closeDiscoveryModal) {
+                elements.closeDiscoveryModal.addEventListener('click', () => {
+                    this.closeDiscoveryModal();
+                });
+            }
+            if (elements.cancelDiscoveryBtn) {
+                elements.cancelDiscoveryBtn.addEventListener('click', () => {
+                    this.closeDiscoveryModal();
+                });
+            }
+            if (elements.startDiscoveryBtn) {
+                elements.startDiscoveryBtn.addEventListener('click', () => {
+                    this.handleDiscovery();
+                });
+            }
+
+
+            // Discover devices button
+            if (elements.discoverDevicesBtn) {
+                elements.discoverDevicesBtn.addEventListener('click', () => {
+                    this.openDiscoveryModal();
+                });
+            }
+        }
+
+        async loadDevices() {
+            if (isLoading) return;
+
+            try {
+                isLoading = true;
+                this.updateRefreshStatus('Loading...');
+
+                console.log('[IP-DEVICES] Loading devices from API...');
+
+                const response = await fetch(CONFIG.API_ENDPOINT, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('[IP-DEVICES] Received data:', data);
+
+                // Handle different possible response formats
+                if (data && data.success === false) {
+                    throw new Error(data.message || 'API returned success: false');
+                } else if (data && data.data && Array.isArray(data.data.devices)) {
+                    // Handle nested data structure: data.data.devices
+                    devices = data.data.devices;
+                    this.renderDevices();
+                    this.updateDevicesCount();
+                    this.updateRefreshStatus('Ready');
+                } else if (data && Array.isArray(data.devices)) {
+                    // Handle direct devices array: data.devices
+                    devices = data.devices;
+                    this.renderDevices();
+                    this.updateDevicesCount();
+                    this.updateRefreshStatus('Ready');
+                } else if (Array.isArray(data)) {
+                    // Handle case where response is directly an array
+                    devices = data;
+                    this.renderDevices();
+                    this.updateDevicesCount();
+                    this.updateRefreshStatus('Ready');
+                } else {
+                    console.error('[IP-DEVICES] Unexpected response format:', data);
+                    throw new Error('Invalid response format');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error loading devices:', error);
+                this.updateRefreshStatus('Error');
+                this.showError('Failed to load devices: ' + error.message);
+                this.renderErrorState('Failed to load devices');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        renderDevices() {
+            console.log('[IP-DEVICES] Rendering devices:', devices.length);
+
+            if (!elements.tableBody) {
+                console.error('[IP-DEVICES] Table body element not found');
+                return;
+            }
+
+            // Clear existing content
+            elements.tableBody.innerHTML = '';
+
+            if (devices.length === 0) {
+                this.showNoDevicesMessage();
+                return;
+            }
+
+            this.hideNoDevicesMessage();
+
+            devices.forEach(device => {
+                const row = this.createDeviceRow(device);
+                elements.tableBody.appendChild(row);
+            });
+        }
+
+        createDeviceRow(device) {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-neutral-50';
+            row.dataset.deviceId = device.id;
+
+            // Status cell
+            const statusCell = document.createElement('td');
+            statusCell.className = 'px-6 py-4 whitespace-nowrap';
+            statusCell.innerHTML = `
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full mr-2 ${CONFIG.STATUS_DOTS[device.status] || CONFIG.STATUS_DOTS.Unknown}"></div>
+                    <span class="text-sm ${CONFIG.STATUS_COLORS[device.status] || CONFIG.STATUS_COLORS.Unknown}">${device.status || 'Unknown'}</span>
+                </div>
+            `;
+
+            // Name cell
+            const nameCell = document.createElement('td');
+            nameCell.className = 'px-6 py-4 whitespace-nowrap';
+            const deviceName = device.name || device.ip_address || 'Unknown Device';
+            const deviceNotes = device.notes || 'No description';
+            nameCell.innerHTML = `
+                <div class="text-sm font-medium text-neutral-900">${this.escapeHtml(deviceName)}</div>
+                <div class="text-sm text-neutral-500">${this.escapeHtml(deviceNotes)}</div>
+            `;
+
+            // IP Address cell
+            const ipCell = document.createElement('td');
+            ipCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-neutral-900';
+            ipCell.textContent = device.ip_address || 'Unknown IP';
+
+            // Type cell
+            const typeCell = document.createElement('td');
+            typeCell.className = 'px-6 py-4 whitespace-nowrap';
+            const deviceType = device.device_type || 'Unknown';
+            typeCell.innerHTML = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${this.escapeHtml(deviceType)}</span>`;
+
+            // Role cell
+            const roleCell = document.createElement('td');
+            roleCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-neutral-900';
+            roleCell.textContent = device.device_role || 'Unknown';
+
+            // RTSP URL cell
+            const rtspCell = document.createElement('td');
+            rtspCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-neutral-900';
+            if (device.rtsp_url && device.rtsp_url.trim()) {
+                rtspCell.innerHTML = `<code class="bg-neutral-100 px-2 py-1 rounded text-xs">${this.escapeHtml(device.rtsp_url)}</code>`;
+            } else {
+                rtspCell.innerHTML = '<span class="text-neutral-400">Not configured</span>';
+            }
+
+            // Actions cell
+            const actionsCell = document.createElement('td');
+            actionsCell.className = 'px-6 py-4 whitespace-nowrap text-right text-sm font-medium';
+            const deviceId = device.id || '';
+            const deviceNameForDelete = device.name || device.ip_address || 'Unknown Device';
+            actionsCell.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <button class="text-blue-600 hover:text-blue-900 modify-device-btn" data-device-id="${this.escapeHtml(deviceId)}" title="Modify Device">
+                        <i class="fa-solid fa-edit"></i>
+                    </button>
+                    <button class="text-red-600 hover:text-red-900 delete-device-btn" data-device-id="${this.escapeHtml(deviceId)}" data-device-name="${this.escapeHtml(deviceNameForDelete)}" title="Delete Device">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+
+            row.appendChild(statusCell);
+            row.appendChild(nameCell);
+            row.appendChild(ipCell);
+            row.appendChild(typeCell);
+            row.appendChild(roleCell);
+            row.appendChild(rtspCell);
+            row.appendChild(actionsCell);
+
+            // Add event listeners for modify and delete buttons
+            actionsCell.querySelector('.modify-device-btn').addEventListener('click', () => this.openModifyDeviceModal(device.id));
+            actionsCell.querySelector('.delete-device-btn').addEventListener('click', () => this.openDeleteDeviceModal(device.id, device.name));
+
+            return row;
+        }
+
+        renderErrorState(message) {
+            if (elements.tableBody) {
+                elements.tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="px-6 py-8 text-center text-red-500">
+                            <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+                            ${message}
+                        </td>
+                    </tr>
+                `;
+            }
+            this.showNoDevicesMessage(); // Show message as if no devices were found
+        }
+
+        updateDevicesCount() {
+            const onlineCount = devices.filter(d => d.status === 'Online').length;
+            const totalCount = devices.length;
+
+            if (elements.devicesCount) {
+                elements.devicesCount.textContent = `${onlineCount}/${totalCount} Online`;
+            }
+
+            // Update status indicator
+            if (elements.devicesStatus) {
+                if (onlineCount === 0 && totalCount > 0) {
+                    elements.devicesStatus.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-800';
+                } else if (onlineCount === totalCount && totalCount > 0) {
+                    elements.devicesStatus.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800';
+                } else if (totalCount > 0) {
+                     elements.devicesStatus.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-800';
+                } else {
+                    elements.devicesStatus.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800';
+                }
+            }
+        }
+
+        showNoDevicesMessage() {
+            if (elements.noDevicesMessage) {
+                elements.noDevicesMessage.classList.remove('hidden');
+            }
+            // Hide the table body if no devices are found
+            if (elements.tableBody) {
+                elements.tableBody.classList.add('hidden');
+            }
+        }
+
+        hideNoDevicesMessage() {
+            if (elements.noDevicesMessage) {
+                elements.noDevicesMessage.classList.add('hidden');
+            }
+            if (elements.tableBody) {
+                elements.tableBody.classList.remove('hidden');
+            }
+        }
+
+        updateRefreshStatus(status) {
+            if (elements.refreshStatus) {
+                elements.refreshStatus.textContent = status;
+            }
+        }
+
+        startAutoRefresh() {
+            this.stopAutoRefresh();
+            autoRefreshInterval = setInterval(() => {
+                this.loadDevices();
+            }, CONFIG.AUTO_REFRESH_INTERVAL);
+            console.log('[IP-DEVICES] Auto refresh started');
+            this.updateRefreshStatus('Auto-refresh active');
+        }
+
+        stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                console.log('[IP-DEVICES] Auto refresh stopped');
+                this.updateRefreshStatus('Auto-refresh stopped');
+            }
+        }
+
+        // Modal Management
+        openAddDeviceModal() {
+            if (elements.addDeviceModal) {
+                elements.addDeviceModal.classList.remove('hidden');
+                elements.addDeviceModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        closeAddDeviceModal() {
+            if (elements.addDeviceModal) {
+                elements.addDeviceModal.classList.add('hidden');
+                elements.addDeviceModal.classList.remove('flex');
+                document.body.style.overflow = '';
+
+                // Reset form
+                if (elements.addDeviceForm) {
+                    elements.addDeviceForm.reset();
+                }
+                // Clear any previous error messages if shown in form
+            }
+        }
+
+        async openModifyDeviceModal(deviceId) {
+            try {
+                const response = await fetch(`${CONFIG.API_ENDPOINT}/${deviceId}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                // Handle different possible response formats
+                let device = null;
+                if (data && data.success === false) {
+                    throw new Error(data.message || 'Device not found');
+                } else if (data && data.data && data.data.device) {
+                    // Handle nested structure: data.data.device
+                    device = data.data.device;
+                } else if (data && data.device) {
+                    // Handle direct device: data.device
+                    device = data.device;
+                } else if (data && data.success !== false && (data.id || data.ip_address)) {
+                    // Handle case where the device data is at the top level
+                    device = data;
+                } else {
+                    throw new Error('Device not found or invalid response format');
+                }
+
+                // Populate form
+                if (elements.modifyDeviceForm) {
+                    elements.modifyDeviceForm.querySelector('#modify-device-id').value = device.id;
+                    elements.modifyDeviceForm.querySelector('#modify-device-name').value = device.name || '';
+                    elements.modifyDeviceForm.querySelector('#modify-device-ip').value = device.ip_address || '';
+                    elements.modifyDeviceForm.querySelector('#modify-device-type').value = device.device_type || '';
+                    elements.modifyDeviceForm.querySelector('#modify-device-role').value = device.device_role || '';
+                    elements.modifyDeviceForm.querySelector('#modify-rtsp-url').value = device.rtsp_url || '';
+                    elements.modifyDeviceForm.querySelector('#modify-device-notes').value = device.notes || '';
+                }
+
+                if (elements.modifyDeviceModal) {
+                    elements.modifyDeviceModal.classList.remove('hidden');
+                    elements.modifyDeviceModal.classList.add('flex');
+                    document.body.style.overflow = 'hidden';
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error fetching device for modification:', error);
+                this.showError(`Failed to load device details: ${error.message}`);
+            }
+        }
+
+        closeModifyDeviceModal() {
+            if (elements.modifyDeviceModal) {
+                elements.modifyDeviceModal.classList.add('hidden');
+                elements.modifyDeviceModal.classList.remove('flex');
+                document.body.style.overflow = '';
+
+                // Reset form
+                if (elements.modifyDeviceForm) {
+                    elements.modifyDeviceForm.reset();
+                    // Clear hidden input too if necessary
+                    elements.modifyDeviceForm.querySelector('#modify-device-id').value = '';
+                }
+            }
+        }
+
+        openDeleteDeviceModal(deviceId, deviceName) {
+            if (elements.deleteDeviceModal) {
+                elements.deleteDeviceModal.classList.remove('hidden');
+                elements.deleteDeviceModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                elements.deleteDeviceModal.dataset.deviceId = deviceId; // Store deviceId for confirmation
+                if (elements.deleteDeviceName) {
+                    elements.deleteDeviceName.textContent = deviceName || 'this device';
+                }
+            }
+        }
+
+        closeDeleteDeviceModal() {
+            if (elements.deleteDeviceModal) {
+                elements.deleteDeviceModal.classList.add('hidden');
+                elements.deleteDeviceModal.classList.remove('flex');
+                document.body.style.overflow = '';
+                delete elements.deleteDeviceModal.dataset.deviceId; // Clean up stored id
+            }
+        }
+
+        openDiscoveryModal() {
+             if (elements.discoveryModal) {
+                elements.discoveryModal.classList.remove('hidden');
+                elements.discoveryModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                // Clear previous results if any
+                if (elements.discoveryResults) elements.discoveryResults.classList.add('hidden');
+                if (elements.discoveryDevicesList) elements.discoveryDevicesList.innerHTML = '';
+            }
+        }
+
+        closeDiscoveryModal() {
+            if (elements.discoveryModal) {
+                elements.discoveryModal.classList.add('hidden');
+                elements.discoveryModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
+        async addDevice() {
+            try {
+                const formData = new FormData(elements.addDeviceForm);
+                const deviceData = Object.fromEntries(formData.entries());
+
+                // Basic validation for required fields
+                if (!deviceData.name || !deviceData.ip_address || !deviceData.device_type) {
+                    this.showError('Please fill in all required fields.');
+                    return;
+                }
+
+                // Set defaults or specific values
+                deviceData.status = 'Offline'; // New devices start as offline
+                deviceData.rtsp_method = 'Manual Entry'; // Manual entry
+
+                console.log('[IP-DEVICES] Adding device:', deviceData);
+
+                const response = await fetch(CONFIG.API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(deviceData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(errorData.message || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    console.log('[IP-DEVICES] Device added successfully');
+                    this.closeAddDeviceModal();
+                    this.loadDevices(); // Reload devices to show the new one
+                    this.showSuccess('Device added successfully.');
+                } else {
+                    throw new Error(result.message || 'Failed to add device');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error adding device:', error);
+                this.showError('Failed to add device: ' + error.message);
+            }
+        }
+
+        async handleDeleteDevice() {
+            const deviceId = elements.deleteDeviceModal?.dataset.deviceId;
+            if (!deviceId) {
+                this.showError('Device ID not found.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${CONFIG.API_ENDPOINT}/${deviceId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(errorData.message || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Handle different possible response formats
+                if (result && result.success === true) {
+                    console.log('[IP-DEVICES] Device deleted successfully');
+                    this.closeDeleteDeviceModal();
+                    this.loadDevices(); // Reload devices to reflect deletion
+                    this.showSuccess('Device deleted successfully.');
+                } else if (result && result.success === false) {
+                    throw new Error(result.message || 'Failed to delete device');
+                } else if (result && result.message && result.message.includes('success')) {
+                    // Handle case where success is indicated in message
+                    console.log('[IP-DEVICES] Device deleted successfully');
+                    this.closeDeleteDeviceModal();
+                    this.loadDevices();
+                    this.showSuccess('Device deleted successfully.');
+                } else {
+                    // If no clear success indicator, check if we got a valid response
+                    console.log('[IP-DEVICES] Device deletion response:', result);
+                    this.closeDeleteDeviceModal();
+                    this.loadDevices(); // Reload to check if deletion actually worked
+                    this.showSuccess('Device deletion requested.');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error deleting device:', error);
+                this.showError('Failed to delete device: ' + error.message);
+            }
+        }
+
+        async modifyDevice() {
+            try {
+                const form = elements.modifyDeviceForm;
+                const deviceId = form.querySelector('#modify-device-id').value;
+
+                if (!deviceId) {
+                    this.showError('Device ID not found.');
+                    return;
+                }
+
+                const formData = new FormData(form);
+                const deviceData = Object.fromEntries(formData.entries());
+
+                // Remove device_id as it's not part of the update payload itself
+                delete deviceData.device_id;
+
+                console.log('[IP-DEVICES] Modifying device:', deviceId, deviceData);
+
+                const response = await fetch(`${CONFIG.API_ENDPOINT}/${deviceId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(deviceData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(errorData.message || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Handle different possible response formats
+                if (result && result.success === true) {
+                    console.log('[IP-DEVICES] Device modified successfully');
+                    this.closeModifyDeviceModal();
+                    this.loadDevices(); // Reload devices to show updated info
+                    this.showSuccess('Device modified successfully.');
+                } else if (result && result.success === false) {
+                    throw new Error(result.message || 'Failed to modify device');
+                } else if (result && result.message && result.message.includes('success')) {
+                    // Handle case where success is indicated in message
+                    console.log('[IP-DEVICES] Device modified successfully');
+                    this.closeModifyDeviceModal();
+                    this.loadDevices();
+                    this.showSuccess('Device modified successfully.');
+                } else {
+                    // If no clear success indicator, check if we got a valid response
+                    console.log('[IP-DEVICES] Device modification response:', result);
+                    this.closeModifyDeviceModal();
+                    this.loadDevices(); // Reload to check if modification actually worked
+                    this.showSuccess('Device modification requested.');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error modifying device:', error);
+                this.showError('Failed to modify device: ' + error.message);
+            }
+        }
+
+        async handleDiscovery() {
+            const subnet = elements.discoverySubnet.value.trim();
+            if (!subnet) {
+                this.showError('Please enter a subnet to scan.');
+                return;
+            }
+
+            // Disable button and show loading state
+            elements.startDiscoveryBtn.disabled = true;
+            elements.startDiscoveryBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Scanning...';
+
+            try {
+                console.log('[IP-DEVICES] Starting discovery for subnet:', subnet);
+                const response = await fetch(CONFIG.API_ENDPOINT + '/discover', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ subnet })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(errorData.message || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log('[IP-DEVICES] Discovery result:', result);
+
+                if (result.success && Array.isArray(result.discovered_devices)) {
+                    this.renderDiscoveryResults(result.discovered_devices);
+                } else {
+                    throw new Error(result.message || 'Discovery failed or returned invalid data.');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error during discovery:', error);
+                this.showError('Device discovery failed: ' + error.message);
+            } finally {
+                // Re-enable button and reset its state
+                elements.startDiscoveryBtn.disabled = false;
+                elements.startDiscoveryBtn.innerHTML = '<i class="fa-solid fa-search mr-2"></i>Start Discovery';
+            }
+        }
+
+        renderDiscoveryResults(devices) {
+            elements.discoveryResults.classList.remove('hidden');
+            elements.discoveryDevicesList.innerHTML = '';
+
+            if (devices.length === 0) {
+                elements.discoveryDevicesList.innerHTML = '<p class="text-neutral-500 text-sm">No devices found in the specified subnet.</p>';
+                return;
+            }
+
+            devices.forEach(device => {
+                const deviceElement = document.createElement('div');
+                deviceElement.className = 'flex items-center justify-between p-3 border border-neutral-200 rounded-lg bg-neutral-50';
+                deviceElement.innerHTML = `
+                    <div>
+                        <div class="text-sm font-medium text-neutral-900">${device.name || device.ip_address}</div>
+                        <div class="text-xs text-neutral-500">${device.ip_address} ${device.device_type ? '- ' + device.device_type : ''}</div>
+                    </div>
+                    <button class="add-discovered-device px-3 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700" data-device='${JSON.stringify(device)}'>
+                        Add
+                    </button>
+                `;
+                elements.discoveryDevicesList.appendChild(deviceElement);
+            });
+
+            // Add event listeners to the 'Add' buttons for discovered devices
+            elements.discoveryDevicesList.querySelectorAll('.add-discovered-device').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const deviceData = JSON.parse(e.target.dataset.device);
+                    this.addDiscoveredDevice(deviceData);
+                });
+            });
+        }
+
+        async addDiscoveredDevice(deviceData) {
+            try {
+                console.log('[IP-DEVICES] Adding discovered device:', deviceData);
+
+                // Prepare data for API, similar to addDevice but potentially with pre-filled fields
+                const payload = {
+                    name: deviceData.name || deviceData.ip_address,
+                    ip_address: deviceData.ip_address,
+                    device_type: deviceData.device_type || 'Unknown',
+                    device_role: deviceData.device_role || '',
+                    rtsp_url: deviceData.rtsp_url || '',
+                    notes: deviceData.notes || '',
+                    status: 'Offline', // Default status for newly added devices
+                    rtsp_method: 'Auto Discovery' // Indicate how it was added
+                };
+
+                const response = await fetch(CONFIG.API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(errorData.message || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log('[IP-DEVICES] Discovered device added successfully.');
+                    this.closeDiscoveryModal(); // Close discovery modal after adding
+                    this.loadDevices(); // Refresh the main device list
+                    this.showSuccess(`Device ${payload.name} added successfully.`);
+                } else {
+                    throw new Error(result.message || 'Failed to add discovered device.');
+                }
+
+            } catch (error) {
+                console.error('[IP-DEVICES] Error adding discovered device:', error);
+                this.showError('Failed to add discovered device: ' + error.message);
+            }
+        }
+
+
+        // Utility Methods
+        escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        showSuccess(message) {
+            this.showNotification(message, 'success');
+        }
+
+        showError(message) {
+            this.showNotification(message, 'error');
+        }
+
+        showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg text-white z-50 max-w-sm break-words
+                ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Cleanup
+        destroy() {
+            this.stopAutoRefresh();
+            console.log('[IP-DEVICES] Manager destroyed');
+        }
+    }
+
+    // Initialize when DOM is ready
+    function initializeIpDevicesManager() {
+        // Check if the necessary table body element exists before initializing
+        if (document.getElementById('ip-devices-table-body')) {
+            window.ipDevicesManager = new IpDevicesManager();
+            console.log('[IP-DEVICES] Manager initialized successfully');
+        } else {
+            console.warn('[IP-DEVICES] IP Devices table body not found, manager not initialized.');
+        }
+    }
+
+    // Wait for DOM content to be loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeIpDevicesManager);
+    } else {
+        initializeIpDevicesManager();
+    }
+
+    // Observer for dynamic content loading (if the IP Devices section is loaded dynamically)
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                // Check if the added node is an element and contains the table body or is the table body itself
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.getElementById && node.getElementById('ip-devices-table-body')) {
+                         // Ensure manager is not already initialized
+                        if (!window.ipDevicesManager) {
+                            console.log('[IP-DEVICES] Detected IP devices section, initializing...');
+                            // Use a small timeout to ensure the element is fully available
+                            setTimeout(initializeIpDevicesManager, 100);
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (window.ipDevicesManager) {
+            window.ipDevicesManager.destroy();
+        }
+    });
+
+    // Close modals on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            // Check all known modals and close the visible one
+            const modals = [
+                'add-ip-device-modal',
+                'modify-device-modal',
+                'delete-device-modal',
+                'discovery-modal'
+            ];
+
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (modal && !modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    document.body.style.overflow = ''; // Restore scroll
+                    // If we close a modal, we might want to stop processing this key event further
+                    e.stopPropagation();
+                }
+            });
+        }
+    });
+
+    console.log('[IP-DEVICES] IP Devices section script loaded successfully');
+})();
+</script>

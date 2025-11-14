@@ -1,0 +1,786 @@
+<!-- Network Priority Configuration Section -->
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h2 class="text-2xl text-neutral-900 mb-2 flex items-center">
+            <i class="fa-solid fa-route text-neutral-700 mr-3"></i>
+            Network Interface Routing Priority
+        </h2>
+        <p class="text-neutral-600">Configure interface priorities and routing rules for internet access</p>
+    </div>
+
+    <!-- Interface Priority Order Section -->
+    <div id="priority-section" class="bg-white rounded-lg border border-neutral-200 p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg text-neutral-800 flex items-center">
+                <i class="fa-solid fa-layer-group mr-2 text-neutral-600"></i>
+                Interface Priority Order
+            </h3>
+        </div>
+
+        <div class="bg-neutral-50 rounded-lg p-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="text-center">
+                    <div class="text-2xl text-neutral-800" data-stat="total">0</div>
+                    <div class="text-sm text-neutral-600">Total Interfaces</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl text-green-600" data-stat="online">0</div>
+                    <div class="text-sm text-neutral-600">Online</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl text-red-600" data-stat="offline">0</div>
+                    <div class="text-sm text-neutral-600">Offline</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="interfaces-container" class="space-y-3">
+            <!-- Interfaces will be dynamically populated here -->
+        </div>
+    </div>
+
+    <!-- Custom Routing Rules Section -->
+    <div id="routing-rules-section" class="bg-white rounded-lg border border-neutral-200 p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg text-neutral-800 flex items-center">
+                <i class="fa-solid fa-list-ul mr-2 text-neutral-600"></i>
+                Custom Routing Rules
+            </h3>
+            <div class="flex space-x-2">
+                <button id="add-rule-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-md flex items-center text-sm">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    Add Rule
+                </button>
+                <button id="export-rules-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-md flex items-center text-sm">
+                    <i class="fa-solid fa-download mr-2"></i>
+                    Export Rules
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white border border-neutral-200 rounded-lg overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-neutral-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">
+                            <input type="checkbox" class="rounded border-neutral-300" id="select-all-rules">
+                        </th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Priority</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Destination</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Gateway</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Interface</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Metric</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Status</th>
+                        <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="routing-rules-tbody" class="divide-y divide-neutral-200">
+                    <!-- Routing rules will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-between bg-white rounded-lg border border-neutral-200 p-4">
+        <div class="flex items-center space-x-4">
+            <button id="reset-defaults-btn" class="text-neutral-600 hover:text-neutral-800 text-sm flex items-center">
+                <i class="fa-solid fa-undo mr-2"></i>
+                Reset to Default
+            </button>
+            <button id="preview-changes-btn" class="text-neutral-600 hover:text-neutral-800 text-sm flex items-center">
+                <i class="fa-solid fa-eye mr-2"></i>
+                Preview Changes
+            </button>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button id="cancel-btn" class="px-4 py-2 text-neutral-700 border border-neutral-300 rounded-md hover:bg-neutral-50">
+                Cancel
+            </button>
+            <button id="apply-changes-btn" class="px-4 py-2 bg-neutral-600 text-white rounded-md hover:bg-neutral-700">
+                Apply Changes
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Routing Rule Popup -->
+<div id="add-rule-popup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 12px; padding: 0; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+        <div class="bg-white w-full h-auto shadow-lg overflow-y-auto">
+            <!-- Header -->
+            <div class="border-b border-neutral-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-route text-blue-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl text-neutral-900">Add New Routing Rule</h1>
+                            <p class="text-neutral-500 text-sm">Configure custom routing rule for network traffic</p>
+                        </div>
+                    </div>
+                    <button class="add-rule-popup-close w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-neutral-500"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Content -->
+            <div class="p-6">
+                <form id="add-rule-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Destination Network *</label>
+                            <input type="text" id="rule-destination" name="destination" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="e.g., 192.168.1.0/24">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Gateway *</label>
+                            <input type="text" id="rule-gateway" name="gateway" required
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="e.g., 192.168.1.1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Interface *</label>
+                            <select id="rule-interface" name="interface" required
+                                    class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select an interface...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Metric *</label>
+                            <input type="number" id="rule-metric" name="metric" required min="1" max="9999"
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="e.g., 100">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Priority *</label>
+                            <input type="number" id="rule-priority" name="priority" required min="1" max="100"
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="e.g., 1">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Footer -->
+            <div class="border-t border-neutral-200 p-6 flex justify-end space-x-3">
+                <button type="button" class="add-rule-popup-cancel px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200">
+                    Cancel
+                </button>
+                <button type="button" class="add-rule-popup-save px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Add Rule
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * Network Priority Section Manager
+ * Manages all network priority configuration functionality
+ */
+class NetworkPrioritySection {
+    constructor() {
+        this.state = {
+            data: {
+                networkInterfaces: [],
+                routingRules: [],
+                statistics: { total: 0, online: 0, offline: 0 },
+                lastUpdated: null
+            },
+            ui: {
+                selectedRules: new Set(),
+                isLoading: false,
+                lastError: null
+            }
+        };
+        this.popupOpen = false;
+        this.currentPopup = null;
+        this.initialized = false;
+        this.init();
+    }
+
+    init() {
+        console.log('[NETWORK-PRIORITY] Initializing Network Priority Section...');
+        
+        // Prevent duplicate initialization
+        if (this.initialized) {
+            console.log('[NETWORK-PRIORITY] Already initialized, skipping...');
+            return;
+        }
+        
+        // Add debugging to check if elements exist
+        console.log('[NETWORK-PRIORITY] Checking if buttons exist...');
+        console.log('[NETWORK-PRIORITY] add-rule-btn:', document.getElementById('add-rule-btn'));
+        console.log('[NETWORK-PRIORITY] export-rules-btn:', document.getElementById('export-rules-btn'));
+        console.log('[NETWORK-PRIORITY] reset-defaults-btn:', document.getElementById('reset-defaults-btn'));
+        console.log('[NETWORK-PRIORITY] preview-changes-btn:', document.getElementById('preview-changes-btn'));
+        console.log('[NETWORK-PRIORITY] apply-changes-btn:', document.getElementById('apply-changes-btn'));
+        
+        this.setupEventHandlers();
+        this.setupGlobalHandlers();
+        
+        // Initialize with empty state first
+        this.initializeEmptyState();
+        
+        this.initialized = true;
+        console.log('[NETWORK-PRIORITY] Initialization completed');
+    }
+
+    initializeEmptyState() {
+        console.log('[NETWORK-PRIORITY] Initializing with empty state...');
+        
+        // Set empty data
+        this.state.data.networkInterfaces = [];
+        this.state.data.routingRules = [];
+        this.state.data.statistics = { total: 0, online: 0, offline: 0 };
+        
+        // Update UI with empty state
+        this.updateUI();
+        
+        console.log('[NETWORK-PRIORITY] Empty state initialized');
+    }
+
+    setupGlobalHandlers() {
+        console.log('[NETWORK-PRIORITY] Setting up global handlers...');
+        
+        // Prevent ALL form submissions on the page
+        document.addEventListener('submit', (e) => {
+            console.log('[NETWORK-PRIORITY] Global form submission prevented:', e.target);
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
+        
+        // Prevent any global click handlers from interfering when popup is open
+        document.addEventListener('click', (e) => {
+            if (this.popupOpen) {
+                // Check if click is inside current popup
+                const popup = document.getElementById(this.currentPopup);
+                if (popup && !popup.contains(e.target)) {
+                    // Click outside popup - don't let other handlers process it
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('[NETWORK-PRIORITY] Prevented outside click interference');
+                    return false;
+                }
+            }
+        }, true);
+        
+        // Prevent page refresh from UNHANDLED button clicks only
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                // Check if this button has our specific handler
+                const button = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+                
+                // Allow buttons that are handled by our system OR have specific classes
+                const isHandled = button.hasAttribute('data-handled') || 
+                                 button.id.includes('rule-btn') ||
+                                 button.classList.contains('add-rule-popup-close') ||
+                                 button.classList.contains('add-rule-popup-cancel') ||
+                                 button.classList.contains('add-rule-popup-save') ||
+                                 button.id === 'add-rule-btn' ||
+                                 button.id === 'export-rules-btn' ||
+                                 button.id === 'reset-defaults-btn' ||
+                                 button.id === 'preview-changes-btn' ||
+                                 button.id === 'apply-changes-btn' ||
+                                 button.id === 'cancel-btn';
+                
+                if (!isHandled) {
+                    console.log('[NETWORK-PRIORITY] Preventing unhandled button click:', button);
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+        }, true);
+        
+        console.log('[NETWORK-PRIORITY] Global handlers setup completed');
+    }
+
+    setupEventHandlers() {
+        console.log('[NETWORK-PRIORITY] Setting up event handlers...');
+        
+        try {
+            // Use capture phase and aggressive event prevention
+            // Add rule popup handlers
+            const addRuleBtn = document.getElementById('add-rule-btn');
+            if (addRuleBtn) {
+                addRuleBtn.setAttribute('data-handled', 'true');
+                console.log('[NETWORK-PRIORITY] Adding Add Rule button event listener');
+                addRuleBtn.addEventListener('click', (e) => {
+                    console.log('[NETWORK-PRIORITY] Add Rule button clicked!', e);
+                    e.stopImmediatePropagation(); // Stop all other listeners
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.showAddRulePopup();
+                    return false; // Extra prevention
+                }, true); // Use capture phase
+            } else {
+                console.error('[NETWORK-PRIORITY] Add Rule button not found!');
+            }
+            
+            const addRuleClose = document.querySelector('.add-rule-popup-close');
+            if (addRuleClose) {
+                addRuleClose.setAttribute('data-handled', 'true');
+                addRuleClose.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.hideAddRulePopup();
+                    return false;
+                }, true);
+            }
+            const addRuleCancel = document.querySelector('.add-rule-popup-cancel');
+            if (addRuleCancel) {
+                addRuleCancel.setAttribute('data-handled', 'true');
+                addRuleCancel.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.hideAddRulePopup();
+                    return false;
+                }, true);
+            }
+            const addRuleSave = document.querySelector('.add-rule-popup-save');
+            if (addRuleSave) {
+                addRuleSave.setAttribute('data-handled', 'true');
+                addRuleSave.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.saveRoutingRule();
+                    return false;
+                }, true);
+            }
+
+            // Other button handlers
+            const exportRulesBtn = document.getElementById('export-rules-btn');
+            if (exportRulesBtn) {
+                exportRulesBtn.setAttribute('data-handled', 'true');
+                exportRulesBtn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.exportRoutingRules();
+                    return false;
+                }, true);
+            }
+
+            const resetDefaultsBtn = document.getElementById('reset-defaults-btn');
+            if (resetDefaultsBtn) {
+                resetDefaultsBtn.setAttribute('data-handled', 'true');
+                resetDefaultsBtn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.resetToDefaults();
+                    return false;
+                }, true);
+            }
+
+            const previewChangesBtn = document.getElementById('preview-changes-btn');
+            if (previewChangesBtn) {
+                previewChangesBtn.setAttribute('data-handled', 'true');
+                previewChangesBtn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.previewChanges();
+                    return false;
+                }, true);
+            }
+
+            const applyChangesBtn = document.getElementById('apply-changes-btn');
+            if (applyChangesBtn) {
+                applyChangesBtn.setAttribute('data-handled', 'true');
+                applyChangesBtn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.applyChanges();
+                    return false;
+                }, true);
+            }
+
+            const cancelBtn = document.getElementById('cancel-btn');
+            if (cancelBtn) {
+                cancelBtn.setAttribute('data-handled', 'true');
+                cancelBtn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.cancelChanges();
+                    return false;
+                }, true);
+            }
+
+            // Handle table action buttons dynamically
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.rule-up-btn') || e.target.closest('.rule-up-btn')) {
+                    const btn = e.target.closest('.rule-up-btn') || e.target;
+                    btn.setAttribute('data-handled', 'true');
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.moveRuleUp(btn);
+                    return false;
+                }
+
+                if (e.target.matches('.rule-down-btn') || e.target.closest('.rule-down-btn')) {
+                    const btn = e.target.closest('.rule-down-btn') || e.target;
+                    btn.setAttribute('data-handled', 'true');
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.moveRuleDown(btn);
+                    return false;
+                }
+
+                if (e.target.matches('.rule-delete-btn') || e.target.closest('.rule-delete-btn')) {
+                    const btn = e.target.closest('.rule-delete-btn') || e.target;
+                    btn.setAttribute('data-handled', 'true');
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.deleteRule(btn);
+                    return false;
+                }
+            }, true);
+
+            // Close on backdrop click with capture phase
+            document.querySelectorAll('.popup-overlay').forEach(popup => {
+                popup.addEventListener('click', (e) => {
+                    if (e.target === popup) {
+                        e.stopImmediatePropagation();
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.hideAllPopups();
+                        return false;
+                    }
+                }, true);
+            });
+
+            // Close on escape key with capture phase
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    this.hideAllPopups();
+                    return false;
+                }
+            }, true);
+            
+            console.log('[NETWORK-PRIORITY] Event handlers setup completed');
+        } catch (error) {
+            console.error('[NETWORK-PRIORITY] Error setting up event handlers:', error);
+        }
+    }
+
+    // Popup show/hide methods following VPN section pattern
+    showAddRulePopup() {
+        console.log('[NETWORK-PRIORITY] Showing Add Rule popup');
+        const popup = document.getElementById('add-rule-popup');
+        if (popup) {
+            // Set state before showing
+            this.popupOpen = true;
+            this.currentPopup = 'add-rule-popup';
+            
+            console.log('[NETWORK-PRIORITY] Add Rule popup element found, current styles:', {
+                display: popup.style.display,
+                opacity: popup.style.opacity,
+                visibility: popup.style.visibility
+            });
+            
+            // Populate interface dropdown
+            this.populateInterfaceDropdown();
+            
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            console.log('[NETWORK-PRIORITY] Add Rule popup shown successfully');
+        } else {
+            console.error('[NETWORK-PRIORITY] Add Rule popup element not found!');
+        }
+    }
+
+    hideAddRulePopup() {
+        console.log('[NETWORK-PRIORITY] Hiding Add Rule popup');
+        const popup = document.getElementById('add-rule-popup');
+        if (popup) {
+            // Clear state immediately
+            this.popupOpen = false;
+            this.currentPopup = null;
+            
+            popup.style.opacity = '0';
+            popup.style.visibility = 'hidden';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(0.9)';
+            }
+
+            setTimeout(() => {
+                popup.style.display = 'none';
+                document.body.style.overflow = '';
+                console.log('[NETWORK-PRIORITY] Add Rule popup hidden and cleanup completed');
+            }, 300);
+        } else {
+            console.error('[NETWORK-PRIORITY] Add Rule popup element not found for hiding!');
+        }
+    }
+
+    hideAllPopups() {
+        console.log('[NETWORK-PRIORITY] Hiding all popups');
+        this.popupOpen = false;
+        this.currentPopup = null;
+        this.hideAddRulePopup();
+    }
+
+    // Form submission methods
+    saveRoutingRule() {
+        const form = document.getElementById('add-rule-form');
+        if (form.checkValidity()) {
+            const formData = new FormData(form);
+            const ruleData = Object.fromEntries(formData);
+            
+            // Convert metric and priority to numbers
+            ruleData.metric = parseInt(ruleData.metric, 10);
+            ruleData.priority = parseInt(ruleData.priority, 10);
+            
+            console.log('[NETWORK-PRIORITY] Saving routing rule:', ruleData);
+            this.showNotification('Routing rule created successfully', 'success');
+            this.hideAddRulePopup();
+            form.reset();
+            
+            // Add to state and update table
+            this.state.data.routingRules.push({
+                id: Date.now(),
+                destination: ruleData.destination,
+                gateway: ruleData.gateway,
+                interface: ruleData.interface,
+                metric: ruleData.metric,
+                priority: ruleData.priority,
+                status: 'Active'
+            });
+            this.updateRoutingRulesTable();
+        } else {
+            form.reportValidity();
+        }
+    }
+
+    // Table update methods
+    updateRoutingRulesTable() {
+        const tbody = document.getElementById('routing-rules-tbody');
+        
+        tbody.innerHTML = '';
+        
+        this.state.data.routingRules.forEach(rule => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-rule-id', rule.id);
+            row.innerHTML = `
+                <td class="px-4 py-3 whitespace-nowrap">
+                    <input type="checkbox" class="rule-checkbox rounded border-neutral-300">
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">${rule.priority}</td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">${rule.destination}</td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">${rule.gateway}</td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">${rule.interface}</td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">${rule.metric}</td>
+                <td class="px-4 py-3 whitespace-nowrap">
+                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">${rule.status}</span>
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-neutral-500">
+                    <button class="rule-up-btn text-blue-600 hover:text-blue-900 mr-2">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="rule-down-btn text-blue-600 hover:text-blue-900 mr-2">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button class="rule-delete-btn text-red-600 hover:text-red-900">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    populateInterfaceDropdown() {
+        const select = document.getElementById('rule-interface');
+        if (select) {
+            select.innerHTML = '<option value="">Select an interface...</option>';
+            
+            this.state.data.networkInterfaces.forEach(iface => {
+                const option = document.createElement('option');
+                option.value = iface.name;
+                option.textContent = iface.name + (iface.status === 'online' ? ' (Online)' : ' (Offline)');
+                select.appendChild(option);
+            });
+        }
+    }
+
+    // Table action methods
+    moveRuleUp(btn) {
+        console.log('[NETWORK-PRIORITY] Moving rule up');
+        this.showNotification('Rule moved up', 'info');
+    }
+
+    moveRuleDown(btn) {
+        console.log('[NETWORK-PRIORITY] Moving rule down');
+        this.showNotification('Rule moved down', 'info');
+    }
+
+    deleteRule(btn) {
+        console.log('[NETWORK-PRIORITY] Deleting rule');
+        this.showNotification('Rule deleted', 'success');
+    }
+
+    // Other methods
+    exportRoutingRules() {
+        console.log('[NETWORK-PRIORITY] Exporting routing rules...');
+        this.showNotification('Routing rules exported successfully', 'success');
+    }
+
+    resetToDefaults() {
+        console.log('[NETWORK-PRIORITY] Resetting to defaults...');
+        this.showNotification('Reset to defaults completed', 'info');
+    }
+
+    previewChanges() {
+        console.log('[NETWORK-PRIORITY] Previewing changes...');
+        this.showNotification('Changes previewed', 'info');
+    }
+
+    applyChanges() {
+        console.log('[NETWORK-PRIORITY] Applying changes...');
+        this.showNotification('Changes applied successfully', 'success');
+    }
+
+    cancelChanges() {
+        console.log('[NETWORK-PRIORITY] Canceling changes...');
+        this.showNotification('Changes canceled', 'info');
+    }
+
+    // Notification system
+    showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotification = document.querySelector('.notification-toast');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        const notification = document.createElement('div');
+        notification.className = `notification-toast fixed top-4 right-4 px-4 py-3 rounded-lg shadow-lg z-50 transition-all duration-300 ${
+            type === 'success' ? 'bg-green-100 text-green-800 border border-green-200' :
+            type === 'error' ? 'bg-red-100 text-red-800 border border-red-200' :
+            'bg-blue-100 text-blue-800 border border-blue-200'
+        }`;
+        
+        notification.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid ${
+                    type === 'success' ? 'fa-check-circle' :
+                    type === 'error' ? 'fa-exclamation-circle' :
+                    'fa-info-circle'
+                }"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    updateUI() {
+        // Update statistics with safe defaults
+        const stats = this.state.data.statistics || { total: 0, online: 0, offline: 0 };
+        const totalEl = document.querySelector('[data-stat="total"]');
+        const onlineEl = document.querySelector('[data-stat="online"]');
+        const offlineEl = document.querySelector('[data-stat="offline"]');
+        
+        if (totalEl) totalEl.textContent = stats.total;
+        if (onlineEl) onlineEl.textContent = stats.online;
+        if (offlineEl) offlineEl.textContent = stats.offline;
+        
+        // Update routing rules table
+        this.updateRoutingRulesTable();
+        
+        console.log('[NETWORK-PRIORITY] UI updated successfully');
+    }
+
+    // Remove auto-refresh functionality completely
+    loadInitialData() {
+        // This method is disabled to prevent auto-refresh and data corruption
+        console.log('[NETWORK-PRIORITY] loadInitialData called but disabled to prevent conflicts');
+        return;
+    }
+}
+
+// Initialize the network priority section
+function initializeNetworkPrioritySection() {
+    console.log('[NETWORK-PRIORITY] Starting initialization...');
+    if (!window.networkPrioritySection) {
+        window.networkPrioritySection = new NetworkPrioritySection();
+        console.log('[NETWORK-PRIORITY] Network Priority Section initialized successfully');
+    } else {
+        console.log('[NETWORK-PRIORITY] Network Priority Section already initialized');
+    }
+}
+
+// Handle both cases: DOM ready vs already loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeNetworkPrioritySection);
+} else {
+    // DOM is already loaded, initialize immediately
+    initializeNetworkPrioritySection();
+}
+
+// Add manual test function for debugging
+window.testNetworkPriorityPopups = function() {
+    console.log('[NETWORK-PRIORITY] Testing popup functionality manually...');
+    
+    if (window.networkPrioritySection) {
+        console.log('[NETWORK-PRIORITY] Network Priority Section instance found');
+        
+        // Test add rule popup
+        console.log('[NETWORK-PRIORITY] Testing Add Rule popup...');
+        window.networkPrioritySection.showAddRulePopup();
+        
+        setTimeout(() => {
+            window.networkPrioritySection.hideAddRulePopup();
+            console.log('[NETWORK-PRIORITY] Popup testing completed');
+        }, 3000);
+        
+    } else {
+        console.error('[NETWORK-PRIORITY] Network Priority Section instance not found!');
+    }
+};
+
+console.log('[NETWORK-PRIORITY] Test function available: window.testNetworkPriorityPopups()');
+</script>

@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard - UR Web Launcher</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+
+        <style>
+            * {
+                font-family: "Inter", sans-serif;
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="h-full text-base-content">
+
+        <header
+            id="header"
+            class="fixed top-0 w-full bg-white border-b border-neutral-200 z-50"
+        >
+            <div class="flex items-center justify-between px-6 py-3">
+                <div class="flex items-center">
+                    <button
+                        id="sidebar-toggle"
+                        class="mr-4 bg-neutral-600 hover:bg-neutral-700 text-white p-2 rounded-lg transition-all duration-300"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="mr-4">
+                        <span
+                            class="text-black text-lg flex items-center cursor-pointer"
+                        >
+                            Ultima Robotics Link Management Platform
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button
+                        id="settings-btn"
+                        class="text-neutral-600 hover:text-neutral-900"
+                    >
+                        <i class="fa-solid fa-cog"></i>
+                    </button>
+                    <button
+                        id="logout-btn"
+                        class="text-neutral-600 hover:text-red-600 transition-colors"
+                        title="Logout"
+                    >
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex h-[800px] pt-16">
+            <!-- Sidebar -->
+            <div
+                id="sidebar"
+                class="w-64 bg-white border-r border-neutral-200 fixed h-full overflow-y-auto transition-transform duration-300 transform -translate-x-full"
+            >
+                <div class="p-4">
+                    <nav class="space-y-1">
+                        <div class="relative">
+                            <span
+                                id="nav-system-dashboard"
+                                class="block px-3 py-2 text-sm text-neutral-600 bg-neutral-50 border-l-2 border-neutral-600 rounded-r cursor-pointer hover:bg-neutral-100"
+                                data-section="system-dashboard"
+                            >
+                                System Dashboard
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <div
+                                id="nav-network-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Network Management</span>
+                                </div>
+
+                                <button
+                                    id="nav-network-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="nav-network-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-wired-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="wired-config"
+                                >
+                                    Wired Configuration
+                                </span>
+                                <span
+                                    id="nav-wireless-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="wireless-config"
+                                >
+                                    Wireless Configuration
+                                </span>
+                                <span
+                                    id="nav-cellular-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="cellular-config"
+                                >
+                                    Cellular Configuration
+                                </span>
+                                <span
+                                    id="nav-vpn-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="vpn-config"
+                                >
+                                    VPN Configuration
+                                </span>
+                                <span
+                                    id="nav-advanced-network"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="advanced-network"
+                                >
+                                    Advanced Network Options
+                                </span>
+                                <span
+                                    id="nav-network-benchmark"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="network-benchmark"
+                                >
+                                    Network Benchmark
+                                </span>
+                                <span
+                                    id="nav-network-priority"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="network-priority"
+                                >
+                                    Network Priority
+                                </span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div
+                                id="nav-devices-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Devices Management</span>
+                                </div>
+
+                                <button
+                                    id="devices-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="devices-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-mavlink-overview"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="mavlink-overview"
+                                >
+                                    Mavlink System Overview
+                                </span>
+                                <span
+                                    id="nav-attached-ip-devices"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="attached-ip-devices"
+                                >
+                                    Attached IP Devices
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div
+                                id="nav-features-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Features</span>
+                                </div>
+
+                                <button
+                                    id="features-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="features-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-mavlink-extension"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="mavlink-extension"
+                                >
+                                    Mavlink Extension System
+                                </span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-firmware-upgrade"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="firmware-upgrade"
+                            >
+                                <div class="flex items-center">
+                                    <span>Firmware Upgrade</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-license-management"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="license-management"
+                            >
+                                <div class="flex items-center">
+                                    <span>License Management</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-backup-restore"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="backup-restore"
+                            >
+                                <div class="flex items-center">
+                                    <span>Backup and Restore</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-about-us"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="about-us"
+                            >
+                                <div class="flex items-center">
+                                    <span>About Us</span>
+                                </div>
+                            </span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main
+                id="main-content"
+                class="flex-1 ml-0 bg-neutral-50 p-8 transition-all duration-300"
+            >
+                <!-- Content will be loaded here -->
+            </main>
+        </div>
+
+        <!-- Settings Modal -->
+        <div
+            id="settings-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+        >
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                        Settings
+                    </h2>
+                    <button
+                        id="close-settings-modal"
+                        class="text-neutral-400 hover:text-neutral-600"
+                    >
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-neutral-200 rounded-lg">
+                        <button
+                            id="user-settings-toggle"
+                            class="w-full flex items-center justify-between p-4 text-left hover:bg-neutral-50 transition-colors"
+                        >
+                            <div class="flex items-center space-x-3">
+                                <i
+                                    class="fa-solid fa-user text-neutral-600"
+                                ></i>
+                                <span class="text-neutral-800 font-medium"
+                                    >User Settings</span
+                                >
+                            </div>
+                            <i
+                                class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform"
+                                id="user-settings-chevron"
+                            ></i>
+                        </button>
+
+                        <div
+                            id="user-settings-content"
+                            class="hidden border-t border-neutral-200"
+                        >
+                            <div class="p-4 space-y-3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-neutral-200 rounded-lg">
+                        <button
+                            class="w-full flex items-center justify-between p-4 text-left hover:bg-neutral-50 transition-colors"
+                        >
+                            <div class="flex items-center space-x-3">
+                                <i
+                                    class="fa-solid fa-cloud text-neutral-600"
+                                ></i>
+                                <span class="text-neutral-800 font-medium"
+                                    >Cloud Connect</span
+                                >
+                            </div>
+                            <i
+                                class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform"
+                            ></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Notification Modal -->
+        <div
+            id="system-notification-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-70 hidden"
+        >
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <div class="flex items-center mb-4">
+                    <div id="notification-icon" class="mr-3">
+                        <i class="fa-solid fa-info-circle text-3xl text-blue-600"></i>
+                    </div>
+                    <h2
+                        id="notification-title"
+                        class="text-xl font-semibold text-neutral-800"
+                    >
+                        Notification
+                    </h2>
+                </div>
+
+                <div id="notification-message" class="text-neutral-700 mb-6">
+                </div>
+
+                <div class="flex justify-end">
+                    <button
+                        id="close-notification-modal"
+                        class="px-6 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 transition-colors"
+                    >
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Dashboard JavaScript -->
+        <script src="assets/js/dashboard.js"></script>
+        
+        <!-- Load Utility JavaScript for Page Tracking -->
+        <script src="assets/js/utility.js"></script>
+    </body>
+</html>
+

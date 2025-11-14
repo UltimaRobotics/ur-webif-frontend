@@ -1,0 +1,696 @@
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h2 class="text-2xl text-neutral-900 mb-2 flex items-center">
+            <i class="fa-solid fa-certificate text-neutral-700 mr-3"></i>
+            License Management
+        </h2>
+        <p class="text-neutral-600">Manage your software licensing, activation, and feature access</p>
+    </div>
+
+    <!-- License Status Overview -->
+    <section id="license-status-overview" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <h3 class="text-lg text-neutral-900">License Status Overview</h3>
+                    <div id="license-status-indicator" class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span id="license-status-text" class="text-sm text-neutral-600">Active</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="license-refresh-btn" class="text-neutral-600 hover:text-neutral-900 p-2 rounded-lg hover:bg-neutral-100" title="Refresh License Status">
+                        <i class="fa-solid fa-refresh text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- License Information Grid -->
+        <div class="p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- License Information Card -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-info-circle text-neutral-600 mr-2"></i>
+                        License Information
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">License Type:</span>
+                            <span id="license-type" class="text-neutral-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">License ID:</span>
+                            <span id="license-id" class="text-neutral-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Status:</span>
+                            <span id="license-activation-status" class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Health Score:</span>
+                            <span id="license-health-score" class="text-neutral-800">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Validity Information Card -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-calendar text-neutral-600 mr-2"></i>
+                        Validity Information
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Start Date:</span>
+                            <span id="license-start-date" class="text-neutral-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Expiry Date:</span>
+                            <span id="license-expiry-date" class="text-neutral-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Days Remaining:</span>
+                            <span id="license-remaining-days" class="text-neutral-800">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Next Validation:</span>
+                            <span id="license-validation-days" class="text-neutral-800">7 days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Card -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-list-check text-neutral-600 mr-2"></i>
+                        Enabled Features
+                    </h4>
+                    <div id="license-features-list" class="space-y-2 max-h-48 overflow-y-auto">
+                        <!-- Features will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Status Bar -->
+            <div class="mt-6 p-4 bg-neutral-50 rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-neutral-800">License Health Score</span>
+                    <span id="license-health-percentage" class="text-neutral-900 font-semibold">Loading...</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="license-health-bar" class="bg-green-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <p class="text-neutral-600 text-sm mt-2">All features are functioning optimally. System health monitoring active.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Activation Section -->
+    <section id="license-activation-section" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200 cursor-pointer hover:bg-neutral-50" id="license-activation-header">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg text-neutral-900">License Activation</h3>
+                    <p class="text-sm text-neutral-600 mt-1">Activate your license using key, file upload, or online activation</p>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-500 transition-transform duration-200 rotate-180" id="license-activation-chevron"></i>
+            </div>
+        </div>
+
+        <div class="p-6 hidden" id="license-activation-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- License Key Activation -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-key text-neutral-600 mr-2"></i>
+                        License Key
+                    </h4>
+                    <form id="license-key-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Enter License Key</label>
+                            <input type="text" id="license-key-input" placeholder="XXXX-XXXX-XXXX-XXXX" 
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                        </div>
+                        <button type="submit" id="activate-license-key-btn" 
+                                class="w-full bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                            <i class="fa-solid fa-key mr-2"></i>
+                            Activate License
+                        </button>
+                    </form>
+                </div>
+
+                <!-- File Upload Activation -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-upload text-neutral-600 mr-2"></i>
+                        File Upload
+                    </h4>
+                    <div class="space-y-4">
+                        <div id="license-file-drop-zone" class="border-2 border-dashed border-neutral-300 rounded-lg p-6 text-center hover:border-neutral-400 transition-colors cursor-pointer">
+                            <input type="file" id="license-file-input" accept=".lic,.dat,.key" style="display: none;">
+                            <div class="w-12 h-12 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-cloud-upload text-neutral-400 text-xl"></i>
+                            </div>
+                            <p class="text-neutral-700">Drop license file here</p>
+                            <p class="text-neutral-500 text-sm">or click to browse</p>
+                        </div>
+                        <button id="upload-activate-btn" disabled
+                                class="w-full bg-neutral-400 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                            <i class="fa-solid fa-upload mr-2"></i>
+                            Upload & Activate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Online Activation -->
+                <div class="border border-neutral-200 rounded-lg p-6">
+                    <h4 class="text-lg text-neutral-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-globe text-neutral-600 mr-2"></i>
+                        Online Activation
+                    </h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Product Code</label>
+                            <input type="text" id="product-code-input" placeholder="Enter product code" 
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Email Address</label>
+                            <input type="email" id="email-input" placeholder="your@email.com" 
+                                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                        </div>
+                        <button id="online-activate-btn" 
+                                class="w-full bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                            <i class="fa-solid fa-globe mr-2"></i>
+                            Auto-Activate Online
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Configuration Section -->
+    <section id="license-configuration-section" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200 cursor-pointer hover:bg-neutral-50" id="license-configuration-header">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg text-neutral-900">License Configuration</h3>
+                    <p class="text-sm text-neutral-600 mt-1">Configure license validation and security settings</p>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-500 transition-transform duration-200 rotate-180" id="license-configuration-chevron"></i>
+            </div>
+        </div>
+
+        <div class="p-6 hidden" id="license-configuration-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Validation Settings -->
+                <div class="space-y-4">
+                    <h4 class="text-sm font-medium text-neutral-800">Validation Settings</h4>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h5 class="text-sm text-neutral-700">Signature Validation</h5>
+                            <p class="text-xs text-neutral-500">Verify license signatures</p>
+                        </div>
+                        <div id="signature-validation-toggle" class="w-12 h-6 bg-neutral-600 rounded-full relative cursor-pointer" data-setting="signature_validation">
+                            <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h5 class="text-sm text-neutral-700">Auto Renewal</h5>
+                            <p class="text-xs text-neutral-500">Automatically renew before expiry</p>
+                        </div>
+                        <div id="auto-renewal-toggle" class="w-12 h-6 bg-neutral-300 rounded-full relative cursor-pointer" data-setting="auto_renewal">
+                            <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Validation Interval (Days)</label>
+                        <input type="number" id="validation-interval-input" value="7" min="1" max="30"
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="space-y-4">
+                    <h4 class="text-sm font-medium text-neutral-800">Security Settings</h4>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h5 class="text-sm text-neutral-700">Require HTTPS</h5>
+                            <p class="text-xs text-neutral-500">Force secure connections</p>
+                        </div>
+                        <div id="require-https-toggle" class="w-12 h-6 bg-neutral-600 rounded-full relative cursor-pointer" data-setting="require_https">
+                            <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h5 class="text-sm text-neutral-700">Log Activation Attempts</h5>
+                            <p class="text-xs text-neutral-500">Record all activation events</p>
+                        </div>
+                        <div id="log-attempts-toggle" class="w-12 h-6 bg-neutral-600 rounded-full relative cursor-pointer" data-setting="log_activation_attempts">
+                            <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Max File Size (MB)</label>
+                        <input type="number" id="max-file-size-input" value="5" min="1" max="50"
+                               class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-neutral-200">
+                <div class="flex justify-end space-x-3">
+                    <button id="reset-config-btn" class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50">
+                        Reset to Defaults
+                    </button>
+                    <button id="save-config-btn" class="px-4 py-2 bg-neutral-600 hover:bg-neutral-700 text-white rounded-lg">
+                        Save Configuration
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Events Section -->
+    <section id="license-events-section" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200 cursor-pointer hover:bg-neutral-50" id="license-events-header">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg text-neutral-900">License Events</h3>
+                    <p class="text-sm text-neutral-600 mt-1">Recent license activity and events</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="clear-events-btn" class="text-neutral-600 hover:text-neutral-900 px-3 py-1 rounded border border-neutral-300 text-sm">
+                        Clear Events
+                    </button>
+                    <i class="fa-solid fa-chevron-down text-neutral-500 transition-transform duration-200 rotate-180" id="license-events-chevron"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 hidden" id="license-events-content">
+            <div id="license-events-container" class="space-y-3 max-h-64 overflow-y-auto">
+                <!-- Events will be populated dynamically -->
+            </div>
+            
+            <div id="license-no-events" class="text-center py-8 text-neutral-500" style="display: none;">
+                <i class="fa-solid fa-calendar-xmark text-2xl mb-3"></i>
+                <p>No license events recorded</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    console.log('[LICENSE] Initializing License Management section (Frontend Demo Mode)...');
+    
+    let selectedLicenseFile = null;
+    
+    // Toggle section functionality
+    function toggleSection(contentId, chevronId) {
+        const content = document.getElementById(contentId);
+        const chevron = document.getElementById(chevronId);
+        
+        if (content && chevron) {
+            const isHidden = content.classList.contains('hidden');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+    }
+    
+    // Show message
+    function showMessage(message, type) {
+        const existingMsg = document.getElementById('license-message');
+        if (existingMsg) existingMsg.remove();
+        
+        const msgDiv = document.createElement('div');
+        msgDiv.id = 'license-message';
+        msgDiv.className = 'fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-md';
+        
+        let bgColor, icon;
+        switch (type) {
+            case 'success':
+                bgColor = 'bg-green-50 border border-green-200 text-green-800';
+                icon = 'fa-check-circle text-green-600';
+                break;
+            case 'error':
+                bgColor = 'bg-red-50 border border-red-200 text-red-800';
+                icon = 'fa-exclamation-circle text-red-600';
+                break;
+            default:
+                bgColor = 'bg-blue-50 border border-blue-200 text-blue-800';
+                icon = 'fa-info-circle text-blue-600';
+        }
+        
+        msgDiv.className += ' ' + bgColor;
+        msgDiv.innerHTML = '<div class="flex items-center"><i class="fa-solid ' + icon + ' mr-2"></i><span>' + message + '</span></div>';
+        
+        document.body.appendChild(msgDiv);
+        setTimeout(function() {
+            if (msgDiv.parentNode) msgDiv.remove();
+        }, 5000);
+    }
+    
+    // Toggle switch functionality
+    function setupToggle(toggleId) {
+        const toggle = document.getElementById(toggleId);
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                const dot = toggle.querySelector('div');
+                const isActive = toggle.classList.contains('bg-neutral-600');
+                
+                if (isActive) {
+                    toggle.classList.remove('bg-neutral-600');
+                    toggle.classList.add('bg-neutral-300');
+                    dot.classList.remove('right-1');
+                    dot.classList.add('left-1');
+                } else {
+                    toggle.classList.remove('bg-neutral-300');
+                    toggle.classList.add('bg-neutral-600');
+                    dot.classList.remove('left-1');
+                    dot.classList.add('right-1');
+                }
+                
+                const setting = toggle.getAttribute('data-setting');
+                console.log('[LICENSE] Toggle changed:', setting, !isActive);
+                showMessage(`${setting.replace('_', ' ')} ${!isActive ? 'enabled' : 'disabled'} (Demo Mode)`, 'info');
+            });
+        }
+    }
+    
+    // Initialize demo data
+    function loadDemoLicenseData() {
+        // License information
+        const licenseType = document.getElementById('license-type');
+        const licenseId = document.getElementById('license-id');
+        const licenseStatus = document.getElementById('license-activation-status');
+        const licenseHealthScore = document.getElementById('license-health-score');
+        
+        if (licenseType) licenseType.textContent = 'Enterprise Demo';
+        if (licenseId) licenseId.textContent = 'DEMO-2025-001';
+        if (licenseStatus) licenseStatus.textContent = 'Active';
+        if (licenseHealthScore) licenseHealthScore.textContent = '95%';
+        
+        // Validity information
+        const startDate = document.getElementById('license-start-date');
+        const expiryDate = document.getElementById('license-expiry-date');
+        const remainingDays = document.getElementById('license-remaining-days');
+        
+        if (startDate) startDate.textContent = '2025-01-01';
+        if (expiryDate) expiryDate.textContent = '2025-12-31';
+        if (remainingDays) remainingDays.textContent = '365 days';
+        
+        // Health bar
+        const healthPercentage = document.getElementById('license-health-percentage');
+        const healthBar = document.getElementById('license-health-bar');
+        
+        if (healthPercentage) healthPercentage.textContent = '95%';
+        if (healthBar) healthBar.style.width = '95%';
+        
+        // Features list
+        const featuresList = document.getElementById('license-features-list');
+        if (featuresList) {
+            const features = [
+                'Advanced Link Management',
+                'Real-time Monitoring',
+                'API Access',
+                'Priority Support',
+                'Custom Integrations'
+            ];
+            
+            featuresList.innerHTML = features.map(function(feature) {
+                return '<div class="flex items-center text-sm text-neutral-700"><i class="fa-solid fa-check text-green-500 mr-2"></i>' + feature + '</div>';
+            }).join('');
+        }
+        
+        // Sample events
+        addLicenseEvent('License loaded successfully', 'success');
+        addLicenseEvent('Health check completed', 'info');
+        addLicenseEvent('System validation passed', 'success');
+    }
+    
+    // Add license event
+    function addLicenseEvent(message, type) {
+        const eventsContainer = document.getElementById('license-events-container');
+        const noEvents = document.getElementById('license-no-events');
+        
+        if (eventsContainer && noEvents) {
+            noEvents.style.display = 'none';
+            
+            const eventDiv = document.createElement('div');
+            eventDiv.className = 'flex items-start space-x-3 p-3 bg-neutral-50 rounded-lg';
+            
+            let icon, iconColor;
+            switch (type) {
+                case 'success':
+                    icon = 'fa-check-circle';
+                    iconColor = 'text-green-600';
+                    break;
+                case 'error':
+                    icon = 'fa-exclamation-circle';
+                    iconColor = 'text-red-600';
+                    break;
+                default:
+                    icon = 'fa-info-circle';
+                    iconColor = 'text-blue-600';
+            }
+            
+            const timestamp = new Date().toLocaleTimeString();
+            
+            eventDiv.innerHTML = `
+                <i class="fa-solid ${icon} ${iconColor} mt-0.5"></i>
+                <div class="flex-1">
+                    <p class="text-sm text-neutral-700">${message}</p>
+                    <p class="text-xs text-neutral-500 mt-1">${timestamp}</p>
+                </div>
+            `;
+            
+            eventsContainer.insertBefore(eventDiv, eventsContainer.firstChild);
+            
+            // Keep only last 10 events
+            while (eventsContainer.children.length > 10) {
+                eventsContainer.removeChild(eventsContainer.lastChild);
+            }
+        }
+    }
+    
+    // Initialize
+    function init() {
+        // Load demo data
+        loadDemoLicenseData();
+        
+        // Section toggles
+        const activationHeader = document.getElementById('license-activation-header');
+        if (activationHeader) {
+            activationHeader.addEventListener('click', function() {
+                toggleSection('license-activation-content', 'license-activation-chevron');
+            });
+        }
+        
+        const configurationHeader = document.getElementById('license-configuration-header');
+        if (configurationHeader) {
+            configurationHeader.addEventListener('click', function() {
+                toggleSection('license-configuration-content', 'license-configuration-chevron');
+            });
+        }
+        
+        const eventsHeader = document.getElementById('license-events-header');
+        if (eventsHeader) {
+            eventsHeader.addEventListener('click', function() {
+                toggleSection('license-events-content', 'license-events-chevron');
+            });
+        }
+        
+        // Refresh button
+        const refreshBtn = document.getElementById('license-refresh-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                console.log('[LICENSE] Refresh clicked (Demo Mode)');
+                showMessage('Refreshing license status... (Demo Mode)', 'info');
+                
+                // Simulate refresh
+                setTimeout(function() {
+                    loadDemoLicenseData();
+                    showMessage('License status refreshed (Demo Mode)', 'success');
+                    addLicenseEvent('License status refreshed', 'info');
+                }, 1000);
+            });
+        }
+        
+        // License key activation
+        const licenseKeyForm = document.getElementById('license-key-form');
+        if (licenseKeyForm) {
+            licenseKeyForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const keyInput = document.getElementById('license-key-input');
+                
+                if (keyInput && keyInput.value) {
+                    console.log('[LICENSE] License key activation (Demo Mode):', keyInput.value);
+                    showMessage('License key validated successfully! (Demo Mode)', 'success');
+                    addLicenseEvent('License key activation attempted: ' + keyInput.value, 'success');
+                    keyInput.value = '';
+                } else {
+                    showMessage('Please enter a valid license key', 'error');
+                }
+            });
+        }
+        
+        // File upload
+        const fileDropZone = document.getElementById('license-file-drop-zone');
+        const fileInput = document.getElementById('license-file-input');
+        const uploadBtn = document.getElementById('upload-activate-btn');
+        
+        if (fileDropZone && fileInput) {
+            fileDropZone.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    selectedLicenseFile = e.target.files[0];
+                    if (uploadBtn) {
+                        uploadBtn.disabled = false;
+                        uploadBtn.classList.remove('bg-neutral-400', 'cursor-not-allowed');
+                        uploadBtn.classList.add('bg-neutral-600', 'hover:bg-neutral-700');
+                    }
+                    console.log('[LICENSE] File selected:', selectedLicenseFile.name);
+                }
+            });
+            
+            // Drag and drop
+            fileDropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.add('border-blue-400', 'bg-blue-50');
+            });
+            
+            fileDropZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.remove('border-blue-400', 'bg-blue-50');
+            });
+            
+            fileDropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.remove('border-blue-400', 'bg-blue-50');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    selectedLicenseFile = e.dataTransfer.files[0];
+                    if (uploadBtn) {
+                        uploadBtn.disabled = false;
+                        uploadBtn.classList.remove('bg-neutral-400', 'cursor-not-allowed');
+                        uploadBtn.classList.add('bg-neutral-600', 'hover:bg-neutral-700');
+                    }
+                    console.log('[LICENSE] File dropped:', selectedLicenseFile.name);
+                }
+            });
+        }
+        
+        if (uploadBtn) {
+            uploadBtn.addEventListener('click', function() {
+                if (selectedLicenseFile) {
+                    console.log('[LICENSE] File upload activation (Demo Mode):', selectedLicenseFile.name);
+                    showMessage('License file uploaded and activated! (Demo Mode)', 'success');
+                    addLicenseEvent('License file activated: ' + selectedLicenseFile.name, 'success');
+                    
+                    // Reset file selection
+                    selectedLicenseFile = null;
+                    uploadBtn.disabled = true;
+                    uploadBtn.classList.add('bg-neutral-400', 'cursor-not-allowed');
+                    uploadBtn.classList.remove('bg-neutral-600', 'hover:bg-neutral-700');
+                    if (fileInput) fileInput.value = '';
+                }
+            });
+        }
+        
+        // Online activation
+        const onlineActivateBtn = document.getElementById('online-activate-btn');
+        if (onlineActivateBtn) {
+            onlineActivateBtn.addEventListener('click', function() {
+                const productCode = document.getElementById('product-code-input').value;
+                const email = document.getElementById('email-input').value;
+                
+                if (!productCode || !email) {
+                    showMessage('Please fill in all fields', 'error');
+                    return;
+                }
+                
+                console.log('[LICENSE] Online activation (Demo Mode):', productCode, email);
+                showMessage('Online activation successful! (Demo Mode)', 'success');
+                addLicenseEvent('Online activation completed', 'success');
+                
+                // Clear form
+                document.getElementById('product-code-input').value = '';
+                document.getElementById('email-input').value = '';
+            });
+        }
+        
+        // Toggle switches
+        setupToggle('signature-validation-toggle');
+        setupToggle('auto-renewal-toggle');
+        setupToggle('require-https-toggle');
+        setupToggle('log-attempts-toggle');
+        
+        // Configuration buttons
+        const saveConfigBtn = document.getElementById('save-config-btn');
+        if (saveConfigBtn) {
+            saveConfigBtn.addEventListener('click', function() {
+                console.log('[LICENSE] Save configuration (Demo Mode)');
+                showMessage('Configuration saved successfully! (Demo Mode)', 'success');
+                addLicenseEvent('Configuration updated', 'success');
+            });
+        }
+        
+        const resetConfigBtn = document.getElementById('reset-config-btn');
+        if (resetConfigBtn) {
+            resetConfigBtn.addEventListener('click', function() {
+                console.log('[LICENSE] Reset configuration (Demo Mode)');
+                showMessage('Configuration reset to defaults (Demo Mode)', 'info');
+                addLicenseEvent('Configuration reset', 'info');
+            });
+        }
+        
+        // Clear events button
+        const clearEventsBtn = document.getElementById('clear-events-btn');
+        if (clearEventsBtn) {
+            clearEventsBtn.addEventListener('click', function() {
+                const eventsContainer = document.getElementById('license-events-container');
+                const noEvents = document.getElementById('license-no-events');
+                
+                if (eventsContainer && noEvents) {
+                    eventsContainer.innerHTML = '';
+                    noEvents.style.display = 'block';
+                    showMessage('License events cleared (Demo Mode)', 'info');
+                }
+            });
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+    console.log('[LICENSE] License Management section initialized (Frontend Demo Mode)');
+})();
+</script>

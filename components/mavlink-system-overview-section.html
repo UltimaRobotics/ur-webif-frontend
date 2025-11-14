@@ -1,0 +1,2525 @@
+<!-- MAVLink System Overview Section - Redesigned -->
+<div id="mavlink-system-overview-section" class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">MAVLink System Overview</h1>
+                    <p class="text-gray-600">Real-time monitoring of flight controllers and RTK systems</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2" id="system-status">
+                        <div class="w-3 h-3 bg-gray-400 rounded-full" id="system-status-indicator"></div>
+                        <span class="text-sm text-gray-600 font-medium" id="system-status-text">Connecting...</span>
+                    </div>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed" id="refresh-all-btn">
+                        <i class="fa-solid fa-refresh mr-2"></i>
+                        Refresh All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <nav class="border-b border-gray-200" role="tablist" aria-label="MAVLink System Overview">
+                <div class="flex space-x-8">
+                    <button
+                        class="mavlink-tab-button border-b-2 border-blue-500 py-3 px-1 text-sm font-medium text-blue-600 flex items-center transition-all duration-200"
+                        data-tab-target="flight-controllers-panel"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="flight-controllers-panel"
+                        id="flight-controllers-tab"
+                        tabindex="0">
+                        <i class="fa-solid fa-microchip mr-2"></i>
+                        Flight Controllers
+                        <span class="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full" id="fc-count">0</span>
+                    </button>
+                    <button
+                        class="mavlink-tab-button border-b-2 border-transparent py-3 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 flex items-center transition-all duration-200"
+                        data-tab-target="rtk-systems-panel"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="rtk-systems-panel"
+                        id="rtk-systems-tab"
+                        tabindex="-1">
+                        <i class="fa-solid fa-satellite-dish mr-2"></i>
+                        RTK Systems
+                        <span class="ml-2 bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full" id="rtk-count">0</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Tab Content Container -->
+        <main class="tab-content">
+            <!-- Flight Controllers Tab Panel -->
+            <section id="flight-controllers-panel" class="mavlink-tab-panel" role="tabpanel" aria-labelledby="flight-controllers-tab" aria-hidden="false">
+                <!-- Panel Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-microchip text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Flight Controllers</h2>
+                            <p class="text-sm text-gray-500">Monitor and manage connected autopilots</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <span class="inline-flex items-center">
+                            <i class="fa-solid fa-clock text-gray-400 mr-1"></i>
+                            Last updated: <span id="fc-last-update" class="font-medium">Never</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="fc-loading" class="hidden">
+                    <div class="text-center py-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                            <i class="fa-solid fa-spinner animate-spin text-blue-600 text-2xl"></i>
+                        </div>
+                        <p class="text-gray-600">Loading flight controllers...</p>
+                    </div>
+                </div>
+
+                <!-- Flight Controllers Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6" id="flight-controllers-grid">
+                    <!-- Dynamic flight controller cards will be inserted here -->
+                </div>
+
+                <!-- Add New Device Card -->
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer" id="add-device-card">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
+                        <i class="fa-solid fa-plus text-gray-400 text-2xl group-hover:text-blue-600 transition-colors"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Add Flight Controller</h3>
+                    <p class="text-sm text-gray-500 mb-4 max-w-sm mx-auto">Connect a new autopilot or flight controller to the MAVLink network</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center mx-auto">
+                        <i class="fa-solid fa-plus mr-2"></i>
+                        Add Device
+                    </button>
+                </div>
+            </section>
+
+            <!-- RTK Systems Tab Panel -->
+            <section id="rtk-systems-panel" class="mavlink-tab-panel hidden" role="tabpanel" aria-labelledby="rtk-systems-tab" aria-hidden="true">
+                <!-- Panel Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-satellite-dish text-green-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">RTK Systems</h2>
+                            <p class="text-sm text-gray-500">Monitor precision positioning systems</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <span class="inline-flex items-center">
+                            <i class="fa-solid fa-clock text-gray-400 mr-1"></i>
+                            Last updated: <span id="rtk-last-update" class="font-medium">Never</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="rtk-loading" class="hidden">
+                    <div class="text-center py-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                            <i class="fa-solid fa-spinner animate-spin text-green-600 text-2xl"></i>
+                        </div>
+                        <p class="text-gray-600">Loading RTK systems...</p>
+                    </div>
+                </div>
+
+                <!-- RTK Systems Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6" id="rtk-systems-grid">
+                    <!-- Dynamic RTK system cards will be inserted here -->
+                </div>
+
+                <!-- Add RTK System Card -->
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-green-400 transition-colors cursor-pointer" id="add-rtk-card">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-100 transition-colors">
+                        <i class="fa-solid fa-plus text-gray-400 text-2xl group-hover:text-green-600 transition-colors"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Add RTK System</h3>
+                    <p class="text-sm text-gray-500 mb-4 max-w-sm mx-auto">Connect a base station or rover for high-precision positioning</p>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center mx-auto">
+                        <i class="fa-solid fa-plus mr-2"></i>
+                        Add RTK System
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Flight Controller Diagnostics Modal -->
+<div id="FCDiagnoseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" role="dialog" aria-labelledby="fc-diagnose-modal-title" aria-modal="true">
+    <div class="bg-white w-full h-full max-w-7xl max-h-[95vh] m-4 rounded-lg shadow-2xl overflow-hidden flex flex-col">
+        <!-- Modal Header -->
+        <header class="border-b border-gray-200 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-stethoscope text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900" id="fc-diagnose-modal-title">Flight Controller Diagnostics</h1>
+                        <p class="text-gray-600 text-sm" id="fc-diagnose-device-info">Device ID: <span id="fc-diagnose-device-id">--</span> | Last Updated: <span id="fc-diagnose-last-updated">--</span></p>
+                    </div>
+                </div>
+                <button class="w-10 h-10 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center transition-colors shadow-sm" id="fc-diagnose-modal-close" aria-label="Close diagnostic modal">
+                    <i class="fa-solid fa-xmark text-gray-500"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <div class="p-6">
+                <!-- Loading State -->
+                <div id="fc-diagnose-loading" class="hidden text-center py-12">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                        <i class="fa-solid fa-spinner animate-spin text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Loading Diagnostic Data</h3>
+                    <p class="text-gray-600">Retrieving flight controller diagnostic information...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="fc-diagnose-error" class="hidden">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-exclamation-triangle text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">Unable to Load Diagnostic Data</h3>
+                        <p class="text-red-700 text-sm mb-4" id="fc-diagnose-error-message">An error occurred while fetching diagnostic information.</p>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="refreshFCDiagnosticData()">
+                            <i class="fa-solid fa-refresh mr-2"></i>
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Diagnostic Content -->
+                <div id="fc-diagnose-content" class="hidden space-y-6">
+                    <!-- Airframe Section -->
+                    <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-plane text-blue-600"></i>
+                                    </div>
+                                    Airframe Configuration
+                                </h2>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full" id="fc-airframe-status"></div>
+                                    <span class="text-sm text-green-600 font-medium">Active</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="fc-airframe-data">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-sm text-gray-500 mb-1">System ID</div>
+                                    <div class="text-lg font-semibold text-gray-900" id="fc-airframe-system-id">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-sm text-gray-500 mb-1">Airframe Type</div>
+                                    <div class="text-lg font-semibold text-gray-900" id="fc-airframe-type">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-sm text-gray-500 mb-1">Vehicle</div>
+                                    <div class="text-lg font-semibold text-gray-900" id="fc-airframe-vehicle">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-sm text-gray-500 mb-1">Firmware Version</div>
+                                    <div class="text-lg font-semibold text-gray-900" id="fc-airframe-firmware">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sensors Section -->
+                    <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-microchip text-green-600"></i>
+                                    </div>
+                                    Sensor Status
+                                </h2>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="fc-sensors-data">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-sm text-gray-500">Compass 0</div>
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full" id="fc-sensor-compass0-status"></div>
+                                    </div>
+                                    <div class="text-lg font-semibold" id="fc-sensor-compass0">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-sm text-gray-500">Compass 1</div>
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full" id="fc-sensor-compass1-status"></div>
+                                    </div>
+                                    <div class="text-lg font-semibold" id="fc-sensor-compass1">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-sm text-gray-500">Gyroscope</div>
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full" id="fc-sensor-gyro-status"></div>
+                                    </div>
+                                    <div class="text-lg font-semibold" id="fc-sensor-gyro">--</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-sm text-gray-500">Accelerometer</div>
+                                        <div class="w-3 h-3 bg-gray-400 rounded-full" id="fc-sensor-accelerometer-status"></div>
+                                    </div>
+                                    <div class="text-lg font-semibold" id="fc-sensor-accelerometer">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Radio & Flight Modes Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Radio Section -->
+                        <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="p-6">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-wifi text-purple-600"></i>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-800">Radio Configuration</h2>
+                                </div>
+
+                                <div class="space-y-3" id="fc-radio-data">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Roll Channel</span>
+                                        <span class="font-medium" id="fc-radio-roll">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Pitch Channel</span>
+                                        <span class="font-medium" id="fc-radio-pitch">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Yaw Channel</span>
+                                        <span class="font-medium" id="fc-radio-yaw">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Throttle Channel</span>
+                                        <span class="font-medium" id="fc-radio-throttle">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Aux 1</span>
+                                        <span class="font-medium" id="fc-radio-aux1">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-sm text-gray-600">Aux 2</span>
+                                        <span class="font-medium" id="fc-radio-aux2">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Flight Modes Section -->
+                        <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="p-6">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-sliders text-indigo-600"></i>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-800">Flight Modes</h2>
+                                </div>
+
+                                <div class="space-y-3" id="fc-flight-modes-data">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Mode Switch</span>
+                                        <span class="font-medium" id="fc-mode-switch">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Flight Mode 1</span>
+                                        <span class="font-medium" id="fc-flight-mode-1">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Flight Mode 2</span>
+                                        <span class="font-medium" id="fc-flight-mode-2">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Flight Mode 3</span>
+                                        <span class="font-medium" id="fc-flight-mode-3">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Flight Mode 4</span>
+                                        <span class="font-medium" id="fc-flight-mode-4">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Flight Mode 5</span>
+                                        <span class="font-medium" id="fc-flight-mode-5">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-sm text-gray-600">Flight Mode 6</span>
+                                        <span class="font-medium" id="fc-flight-mode-6">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Power & Safety Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Power Section -->
+                        <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="p-6">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-battery-full text-yellow-600"></i>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-800">Power Configuration</h2>
+                                </div>
+
+                                <div class="space-y-4" id="fc-power-data">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="text-sm text-gray-500 mb-1">Battery Full Voltage</div>
+                                        <div class="text-lg font-semibold text-gray-900" id="fc-power-battery-full">--</div>
+                                    </div>
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="text-sm text-gray-500 mb-1">Battery Empty Voltage</div>
+                                        <div class="text-lg font-semibold text-gray-900" id="fc-power-battery-empty">--</div>
+                                    </div>
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="text-sm text-gray-500 mb-1">Number of Cells</div>
+                                        <div class="text-lg font-semibold text-gray-900" id="fc-power-cells">--</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Safety Section -->
+                        <section class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="p-6">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fa-solid fa-shield text-red-600"></i>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-800">Safety Configuration</h2>
+                                </div>
+
+                                <div class="space-y-3" id="fc-safety-data">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Low Battery Failsafe</span>
+                                        <span class="font-medium" id="fc-safety-low-battery">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">RC Loss Failsafe</span>
+                                        <span class="font-medium" id="fc-safety-rc-loss">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">RC Loss Timeout</span>
+                                        <span class="font-medium" id="fc-safety-rc-timeout">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">Data Link Loss Failsafe</span>
+                                        <span class="font-medium" id="fc-safety-datalink-loss">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                        <span class="text-sm text-gray-600">RTL Climb To</span>
+                                        <span class="font-medium" id="fc-safety-rtl-climb">--</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-sm text-gray-600">RTL Then</span>
+                                        <span class="font-medium" id="fc-safety-rtl-then">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer class="border-t border-gray-200 px-6 py-4 bg-white flex-shrink-0">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <button class="text-gray-600 hover:text-gray-800 transition-colors flex items-center text-sm" id="fc-diagnose-export-btn">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Export Report
+                    </button>
+                    <div class="text-xs text-gray-500" id="fc-diagnose-timestamp">
+                        Last updated: Never
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors" id="fc-diagnose-cancel-btn">
+                        Close
+                    </button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center" id="fc-diagnose-refresh-btn">
+                        <i class="fa-solid fa-refresh mr-2"></i>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- RTK System Diagnostics Modal -->
+<div id="RTKDiagnoseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" role="dialog" aria-labelledby="rtk-diagnose-modal-title" aria-modal="true">
+    <div class="bg-white w-full h-full max-w-6xl max-h-[90vh] m-4 rounded-lg shadow-2xl overflow-hidden">
+        <!-- Modal Header -->
+        <header class="border-b border-gray-200 p-6 bg-gradient-to-r from-green-50 to-emerald-50">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-stethoscope text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900" id="rtk-diagnose-modal-title">RTK System Diagnostics</h1>
+                        <p class="text-gray-600 text-sm">Real-time diagnostic information</p>
+                    </div>
+                </div>
+                <button class="w-10 h-10 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center transition-colors shadow-sm" id="rtk-diagnose-modal-close" aria-label="Close diagnostic modal">
+                    <i class="fa-solid fa-xmark text-gray-500"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <!-- Loading State -->
+                <div id="rtk-diagnose-loading" class="hidden text-center py-8">
+                    <div class="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
+                        <i class="fa-solid fa-spinner animate-spin text-green-600 text-xl"></i>
+                    </div>
+                    <p class="text-gray-600">Loading diagnostic data...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="rtk-diagnose-error" class="hidden">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-exclamation-triangle text-red-500 mr-3"></i>
+                            <div>
+                                <h3 class="text-red-800 font-medium">Unable to Load Diagnostic Data</h3>
+                                <p class="text-red-700 text-sm mt-1" id="rtk-diagnose-error-message">An error occurred while fetching diagnostic information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Overview Section -->
+                <section class="bg-white rounded-lg shadow-sm border border-gray-200" id="rtk-system-overview">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                                <i class="fa-solid fa-info-circle text-green-600 mr-3"></i>
+                                System Overview
+                            </h2>
+                            <div class="flex items-center space-x-2" id="rtk-diagnose-connection-status">
+                                <div class="w-3 h-3 bg-gray-400 rounded-full" id="rtk-diagnose-status-dot"></div>
+                                <span class="text-sm font-medium text-gray-600" id="rtk-diagnose-status-text">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- System Information Card -->
+                            <div class="bg-gray-50 rounded-lg p-5">
+                                <h3 class="text-gray-800 font-medium mb-4 flex items-center">
+                                    <i class="fa-solid fa-satellite-dish text-green-600 mr-2"></i>
+                                    System Information
+                                </h3>
+                                <div class="space-y-3 text-sm" id="rtk-diagnose-system-info">
+                                    <div class="animate-pulse bg-gray-200 h-4 rounded"></div>
+                                    <div class="animate-pulse bg-gray-200 h-4 rounded"></div>
+                                    <div class="animate-pulse bg-gray-200 h-4 rounded"></div>
+                                    <div class="animate-pulse bg-gray-200 h-4 rounded"></div>
+                                </div>
+                            </div>
+
+                            <!-- Connection Information Card -->
+                            <div class="bg-gray-50 rounded-lg p-5">
+                                <h3 class="text-gray-800 font-medium mb-4 flex items-center">
+                                    <i class="fa-solid fa-wifi text-green-600 mr-2"></i>
+                                    Connection Status
+                                </h3>
+                                <div class="space-y-3 text-sm" id="rtk-diagnose-connection-info">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Status:</span>
+                                        <span class="font-medium text-green-600">Connected</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Protocol:</span>
+                                        <span class="font-medium">RTCM 3.x</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Fix Type:</span>
+                                        <span class="font-medium">RTK Fixed</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Accuracy:</span>
+                                        <span class="font-medium">2cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RTK System Diagnostic Sections -->
+                <div id="rtk-diagnostic-sections">
+                    <!-- RTK-specific sections will be dynamically added here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer class="border-t border-gray-200 px-6 py-4 bg-white">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <button class="text-gray-600 hover:text-gray-800 transition-colors flex items-center text-sm" id="rtk-diagnose-export-btn">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Export Report
+                    </button>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors" id="rtk-diagnose-cancel-btn">
+                        Close
+                    </button>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center" id="rtk-diagnose-refresh-btn">
+                        <i class="fa-solid fa-refresh mr-2"></i>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- Reboot Confirmation Modal - Redesigned -->
+<div id="rebootModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" role="dialog" aria-labelledby="reboot-modal-title" aria-modal="true">
+    <div class="bg-white w-full max-w-md m-4 rounded-lg shadow-2xl overflow-hidden">
+        <!-- Modal Header -->
+        <header class="border-b border-gray-200 p-6 bg-gradient-to-r from-red-50 to-orange-50">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-power-off text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-900" id="reboot-modal-title">Confirm Device Reboot</h1>
+                        <p class="text-gray-600 text-sm">This action will restart the selected device</p>
+                    </div>
+                </div>
+                <button class="w-8 h-8 rounded-full bg-white hover:bg-gray-50 flex items-center justify-center transition-colors shadow-sm" id="reboot-modal-close" aria-label="Close reboot modal">
+                    <i class="fa-solid fa-xmark text-gray-500"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="p-6">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <div class="flex items-start">
+                    <i class="fa-solid fa-triangle-exclamation text-yellow-500 mr-3 mt-0.5"></i>
+                    <div>
+                        <p class="text-sm text-yellow-800 font-medium mb-1">Warning: Device Reboot</p>
+                        <p class="text-sm text-yellow-700">
+                            This will temporarily interrupt all operations and connections for this device.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-700 mb-2">
+                    Are you sure you want to reboot
+                </p>
+                <p class="font-medium text-gray-900 text-lg mb-4">
+                    <span id="reboot-device-name">this device</span>?
+                </p>
+                <p class="text-xs text-gray-500">
+                    This action will take effect immediately.
+                </p>
+            </div>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer class="border-t border-gray-200 px-6 py-4 bg-gray-50">
+            <div class="flex items-center justify-end space-x-3">
+                <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors" id="reboot-cancel-btn">
+                    Cancel
+                </button>
+                <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed" id="reboot-confirm-btn">
+                    <i class="fa-solid fa-power-off mr-2"></i>
+                    Reboot Device
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- Add Device Modal - Redesigned -->
+<div id="addDeviceModal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden" role="dialog" aria-labelledby="add-device-modal-title" aria-modal="true">
+    <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4">
+        <!-- Modal Header -->
+        <header class="border-b border-gray-200 px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900" id="add-device-modal-title">Add New Device</h1>
+                    <p class="text-gray-600 text-sm mt-1">Connect a new MAVLink device</p>
+                </div>
+                <button class="text-gray-400 hover:text-gray-600 transition-colors" id="add-device-modal-close" aria-label="Close add device modal">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal Content -->
+        <main class="px-6 py-6">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-plus text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Device Auto-Discovery</h3>
+                <p class="text-gray-600 mb-6">Automatic device detection and configuration is coming soon.</p>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-info-circle text-blue-600 mr-3 mt-0.5"></i>
+                        <div class="text-left">
+                            <p class="text-blue-800 text-sm font-medium mb-1">Advanced Configuration Available</p>
+                            <p class="text-blue-700 text-sm">
+                                For manual device setup and advanced configuration options, please use the MAVLink Extension section.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Footer -->
+        <footer class="border-t border-gray-200 px-6 py-4 bg-gray-50">
+            <div class="flex items-center justify-end">
+                <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors" id="add-device-cancel-btn">
+                    Close
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+/**
+ * MAVLink System Overview Manager - Embedded Implementation
+ * All functionality from MavSystemSection.js embedded directly
+ */
+
+(function() {
+    'use strict';
+
+    console.log('[MAVLINK-SYSTEM] Initializing embedded MAVLink System Overview...');
+
+    // API endpoints
+    const apiEndpoints = {
+        overview: '/api/mav-system/overview',
+        refresh: '/api/mav-system/refresh',
+        health: '/api/mav-system/health',
+        fcDiagnose: (id) => `/api/mav-system/flight-controllers/${id}/diagnose`,
+        fcReboot: (id) => `/api/mav-system/flight-controllers/${id}/reboot`,
+        rtkDiagnose: (id) => `/api/mav-system/rtk-systems/${id}/diagnose`,
+        rtkReboot: (id) => `/api/mav-system/rtk-systems/${id}/reboot`
+    };
+
+    // Data storage
+    const systemData = {
+        flightControllers: new Map(),
+        rtkSystems: new Map(),
+        lastUpdate: null,
+        systemHealth: 'unknown'
+    };
+
+    // UI state
+    let activeTab = 'flight-controllers';
+    const modals = {
+        fcDiagnose: null,
+        rtkDiagnose: null,
+        reboot: null,
+        addDevice: null
+    };
+
+    // Auto-refresh configuration
+    const autoRefreshInterval = 15000; // 15 seconds
+    let refreshIntervalId = null;
+    let isRefreshing = false;
+
+    // HTTP request configuration
+    const httpConfig = {
+        timeout: 15000,
+        retryAttempts: 3,
+        retryDelay: 1000
+    };
+
+    // Logging functions
+    function log(message, data) {
+        const timestamp = new Date().toISOString();
+        if (data) {
+            console.log(`[MAVLINK-SYSTEM] [${timestamp}] ${message}`, data);
+        } else {
+            console.log(`[MAVLINK-SYSTEM] [${timestamp}] ${message}`);
+        }
+    }
+
+    function logError(message, error) {
+        const timestamp = new Date().toISOString();
+        console.error(`[MAVLINK-SYSTEM] [${timestamp}] [ERROR] ${message}`, error);
+    }
+
+    // HTTP request method
+    async function makeHttpRequest(method, url, data, retryCount = 0) {
+        try {
+            log(`Making ${method} request to ${url} (attempt ${retryCount + 1}/${httpConfig.retryAttempts})`);
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => {
+                controller.abort();
+            }, httpConfig.timeout);
+
+            const options = {
+                method: method,
+                signal: controller.signal,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache'
+                }
+            };
+
+            if (data && (method === 'POST' || method === 'PUT' || method === 'DELETE')) {
+                options.body = JSON.stringify(data);
+                log('Request body:', data);
+            }
+
+            const response = await fetch(url, options);
+            clearTimeout(timeoutId);
+
+            log(`Response status: ${response.status}`);
+
+            if (!response.ok) {
+                let errorText = '';
+                try {
+                    const errorResponse = await response.json();
+                    errorText = errorResponse.message || errorResponse.error || response.statusText;
+                } catch (e) {
+                    errorText = response.statusText;
+                }
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+
+            let responseData;
+            try {
+                responseData = await response.json();
+            } catch (parseError) {
+                if (method === 'DELETE' && response.status === 200) {
+                    responseData = { success: true, message: 'Resource deleted successfully' };
+                } else {
+                    throw new Error('Invalid JSON response from server');
+                }
+            }
+
+            log('Response data:', responseData);
+            return responseData;
+
+        } catch (error) {
+            logError(`Request failed for ${url}:`, error);
+
+            if (error.name === 'AbortError') {
+                throw new Error('Request timeout');
+            }
+
+            if (shouldRetryRequest(error) && retryCount < httpConfig.retryAttempts - 1) {
+                const delay = httpConfig.retryDelay * Math.pow(2, retryCount);
+                log(`Retrying request after ${delay}ms...`);
+
+                await new Promise(resolve => setTimeout(resolve, delay));
+                return await makeHttpRequest(method, url, data, retryCount + 1);
+            }
+
+            throw error;
+        }
+    }
+
+    function shouldRetryRequest(error) {
+        return error.name === 'AbortError' ||
+               error.message.includes('Failed to fetch') ||
+               error.message.includes('NetworkError') ||
+               error.message.includes('HTTP 5');
+    }
+
+    function showNotification(message, type = 'info') {
+        if (window.app && window.app.showNotification) {
+            window.app.showNotification(message, type);
+        } else {
+            console.log(`[MAVLINK-SYSTEM] ${type.toUpperCase()}: ${message}`);
+        }
+    }
+
+    // Load system data from backend
+    async function loadSystemData() {
+        log('Loading system data from backend...');
+
+        try {
+            setLoadingState(true);
+
+            const response = await makeHttpRequest('GET', apiEndpoints.overview);
+
+            const data = response.data || response;
+            const success = response.success !== undefined ? response.success : (response.message === undefined);
+
+            if (success && data) {
+                processSystemData(data);
+                renderSystemData();
+                updateSystemStatus('online');
+            } else {
+                const errorMessage = response.message || data.message || 'Failed to load system data';
+                logError('Failed to load system data:', errorMessage);
+                showNotification('Failed to load system data', 'error');
+                updateSystemStatus('offline');
+            }
+        } catch (error) {
+            logError('Error loading system data:', error);
+            showNotification('Connection error - unable to load system data', 'error');
+            updateSystemStatus('error');
+        } finally {
+            setLoadingState(false);
+        }
+    }
+
+    function processSystemData(data) {
+        log('Processing system data:', data);
+
+        const flightControllers = data.flight_controllers || data.flightControllers || [];
+        const rtkSystems = data.rtk_systems || data.rtkSystems || [];
+
+        systemData.flightControllers.clear();
+        if (Array.isArray(flightControllers)) {
+            flightControllers.forEach(fc => {
+                if (fc.id) {
+                    systemData.flightControllers.set(fc.id, fc);
+                }
+            });
+        }
+
+        systemData.rtkSystems.clear();
+        if (Array.isArray(rtkSystems)) {
+            rtkSystems.forEach(rtk => {
+                if (rtk.id) {
+                    systemData.rtkSystems.set(rtk.id, rtk);
+                }
+            });
+        }
+
+        systemData.lastUpdate = data.last_updated || data.lastUpdated || new Date().toISOString();
+        systemData.systemHealth = data.system_health || data.systemHealth || 'unknown';
+
+        log(`Processed ${systemData.flightControllers.size} flight controllers and ${systemData.rtkSystems.size} RTK systems`);
+
+        updateDeviceCounts();
+        updateSystemStatus(systemData.systemHealth);
+    }
+
+    function renderSystemData() {
+        renderFlightControllers();
+        renderRTKSystems();
+        updateLastUpdateTimestamp();
+        updateDeviceCounts();
+    }
+
+    function updateDeviceCounts() {
+        const fcCount = document.getElementById('fc-count');
+        const rtkCount = document.getElementById('rtk-count');
+
+        if (fcCount) {
+            fcCount.textContent = systemData.flightControllers.size;
+        }
+
+        if (rtkCount) {
+            rtkCount.textContent = systemData.rtkSystems.size;
+        }
+
+        log(`Updated counts: ${systemData.flightControllers.size} FCs, ${systemData.rtkSystems.size} RTK systems`);
+    }
+
+    function renderFlightControllers() {
+        const grid = document.getElementById('flight-controllers-grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+
+        if (systemData.flightControllers.size === 0) {
+            grid.innerHTML = createEmptyStateHTML('flight-controller');
+            return;
+        }
+
+        systemData.flightControllers.forEach((fc, id) => {
+            const cardHTML = createFlightControllerCard(fc);
+            grid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+        bindFlightControllerCardHandlers();
+    }
+
+    function createFlightControllerCard(fc) {
+        const statusClass = getStatusClass(fc.status);
+        const connectionStatus = getConnectionStatusInfo(fc);
+        const locationText = formatLocation(fc.location);
+
+        return `
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 fc-card" data-fc-id="${fc.id}">
+                <div class="p-6">
+                    <!-- Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 ${statusClass} rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-microchip text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">${escapeHtml(fc.name)}</h3>
+                                <p class="text-sm text-gray-500">System ID: ${fc.system_id} | Component: ${fc.component_id}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 ${connectionStatus.dotClass} rounded-full"></div>
+                            <span class="text-xs ${connectionStatus.textClass} font-medium">${connectionStatus.text}</span>
+                        </div>
+                    </div>
+
+                    <!-- Status Info -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Autopilot</p>
+                            <p class="text-sm font-medium text-gray-900">${escapeHtml(fc.autopilot_type || fc.firmware || 'Unknown')}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">MAVLink</p>
+                            <p class="text-sm font-medium text-gray-900">v${fc.mavlink_version || '2.0'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Status</p>
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(fc.status)}">
+                                ${escapeHtml(fc.status)}
+                            </span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Link Quality</p>
+                            <p class="text-sm font-medium text-gray-900">${fc.link_quality !== undefined ? fc.link_quality + '%' : (fc.messages_per_sec !== undefined ? fc.messages_per_sec + ' msg/s' : '--')}</p>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    ${locationText ? `
+                        <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Location</p>
+                            <p class="text-sm text-gray-700">${locationText}</p>
+                        </div>
+                    ` : ''}
+
+                    <!-- Last Activity -->
+                    <div class="mb-4 text-xs text-gray-500">
+                        Last activity: ${formatTimestamp(fc.last_activity)}
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-2 mt-4">
+                        <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center text-sm font-medium fc-diagnose-btn" data-fc-id="${fc.id}">
+                            <i class="fa-solid fa-stethoscope mr-2"></i>
+                            Diagnose
+                        </button>
+                        <button class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center text-sm font-medium reboot-btn" data-fc-id="${fc.id}">
+                            <i class="fa-solid fa-power-off mr-2"></i>
+                            Reboot
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderRTKSystems() {
+        const grid = document.getElementById('rtk-systems-grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+
+        if (systemData.rtkSystems.size === 0) {
+            grid.innerHTML = createEmptyStateHTML('rtk-system');
+            return;
+        }
+
+        systemData.rtkSystems.forEach((rtk, id) => {
+            const cardHTML = createRTKSystemCard(rtk);
+            grid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+        bindRTKSystemCardHandlers();
+    }
+
+    function createRTKSystemCard(rtk) {
+        const statusClass = getStatusClass(rtk.status);
+        const connectionStatus = getConnectionStatusInfo(rtk);
+
+        return `
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 rtk-card" data-rtk-id="${rtk.id}">
+                <div class="p-6">
+                    <!-- Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 ${statusClass} rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-satellite-dish text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">${escapeHtml(rtk.name)}</h3>
+                                <p class="text-sm text-gray-500">Type: ${escapeHtml(rtk.system_type || rtk.model || 'RTK System')}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 ${connectionStatus.dotClass} rounded-full"></div>
+                            <span class="text-xs ${connectionStatus.textClass} font-medium">${connectionStatus.text}</span>
+                        </div>
+                    </div>
+
+                    <!-- RTK Status Info -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Fix Type</p>
+                            <p class="text-sm font-medium text-gray-900">${rtk.fix_type || 'Unknown'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Accuracy</p>
+                            <p class="text-sm font-medium text-gray-900">${rtk.accuracy || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Satellites</p>
+                            <p class="text-sm font-medium text-gray-900">${rtk.satellites || rtk.num_sats || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Age of Diff</p>
+                            <p class="text-sm font-medium text-gray-900">${rtk.age_of_diff || 'N/A'}</p>
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-4">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(rtk.status)}">
+                            ${escapeHtml(rtk.status)}
+                        </span>
+                    </div>
+
+                    <!-- Last Activity -->
+                    <div class="mb-4 text-xs text-gray-500">
+                        Last activity: ${formatTimestamp(rtk.last_activity)}
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-2 mt-4">
+                        <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center text-sm font-medium rtk-diagnose-btn" data-rtk-id="${rtk.id}">
+                            <i class="fa-solid fa-stethoscope mr-2"></i>
+                            Diagnose
+                        </button>
+                        <button class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center text-sm font-medium reboot-rtk-btn" data-rtk-id="${rtk.id}">
+                            <i class="fa-solid fa-power-off mr-2"></i>
+                            Reboot
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Utility functions
+    function getStatusClass(status) {
+        const statusMap = {
+            'active': 'bg-green-500',
+            'connected': 'bg-green-500',
+            'online': 'bg-green-500',
+            'disconnected': 'bg-red-500',
+            'offline': 'bg-red-500',
+            'error': 'bg-red-500',
+            'warning': 'bg-yellow-500',
+            'rebooting': 'bg-blue-500',
+            'starting': 'bg-blue-500'
+        };
+        return statusMap[status?.toLowerCase()] || 'bg-gray-500';
+    }
+
+    function getConnectionStatusInfo(device) {
+        const status = device.connection_status?.toLowerCase() || device.status?.toLowerCase();
+
+        switch (status) {
+            case 'connected':
+            case 'active':
+            case 'online':
+                return {
+                    dotClass: 'bg-green-500 animate-pulse',
+                    textClass: 'text-green-600',
+                    text: 'Connected'
+                };
+            case 'disconnected':
+            case 'offline':
+                return {
+                    dotClass: 'bg-red-500',
+                    textClass: 'text-red-600',
+                    text: 'Disconnected'
+                };
+            case 'warning':
+                return {
+                    dotClass: 'bg-yellow-500',
+                    textClass: 'text-yellow-600',
+                    text: 'Warning'
+                };
+            default:
+                return {
+                    dotClass: 'bg-gray-400',
+                    textClass: 'text-gray-600',
+                    text: 'Unknown'
+                };
+        }
+    }
+
+    function getStatusBadgeClass(status) {
+        const statusMap = {
+            'active': 'bg-green-100 text-green-800',
+            'connected': 'bg-green-100 text-green-800',
+            'online': 'bg-green-100 text-green-800',
+            'disconnected': 'bg-red-100 text-red-800',
+            'offline': 'bg-red-100 text-red-800',
+            'error': 'bg-red-100 text-red-800',
+            'warning': 'bg-yellow-100 text-yellow-800',
+            'rebooting': 'bg-blue-100 text-blue-800',
+            'starting': 'bg-blue-100 text-blue-800'
+        };
+        return statusMap[status?.toLowerCase()] || 'bg-gray-100 text-gray-800';
+    }
+
+    function formatLocation(location) {
+        if (!location || (!location.latitude && !location.longitude)) {
+            return null;
+        }
+
+        const lat = location.latitude?.toFixed(6) || 'N/A';
+        const lng = location.longitude?.toFixed(6) || 'N/A';
+        const alt = location.altitude ? `, ${location.altitude}m` : '';
+
+        return `${lat}, ${lng}${alt}`;
+    }
+
+    function formatTimestamp(timestamp) {
+        if (!timestamp) return 'Never';
+
+        try {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        } catch (error) {
+            return 'Invalid time';
+        }
+    }
+
+    function createEmptyStateHTML(deviceType) {
+        const config = deviceType === 'flight-controller' ? {
+            icon: 'fa-microchip',
+            title: 'No Flight Controllers',
+            message: 'No flight controllers are currently connected to the system.'
+        } : {
+            icon: 'fa-satellite-dish',
+            title: 'No RTK Systems',
+            message: 'No RTK systems are currently available.'
+        };
+
+        return `
+            <div class="col-span-full">
+                <div class="text-center py-12">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid ${config.icon} text-gray-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">${config.title}</h3>
+                    <p class="text-gray-500 text-sm max-w-sm mx-auto">${config.message}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function escapeHtml(unsafe) {
+        if (typeof unsafe !== 'string') return unsafe;
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // Event handler binding
+    function bindFlightControllerCardHandlers() {
+        document.querySelectorAll('.fc-diagnose-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const fcId = btn.getAttribute('data-fc-id');
+                showFCDiagnosticModal(fcId);
+            });
+        });
+
+        document.querySelectorAll('.reboot-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const fcId = btn.getAttribute('data-fc-id');
+                showRebootModal('flight-controller', fcId);
+            });
+        });
+    }
+
+    function bindRTKSystemCardHandlers() {
+        document.querySelectorAll('.rtk-diagnose-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const rtkId = btn.getAttribute('data-rtk-id');
+                showRTKDiagnosticModal(rtkId);
+            });
+        });
+
+        document.querySelectorAll('.reboot-rtk-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const rtkId = btn.getAttribute('data-rtk-id');
+                showRebootModal('rtk-system', rtkId);
+            });
+        });
+    }
+
+    // Tab management
+    function switchTab(tabTarget) {
+        const allTabs = document.querySelectorAll('.mavlink-tab-button');
+        const allPanels = document.querySelectorAll('.mavlink-tab-panel');
+
+        allTabs.forEach(tab => {
+            tab.setAttribute('aria-selected', 'false');
+            tab.setAttribute('tabindex', '-1');
+            tab.classList.remove('border-blue-500', 'text-blue-600');
+            tab.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+        });
+
+        allPanels.forEach(panel => {
+            panel.classList.add('hidden');
+            panel.setAttribute('aria-hidden', 'true');
+        });
+
+        const selectedTab = document.querySelector(`[data-tab-target="${tabTarget}"]`);
+        const selectedPanel = document.getElementById(tabTarget);
+
+        if (selectedTab && selectedPanel) {
+            selectedTab.setAttribute('aria-selected', 'true');
+            selectedTab.setAttribute('tabindex', '0');
+            selectedTab.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            selectedTab.classList.add('border-blue-500', 'text-blue-600');
+
+            selectedPanel.classList.remove('hidden');
+            selectedPanel.setAttribute('aria-hidden', 'false');
+
+            activeTab = tabTarget.replace('-panel', '');
+            log(`Switched to tab: ${activeTab}`);
+        }
+    }
+
+    // API Communication Methods
+    async function handleRefreshAll() {
+        log('Manual refresh triggered');
+
+        try {
+            const refreshBtn = document.getElementById('refresh-all-btn');
+            if (refreshBtn) {
+                refreshBtn.disabled = true;
+                refreshBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i>Refreshing...';
+            }
+
+            const refreshResponse = await makeHttpRequest('POST', apiEndpoints.refresh);
+
+            if (refreshResponse.success) {
+                showNotification('System refresh initiated', 'success');
+            }
+
+            await loadSystemData();
+
+            if (refreshBtn) {
+                refreshBtn.innerHTML = '<i class="fa-solid fa-refresh mr-2"></i>Refresh All';
+            }
+
+        } catch (error) {
+            logError('Refresh failed:', error);
+            showNotification('Failed to refresh system data', 'error');
+        } finally {
+            const refreshBtn = document.getElementById('refresh-all-btn');
+            if (refreshBtn) {
+                refreshBtn.disabled = false;
+            }
+        }
+    }
+
+    // Flight Controller Diagnostics Modal
+    async function showFCDiagnosticModal(deviceId) {
+        log(`Opening FC diagnostic modal for device: ${deviceId}`);
+
+        const modal = document.getElementById('FCDiagnoseModal');
+        if (!modal) {
+            logError('FC diagnostic modal not found');
+            return;
+        }
+
+        modals.fcDiagnose = {
+            deviceId: deviceId,
+            deviceType: 'flight_controller'
+        };
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        await loadFCDiagnosticData(deviceId);
+    }
+
+    async function loadFCDiagnosticData(deviceId) {
+        const loadingElement = document.getElementById('fc-diagnose-loading');
+        const errorElement = document.getElementById('fc-diagnose-error');
+        const contentElement = document.getElementById('fc-diagnose-content');
+
+        try {
+            // Show loading state
+            if (loadingElement) {
+                loadingElement.classList.remove('hidden');
+            }
+            if (errorElement) {
+                errorElement.classList.add('hidden');
+            }
+            if (contentElement) {
+                contentElement.classList.add('hidden');
+            }
+
+            const response = await makeHttpRequest('GET', apiEndpoints.fcDiagnose(deviceId));
+
+            if (response && response.success) {
+                log('FC diagnostic data loaded successfully:', response);
+                populateFCDiagnosticData(response);
+            } else {
+                throw new Error(response?.message || 'Failed to load FC diagnostic data');
+            }
+        } catch (error) {
+            logError('Failed to load FC diagnostic data:', error);
+
+            // Show error state
+            if (loadingElement) {
+                loadingElement.classList.add('hidden');
+            }
+            if (contentElement) {
+                contentElement.classList.add('hidden');
+            }
+            if (errorElement) {
+                errorElement.classList.remove('hidden');
+                const errorMessageElement = document.getElementById('fc-diagnose-error-message');
+                if (errorMessageElement) {
+                    errorMessageElement.textContent = error.message || 'Failed to load FC diagnostic data';
+                }
+            }
+        }
+    }
+
+    function populateFCDiagnosticData(response) {
+        const data = response.data || response.diagnose_data || response;
+
+        // Update header information
+        const deviceIdElement = document.getElementById('fc-diagnose-device-id');
+        const lastUpdatedElement = document.getElementById('fc-diagnose-last-updated');
+        const timestampElement = document.getElementById('fc-diagnose-timestamp');
+
+        if (deviceIdElement) {
+            deviceIdElement.textContent = response.device_id || 'Unknown';
+        }
+
+        if (lastUpdatedElement && timestampElement) {
+            const timestamp = data.timestamp || response.last_updated || new Date().toISOString();
+            const formattedTime = new Date(timestamp).toLocaleString();
+            lastUpdatedElement.textContent = formattedTime;
+            timestampElement.textContent = `Last updated: ${formattedTime}`;
+        }
+
+        // Show content and hide loading/error states
+        document.getElementById('fc-diagnose-loading')?.classList.add('hidden');
+        document.getElementById('fc-diagnose-error')?.classList.add('hidden');
+        document.getElementById('fc-diagnose-content')?.classList.remove('hidden');
+
+        // Populate individual sections
+        populateAirframeSection(data.airframe);
+        populateSensorsSection(data.sensors);
+        populateRadioSection(data.radio);
+        populateFlightModesSection(data.flight_modes);
+        populatePowerSection(data.power);
+        populateSafetySection(data.safety);
+    }
+
+    function populateAirframeSection(airframe) {
+        if (!airframe) return;
+
+        const elements = {
+            'fc-airframe-system-id': airframe.system_id,
+            'fc-airframe-type': airframe.airframe_type,
+            'fc-airframe-vehicle': airframe.vehicle,
+            'fc-airframe-firmware': airframe.firmware_version
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || 'N/A';
+            }
+        });
+    }
+
+    function populateSensorsSection(sensors) {
+        if (!sensors) return;
+
+        const sensorMapping = {
+            'fc-sensor-compass0': sensors.compass_0,
+            'fc-sensor-compass1': sensors.compass_1,
+            'fc-sensor-gyro': sensors.gyro,
+            'fc-sensor-accelerometer': sensors.accelerometer
+        };
+
+        Object.entries(sensorMapping).forEach(([id, status]) => {
+            const element = document.getElementById(id);
+            const statusElement = document.getElementById(id + '-status');
+
+            if (element) {
+                element.textContent = status || 'Unknown';
+                element.className = 'text-lg font-semibold ' + getSensorStatusColor(status);
+            }
+
+            if (statusElement) {
+                statusElement.className = 'w-3 h-3 rounded-full ' + getSensorStatusDotColor(status);
+            }
+        });
+    }
+
+    function populateRadioSection(radio) {
+        if (!radio) return;
+
+        const radioMapping = {
+            'fc-radio-roll': radio.roll,
+            'fc-radio-pitch': radio.pitch,
+            'fc-radio-yaw': radio.yaw,
+            'fc-radio-throttle': radio.throttle,
+            'fc-radio-aux1': radio.aux1,
+            'fc-radio-aux2': radio.aux2
+        };
+
+        Object.entries(radioMapping).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || 'N/A';
+            }
+        });
+    }
+
+    function populateFlightModesSection(flightModes) {
+        if (!flightModes) return;
+
+        const modeMapping = {
+            'fc-mode-switch': flightModes.mode_switch,
+            'fc-flight-mode-1': flightModes.flight_mode_1,
+            'fc-flight-mode-2': flightModes.flight_mode_2,
+            'fc-flight-mode-3': flightModes.flight_mode_3,
+            'fc-flight-mode-4': flightModes.flight_mode_4,
+            'fc-flight-mode-5': flightModes.flight_mode_5,
+            'fc-flight-mode-6': flightModes.flight_mode_6
+        };
+
+        Object.entries(modeMapping).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || 'Unassigned';
+            }
+        });
+    }
+
+    function populatePowerSection(power) {
+        if (!power) return;
+
+        const powerMapping = {
+            'fc-power-battery-full': power.battery_full,
+            'fc-power-battery-empty': power.battery_empty,
+            'fc-power-cells': power.number_of_cells
+        };
+
+        Object.entries(powerMapping).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || 'N/A';
+            }
+        });
+    }
+
+    function populateSafetySection(safety) {
+        if (!safety) return;
+
+        const safetyMapping = {
+            'fc-safety-low-battery': safety.low_battery_failsafe,
+            'fc-safety-rc-loss': safety.rc_loss_failsafe,
+            'fc-safety-rc-timeout': safety.rc_loss_timeout,
+            'fc-safety-datalink-loss': safety.data_link_loss_failsafe,
+            'fc-safety-rtl-climb': safety.rtl_climb_to,
+            'fc-safety-rtl-then': safety.rtl_then
+        };
+
+        Object.entries(safetyMapping).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || 'N/A';
+            }
+        });
+    }
+
+    function getSensorStatusColor(status) {
+        if (!status) return 'text-gray-500';
+
+        const normalizedStatus = status.toLowerCase();
+        if (normalizedStatus.includes('ready') || normalizedStatus.includes('ok')) {
+            return 'text-green-600';
+        } else if (normalizedStatus.includes('warning') || normalizedStatus.includes('caution')) {
+            return 'text-yellow-600';
+        } else if (normalizedStatus.includes('error') || normalizedStatus.includes('fail')) {
+            return 'text-red-600';
+        }
+        return 'text-gray-600';
+    }
+
+    function getSensorStatusDotColor(status) {
+        if (!status) return 'bg-gray-400';
+
+        const normalizedStatus = status.toLowerCase();
+        if (normalizedStatus.includes('ready') || normalizedStatus.includes('ok')) {
+            return 'bg-green-500';
+        } else if (normalizedStatus.includes('warning') || normalizedStatus.includes('caution')) {
+            return 'bg-yellow-500';
+        } else if (normalizedStatus.includes('error') || normalizedStatus.includes('fail')) {
+            return 'bg-red-500';
+        }
+        return 'bg-gray-400';
+    }
+
+    // RTK System Diagnostics Modal
+    async function showRTKDiagnosticModal(deviceId) {
+        log(`Opening RTK diagnostic modal for device: ${deviceId}`);
+
+        const modal = document.getElementById('RTKDiagnoseModal');
+        if (!modal) {
+            logError('RTK diagnostic modal not found');
+            return;
+        }
+
+        modals.rtkDiagnose = {
+            deviceId: deviceId,
+            deviceType: 'rtk_system'
+        };
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        await loadRTKDiagnosticData(deviceId);
+    }
+
+    async function loadRTKDiagnosticData(deviceId) {
+        const loadingElement = document.getElementById('rtk-diagnose-loading');
+        const errorElement = document.getElementById('rtk-diagnose-error');
+        const systemOverview = document.getElementById('rtk-system-overview');
+
+        try {
+            log(`Loading RTK diagnostic data for device: ${deviceId}`);
+
+            // Show loading state
+            if (loadingElement) {
+                loadingElement.classList.remove('hidden');
+            }
+            if (errorElement) {
+                errorElement.classList.add('hidden');
+            }
+            if (systemOverview) {
+                systemOverview.classList.add('hidden');
+            }
+
+            const response = await makeHttpRequest('GET', apiEndpoints.rtkDiagnose(deviceId));
+
+            if (response && response.success) {
+                log('RTK diagnostic data loaded successfully:', response);
+                displayRTKDiagnosticData(response, deviceId);
+            } else {
+                throw new Error(response?.message || 'Failed to load RTK diagnostic data');
+            }
+        } catch (error) {
+            logError('Failed to load RTK diagnostic data:', error);
+            showRTKDiagnosticError(error.message || 'Failed to load RTK diagnostic data');
+        } finally {
+            if (loadingElement) {
+                loadingElement.classList.add('hidden');
+            }
+        }
+    }
+
+    function populateRTKDiagnosticData(response) {
+        const data = response.data || response.diagnose_data || response;
+
+        // Update system information
+        updateRTKSystemInfo(data);
+
+        // Populate RTK diagnostic sections
+        populateRTKDiagnosticSections(data);
+    }
+
+    function updateRTKSystemInfo(data) {
+        const systemInfo = document.getElementById('rtk-diagnose-system-info');
+        if (!systemInfo) {
+            console.warn('[MAVLINK-SYSTEM] RTK system info element not found');
+            return;
+        }
+
+        let infoHTML = '';
+        if (data && data.rtk_status) {
+            const status = data.rtk_status;
+            infoHTML = `
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Fix Type:</span>
+                    <span class="font-medium">${status.fix_type || 'N/A'}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Satellites:</span>
+                    <span class="font-medium">${status.satellites_tracked || 'N/A'}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Solution Age:</span>
+                    <span class="font-medium">${status.solution_age || 'N/A'}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Baseline:</span>
+                    <span class="font-medium">${status.baseline_length || 'N/A'}</span>
+                </div>
+            `;
+        } else {
+            infoHTML = '<div class="text-gray-500 text-center">No system information available</div>';
+        }
+
+        systemInfo.innerHTML = infoHTML;
+    }
+
+    function populateRTKDiagnosticSections(data) {
+        const container = document.getElementById('rtk-diagnostic-sections');
+        if (!container) {
+            console.warn('[MAVLINK-SYSTEM] RTK diagnostic sections container not found');
+            return;
+        }
+
+        // Clear existing content
+        container.innerHTML = '';
+
+        if (!data) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">No diagnostic data available</div>';
+            return;
+        }
+
+        const sections = [
+            { title: 'RTK Status', data: data.rtk_status, color: 'green', id: 'rtk-status-data' },
+            { title: 'GNSS Signals', data: data.gnss_signals, color: 'green', id: 'rtk-gnss-data' },
+            { title: 'Base Station', data: data.base_station, color: 'green', id: 'rtk-base-station-data' },
+            { title: 'Position', data: data.position, color: 'green', id: 'rtk-position-data' },
+            { title: 'Quality', data: data.quality, color: 'green', id: 'rtk-quality-data' },
+            { title: 'IO & Corrections', data: data.io_corrections, color: 'orange', id: 'rtk-io-data' }
+        ];
+
+        let hasContent = false;
+        sections.forEach(section => {
+            if (section.data && typeof section.data === 'object') {
+                try {
+                    const sectionHTML = createDiagnosticSection(section.title, section.data, section.color, section.id);
+                    container.insertAdjacentHTML('beforeend', sectionHTML);
+                    hasContent = true;
+                } catch (error) {
+                    console.error(`[MAVLINK-SYSTEM] Error creating section ${section.title}:`, error);
+                }
+            }
+        });
+
+        if (!hasContent) {
+            container.innerHTML = '<div class="text-center py-8 text-gray-500">No diagnostic sections available</div>';
+        }
+
+        // Show the container
+        container.classList.remove('hidden');
+    }
+
+    function createDiagnosticSection(title, data, statusColor, sectionId) {
+        const statusDotClass = statusColor === 'green' ? 'bg-green-500' :
+                              statusColor === 'orange' ? 'bg-orange-500' : 'bg-red-500';
+
+        let dataRows = '';
+        Object.entries(data).forEach(([key, value]) => {
+            const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            dataRows += `
+                <div class="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
+                    <span class="text-gray-600 text-sm">${displayKey}:</span>
+                    <span class="font-medium text-gray-900 text-sm text-right">${value !== null && value !== undefined ? value : 'N/A'}</span>
+                </div>
+            `;
+        });
+
+        return `
+            <section class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                            <div class="w-3 h-3 ${statusDotClass} rounded-full mr-3"></div>
+                            ${title}
+                        </h3>
+                    </div>
+                    <div class="space-y-1" id="${sectionId}">
+                        ${dataRows}
+                    </div>
+                </div>
+            </section>
+        `;
+    }
+
+    async function rebootDevice(deviceType, deviceId) {
+        log(`Rebooting ${deviceType}: ${deviceId}`);
+
+        try {
+            const endpoint = deviceType === 'flight-controller'
+                ? apiEndpoints.fcReboot(deviceId)
+                : apiEndpoints.rtkReboot(deviceId);
+
+            const response = await makeHttpRequest('POST', endpoint);
+
+            if (response.success) {
+                showNotification(`${deviceType === 'flight-controller' ? 'Flight controller' : 'RTK system'} reboot initiated`, 'success');
+
+                updateDeviceStatus(deviceType, deviceId, 'rebooting');
+
+                setTimeout(() => {
+                    loadSystemData();
+                }, 5000);
+
+                return true;
+            } else {
+                throw new Error(response.message || 'Reboot failed');
+            }
+        } catch (error) {
+            logError(`Failed to reboot ${deviceType} ${deviceId}:`, error);
+            showNotification(`Failed to reboot ${deviceType === 'flight-controller' ? 'flight controller' : 'RTK system'}`, 'error');
+            return false;
+        }
+    }
+
+    function updateDeviceStatus(deviceType, deviceId, newStatus) {
+        if (deviceType === 'flight-controller') {
+            const fc = systemData.flightControllers.get(deviceId);
+            if (fc) {
+                fc.status = newStatus;
+                systemData.flightControllers.set(deviceId, fc);
+                renderFlightControllers();
+            }
+        } else if (deviceType === 'rtk-system') {
+            const rtk = systemData.rtkSystems.get(deviceId);
+            if (rtk) {
+                rtk.status = newStatus;
+                systemData.rtkSystems.set(deviceId, rtk);
+                renderRTKSystems();
+            }
+        }
+    }
+
+    function showRebootModal(deviceType, deviceId) {
+        const modal = document.getElementById('rebootModal');
+        const deviceNameElement = document.getElementById('reboot-device-name');
+
+        if (!modal) {
+            logError('Reboot modal not found');
+            return;
+        }
+
+        const device = deviceType === 'flight-controller'
+            ? systemData.flightControllers.get(deviceId)
+            : systemData.rtkSystems.get(deviceId);
+
+        if (deviceNameElement && device) {
+            deviceNameElement.textContent = device.name;
+        } else if (deviceNameElement) {
+            deviceNameElement.textContent = 'this device';
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modals.reboot = { deviceType, deviceId };
+    }
+
+    function showAddDeviceModal() {
+        const modal = document.getElementById('addDeviceModal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
+
+    function closeFCDiagnoseModal() {
+        const modal = document.getElementById('FCDiagnoseModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        modals.fcDiagnose = null;
+    }
+
+    function closeRTKDiagnoseModal() {
+        const modal = document.getElementById('RTKDiagnoseModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        modals.rtkDiagnose = null;
+    }
+
+    function closeRebootModal() {
+        const modal = document.getElementById('rebootModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        modals.reboot = null;
+    }
+
+    function closeAddDeviceModal() {
+        const modal = document.getElementById('addDeviceModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
+
+    async function confirmReboot() {
+        if (!modals.reboot) {
+            logError('No reboot modal state found');
+            return;
+        }
+
+        const { deviceType, deviceId } = modals.reboot;
+        const rebootBtn = document.getElementById('reboot-confirm-btn');
+
+        if (rebootBtn) {
+            rebootBtn.disabled = true;
+            rebootBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i>Rebooting...';
+        }
+
+        const success = await rebootDevice(deviceType, deviceId);
+
+        if (success) {
+            closeRebootModal();
+        }
+
+        if (rebootBtn) {
+            rebootBtn.disabled = false;
+            rebootBtn.innerHTML = '<i class="fa-solid fa-power-off mr-2"></i>Reboot Device';
+        }
+    }
+
+    async function refreshFCDiagnosticData() {
+        if (!modals.fcDiagnose) {
+            logError('No FC diagnostic modal state found');
+            return;
+        }
+
+        const { deviceId } = modals.fcDiagnose;
+
+        try {
+            await loadFCDiagnosticData(deviceId);
+            showNotification('FC diagnostic data refreshed', 'success');
+        } catch (error) {
+            showNotification('Failed to refresh FC diagnostic data', 'error');
+        }
+    }
+
+    // Helper function to get current timestamp for logging
+    function getCurrentTimestamp() {
+        return new Date().toISOString();
+    }
+
+    // RTK Diagnostic Modal Functions
+    function openRTKDiagnoseModal(rtkId) {
+        console.log(`[MAVLINK-SYSTEM] [${getCurrentTimestamp()}] Opening RTK diagnose modal for ID: ${rtkId}`);
+
+        const modal = document.getElementById('RTKDiagnoseModal');
+        const deviceIdSpan = document.getElementById('rtk-diagnose-device-id');
+        const loadingDiv = document.getElementById('rtk-diagnose-loading');
+        const errorDiv = document.getElementById('rtk-diagnose-error');
+        const contentDiv = document.getElementById('rtk-diagnose-content');
+        const systemOverviewSection = document.getElementById('rtk-system-overview');
+
+        // Set device ID
+        if (deviceIdSpan) {
+            deviceIdSpan.textContent = rtkId;
+        }
+
+        // Show modal and loading state
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        loadingDiv.classList.remove('hidden');
+        errorDiv.classList.add('hidden');
+        contentDiv.classList.add('hidden');
+        if(systemOverviewSection) systemOverviewSection.classList.remove('hidden');
+
+
+        // Load diagnostic data
+        loadRTKDiagnosticData(rtkId);
+    }
+
+    function closeRTKDiagnoseModal() {
+        const modal = document.getElementById('RTKDiagnoseModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modals.rtkDiagnose = null;
+    }
+
+    function loadRTKDiagnosticData(rtkId) {
+        console.log(`[MAVLINK-SYSTEM] [${getCurrentTimestamp()}] Loading RTK diagnostic data for: ${rtkId}`);
+
+        const url = `/api/mav-system/rtk-systems/${rtkId}/diagnose`;
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(`[MAVLINK-SYSTEM] [${getCurrentTimestamp()}] RTK diagnostic data received:`, data);
+            displayRTKDiagnosticData(data, rtkId);
+        })
+        .catch(error => {
+            console.error(`[MAVLINK-SYSTEM] [${getCurrentTimestamp()}] Error loading RTK diagnostic data:`, error);
+            showRTKDiagnosticError(error.message);
+        });
+    }
+
+    function displayRTKDiagnosticData(data, rtkId) {
+        const loadingDiv = document.getElementById('rtk-diagnose-loading');
+        const errorDiv = document.getElementById('rtk-diagnose-error');
+        const systemOverviewSection = document.getElementById('rtk-system-overview');
+        const diagnosticSectionsContainer = document.getElementById('rtk-diagnostic-sections');
+
+        // Safely hide loading and error states
+        if (loadingDiv) {
+            loadingDiv.classList.add('hidden');
+        }
+        if (errorDiv) {
+            errorDiv.classList.add('hidden');
+        }
+
+        // Show system overview section
+        if (systemOverviewSection) {
+            systemOverviewSection.classList.remove('hidden');
+        }
+
+        // Update timestamp in modal title area
+        const currentTime = getCurrentTimestamp();
+        const modalTitle = document.querySelector('#RTKDiagnoseModal h1');
+        if (modalTitle) {
+            modalTitle.textContent = `RTK System Diagnostics - Last updated: ${data.last_updated || currentTime}`;
+        }
+
+        if (data.success && data.rtk_diagnostic_data) {
+            const diagnosticData = data.rtk_diagnostic_data;
+
+            // Update Connection Status Info in System Overview
+            updateRTKConnectionStatus(diagnosticData.rtk_status);
+
+            // Update system information
+            updateRTKSystemInfo(diagnosticData);
+
+            // Populate RTK diagnostic sections
+            populateRTKDiagnosticSections(diagnosticData);
+
+            console.log(`[MAVLINK-SYSTEM] [${getCurrentTimestamp()}] RTK diagnostic data displayed successfully`);
+        } else {
+            showRTKDiagnosticError(data.message || 'Failed to load diagnostic data');
+        }
+    }
+
+    function updateRTKConnectionStatus(rtkStatus) {
+        const statusDot = document.getElementById('rtk-diagnose-status-dot');
+        const statusText = document.getElementById('rtk-diagnose-status-text');
+
+        if (!statusDot || !statusText) return;
+
+        if (rtkStatus && rtkStatus.fix_type) {
+            const fixType = rtkStatus.fix_type.toLowerCase();
+            if (fixType.includes('fixed')) {
+                statusDot.className = 'w-3 h-3 bg-green-500 rounded-full animate-pulse';
+                statusText.textContent = 'RTK Fixed';
+                statusText.className = 'text-sm text-green-600 font-medium';
+            } else if (fixType.includes('float')) {
+                statusDot.className = 'w-3 h-3 bg-yellow-500 rounded-full animate-pulse';
+                statusText.textContent = 'RTK Float';
+                statusText.className = 'text-sm text-yellow-600 font-medium';
+            } else {
+                statusDot.className = 'w-3 h-3 bg-red-500 rounded-full';
+                statusText.textContent = 'No Fix';
+                statusText.className = 'text-sm text-red-600 font-medium';
+            }
+        } else {
+            statusDot.className = 'w-3 h-3 bg-gray-400 rounded-full';
+            statusText.textContent = 'Unknown';
+            statusText.className = 'text-sm text-gray-600 font-medium';
+        }
+    }
+
+
+    function populateRTKStatusData(rtkStatus) {
+        const elements = {
+            'rtk-fix-type': rtkStatus.fix_type,
+            'rtk-solution-age': rtkStatus.solution_age,
+            'rtk-satellites-tracked': rtkStatus.satellites_tracked,
+            'rtk-baseline-length': rtkStatus.baseline_length,
+            'rtk-position-accuracy': rtkStatus.position_accuracy_hv,
+            'rtk-heading-accuracy': rtkStatus.heading_accuracy
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function populateGNSSSignalsData(gnssSignals) {
+        const elements = {
+            'rtk-gps-l1-l2': gnssSignals.gps_l1_l2,
+            'rtk-glonass': gnssSignals.glonass,
+            'rtk-galileo': gnssSignals.galileo,
+            'rtk-beidou': gnssSignals.beidou,
+            'rtk-sbas': gnssSignals.sbas,
+            'rtk-snr-avg': gnssSignals.snr_avg
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function populatePositionData(position) {
+        const elements = {
+            'rtk-position-latitude': position.latitude,
+            'rtk-position-longitude': position.longitude,
+            'rtk-position-altitude-msl': position.altitude_msl,
+            'rtk-position-alt-amsl': position.alt_amsl,
+            'rtk-position-hdop-vdop': position.hdop_vdop,
+            'rtk-position-speed': position.speed
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function populateBaseStationData(baseStation) {
+        const elements = {
+            'rtk-base-link': baseStation.link,
+            'rtk-base-mountpoint': baseStation.mountpoint,
+            'rtk-base-message-types': baseStation.message_types,
+            'rtk-base-age-corrections': baseStation.age_of_corrections,
+            'rtk-base-id': baseStation.base_id,
+            'rtk-base-antenna-height': baseStation.antenna_height
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function populateQualityData(quality) {
+        const elements = {
+            'rtk-quality-ratio': quality.rtk_ratio,
+            'rtk-quality-residuals': quality.residuals_hv,
+            'rtk-quality-cycle-slips': quality.cycle_slips,
+            'rtk-quality-time-sync': quality.time_sync,
+            'rtk-quality-antenna-status': quality.antenna_status,
+            'rtk-quality-jamming': quality.jamming_interf
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function populateIOCorrectionsData(ioCorrections) {
+        const elements = {
+            'rtk-io-rtcm-input': ioCorrections.rtcm_input,
+            'rtk-io-nmea-output': ioCorrections.nmea_output,
+            'rtk-io-correction-type': ioCorrections.correction_type,
+            'rtk-io-protocol': ioCorrections.protocol,
+            'rtk-io-latency': ioCorrections.latency,
+            'rtk-io-last-drop': ioCorrections.last_drop
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value || '--';
+            }
+        });
+    }
+
+    function showRTKDiagnosticError(message) {
+        const loadingDiv = document.getElementById('rtk-diagnose-loading');
+        const errorDiv = document.getElementById('rtk-diagnose-error');
+        const systemOverviewSection = document.getElementById('rtk-system-overview');
+        const diagnosticSectionsContainer = document.getElementById('rtk-diagnostic-sections');
+        const errorMessageSpan = document.getElementById('rtk-diagnose-error-message');
+
+        // Safely hide loading state
+        if (loadingDiv) {
+            loadingDiv.classList.add('hidden');
+        }
+
+        // Hide other content sections
+        if (systemOverviewSection) {
+            systemOverviewSection.classList.add('hidden');
+        }
+        if (diagnosticSectionsContainer) {
+            diagnosticSectionsContainer.classList.add('hidden');
+        }
+
+        // Show error state
+        if (errorDiv) {
+            errorDiv.classList.remove('hidden');
+        }
+
+        // Update error message
+        if (errorMessageSpan) {
+            errorMessageSpan.textContent = message;
+        }
+    }
+
+    function refreshRTKDiagnosticData() {
+        const deviceIdSpan = document.getElementById('rtk-diagnose-device-id');
+        if (deviceIdSpan) {
+            const rtkId = deviceIdSpan.textContent;
+            if (rtkId && rtkId !== '--') {
+                loadRTKDiagnosticData(rtkId);
+            }
+        }
+    }
+
+    // RTK Modal Event Listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Close modal events
+        const closeButtons = ['rtk-diagnose-modal-close', 'rtk-diagnose-cancel-btn'];
+        closeButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', closeRTKDiagnoseModal);
+            }
+        });
+
+        // Refresh button
+        const refreshBtn = document.getElementById('rtk-diagnose-refresh-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', refreshRTKDiagnosticData);
+        }
+
+        // Export button (placeholder)
+        const exportBtn = document.getElementById('rtk-diagnose-export-btn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', function() {
+                // TODO: Implement export functionality
+                console.log('[MAVLINK-SYSTEM] Export RTK diagnostic report requested');
+                showNotification('Export functionality not yet implemented', 'info');
+            });
+        }
+
+        // Close modal on overlay click
+        const modal = document.getElementById('RTKDiagnoseModal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeRTKDiagnoseModal();
+                }
+            });
+        }
+    });
+
+
+    // Setup event handlers
+    function setupEventHandlers() {
+        log('Setting up event handlers...');
+
+        // Tab navigation
+        document.querySelectorAll('.mavlink-tab-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = button.getAttribute('data-tab-target');
+                if (target) {
+                    switchTab(target);
+                }
+            });
+
+            // Keyboard navigation
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const target = button.getAttribute('data-tab-target');
+                    if (target) {
+                        switchTab(target);
+                    }
+                }
+            });
+        });
+
+        // Refresh all button
+        const refreshAllBtn = document.getElementById('refresh-all-btn');
+        if (refreshAllBtn) {
+            refreshAllBtn.addEventListener('click', handleRefreshAll);
+        }
+
+        // Modal close handlers
+        setupModalEventHandlers();
+
+        // Add device handlers
+        setupAddDeviceHandlers();
+
+        log('Event handlers setup complete');
+    }
+
+    function setupModalEventHandlers() {
+        // FC Diagnostic Modal
+        const fcCloseButtons = ['fc-diagnose-modal-close', 'fc-diagnose-cancel-btn'];
+        fcCloseButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', closeFCDiagnoseModal);
+            }
+        });
+
+        const fcRefreshBtn = document.getElementById('fc-diagnose-refresh-btn');
+        if (fcRefreshBtn) {
+            fcRefreshBtn.addEventListener('click', refreshFCDiagnosticData);
+        }
+
+        // RTK Diagnostic Modal
+        const rtkCloseButtons = ['rtk-diagnose-modal-close', 'rtk-diagnose-cancel-btn'];
+        rtkCloseButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', closeRTKDiagnoseModal);
+            }
+        });
+
+        const rtkRefreshBtn = document.getElementById('rtk-diagnose-refresh-btn');
+        if (rtkRefreshBtn) {
+            rtkRefreshBtn.addEventListener('click', refreshRTKDiagnosticData);
+        }
+
+        // Reboot Modal
+        const rebootCloseButtons = ['reboot-modal-close', 'reboot-cancel-btn'];
+        rebootCloseButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', closeRebootModal);
+            }
+        });
+
+        const rebootConfirmBtn = document.getElementById('reboot-confirm-btn');
+        if (rebootConfirmBtn) {
+            rebootConfirmBtn.addEventListener('click', confirmReboot);
+        }
+
+        // Add Device Modal
+        const addDeviceCloseButtons = ['add-device-modal-close', 'add-device-cancel-btn'];
+        addDeviceCloseButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', closeAddDeviceModal);
+            }
+        });
+
+        // Close modals on overlay click
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'FCDiagnoseModal') {
+                closeFCDiagnoseModal();
+            } else if (e.target.id === 'RTKDiagnoseModal') {
+                closeRTKDiagnoseModal();
+            } else if (e.target.id === 'rebootModal') {
+                closeRebootModal();
+            } else if (e.target.id === 'addDeviceModal') {
+                closeAddDeviceModal();
+            }
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFCDiagnoseModal();
+                closeRTKDiagnoseModal();
+                closeRebootModal();
+                closeAddDeviceModal();
+            }
+        });
+    }
+
+    function setupAddDeviceHandlers() {
+        const addDeviceCard = document.getElementById('add-device-card');
+        if (addDeviceCard) {
+            addDeviceCard.addEventListener('click', showAddDeviceModal);
+        }
+
+        const addRtkCard = document.getElementById('add-rtk-card');
+        if (addRtkCard) {
+            addRtkCard.addEventListener('click', showAddDeviceModal);
+        }
+    }
+
+    function setupAutoRefresh() {
+        log('Setting up auto-refresh...');
+        
+        if (refreshIntervalId) {
+            clearInterval(refreshIntervalId);
+        }
+
+        refreshIntervalId = setInterval(() => {
+            if (!isRefreshing) {
+                log('Auto-refreshing data...');
+                loadSystemData();
+            }
+        }, autoRefreshInterval);
+
+        log(`Auto-refresh setup complete (${autoRefreshInterval}ms interval)`);
+    }
+
+    function updateLastUpdateTimestamp() {
+        const fcLastUpdate = document.getElementById('fc-last-update');
+        const rtkLastUpdate = document.getElementById('rtk-last-update');
+
+        const timestamp = systemData.lastUpdate ? new Date(systemData.lastUpdate).toLocaleString() : 'Never';
+
+        if (fcLastUpdate) {
+            fcLastUpdate.textContent = timestamp;
+        }
+
+        if (rtkLastUpdate) {
+            rtkLastUpdate.textContent = timestamp;
+        }
+    }
+
+    function updateSystemStatus(status) {
+        const statusIndicator = document.getElementById('system-status-indicator');
+        const statusText = document.getElementById('system-status-text');
+
+        if (!statusIndicator || !statusText) return;
+
+        switch (status) {
+            case 'online':
+                statusIndicator.className = 'w-3 h-3 bg-green-500 rounded-full animate-pulse';
+                statusText.textContent = 'Online';
+                statusText.className = 'text-sm text-green-600 font-medium';
+                break;
+            case 'offline':
+                statusIndicator.className = 'w-3 h-3 bg-red-500 rounded-full';
+                statusText.textContent = 'Offline';
+                statusText.className = 'text-sm text-red-600 font-medium';
+                break;
+            case 'error':
+                statusIndicator.className = 'w-3 h-3 bg-red-500 rounded-full';
+                statusText.textContent = 'Error';
+                statusText.className = 'text-sm text-red-600 font-medium';
+                break;
+            default:
+                statusIndicator.className = 'w-3 h-3 bg-gray-400 rounded-full';
+                statusText.textContent = 'Unknown';
+                statusText.className = 'text-sm text-gray-600 font-medium';
+        }
+    }
+
+    function setLoadingState(loading) {
+        const fcLoading = document.getElementById('fc-loading');
+        const rtkLoading = document.getElementById('rtk-loading');
+
+        if (fcLoading) {
+            if (loading) {
+                fcLoading.classList.remove('hidden');
+            } else {
+                fcLoading.classList.add('hidden');
+            }
+        }
+
+        if (rtkLoading) {
+            if (loading) {
+                rtkLoading.classList.remove('hidden');
+            } else {
+                rtkLoading.classList.add('hidden');
+            }
+        }
+
+        isRefreshing = loading;
+    }
+
+    // Initialize everything when DOM is ready
+    function init() {
+        log('Starting embedded MAVLink system overview initialization...');
+
+        try {
+            setupEventHandlers();
+            loadSystemData();
+            setupAutoRefresh();
+            log('Embedded initialization complete');
+        } catch (error) {
+            logError('Failed to initialize embedded MAVLink system overview:', error);
+            showNotification('Failed to initialize MAVLink system overview', 'error');
+        }
+    }
+
+    // Start initialization when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
+
+</script>

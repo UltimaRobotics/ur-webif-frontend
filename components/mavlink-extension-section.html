@@ -1,0 +1,250 @@
+<!-- MAVLink Extension System Section -->
+<div class="space-y-6" id="mavlink-extension-section">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl text-neutral-900 flex items-center">
+                <i class="fa-solid fa-satellite-dish mr-3 text-neutral-600"></i>
+                MAVLink Extension System
+            </h1>
+            <p class="text-neutral-600 mt-1">Monitor and manage MAVLink communication endpoints and extensions</p>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span id="system-status" class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800">
+                <i class="fa-solid fa-circle text-xs mr-2"></i>
+                Loading...
+            </span>
+            <button id="refresh-all-btn" class="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                <i class="fa-solid fa-refresh mr-1"></i>
+                Refresh
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+            <!-- Statistics Card -->
+            <div class="bg-white rounded-lg border border-neutral-200 mb-4">
+                <div class="p-4 border-b border-neutral-200">
+                    <h3 class="text-lg text-neutral-900">System Statistics</h3>
+                </div>
+                <div class="p-4">
+                    <div id="endpoint-stats" class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                <span>Online</span>
+                            </div>
+                            <span id="online-count">-</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                                <span>Warning</span>
+                            </div>
+                            <span id="warning-count">-</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                <span>Offline</span>
+                            </div>
+                            <span id="offline-count">-</span>
+                        </div>
+                        <div class="pt-2 border-t">
+                            <div class="text-xs text-gray-500">Total Messages/sec</div>
+                            <div class="font-semibold" id="total-messages">-</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500">Total Bandwidth</div>
+                            <div class="font-semibold" id="total-bandwidth">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg border border-neutral-200 p-4">
+                <h3 class="text-lg text-neutral-900 mb-4">Quick Actions</h3>
+                <div class="space-y-2">
+                    <button id="add-endpoint-btn" class="w-full bg-blue-600 text-white p-3 rounded-lg text-sm hover:bg-blue-700 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Endpoint</span>
+                    </button>
+                    <button id="export-config-btn" class="w-full bg-neutral-600 text-white p-3 rounded-lg text-sm hover:bg-neutral-700 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Export Config</span>
+                    </button>
+                    <button id="import-config-btn" class="w-full border border-neutral-300 text-neutral-700 p-3 rounded-lg text-sm hover:bg-neutral-50 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Import Config</span>
+                    </button>
+                    <button id="validate-system-btn" class="w-full border border-neutral-300 text-neutral-700 p-3 rounded-lg text-sm hover:bg-neutral-50 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Validate System</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+            <!-- Endpoint List -->
+            <div class="bg-white rounded-lg border border-neutral-200">
+                <div class="p-4 border-b border-neutral-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg text-neutral-900">MAVLink Endpoints</h3>
+                        <div class="flex space-x-2">
+                            <button id="start-all-btn" class="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700">
+                                <i class="fa-solid fa-play mr-1"></i>
+                                Start All
+                            </button>
+                            <button id="stop-all-btn" class="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700">
+                                <i class="fa-solid fa-stop mr-1"></i>
+                                Stop All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div id="endpoints-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                        <!-- Endpoints will be dynamically loaded here -->
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loading-state" class="text-center py-8">
+                        <i class="fa-solid fa-spinner fa-spin text-2xl text-gray-400 mb-2"></i>
+                        <p class="text-gray-500">Loading endpoints...</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state" class="text-center py-8 hidden">
+                        <i class="fa-solid fa-satellite-dish text-4xl text-gray-300 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No Endpoints Found</h3>
+                        <p class="text-gray-500 mb-4">Create your first MAVLink endpoint to get started.</p>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Add Endpoint
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts Section -->
+            <div id="alerts-section" class="bg-white rounded-lg border border-neutral-200 mt-6 hidden">
+                <div class="p-4 border-b border-neutral-200">
+                    <h3 class="text-lg text-neutral-900">System Alerts</h3>
+                </div>
+                <div id="alerts-container" class="p-4">
+                    <!-- Alerts will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Endpoint Modal -->
+<div id="endpoint-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg max-w-md w-full">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 id="modal-title" class="text-lg font-medium">Add Endpoint</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="endpoint-form">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="endpoint-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Protocol</label>
+                            <select id="endpoint-protocol" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="UDP">UDP</option>
+                                <option value="TCP">TCP</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Port</label>
+                            <input type="number" id="endpoint-port" min="1" max="65535" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <textarea id="endpoint-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="endpoint-autostart" class="mr-2">
+                                <span class="text-sm text-gray-700">Auto-start</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="endpoint-enabled" class="mr-2" checked>
+                                <span class="text-sm text-gray-700">Enabled</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button type="button" id="cancel-btn" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit" id="save-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Import Config Modal -->
+<div id="import-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg max-w-md w-full">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium">Import Configuration</h3>
+                    <button id="close-import-modal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Configuration File</label>
+                        <input type="file" id="config-file" accept=".json" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+
+                    <div class="text-sm text-gray-500">
+                        Upload a JSON configuration file exported from this system.
+                    </div>
+
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancel-import-btn" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="button" id="import-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Import
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>console.log('[MAVLINK-EXTENSION-SECTION.HTML] Section initialized (Demo Mode)');</script>

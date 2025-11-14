@@ -1,0 +1,1470 @@
+
+
+<!-- Wireless Configuration Section -->
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-wifi text-2xl text-neutral-700"></i>
+            <div>
+                <h1 class="text-2xl text-neutral-900">Wireless Configuration</h1>
+                <p class="text-sm text-neutral-600">Configure Wi-Fi settings and network connections</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Wi-Fi Toggle Section -->
+    <div class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-power-off text-neutral-600"></i>
+                    <div>
+                        <h3 class="text-lg text-neutral-900">Wi-Fi Radio</h3>
+                        <p class="text-sm text-neutral-600">Enable or disable wireless functionality</p>
+                    </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer" id="wifi-radio-toggle">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mode Selection Section -->
+    <div id="mode-selection-section" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6">
+            <h3 class="text-lg text-neutral-900 mb-4">Wireless Mode</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="relative cursor-pointer" id="client-mode-btn">
+                    <input type="radio" name="wireless-mode" value="client" checked class="sr-only" id="client-mode-radio">
+                    <div class="mode-selection-card p-4 border-2 border-neutral-500 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-all">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-laptop text-xl text-neutral-600"></i>
+                            <div class="text-left">
+                                <h4 class="text-neutral-900">Client Mode</h4>
+                                <p class="text-sm text-neutral-600">Connect to existing Wi-Fi network</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative cursor-pointer" id="ap-mode-btn">
+                    <input type="radio" name="wireless-mode" value="ap" class="sr-only" id="ap-mode-radio">
+                    <div class="mode-selection-card p-4 border-2 border-neutral-200 rounded-lg hover:bg-neutral-100 transition-all">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-broadcast-tower text-xl text-neutral-600"></i>
+                            <div class="text-left">
+                                <h4 class="text-neutral-900">Access Point</h4>
+                                <p class="text-sm text-neutral-600">Create Wi-Fi hotspot</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Mode Section -->
+    <div id="client-mode-section" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg text-neutral-900">Available Networks</h3>
+                <div class="flex items-center space-x-3">
+                    <button id="wireless-refresh-btn" class="text-neutral-600 hover:text-neutral-900 p-2 rounded-lg hover:bg-neutral-100" title="Refresh Status">
+                        <i class="fa-solid fa-refresh text-sm"></i>
+                    </button>
+                    <button id="wireless-scan-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-md hover:bg-neutral-700">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Scan Networks</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Network List -->
+            <div id="available-networks-list" class="space-y-2 mb-6 max-h-64 overflow-y-auto">
+                <!-- Networks will be populated dynamically by JavaScript -->
+                <div id="networks-loading" class="flex items-center justify-center p-6">
+                    <div class="flex items-center space-x-3 text-neutral-600">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <span>Loading available networks...</span>
+                    </div>
+                </div>
+                <div id="networks-empty" class="hidden flex items-center justify-center p-6">
+                    <div class="text-center text-neutral-600">
+                        <i class="fa-solid fa-wifi text-3xl mb-3 text-neutral-400"></i>
+                        <p class="text-lg text-neutral-700">No networks found</p>
+                        <p class="text-sm">Click "Scan Networks" to search for available WiFi networks</p>
+                    </div>
+                </div>
+                <div id="networks-error" class="hidden flex items-center justify-center p-6">
+                    <div class="text-center text-red-600">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl mb-3"></i>
+                        <p class="text-lg">Failed to load networks</p>
+                        <p class="text-sm">Please try scanning again</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Connection Form -->
+            <div class="border-t border-neutral-200 pt-6">
+                <div class="cursor-pointer" onclick="toggleSection('manual-connection-content', 'manual-connection-chevron')">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-md text-neutral-900">Manual Connection</h4>
+                        <i id="manual-connection-chevron" class="fa-solid fa-chevron-down transform transition-transform"></i>
+                    </div>
+                </div>
+                <div id="manual-connection-content" class="hidden mt-4">
+                    <form id="network-connect-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-neutral-700 mb-2">SSID</label>
+                                <input type="text" id="network-ssid" name="ssid" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" placeholder="Enter network name">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-neutral-700 mb-2">Security</label>
+                                <select id="network-security" name="security" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                    <option>None</option>
+                                    <option>WPA2</option>
+                                    <option selected>WPA3</option>
+                                    <option>WEP</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm text-neutral-700 mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="network-password" name="password" class="w-full px-3 py-2 pr-10 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" placeholder="Enter password">
+                                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <i class="fa-solid fa-eye text-neutral-400"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- IP Configuration -->
+                        <div class="mt-6">
+                            <h4 class="text-md text-neutral-900 mb-4">IP Configuration</h4>
+                            <div class="space-y-4">
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="ip-mode" value="dhcp" checked class="mr-2">
+                                        <span class="text-sm text-neutral-700">DHCP (Automatic)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="ip-mode" value="static" class="mr-2">
+                                        <span class="text-sm text-neutral-700">Static IP</span>
+                                    </label>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 opacity-50">
+                                    <div>
+                                        <label class="block text-sm text-neutral-700 mb-2">IP Address</label>
+                                        <input type="text" disabled class="w-full px-3 py-2 border border-neutral-300 rounded-md bg-neutral-100" placeholder="192.168.1.100">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-neutral-700 mb-2">Subnet Mask</label>
+                                        <input type="text" disabled class="w-full px-3 py-2 border border-neutral-300 rounded-md bg-neutral-100" placeholder="255.255.255.0">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-neutral-700 mb-2">Gateway</label>
+                                        <input type="text" disabled class="w-full px-3 py-2 border border-neutral-300 rounded-md bg-neutral-100" placeholder="192.168.1.1">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-neutral-700 mb-2">DNS Server</label>
+                                        <input type="text" disabled class="w-full px-3 py-2 border border-neutral-300 rounded-md bg-neutral-100" placeholder="8.8.8.8">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 mt-6">
+                            <button type="submit" id="manual-connect-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-md hover:bg-neutral-700">
+                                <i class="fa-solid fa-check"></i>
+                                <span>Connect</span>
+                            </button>
+                            <button type="button" class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50">Cancel</button>
+                            <label class="flex items-center text-sm text-neutral-600 ml-4">
+                                <input type="checkbox" id="hidden-network" class="mr-2">
+                                Hidden network
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Networks Section -->
+        <div class="border-t border-neutral-200 p-6">
+            <div class="cursor-pointer" onclick="toggleSection('saved-networks-content', 'saved-networks-chevron')">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg text-neutral-900">Saved Networks</h3>
+                    <i id="saved-networks-chevron" class="fa-solid fa-chevron-down transform transition-transform"></i>
+                </div>
+            </div>
+            <div id="saved-networks-content" class="hidden mt-4">
+                <div id="saved-networks-list" class="space-y-3">
+                    <!-- Saved networks will be populated dynamically by JavaScript -->
+                    <div id="saved-networks-loading" class="flex items-center justify-center p-6">
+                        <div class="flex items-center space-x-3 text-neutral-600">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <span>Loading saved networks...</span>
+                        </div>
+                    </div>
+                    <div id="saved-networks-empty" class="hidden flex items-center justify-center p-6">
+                        <div class="text-center text-neutral-600">
+                            <i class="fa-solid fa-bookmark text-3xl mb-3 text-neutral-400"></i>
+                            <p class="text-lg text-neutral-700">No saved networks</p>
+                            <p class="text-sm">Connect to a network to save it for future use</p>
+                        </div>
+                    </div>
+                    <div id="saved-networks-error" class="hidden flex items-center justify-center p-6">
+                        <div class="text-center text-red-600">
+                            <i class="fa-solid fa-triangle-exclamation text-3xl mb-3"></i>
+                            <p class="text-lg">Failed to load saved networks</p>
+                            <p class="text-sm">Please try refreshing the page</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Access Point Mode Section -->
+    <div id="access-point-mode-section" class="bg-white border border-neutral-200 rounded-lg hidden">
+        <div class="p-6">
+            <h3 class="text-lg text-neutral-900 mb-4">Access Point Configuration</h3>
+
+            <form id="ap-config-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">SSID (Network Name)</label>
+                            <input type="text" id="ap-ssid" name="ap_ssid" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" placeholder="Office-AP" value="Office-AP">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Security</label>
+                            <select id="ap-security" name="ap_security" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                <option>None</option>
+                                <option>WPA2</option>
+                                <option selected>WPA3</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Password</label>
+                            <div class="relative">
+                                <input type="password" id="ap-password" name="ap_password" class="w-full px-3 py-2 pr-10 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" placeholder="Enter AP password">
+                                <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <i class="fa-solid fa-eye text-neutral-400"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Maximum Clients</label>
+                            <input type="number" id="max-clients" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" value="10" min="1" max="50">
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Band Selection</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="band-selection" value="2.4ghz" class="mr-2">
+                                    <span class="text-sm text-neutral-700">2.4GHz</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="band-selection" value="5ghz" class="mr-2">
+                                    <span class="text-sm text-neutral-700">5GHz</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="band-selection" value="dual" checked class="mr-2">
+                                    <span class="text-sm text-neutral-700">Dual-Band</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Channel</label>
+                            <select id="ap-channel" name="ap_channel" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                <option selected>Auto</option>
+                                <option>1</option>
+                                <option>6</option>
+                                <option>11</option>
+                                <option>36</option>
+                                <option>40</option>
+                                <option>44</option>
+                                <option>48</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">IP Mode</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="ip-mode-ap" value="nat" checked class="mr-2">
+                                    <span class="text-sm text-neutral-700">NAT (Router Mode)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="ip-mode-ap" value="bridge" class="mr-2">
+                                    <span class="text-sm text-neutral-700">Bridge Mode</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHCP Server Configuration -->
+                <div class="mt-6 p-4 bg-neutral-50 rounded-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-md text-neutral-900">DHCP Server</h4>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="dhcp-enabled" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                        </label>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Start IP</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" value="192.168.50.10">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">End IP</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500" value="192.168.50.254">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3 mt-6">
+                    <button type="submit" id="ap-start-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-md hover:bg-neutral-700">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Start Access Point</span>
+                    </button>
+                    <button type="button" class="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-md hover:bg-neutral-50">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Access Point Status -->
+    <div id="ap-status-section" class="bg-white border border-neutral-200 rounded-lg hidden">
+        <div class="p-6 bg-neutral-50">
+            <div class="cursor-pointer" onclick="toggleSection('ap-status-content', 'ap-status-chevron')">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg text-neutral-900">Access Point Status</h3>
+                    <i id="ap-status-chevron" class="fa-solid fa-chevron-down transform transition-transform"></i>
+                </div>
+            </div>
+            <div id="ap-status-content" class="hidden mt-4">
+                <div id="ap-status-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                    <!-- Status cards will be populated dynamically by JavaScript -->
+                    <div class="bg-white p-4 rounded-lg border border-neutral-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <i class="fa-solid fa-broadcast-tower text-neutral-600"></i>
+                            <span class="text-sm text-neutral-700">SSID</span>
+                        </div>
+                        <p id="ap-ssid-display" class="text-lg text-neutral-900">Loading...</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-neutral-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <i class="fa-solid fa-users text-neutral-600"></i>
+                            <span class="text-sm text-neutral-700">Connected Clients</span>
+                        </div>
+                        <p id="ap-clients-count" class="text-lg text-neutral-900">Loading...</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-neutral-200">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <i class="fa-solid fa-wave-square text-neutral-600"></i>
+                            <span class="text-sm text-neutral-700">Channel</span>
+                        </div>
+                        <p id="ap-channel-display" class="text-lg text-neutral-900">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- Connected Clients Table -->
+                <div id="connected-clients-container" class="bg-white rounded-lg border border-neutral-200">
+                    <div class="px-4 py-3 border-b border-neutral-200">
+                        <h4 class="text-md text-neutral-900">Connected Clients</h4>
+                    </div>
+                    
+                    <!-- Loading state -->
+                    <div id="connected-clients-loading" class="flex items-center justify-center p-6">
+                        <div class="flex items-center space-x-3 text-neutral-600">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <span>Loading connected clients...</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty state -->
+                    <div id="connected-clients-empty" class="hidden flex items-center justify-center p-6">
+                        <div class="text-center text-neutral-600">
+                            <i class="fa-solid fa-users text-3xl mb-3 text-neutral-400"></i>
+                            <p class="text-lg text-neutral-700">No connected clients</p>
+                            <p class="text-sm">Devices will appear here when they connect to your access point</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Error state -->
+                    <div id="connected-clients-error" class="hidden flex items-center justify-center p-6">
+                        <div class="text-center text-red-600">
+                            <i class="fa-solid fa-triangle-exclamation text-3xl mb-3"></i>
+                            <p class="text-lg">Failed to load connected clients</p>
+                            <p class="text-sm">Please try refreshing the page</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Data table (hidden by default, shown when data is loaded) -->
+                    <div id="connected-clients-table" class="hidden overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-neutral-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase">Device</th>
+                                    <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase">MAC Address</th>
+                                    <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase">IP Address</th>
+                                    <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase">Signal</th>
+                                    <th class="px-4 py-3 text-left text-xs text-neutral-500 uppercase">Connected</th>
+                                </tr>
+                            </thead>
+                            <tbody id="connected-clients-table-body" class="divide-y divide-neutral-200">
+                                <!-- Connected clients will be populated dynamically by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button id="ap-stop-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-md hover:bg-neutral-700">
+                        <i class="fa-solid fa-stop"></i>
+                        <span>Stop Access Point</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * Wireless Section Manager - Integrated Implementation
+ * All wireless functionality is now contained within this HTML file
+ */
+
+// Toggle section visibility function - make it globally available
+window.toggleSection = function(contentId, chevronId) {
+    const content = document.getElementById(contentId);
+    const chevron = document.getElementById(chevronId);
+    
+    if (content && chevron) {
+        content.classList.toggle('hidden');
+        chevron.classList.toggle('rotate-180');
+    }
+};
+
+class WirelessSection {
+    constructor() {
+        this.sectionName = 'wireless';
+        this.config = {
+            autoRefreshInterval: 30000, // 30 seconds
+            enableAutoRefresh: true,
+            retryAttempts: 3
+        };
+
+        // Wireless-specific API endpoints
+        this.endpoints = {
+            status: '/api/wireless/status',
+            radio: '/api/wireless/radio',
+            scan: '/api/wireless/scan',
+            connect: '/api/wireless/connect',
+            savedNetworks: '/api/wireless/saved-networks',
+            apStart: '/api/wireless/ap/start',
+            apStop: '/api/wireless/ap/stop',
+            events: '/api/wireless/events',
+            // New data endpoints
+            savedNetworksData: '/api/wireless/saved-networks-data',
+            availableNetworksData: '/api/wireless/available-networks-data',
+            manualConnectData: '/api/wireless/manual-connect-data',
+            apConfigData: '/api/wireless/ap-config-data',
+            apStatusData: '/api/wireless/ap-status-data'
+        };
+
+        // Wireless-specific state
+        this.state = {
+            wifi_radio_enabled: true,
+            active_mode: 'client',
+            scan_in_progress: false,
+            ap_active: false,
+            connection_status: 'Disconnected',
+            connected_network: null,
+            signal_strength: 0,
+            signal_quality: 0,
+            ip_address: 'N/A',
+            // Access Point settings
+            ap_ssid: '',
+            ap_password: '',
+            ap_channel: 6,
+            ap_security: 'WPA2',
+            ap_clients_count: 0
+        };
+
+        // Available networks from scan
+        this.availableNetworks = [];
+        this.savedNetworks = [];
+        this.lastScanTime = null;
+        this.autoRefreshTimer = null;
+
+        this.log('WirelessSection initialized');
+    }
+
+    log(message, data = '') {
+        console.log(`[WIRELESS] ${message}`, data);
+    }
+
+    logError(message, error = '') {
+        console.error(`[WIRELESS] ${message}`, error);
+    }
+
+    updateState(newState) {
+        const oldState = { ...this.state };
+        this.state = { ...this.state, ...newState };
+        
+        // Log state changes
+        const changes = {};
+        for (const key in newState) {
+            if (oldState[key] !== newState[key]) {
+                changes[key] = { old: oldState[key], new: newState[key] };
+            }
+        }
+        
+        if (Object.keys(changes).length > 0) {
+            this.log('State changed:', changes);
+        }
+    }
+
+    async makeRequest(method, endpoint, data = null) {
+        try {
+            this.log(`Making ${method} request to ${endpoint}`);
+            
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            };
+
+            if (data && method !== 'GET') {
+                options.body = JSON.stringify(data);
+                this.log('Request data:', data);
+            }
+
+            const response = await fetch(endpoint, options);
+            const responseData = await response.json();
+            
+            this.log('Response received:', responseData);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            return responseData;
+        } catch (error) {
+            this.logError(`Request failed for ${endpoint}:`, error);
+            throw error;
+        }
+    }
+
+    async sendEvent(category, elementId, data) {
+        try {
+            const eventData = {
+                category: category,
+                element_id: elementId,
+                timestamp: Date.now(),
+                ...data
+            };
+
+            await this.makeRequest('POST', this.endpoints.events, eventData);
+        } catch (error) {
+            this.logError('Failed to send event:', error);
+        }
+    }
+
+    validateField(fieldName, value) {
+        const validations = {
+            network_ssid: (val) => {
+                if (!val || val.trim() === '') return 'Network SSID is required';
+                if (val.length > 32) return 'SSID must be 32 characters or less';
+                return true;
+            },
+            network_password: (val) => {
+                if (val && val.length < 8) return 'Password must be at least 8 characters';
+                return true;
+            },
+            ap_ssid: (val) => {
+                if (val && val.length > 32) return 'AP SSID must be 32 characters or less';
+                return true;
+            },
+            ap_password: (val) => {
+                if (val && val.length < 8) return 'AP password must be at least 8 characters';
+                return true;
+            },
+            ap_channel: (val) => {
+                const num = parseInt(val);
+                if (num < 1 || num > 14) return 'Channel must be between 1 and 14';
+                return true;
+            }
+        };
+
+        const validator = validations[fieldName];
+        if (validator) {
+            const result = validator(value);
+            return { valid: result === true, error: result === true ? null : result };
+        }
+        return { valid: true, error: null };
+    }
+
+    /**
+     * Setup event handlers
+     */
+    setupEventHandlers() {
+        this.log('Setting up wireless event handlers...');
+
+        // Radio control
+        const radioToggle = document.getElementById('wifi-radio-toggle');
+        if (radioToggle) {
+            radioToggle.addEventListener('change', this.handleRadioToggle.bind(this));
+        }
+
+        // Mode selection
+        const clientModeBtn = document.getElementById('client-mode-btn');
+        const apModeBtn = document.getElementById('ap-mode-btn');
+        
+        if (clientModeBtn) {
+            clientModeBtn.addEventListener('click', this.handleClientMode.bind(this));
+        }
+        if (apModeBtn) {
+            apModeBtn.addEventListener('click', this.handleAccessPointMode.bind(this));
+        }
+
+        // Network scanning and connection
+        const scanBtn = document.getElementById('wireless-scan-btn');
+        const refreshBtn = document.getElementById('wireless-refresh-btn');
+        const connectForm = document.getElementById('network-connect-form');
+        
+        if (scanBtn) {
+            scanBtn.addEventListener('click', this.handleNetworkScan.bind(this));
+        }
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', this.handleRefreshStatus.bind(this));
+        }
+        if (connectForm) {
+            connectForm.addEventListener('submit', this.handleNetworkConnect.bind(this));
+        }
+
+        // Access Point controls
+        const apStartBtn = document.getElementById('ap-start-btn');
+        const apStopBtn = document.getElementById('ap-stop-btn');
+        const apConfigForm = document.getElementById('ap-config-form');
+        
+        if (apStartBtn) {
+            apStartBtn.addEventListener('click', this.handleStartAccessPoint.bind(this));
+        }
+        if (apStopBtn) {
+            apStopBtn.addEventListener('click', this.handleStopAccessPoint.bind(this));
+        }
+        if (apConfigForm) {
+            apConfigForm.addEventListener('submit', this.handleAccessPointConfig.bind(this));
+        }
+
+        this.log('Wireless event handlers setup complete');
+    }
+
+    /**
+     * Event Handlers
+     */
+
+    async handleRadioToggle(event) {
+        const enabled = event.target.checked;
+        this.log('Wi-Fi radio toggled:', enabled);
+
+        try {
+            this.updateState({ wifi_radio_enabled: enabled });
+
+            const response = await this.makeRequest('POST', this.endpoints.radio, {
+                action: 'toggle_radio',
+                wifi_radio_enabled: enabled
+            });
+
+            if (response && response.success) {
+                await this.sendEvent('wireless_radio', 'wifi-radio-toggle', {
+                    action: 'toggle_radio',
+                    enabled: enabled
+                });
+                
+                this.updateRadioUI(enabled);
+            }
+
+        } catch (error) {
+            this.logError('Radio toggle failed:', error);
+            // Revert toggle state
+            event.target.checked = !enabled;
+            this.updateState({ wifi_radio_enabled: !enabled });
+        }
+    }
+
+    async handleClientMode(event) {
+        event.preventDefault();
+        this.log('Client mode selected');
+
+        try {
+            this.updateState({ active_mode: 'client' });
+
+            await this.sendEvent('wireless_mode', 'client-mode-btn', {
+                action: 'select_mode',
+                mode: 'client'
+            });
+
+            this.updateModeUI('client');
+
+        } catch (error) {
+            this.logError('Mode selection failed:', error);
+        }
+    }
+
+    async handleAccessPointMode(event) {
+        event.preventDefault();
+        this.log('Access Point mode selected');
+
+        try {
+            this.updateState({ active_mode: 'ap' });
+
+            await this.sendEvent('wireless_mode', 'ap-mode-btn', {
+                action: 'select_mode',
+                mode: 'ap'
+            });
+
+            this.updateModeUI('ap');
+
+        } catch (error) {
+            this.logError('Mode selection failed:', error);
+        }
+    }
+
+    async handleNetworkScan(event) {
+        event.preventDefault();
+        this.log('Starting network scan...');
+
+        try {
+            this.updateState({ scan_in_progress: true });
+            this.updateScanStatusUI(true);
+
+            const response = await this.makeRequest('POST', this.endpoints.scan, {
+                scan_type: 'available_networks'
+            });
+
+            if (response && response.success) {
+                if (response.networks_found || response.networks) {
+                    const networks = response.available_networks || response.networks_found || response.networks || [];
+                    this.availableNetworks = networks;
+                    this.lastScanTime = Date.now();
+                    
+                    // Save scan results to backend
+                    await this.makeRequest('POST', this.endpoints.availableNetworksData, {
+                        scan_results: networks,
+                        scan_duration: 5
+                    });
+                    
+                    this.renderAvailableNetworks();
+                }
+
+                await this.sendEvent('wireless_scan', 'wireless-scan-btn', {
+                    action: 'scan_networks'
+                });
+
+                // Stop scanning indicator after delay
+                setTimeout(() => {
+                    this.updateState({ scan_in_progress: false });
+                    this.updateScanStatusUI(false);
+                }, 3000);
+            }
+
+        } catch (error) {
+            this.logError('Network scan failed:', error);
+            this.updateState({ scan_in_progress: false });
+            this.updateScanStatusUI(false);
+        }
+    }
+
+    async handleRefreshStatus(event) {
+        event.preventDefault();
+        this.log('Refreshing wireless status...');
+        await this.fetchWirelessStatus();
+    }
+
+    async handleNetworkConnect(event) {
+        event.preventDefault();
+        this.log('Connecting to network...');
+
+        try {
+            const formData = new FormData(event.target);
+            const connectData = {
+                ssid: formData.get('ssid'),
+                password: formData.get('password'),
+                security: formData.get('security') || 'WPA2'
+            };
+
+            // Validate connection data
+            for (const [field, value] of Object.entries(connectData)) {
+                const mappedField = field === 'ssid' ? 'network_ssid' : `network_${field}`;
+                const validation = this.validateField(mappedField, value);
+                if (!validation.valid) {
+                    this.showErrorMessage(validation.error);
+                    return;
+                }
+            }
+
+            this.updateState({ connection_status: 'connecting' });
+
+            const response = await this.makeRequest('POST', this.endpoints.connect, connectData);
+
+            if (response && response.success) {
+                // Save manual connection to backend
+                const formData = new FormData(event.target);
+                const manualConnectionData = {
+                    ssid: connectData.ssid,
+                    security_type: connectData.security,
+                    password: connectData.password,
+                    ip_mode: formData.get('ip-mode') || 'dhcp',
+                    static_ip: formData.get('static-ip') || '',
+                    subnet_mask: formData.get('subnet-mask') || '',
+                    gateway: formData.get('gateway') || '',
+                    dns_server: formData.get('dns-server') || '',
+                    hidden_network: formData.get('hidden-network') === 'on',
+                    connection_status: 'success'
+                };
+                
+                await this.makeRequest('POST', this.endpoints.manualConnectData, manualConnectionData);
+
+                await this.sendEvent('wireless_connect', 'network-connect-form', {
+                    action: 'connect_network',
+                    ssid: connectData.ssid
+                });
+
+                this.showSuccessMessage('Connection initiated successfully');
+                
+                // Refresh status after delay
+                setTimeout(() => {
+                    this.fetchWirelessStatus();
+                }, 5000);
+            }
+
+        } catch (error) {
+            this.logError('Network connection failed:', error);
+            this.updateState({ connection_status: 'failed' });
+            this.showErrorMessage('Connection failed: ' + error.message);
+        }
+    }
+
+    async handleStartAccessPoint(event) {
+        event.preventDefault();
+        this.log('Starting Access Point...');
+
+        try {
+            // Load current AP configuration
+            const configResponse = await this.makeRequest('GET', this.endpoints.apConfigData);
+            const apConfig = configResponse.data?.access_point_config || {};
+            
+            const apData = {
+                ssid: apConfig.ssid || 'UR-WebIF-AP',
+                password: apConfig.password || '',
+                channel: apConfig.channel || 6,
+                security_type: apConfig.security_type || 'WPA3',
+                band_selection: apConfig.band_selection || 'dual',
+                max_clients: apConfig.max_clients || 10,
+                dhcp_enabled: apConfig.dhcp_enabled || true
+            };
+
+            const response = await this.makeRequest('POST', this.endpoints.apStart, apData);
+
+            if (response && response.success) {
+                this.updateState({ ap_active: true });
+                
+                // Update AP status
+                await this.makeRequest('POST', this.endpoints.apStatusData, {
+                    is_active: true,
+                    ssid: apData.ssid,
+                    channel: apData.channel,
+                    band: apData.band_selection,
+                    clients_connected: 0,
+                    uptime_seconds: 0
+                });
+
+                await this.sendEvent('wireless_ap', 'ap-start-btn', {
+                    action: 'start_access_point',
+                    config: apData
+                });
+
+                this.showSuccessMessage('Access Point started successfully');
+            }
+
+        } catch (error) {
+            this.logError('Failed to start Access Point:', error);
+            this.showErrorMessage('Failed to start Access Point: ' + error.message);
+        }
+    }
+
+    async handleStopAccessPoint(event) {
+        event.preventDefault();
+        this.log('Stopping Access Point...');
+
+        try {
+            const response = await this.makeRequest('POST', this.endpoints.apStop);
+
+            if (response && response.success) {
+                this.updateState({ ap_active: false });
+                
+                // Update AP status
+                await this.makeRequest('POST', this.endpoints.apStatusData, {
+                    is_active: false,
+                    ssid: '',
+                    channel: 0,
+                    band: '',
+                    clients_connected: 0,
+                    uptime_seconds: 0,
+                    connected_clients: []
+                });
+
+                await this.sendEvent('wireless_ap', 'ap-stop-btn', {
+                    action: 'stop_access_point'
+                });
+
+                this.showSuccessMessage('Access Point stopped successfully');
+            }
+
+        } catch (error) {
+            this.logError('Failed to stop Access Point:', error);
+            this.showErrorMessage('Failed to stop Access Point: ' + error.message);
+        }
+    }
+
+    async handleAccessPointConfig(event) {
+        event.preventDefault();
+        this.log('Updating Access Point configuration...');
+
+        try {
+            const formData = new FormData(event.target);
+            const apConfig = {
+                ssid: formData.get('ap_ssid'),
+                password: formData.get('ap_password'),
+                channel: parseInt(formData.get('ap_channel')) || 6,
+                security: formData.get('ap_security') || 'WPA2'
+            };
+
+            // Validate AP configuration
+            for (const [field, value] of Object.entries(apConfig)) {
+                const validation = this.validateField(`ap_${field}`, value);
+                if (!validation.valid) {
+                    this.showErrorMessage(validation.error);
+                    return;
+                }
+            }
+
+            this.updateState(apConfig);
+            
+            // Save AP configuration to backend
+            await this.makeRequest('POST', this.endpoints.apConfigData, apConfig);
+
+            await this.sendEvent('wireless_ap_config', 'ap-config-form', {
+                action: 'update_ap_config',
+                config: apConfig
+            });
+
+            this.showSuccessMessage('Access Point configuration updated');
+
+        } catch (error) {
+            this.logError('AP configuration failed:', error);
+            this.showErrorMessage('Configuration update failed: ' + error.message);
+        }
+    }
+
+    /**
+     * Data Management
+     */
+
+    async fetchWirelessStatus() {
+        try {
+            this.log('Fetching wireless status...');
+
+            const response = await this.makeRequest('GET', this.endpoints.status);
+
+            if (response && response.success !== false) {
+                const status = response.data || response;
+                this.log('Wireless status received:', status);
+
+                this.updateState(status);
+                return status;
+            } else {
+                this.logError('Failed to fetch wireless status:', response);
+                return null;
+            }
+        } catch (error) {
+            this.logError('Error fetching wireless status:', error);
+            return null;
+        }
+    }
+
+    async fetchSavedNetworks() {
+        try {
+            this.log('Fetching saved networks...');
+
+            const response = await this.makeRequest('GET', this.endpoints.savedNetworksData);
+
+            if (response && response.success !== false) {
+                const data = response.data || {};
+                const networks = data.saved_networks || [];
+                this.savedNetworks = networks;
+                this.renderSavedNetworks();
+                return networks;
+            }
+        } catch (error) {
+            this.logError('Error fetching saved networks:', error);
+        }
+        return [];
+    }
+
+    async fetchAvailableNetworks() {
+        try {
+            this.log('Fetching available networks...');
+
+            const response = await this.makeRequest('GET', this.endpoints.availableNetworksData);
+
+            if (response && response.success !== false) {
+                const data = response.data || {};
+                const networks = data.available_networks || [];
+                this.availableNetworks = networks;
+                this.renderAvailableNetworks();
+                return networks;
+            }
+        } catch (error) {
+            this.logError('Error fetching available networks:', error);
+        }
+        return [];
+    }
+
+    /**
+     * UI Update Methods
+     */
+
+    updateRadioUI(enabled) {
+        const toggle = document.getElementById('wifi-radio-toggle');
+        if (toggle) {
+            toggle.checked = enabled;
+        }
+
+        // Enable/disable relevant controls
+        const controls = ['wireless-scan-btn', 'client-mode-btn', 'ap-mode-btn'];
+        controls.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.disabled = !enabled;
+            }
+        });
+
+        // Update mode sections visibility based on radio state
+        this.toggleWirelessFunctionality(enabled);
+    }
+
+    updateModeUI(mode) {
+        // Update mode buttons
+        const clientBtn = document.getElementById('client-mode-btn');
+        const apBtn = document.getElementById('ap-mode-btn');
+
+        if (clientBtn && apBtn) {
+            this.updateButtonStyles(mode);
+        }
+
+        // Show/hide mode-specific sections
+        this.switchWirelessMode(mode);
+    }
+
+    updateScanStatusUI(scanning) {
+        const scanBtn = document.getElementById('wireless-scan-btn');
+        if (scanBtn) {
+            scanBtn.disabled = scanning;
+            const span = scanBtn.querySelector('span');
+            if (span) {
+                span.textContent = scanning ? 'Scanning...' : 'Scan Networks';
+            }
+        }
+    }
+
+    updateButtonStyles(activeMode) {
+        const clientCard = document.querySelector('#client-mode-btn .mode-selection-card');
+        const apCard = document.querySelector('#ap-mode-btn .mode-selection-card');
+
+        if (activeMode === 'client') {
+            // Client mode active
+            if (clientCard) {
+                clientCard.classList.remove('border-neutral-200');
+                clientCard.classList.add('border-neutral-500', 'bg-neutral-50');
+            }
+
+            // AP mode inactive
+            if (apCard) {
+                apCard.classList.remove('border-neutral-500', 'bg-neutral-50');
+                apCard.classList.add('border-neutral-200');
+            }
+        } else if (activeMode === 'ap') {
+            // AP mode active
+            if (apCard) {
+                apCard.classList.remove('border-neutral-200');
+                apCard.classList.add('border-neutral-500', 'bg-neutral-50');
+            }
+
+            // Client mode inactive
+            if (clientCard) {
+                clientCard.classList.remove('border-neutral-500', 'bg-neutral-50');
+                clientCard.classList.add('border-neutral-200');
+            }
+        }
+    }
+
+    switchWirelessMode(mode) {
+        const wifiRadioToggle = document.getElementById('wifi-radio-toggle');
+        if (!wifiRadioToggle || !wifiRadioToggle.checked) {
+            return;
+        }
+
+        const clientModeSection = document.getElementById('client-mode-section');
+        const accessPointModeSection = document.getElementById('access-point-mode-section');
+        const apStatusSection = document.getElementById('ap-status-section');
+        const clientModeRadio = document.getElementById('client-mode-radio');
+        const apModeRadio = document.getElementById('ap-mode-radio');
+
+        if (mode === 'client') {
+            // Show client mode, hide AP sections
+            if (clientModeSection) clientModeSection.classList.remove('hidden');
+            if (accessPointModeSection) accessPointModeSection.classList.add('hidden');
+            if (apStatusSection) apStatusSection.classList.add('hidden');
+
+            // Update radio buttons
+            if (clientModeRadio) clientModeRadio.checked = true;
+            if (apModeRadio) apModeRadio.checked = false;
+
+        } else if (mode === 'ap') {
+            // Hide client mode, show AP sections
+            if (clientModeSection) clientModeSection.classList.add('hidden');
+            if (accessPointModeSection) accessPointModeSection.classList.remove('hidden');
+            if (apStatusSection) apStatusSection.classList.remove('hidden');
+
+            // Update radio buttons
+            if (apModeRadio) apModeRadio.checked = true;
+            if (clientModeRadio) clientModeRadio.checked = false;
+        }
+    }
+
+    toggleWirelessFunctionality(enabled) {
+        const modeSelectionSection = document.getElementById('mode-selection-section');
+        const clientModeBtn = document.getElementById('client-mode-btn');
+        const apModeBtn = document.getElementById('ap-mode-btn');
+        
+        if (enabled) {
+            this.log('Enabling wireless functionality');
+            // Re-enable mode selection and show current mode
+            if (clientModeBtn) {
+                clientModeBtn.style.pointerEvents = 'auto';
+                clientModeBtn.style.opacity = '1';
+            }
+            if (apModeBtn) {
+                apModeBtn.style.pointerEvents = 'auto';
+                apModeBtn.style.opacity = '1';
+            }
+            if (modeSelectionSection) {
+                modeSelectionSection.style.opacity = '1';
+                modeSelectionSection.style.pointerEvents = 'auto';
+            }
+
+            // Show the appropriate section based on current selection
+            const clientModeRadio = document.getElementById('client-mode-radio');
+            const apModeRadio = document.getElementById('ap-mode-radio');
+            
+            if (clientModeRadio && clientModeRadio.checked) {
+                this.switchWirelessMode('client');
+            } else if (apModeRadio && apModeRadio.checked) {
+                this.switchWirelessMode('ap');
+            } else {
+                // Default to client mode
+                this.switchWirelessMode('client');
+            }
+        } else {
+            this.log('Disabling wireless functionality');
+            // Disable mode selection and hide all sections
+            if (clientModeBtn) {
+                clientModeBtn.style.pointerEvents = 'none';
+                clientModeBtn.style.opacity = '0.5';
+            }
+            if (apModeBtn) {
+                apModeBtn.style.pointerEvents = 'none';
+                apModeBtn.style.opacity = '0.5';
+            }
+            if (modeSelectionSection) {
+                modeSelectionSection.style.opacity = '0.5';
+                modeSelectionSection.style.pointerEvents = 'none';
+            }
+
+            // Hide all mode sections
+            const clientModeSection = document.getElementById('client-mode-section');
+            const accessPointModeSection = document.getElementById('access-point-mode-section');
+            const apStatusSection = document.getElementById('ap-status-section');
+            
+            if (clientModeSection) clientModeSection.classList.add('hidden');
+            if (accessPointModeSection) accessPointModeSection.classList.add('hidden');
+            if (apStatusSection) apStatusSection.classList.add('hidden');
+        }
+    }
+
+    renderAvailableNetworks() {
+        this.log('Rendering available networks:', this.availableNetworks.length);
+
+        const container = document.getElementById('available-networks-list');
+        if (!container) return;
+
+        // Hide loading states
+        const loadingEl = document.getElementById('networks-loading');
+        const emptyEl = document.getElementById('networks-empty');
+        const errorEl = document.getElementById('networks-error');
+        
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'none';
+
+        if (this.availableNetworks.length === 0) {
+            if (emptyEl) emptyEl.style.display = 'flex';
+            return;
+        }
+
+        if (emptyEl) emptyEl.style.display = 'none';
+
+        const networksHTML = this.availableNetworks.map(network => `
+            <div class="network-item p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-all" data-ssid="${network.ssid}">
+                <div class="flex items-center justify-between">
+                    <div class="network-info">
+                        <div class="network-name text-neutral-900 font-medium">${network.ssid}</div>
+                        <div class="network-details text-sm text-neutral-500">
+                            ${network.security} • Channel ${network.channel}
+                        </div>
+                    </div>
+                    <div class="network-signal flex items-center space-x-3">
+                        <span class="signal-strength text-sm text-neutral-600">${network.signal}%</span>
+                        <button class="connect-network-btn px-3 py-1 bg-neutral-600 text-white rounded-md hover:bg-neutral-700 text-sm" 
+                                data-ssid="${network.ssid}"
+                                data-security="${network.security}">
+                            Connect
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        container.innerHTML = networksHTML;
+
+        // Add event listeners to connect buttons
+        const connectBtns = container.querySelectorAll('.connect-network-btn');
+        connectBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.selectNetworkForConnection(btn.dataset.ssid, btn.dataset.security);
+            });
+        });
+    }
+
+    renderSavedNetworks() {
+        this.log('Rendering saved networks:', this.savedNetworks.length);
+
+        const container = document.getElementById('saved-networks-list');
+        if (!container) return;
+
+        // Hide loading states
+        const loadingEl = document.getElementById('saved-networks-loading');
+        const emptyEl = document.getElementById('saved-networks-empty');
+        const errorEl = document.getElementById('saved-networks-error');
+        
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'none';
+
+        if (this.savedNetworks.length === 0) {
+            if (emptyEl) emptyEl.style.display = 'flex';
+            return;
+        }
+
+        if (emptyEl) emptyEl.style.display = 'none';
+
+        const networksHTML = this.savedNetworks.map(network => `
+            <div class="saved-network-item p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-all" data-ssid="${network.ssid}">
+                <div class="flex items-center justify-between">
+                    <div class="network-info">
+                        <div class="network-name text-neutral-900 font-medium">${network.ssid}</div>
+                        <div class="network-status text-sm text-neutral-500">${network.status || 'Saved'}</div>
+                    </div>
+                    <div class="network-actions flex items-center space-x-2">
+                        <button class="connect-saved-btn px-3 py-1 bg-neutral-600 text-white rounded-md hover:bg-neutral-700 text-sm" data-ssid="${network.ssid}">
+                            Connect
+                        </button>
+                        <button class="forget-network-btn px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-sm" data-ssid="${network.ssid}">
+                            Forget
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        container.innerHTML = networksHTML;
+    }
+
+    selectNetworkForConnection(ssid, security) {
+        this.log('Selected network for connection:', ssid);
+
+        // Populate connection form
+        const ssidInput = document.getElementById('network-ssid');
+        const securitySelect = document.getElementById('network-security');
+
+        if (ssidInput) ssidInput.value = ssid;
+        if (securitySelect) securitySelect.value = security;
+
+        // Show connection form
+        this.showConnectionForm();
+    }
+
+    showConnectionForm() {
+        // Scroll to the connection form
+        const form = document.getElementById('network-connect-form');
+        if (form) {
+            form.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    /**
+     * Auto-refresh functionality
+     */
+    startAutoRefresh() {
+        if (this.config.enableAutoRefresh && !this.autoRefreshTimer) {
+            this.autoRefreshTimer = setInterval(() => {
+                this.performAutoRefresh();
+            }, this.config.autoRefreshInterval);
+            this.log('Auto-refresh started');
+        }
+    }
+
+    stopAutoRefresh() {
+        if (this.autoRefreshTimer) {
+            clearInterval(this.autoRefreshTimer);
+            this.autoRefreshTimer = null;
+            this.log('Auto-refresh stopped');
+        }
+    }
+
+    async performAutoRefresh() {
+        this.log('Auto-refreshing wireless status...');
+        await this.fetchWirelessStatus();
+    }
+
+    /**
+     * Utility Methods
+     */
+
+    showErrorMessage(message) {
+        this.logError('Error:', message);
+        // Integration with toast notification system
+        console.error('[WIRELESS] Error:', message);
+    }
+
+    showSuccessMessage(message) {
+        this.log('Success:', message);
+        // Integration with toast notification system
+        console.log('[WIRELESS] Success:', message);
+    }
+
+    /**
+     * Initialize the wireless section
+     */
+    async initialize() {
+        this.log('Initializing wireless section...');
+        
+        try {
+            // Setup event handlers
+            this.setupEventHandlers();
+
+            // Load initial data
+            await this.fetchWirelessStatus();
+            await this.fetchSavedNetworks();
+            await this.fetchAvailableNetworks();
+
+            // Start auto-refresh
+            this.startAutoRefresh();
+
+            // Initialize UI based on current state
+            this.toggleWirelessFunctionality(this.state.wifi_radio_enabled);
+            this.switchWirelessMode(this.state.active_mode);
+
+            // Send page load event
+            await this.sendEvent('page_load', 'wireless-configuration-section', { 
+                url: window.location.href 
+            });
+
+            this.log('Wireless section initialized successfully');
+        } catch (error) {
+            this.logError('Failed to initialize wireless section:', error);
+        }
+    }
+}
+
+// Initialize wireless section when DOM is ready
+let wirelessSectionInstance = null;
+
+function initializeWirelessConfig() {
+    console.log('Initializing wireless configuration...');
+    
+    // Avoid multiple initializations
+    if (wirelessSectionInstance) {
+        console.log('Wireless section already initialized');
+        return;
+    }
+    
+    // Wait a bit to ensure DOM is fully loaded
+    setTimeout(function() {
+        // Create and initialize the wireless section instance
+        wirelessSectionInstance = new WirelessSection();
+        wirelessSectionInstance.initialize();
+    }, 100);
+}
+
+// Try multiple initialization methods
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWirelessConfig);
+} else {
+    initializeWirelessConfig();
+}
+
+// Also initialize when the section becomes visible (for dynamic loading)
+if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                const wifiToggle = document.getElementById('wifi-radio-toggle');
+                if (wifiToggle && !wifiToggle.hasAttribute('data-initialized')) {
+                    wifiToggle.setAttribute('data-initialized', 'true');
+                    initializeWirelessConfig();
+                }
+            }
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (wirelessSectionInstance) {
+        wirelessSectionInstance.stopAutoRefresh();
+    }
+});
+</script>
+
+<!-- All wireless functionality is now embedded in this HTML file -->

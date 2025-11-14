@@ -1,0 +1,613 @@
+<!-- Backup & Restore Section -->
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl text-neutral-900 flex items-center">
+                <i class="fa-solid fa-database mr-3 text-neutral-600"></i>
+                System Backup & Restore
+            </h1>
+            <p class="text-neutral-600 mt-1">Manage your system backups and restore configurations</p>
+        </div>
+    </div>
+
+    <!-- Create Backup Section -->
+    <div class="bg-white rounded-lg border border-neutral-200">
+        <div class="p-6 cursor-pointer" id="create-backup-header">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-box-archive text-blue-600"></i>
+                    </div>
+                    <h2 class="text-lg text-neutral-900">Create Backup</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="create-backup-chevron"></i>
+            </div>
+        </div>
+        <div id="create-backup-content" class="hidden p-6 pt-0">
+            <p class="text-sm text-neutral-600 mb-6">Create a comprehensive backup of your system configuration, data, and settings.</p>
+
+            <div class="space-y-4 mb-6">
+                <div class="bg-neutral-50 rounded-lg border border-neutral-200 p-4">
+                    <h3 class="text-neutral-800 mb-3">Backup Options</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="full-backup-checkbox" class="mt-0.5 mr-3 rounded border-neutral-300" checked>
+                            <div>
+                                <span class="text-sm text-neutral-700">Full Backup</span>
+                                <p class="text-xs text-neutral-500 mt-1">Include complete system configuration, data, logs, and all settings</p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="partial-backup-checkbox" class="mt-0.5 mr-3 rounded border-neutral-300">
+                            <div>
+                                <span class="text-sm text-neutral-700">Partial Backup</span>
+                                <p class="text-xs text-neutral-500 mt-1">Select specific configuration files and data</p>
+                            </div>
+                        </label>
+
+                        <div id="partial-backup-selection" class="ml-6 mt-3 space-y-2 hidden">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="network-config-backup" class="mr-3 rounded border-neutral-300">
+                                <span class="text-sm text-neutral-700">Network Configuration</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="license-backup" class="mr-3 rounded border-neutral-300">
+                                <span class="text-sm text-neutral-700">License Information</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="authentication-backup" class="mr-3 rounded border-neutral-300">
+                                <span class="text-sm text-neutral-700">Authentication Data</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-neutral-50 rounded-lg border border-neutral-200 p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-neutral-800">Backup Size Estimation</h3>
+                        <button id="estimate-size-btn" class="bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded-md text-sm flex items-center">
+                            <i class="fa-solid fa-calculator mr-2"></i>
+                            Estimate Size
+                        </button>
+                    </div>
+                    <p class="text-xs text-neutral-500">Click to calculate the estimated backup size</p>
+                </div>
+            </div>
+
+            <div id="backup-information" class="bg-neutral-50 rounded-lg border border-neutral-200 p-4 mb-6 hidden">
+                <h3 class="text-neutral-800 mb-3">Backup Information</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white rounded-md p-3">
+                        <div class="text-xs text-neutral-500 uppercase tracking-wide">Estimated Size</div>
+                        <div id="estimated-size" class="text-lg text-neutral-800">-</div>
+                    </div>
+                    <div class="bg-white rounded-md p-3">
+                        <div class="text-xs text-neutral-500 uppercase tracking-wide">File Format</div>
+                        <div class="text-lg text-neutral-800">.uhb</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button id="create-backup-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md flex items-center">
+                    <i class="fa-solid fa-box-archive mr-2"></i>
+                    <span>Create Backup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Encrypted Backup Section -->
+    <div class="bg-white rounded-lg border border-neutral-200">
+        <div class="p-6 cursor-pointer" id="encrypted-backup-header">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-lock text-purple-600"></i>
+                    </div>
+                    <h2 class="text-lg text-neutral-900">Create Encrypted Backup</h2>
+                    <span class="ml-3 px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Enhanced Security</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="encrypted-backup-chevron"></i>
+            </div>
+        </div>
+        <div id="encrypted-backup-content" class="hidden p-6 pt-0">
+            <p class="text-sm text-neutral-600 mb-6">Create a secure, encrypted backup with AES-256 encryption.</p>
+
+            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6 flex items-start">
+                <i class="fa-solid fa-shield-halved text-purple-600 mr-3 mt-0.5"></i>
+                <div>
+                    <h4 class="text-purple-800 font-medium">Enhanced Security Features</h4>
+                    <ul class="text-sm text-purple-700 mt-1 list-disc list-inside space-y-1">
+                        <li>AES-256-CBC encryption with PBKDF2 key derivation</li>
+                        <li>Password validation before restore operations</li>
+                        <li>Protection against unauthorized access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <div class="bg-neutral-50 rounded-lg border border-neutral-200 p-4">
+                    <h3 class="text-neutral-800 mb-3">Encryption Settings</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-1">Encryption Password *</label>
+                            <input type="password" id="encrypted-backup-password" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter a strong password">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-1">Confirm Password *</label>
+                            <input type="password" id="encrypted-confirm-password" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Confirm your password">
+                            <div id="password-strength-indicator" class="mt-2 hidden">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex-1">
+                                        <div class="w-full bg-neutral-200 rounded-full h-1">
+                                            <div id="password-strength-bar" class="h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <span id="password-strength-text" class="text-xs text-neutral-600">Weak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button id="create-encrypted-backup-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-md flex items-center">
+                    <i class="fa-solid fa-shield-halved mr-2"></i>
+                    <span>Create Encrypted Backup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Section -->
+    <div id="backup-progress-section" class="bg-white rounded-lg border border-neutral-200 p-6 hidden">
+        <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                <i class="fa-solid fa-spinner fa-spin text-orange-600"></i>
+            </div>
+            <h2 class="text-lg text-neutral-900">Backup in Progress</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-neutral-50 rounded-lg p-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-neutral-700">Progress</span>
+                    <span id="backup-progress-percentage" class="text-sm text-neutral-600">0%</span>
+                </div>
+                <div class="w-full bg-neutral-200 rounded-full h-2">
+                    <div id="backup-progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="backup-progress-status" class="text-xs text-neutral-500 mt-2">Initializing...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Section -->
+    <div class="bg-white rounded-lg border border-neutral-200">
+        <div class="p-6 cursor-pointer" id="restore-backup-header">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-rotate-left text-green-600"></i>
+                    </div>
+                    <h2 class="text-lg text-neutral-900">Restore from Backup</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="restore-backup-chevron"></i>
+            </div>
+        </div>
+        <div id="restore-backup-content" class="hidden p-6 pt-0">
+            <p class="text-sm text-neutral-600 mb-6">Upload a backup file to restore your system to a previous state.</p>
+
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 mr-3 mt-0.5"></i>
+                <div>
+                    <h4 class="text-red-800">Warning: Destructive Operation</h4>
+                    <p class="text-sm text-red-700 mt-1">Restoring will overwrite current configuration. This action cannot be undone.</p>
+                </div>
+            </div>
+
+            <div class="bg-neutral-50 rounded-lg border border-neutral-200 p-4 mb-6">
+                <h3 class="text-neutral-800 mb-3">Upload Backup File</h3>
+                <div class="border-2 border-dashed border-neutral-300 rounded-lg p-6 text-center" id="file-drop-zone">
+                    <div class="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <i class="fa-solid fa-cloud-arrow-up text-neutral-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-neutral-800 mb-2">Drop your backup file here</h4>
+                    <p class="text-sm text-neutral-500 mb-4">or click to browse and select a file</p>
+                    <input type="file" id="backup-file-input" accept=".uhb,.uhb.enc,.tar.gz,.bin" style="display: none;">
+                    <button id="choose-file-btn" class="bg-white border border-neutral-300 rounded-md px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50">
+                        Choose File
+                    </button>
+                    <p class="text-xs text-neutral-500 mt-2">Accepts .uhb, .uhb.enc, .tar.gz, .bin files</p>
+                </div>
+
+                <div id="selected-file-info" class="mt-3 hidden">
+                    <div class="bg-blue-50 border border-blue-200 rounded-md p-3 flex items-center">
+                        <i class="fa-solid fa-file-archive text-blue-600 mr-3"></i>
+                        <div class="flex-1">
+                            <p class="text-sm text-blue-800" id="selected-file-name">filename.uhb</p>
+                            <p class="text-xs text-blue-600" id="selected-file-size">2.4 MB</p>
+                        </div>
+                        <button id="remove-file-btn" class="text-blue-400 hover:text-blue-600">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-neutral-50 rounded-lg border border-neutral-200 p-4 mb-6">
+                <h3 class="text-neutral-800 mb-3">Restore Options</h3>
+                <div class="space-y-3">
+                    <label class="flex items-start cursor-pointer">
+                        <input type="checkbox" id="validate-integrity" class="mt-0.5 mr-3 rounded border-neutral-300" checked>
+                        <div>
+                            <span class="text-sm text-neutral-700">Validate Backup File Integrity</span>
+                            <p class="text-xs text-neutral-500 mt-1">Verify the backup file is not corrupted</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button id="cancel-restore-btn" class="border border-neutral-300 text-neutral-700 px-6 py-2 rounded-md hover:bg-neutral-50">
+                    Cancel
+                </button>
+                <button id="restore-btn" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md flex items-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fa-solid fa-rotate-left mr-2"></i>
+                    <span>Restore</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Backups Section -->
+    <div class="bg-white rounded-lg border border-neutral-200">
+        <div class="p-6 cursor-pointer" id="recent-backups-header">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-clock-rotate-left text-gray-600"></i>
+                    </div>
+                    <h2 class="text-lg text-neutral-900">Recent Backups</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="recent-backups-chevron"></i>
+            </div>
+        </div>
+        <div id="recent-backups-content" class="hidden p-6 pt-0">
+            <div id="backup-list" class="space-y-3">
+                <div class="text-center py-8 text-neutral-500">
+                    <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                    <p>No backups found</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    console.log('[BACKUP] Initializing Backup & Restore section (Frontend)...');
+    
+    let selectedFile = null;
+    
+    function toggleSection(contentId, chevronId) {
+        const content = document.getElementById(contentId);
+        const chevron = document.getElementById(chevronId);
+        
+        if (content && chevron) {
+            const isHidden = content.classList.contains('hidden');
+            if (isHidden) {
+                content.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+    }
+    
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 bytes';
+        if (bytes < 1024) return bytes + ' bytes';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' GB';
+    }
+    
+    function showMessage(message, type) {
+        const existingMsg = document.getElementById('backup-message');
+        if (existingMsg) existingMsg.remove();
+        
+        const msgDiv = document.createElement('div');
+        msgDiv.id = 'backup-message';
+        msgDiv.className = 'fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-md';
+        
+        let bgColor, icon;
+        switch (type) {
+            case 'success':
+                bgColor = 'bg-green-50 border border-green-200 text-green-800';
+                icon = 'fa-check-circle text-green-600';
+                break;
+            case 'error':
+                bgColor = 'bg-red-50 border border-red-200 text-red-800';
+                icon = 'fa-exclamation-circle text-red-600';
+                break;
+            default:
+                bgColor = 'bg-blue-50 border border-blue-200 text-blue-800';
+                icon = 'fa-info-circle text-blue-600';
+        }
+        
+        msgDiv.className += ' ' + bgColor;
+        msgDiv.innerHTML = '<div class="flex items-center"><i class="fa-solid ' + icon + ' mr-2"></i><span>' + message + '</span></div>';
+        
+        document.body.appendChild(msgDiv);
+        setTimeout(function() {
+            if (msgDiv.parentNode) msgDiv.remove();
+        }, 5000);
+    }
+    
+    function simulateBackup() {
+        const progressSection = document.getElementById('backup-progress-section');
+        const progressBar = document.getElementById('backup-progress-bar');
+        const progressPercentage = document.getElementById('backup-progress-percentage');
+        const progressStatus = document.getElementById('backup-progress-status');
+        
+        if (progressSection) {
+            progressSection.classList.remove('hidden');
+            
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    if (progressStatus) progressStatus.textContent = 'Backup completed!';
+                    showMessage('Backup created successfully!', 'success');
+                    
+                    setTimeout(function() {
+                        progressSection.classList.add('hidden');
+                        if (progressBar) progressBar.style.width = '0%';
+                        if (progressPercentage) progressPercentage.textContent = '0%';
+                        if (progressStatus) progressStatus.textContent = 'Initializing...';
+                    }, 3000);
+                }
+                
+                if (progressBar) progressBar.style.width = progress + '%';
+                if (progressPercentage) progressPercentage.textContent = Math.round(progress) + '%';
+                if (progressStatus && progress < 100) {
+                    const statuses = ['Collecting files...', 'Compressing data...', 'Creating archive...', 'Finalizing...'];
+                    progressStatus.textContent = statuses[Math.floor((progress / 100) * statuses.length)];
+                }
+            }, 300);
+        }
+    }
+    
+    function init() {
+        const headers = [
+            {header: 'create-backup-header', content: 'create-backup-content', chevron: 'create-backup-chevron'},
+            {header: 'encrypted-backup-header', content: 'encrypted-backup-content', chevron: 'encrypted-backup-chevron'},
+            {header: 'restore-backup-header', content: 'restore-backup-content', chevron: 'restore-backup-chevron'},
+            {header: 'recent-backups-header', content: 'recent-backups-content', chevron: 'recent-backups-chevron'}
+        ];
+        
+        headers.forEach(function(item) {
+            const header = document.getElementById(item.header);
+            if (header) {
+                header.addEventListener('click', function() {
+                    toggleSection(item.content, item.chevron);
+                });
+            }
+        });
+        
+        const fullBackupCheckbox = document.getElementById('full-backup-checkbox');
+        const partialBackupCheckbox = document.getElementById('partial-backup-checkbox');
+        const partialSelection = document.getElementById('partial-backup-selection');
+        
+        if (fullBackupCheckbox && partialBackupCheckbox && partialSelection) {
+            fullBackupCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    partialBackupCheckbox.checked = false;
+                    partialSelection.classList.add('hidden');
+                }
+            });
+            
+            partialBackupCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    fullBackupCheckbox.checked = false;
+                    partialSelection.classList.remove('hidden');
+                } else {
+                    partialSelection.classList.add('hidden');
+                }
+            });
+        }
+        
+        const estimateSizeBtn = document.getElementById('estimate-size-btn');
+        if (estimateSizeBtn) {
+            estimateSizeBtn.addEventListener('click', function() {
+                const backupInfo = document.getElementById('backup-information');
+                const estimatedSize = document.getElementById('estimated-size');
+                
+                if (backupInfo && estimatedSize) {
+                    backupInfo.classList.remove('hidden');
+                    estimatedSize.textContent = '124.5 MB';
+                    showMessage('Estimated backup size calculated', 'info');
+                }
+            });
+        }
+        
+        const createBackupBtn = document.getElementById('create-backup-btn');
+        if (createBackupBtn) {
+            createBackupBtn.addEventListener('click', function() {
+                console.log('[BACKUP] Creating backup');
+                simulateBackup();
+            });
+        }
+        
+        const createEncryptedBtn = document.getElementById('create-encrypted-backup-btn');
+        if (createEncryptedBtn) {
+            createEncryptedBtn.addEventListener('click', function() {
+                const password = document.getElementById('encrypted-backup-password').value;
+                const confirmPassword = document.getElementById('encrypted-confirm-password').value;
+                
+                if (!password || !confirmPassword) {
+                    showMessage('Please enter and confirm your password', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showMessage('Passwords do not match', 'error');
+                    return;
+                }
+                
+                console.log('[BACKUP] Creating encrypted backup');
+                simulateBackup();
+            });
+        }
+        
+        const encryptedPassword = document.getElementById('encrypted-backup-password');
+        if (encryptedPassword) {
+            encryptedPassword.addEventListener('input', function() {
+                const indicator = document.getElementById('password-strength-indicator');
+                const bar = document.getElementById('password-strength-bar');
+                const text = document.getElementById('password-strength-text');
+                
+                if (this.value.length > 0 && indicator && bar && text) {
+                    indicator.classList.remove('hidden');
+                    
+                    const strength = Math.min(100, (this.value.length / 12) * 100);
+                    bar.style.width = strength + '%';
+                    
+                    if (strength < 50) {
+                        bar.className = 'h-1 rounded-full transition-all duration-300 bg-red-500';
+                        text.textContent = 'Weak';
+                    } else if (strength < 75) {
+                        bar.className = 'h-1 rounded-full transition-all duration-300 bg-yellow-500';
+                        text.textContent = 'Medium';
+                    } else {
+                        bar.className = 'h-1 rounded-full transition-all duration-300 bg-green-500';
+                        text.textContent = 'Strong';
+                    }
+                }
+            });
+        }
+        
+        const chooseFileBtn = document.getElementById('choose-file-btn');
+        const backupFileInput = document.getElementById('backup-file-input');
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const removeFileBtn = document.getElementById('remove-file-btn');
+        const restoreBtn = document.getElementById('restore-btn');
+        
+        if (chooseFileBtn && backupFileInput) {
+            chooseFileBtn.addEventListener('click', function() {
+                backupFileInput.click();
+            });
+            
+            backupFileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleFileSelection(e.target.files[0]);
+                }
+            });
+        }
+        
+        if (fileDropZone) {
+            fileDropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.add('border-blue-400', 'bg-blue-50');
+            });
+            
+            fileDropZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.remove('border-blue-400', 'bg-blue-50');
+            });
+            
+            fileDropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                fileDropZone.classList.remove('border-blue-400', 'bg-blue-50');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    handleFileSelection(e.dataTransfer.files[0]);
+                }
+            });
+        }
+        
+        if (removeFileBtn) {
+            removeFileBtn.addEventListener('click', function() {
+                clearFileSelection();
+            });
+        }
+        
+        function handleFileSelection(file) {
+            const validExtensions = ['.uhb', '.uhb.enc', '.tar.gz', '.bin'];
+            const fileName = file.name.toLowerCase();
+            const isValid = validExtensions.some(function(ext) {
+                return fileName.endsWith(ext);
+            });
+            
+            if (!isValid) {
+                showMessage('Invalid file type. Please select a valid backup file.', 'error');
+                return;
+            }
+            
+            selectedFile = file;
+            
+            const selectedFileInfo = document.getElementById('selected-file-info');
+            const selectedFileName = document.getElementById('selected-file-name');
+            const selectedFileSize = document.getElementById('selected-file-size');
+            
+            if (selectedFileInfo && selectedFileName && selectedFileSize) {
+                selectedFileName.textContent = file.name;
+                selectedFileSize.textContent = formatFileSize(file.size);
+                selectedFileInfo.classList.remove('hidden');
+            }
+            
+            if (restoreBtn) restoreBtn.disabled = false;
+            
+            console.log('[BACKUP] File selected:', file.name, 'Size:', formatFileSize(file.size));
+        }
+        
+        function clearFileSelection() {
+            selectedFile = null;
+            
+            const selectedFileInfo = document.getElementById('selected-file-info');
+            const backupFileInput = document.getElementById('backup-file-input');
+            
+            if (selectedFileInfo) selectedFileInfo.classList.add('hidden');
+            if (backupFileInput) backupFileInput.value = '';
+            if (restoreBtn) restoreBtn.disabled = true;
+        }
+        
+        const cancelRestoreBtn = document.getElementById('cancel-restore-btn');
+        if (cancelRestoreBtn) {
+            cancelRestoreBtn.addEventListener('click', function() {
+                clearFileSelection();
+                showMessage('Restore cancelled', 'info');
+            });
+        }
+        
+        const restoreActionBtn = document.getElementById('restore-btn');
+        if (restoreActionBtn) {
+            restoreActionBtn.addEventListener('click', function() {
+                if (selectedFile) {
+                    console.log('[BACKUP] Restoring from backup');
+                    showMessage('Starting restore process...', 'info');
+                }
+            });
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+    console.log('[BACKUP] Backup & Restore section initialized (Frontend)');
+})();
+</script>

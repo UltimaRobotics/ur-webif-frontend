@@ -1,0 +1,685 @@
+<!-- Page Header -->
+<div class="mb-8">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl text-neutral-900">Firmware Upgrade</h1>
+            <p class="mt-2 text-neutral-600">Manage and update your device firmware with comprehensive upgrade options</p>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button id="refresh-firmware-btn" class="inline-flex items-center px-4 py-2 border border-neutral-300 rounded-md shadow-sm text-sm text-neutral-700 bg-white hover:bg-neutral-50">
+                <i class="fa-solid fa-refresh mr-2"></i>Refresh
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Current Firmware Information -->
+<div id="current-firmware-section" class="bg-white rounded-lg border border-neutral-200 p-6 mb-6">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg text-neutral-900 flex items-center">
+            <i class="fa-solid fa-info-circle mr-2 text-neutral-600"></i>
+            Current Firmware Information
+        </h2>
+        <div class="flex items-center space-x-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs bg-green-100 text-green-800">
+                <i class="fa-solid fa-circle mr-1"></i>Active
+            </span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs bg-blue-100 text-blue-800">Verified</span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-neutral-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-neutral-600">Current Version</span>
+                <i class="fa-solid fa-code-branch text-neutral-400"></i>
+            </div>
+            <div id="current-version" class="text-2xl text-neutral-900">v2.4.7</div>
+            <div id="build-number" class="text-sm text-neutral-500 mt-1">Build #20250115</div>
+        </div>
+
+        <div class="bg-neutral-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-neutral-600">Device Model</span>
+                <i class="fa-solid fa-microchip text-neutral-400"></i>
+            </div>
+            <div id="device-model" class="text-lg text-neutral-900">UR-5000</div>
+            <div id="hardware-revision" class="text-sm text-neutral-500 mt-1">Rev C</div>
+        </div>
+
+        <div class="bg-neutral-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-neutral-600">Build Date</span>
+                <i class="fa-solid fa-calendar text-neutral-400"></i>
+            </div>
+            <div id="build-date" class="text-lg text-neutral-900">Jan 15, 2025</div>
+            <div id="build-time" class="text-sm text-neutral-500 mt-1">14:30:45 UTC</div>
+        </div>
+
+        <div class="bg-neutral-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-neutral-600">Uptime</span>
+                <i class="fa-solid fa-clock text-neutral-400"></i>
+            </div>
+            <div id="uptime" class="text-lg text-neutral-900">12 days</div>
+            <div id="uptime-description" class="text-sm text-neutral-500 mt-1">Since last reboot</div>
+        </div>
+    </div>
+</div>
+
+<!-- Firmware Upgrade Options -->
+<div id="firmware-upgrade-section" class="bg-white rounded-lg border border-neutral-200 mb-6">
+    <div class="p-4 border-b border-neutral-200 cursor-pointer" id="firmware-upgrade-header">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg text-neutral-900 flex items-center">
+                <i class="fa-solid fa-upload mr-2 text-neutral-600"></i>
+                Firmware Upgrade Options
+            </h2>
+            <i id="firmware-upgrade-chevron" class="fa-solid fa-chevron-down text-neutral-500 transform transition-transform duration-200"></i>
+        </div>
+    </div>
+
+    <div id="firmware-upgrade-content" class="hidden p-6">
+        <div class="space-y-8">
+            <!-- Upgrade Source Selection -->
+            <div id="upgrade-source" class="border border-neutral-200 rounded-lg p-6">
+                <h3 class="text-base text-neutral-900 mb-4">Upgrade Source</h3>
+                <div class="space-y-3">
+                    <!-- Upload Firmware File Option -->
+                    <div class="relative">
+                        <input id="upload-file" name="upgrade-source" type="radio" class="peer sr-only" checked />
+                        <label for="upload-file" class="flex items-center p-4 border border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 peer-checked:border-neutral-600 peer-checked:bg-neutral-50 transition-colors">
+                            <div class="flex items-center flex-1">
+                                <div class="w-5 h-5 border-2 border-neutral-300 rounded-full flex items-center justify-center peer-checked:border-neutral-600 peer-checked:bg-neutral-600 mr-3">
+                                    <div class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-upload text-neutral-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-sm font-medium text-neutral-900">Upload Firmware File (Manual)</div>
+                                        <div class="text-sm text-neutral-500">Select and upload a firmware file from your local system</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Check for Online Update Option -->
+                    <div class="relative">
+                        <input id="online-update" name="upgrade-source" type="radio" class="peer sr-only" />
+                        <label for="online-update" class="flex items-center p-4 border border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 peer-checked:border-neutral-600 peer-checked:bg-neutral-50 transition-colors">
+                            <div class="flex items-center flex-1">
+                                <div class="w-5 h-5 border-2 border-neutral-300 rounded-full flex items-center justify-center peer-checked:border-neutral-600 peer-checked:bg-neutral-600 mr-3">
+                                    <div class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-globe text-neutral-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-sm font-medium text-neutral-900">Check for Online Update</div>
+                                        <div class="text-sm text-neutral-500">Search for and download the latest firmware version from the official server</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- TFTP Server Upload Option -->
+                    <div class="relative">
+                        <input id="tftp-update" name="upgrade-source" type="radio" class="peer sr-only" />
+                        <label for="tftp-update" class="flex items-center p-4 border border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 peer-checked:border-neutral-600 peer-checked:bg-neutral-50 transition-colors">
+                            <div class="flex items-center flex-1">
+                                <div class="w-5 h-5 border-2 border-neutral-300 rounded-full flex items-center justify-center peer-checked:border-neutral-600 peer-checked:bg-neutral-600 mr-3">
+                                    <div class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-server text-neutral-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-sm font-medium text-neutral-900">TFTP Server Upload</div>
+                                        <div class="text-sm text-neutral-500">Upload firmware from a TFTP server on your local network</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div id="file-upload-section" class="border border-neutral-200 rounded-lg p-6">
+                <h3 class="text-base text-neutral-900 mb-4">File Upload Configuration</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Select Firmware File</label>
+                        <div class="flex items-center justify-center w-full">
+                            <label for="firmware-file" id="firmware-drop-zone" class="flex flex-col items-center justify-center w-full h-32 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 hover:bg-neutral-100 transition-colors">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <i id="upload-icon" class="fa-solid fa-cloud-upload-alt text-neutral-400 text-3xl mb-2"></i>
+                                    <p class="mb-2 text-sm text-neutral-500">
+                                        <span id="upload-text">Click to upload</span> or drag and drop
+                                    </p>
+                                    <p class="text-xs text-neutral-500">BIN, IMG, TRX files (MAX. 32MB)</p>
+                                </div>
+                                <input id="firmware-file" type="file" class="hidden" accept=".bin,.img,.trx" />
+                            </label>
+                        </div>
+                        <div class="mt-2 text-sm text-neutral-600">
+                            <span>Selected: </span><span id="selected-file">No file selected</span>
+                        </div>
+                    </div>
+
+                    <!-- Upload Progress Display -->
+                    <div id="manual-upload-progress-display" class="bg-green-50 border border-green-200 rounded-lg p-4 hidden">
+                        <h4 class="text-green-800 font-medium mb-3">Upload Progress</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-green-700">Status:</span>
+                                <span id="manual-upload-status" class="text-sm font-medium text-green-800">Idle</span>
+                            </div>
+                            <div class="w-full bg-green-200 rounded-full h-2">
+                                <div id="manual-upload-progress-bar" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-green-600">
+                                <span id="manual-upload-progress-text">0%</span>
+                                <span id="manual-upload-size-text">0 bytes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <input id="verify-signature" type="checkbox" class="h-4 w-4 text-neutral-600 border-neutral-300 rounded focus:ring-neutral-500" />
+                            <label for="verify-signature" class="ml-2 text-sm text-neutral-700">Verify Digital Signature</label>
+                        </div>
+                        <button id="verify-file-btn" class="inline-flex items-center px-4 py-2 border border-neutral-300 rounded-md shadow-sm text-sm text-neutral-700 bg-white hover:bg-neutral-50">
+                            <i class="fa-solid fa-check-circle mr-2"></i>Verify File Integrity
+                        </button>
+                        <button id="upload-firmware-btn" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 hidden">
+                            <i class="fa-solid fa-upload mr-2"></i>Upload Firmware
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Online Update Section -->
+            <div id="online-update-section" class="border border-neutral-200 rounded-lg p-6 hidden">
+                <h3 class="text-base text-neutral-900 mb-4">Online Update Configuration</h3>
+                <div class="space-y-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-info-circle text-blue-600 mr-2"></i>
+                            <span class="text-sm text-blue-800">Checking for available firmware updates...</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-neutral-700">Update Server:</span>
+                            <span class="text-sm text-neutral-900">firmware.ultima-robotics.com</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-neutral-700">Check Frequency:</span>
+                            <select class="text-sm border border-neutral-300 rounded px-2 py-1">
+                                <option>Daily</option>
+                                <option>Weekly</option>
+                                <option>Manual Only</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button id="check-updates-btn" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                                <i class="fa-solid fa-refresh mr-2"></i>Check for Updates
+                            </button>
+                            <div class="flex items-center">
+                                <input id="auto-download" type="checkbox" class="h-4 w-4 text-blue-600 border-neutral-300 rounded focus:ring-blue-500" />
+                                <label for="auto-download" class="ml-2 text-sm text-neutral-700">Auto-download available updates</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TFTP Upload Section -->
+            <div id="tftp-upload-section" class="border border-neutral-200 rounded-lg p-6 hidden">
+                <h3 class="text-base text-neutral-900 mb-4">TFTP Server Configuration</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">TFTP Server IP</label>
+                            <input id="tftp-server-ip" type="text" placeholder="192.168.1.100" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-500" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Port</label>
+                            <input id="tftp-port" type="number" placeholder="69" value="69" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-500" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Firmware Filename</label>
+                        <input id="tftp-filename" type="text" placeholder="firmware.bin" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-500" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Username</label>
+                        <input id="tftp-username" type="text" placeholder="admin" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-500" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Password</label>
+                        <input id="tftp-password" type="password" placeholder="••••••••" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-500" />
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button id="test-tftp-connection-btn" class="inline-flex items-center px-4 py-2 border border-neutral-300 rounded-md shadow-sm text-sm text-neutral-700 bg-white hover:bg-neutral-50">
+                            <i class="fa-solid fa-network-wired mr-2"></i>Test Connection
+                        </button>
+                        <div class="flex items-center">
+                            <input id="verify-tftp-signature" type="checkbox" class="h-4 w-4 text-neutral-600 border-neutral-300 rounded focus:ring-neutral-500" />
+                            <label for="verify-tftp-signature" class="ml-2 text-sm text-neutral-700">Verify Digital Signature</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upgrade Actions -->
+<div id="upgrade-actions-section" class="bg-white rounded-lg border border-neutral-200 mb-6">
+    <div class="p-4 border-b border-neutral-200 cursor-pointer" id="upgrade-actions-header">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg text-neutral-900 flex items-center">
+                <i class="fa-solid fa-play-circle mr-2 text-neutral-600"></i>
+                Upgrade Actions
+            </h2>
+            <i id="upgrade-actions-chevron" class="fa-solid fa-chevron-down text-neutral-500 transform transition-transform duration-200"></i>
+        </div>
+    </div>
+
+    <div id="upgrade-actions-content" class="hidden p-6">
+        <div class="space-y-6">
+            <div id="readiness-status-container" class="bg-green-50 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <p class="text-sm text-neutral-900">Upgrade Readiness Status</p>
+                        <p id="readiness-description" class="text-sm text-neutral-600">All systems ready for firmware upgrade</p>
+                    </div>
+                    <div class="flex items-center">
+                        <i id="readiness-icon" class="fa-solid fa-check-circle text-green-500 mr-2"></i>
+                        <span id="readiness-status" class="text-sm text-green-700">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button id="start-upgrade-btn" class="inline-flex items-center px-6 py-3 bg-neutral-800 text-white text-sm rounded-md hover:bg-neutral-700">
+                        <i class="fa-solid fa-rocket mr-2"></i>Start Upgrade
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div class="flex items-start">
+                    <i class="fa-solid fa-lightbulb text-blue-600 mt-0.5 mr-3"></i>
+                    <div>
+                        <p class="text-sm text-neutral-900">Quick Start Guide</p>
+                        <ol class="text-sm text-neutral-700 mt-1 space-y-1 list-decimal list-inside">
+                            <li>Ensure stable power supply and network connection</li>
+                            <li>Select firmware source and verify file integrity</li>
+                            <li>Configure backup and recovery options as needed</li>
+                            <li>Review all settings and click "Start Upgrade"</li>
+                            <li>Monitor progress and wait for automatic completion</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    console.log('[FIRMWARE] Initializing Firmware Upgrade section (Frontend Demo Mode)...');
+    
+    // Toggle section functionality
+    function toggleSection(contentId, chevronId) {
+        const content = document.getElementById(contentId);
+        const chevron = document.getElementById(chevronId);
+        
+        if (content && chevron) {
+            const isHidden = content.classList.contains('hidden');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+    }
+    
+    // Switch upgrade source sections
+    function switchUpgradeSource(selectedSource) {
+        const fileUploadSection = document.getElementById('file-upload-section');
+        const onlineUpdateSection = document.getElementById('online-update-section');
+        const tftpUploadSection = document.getElementById('tftp-upload-section');
+        
+        // Hide all sections
+        if (fileUploadSection) fileUploadSection.classList.add('hidden');
+        if (onlineUpdateSection) onlineUpdateSection.classList.add('hidden');
+        if (tftpUploadSection) tftpUploadSection.classList.add('hidden');
+        
+        // Show selected section
+        switch (selectedSource) {
+            case 'upload-file':
+                if (fileUploadSection) fileUploadSection.classList.remove('hidden');
+                break;
+            case 'online-update':
+                if (onlineUpdateSection) onlineUpdateSection.classList.remove('hidden');
+                break;
+            case 'tftp-update':
+                if (tftpUploadSection) tftpUploadSection.classList.remove('hidden');
+                break;
+        }
+    }
+    
+    // Format file size helper
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 bytes';
+        if (bytes < 1024) return bytes + ' bytes';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' GB';
+    }
+    
+    // Initialize event handlers
+    function init() {
+        // Header section toggle
+        const firmwareUpgradeHeader = document.getElementById('firmware-upgrade-header');
+        if (firmwareUpgradeHeader) {
+            firmwareUpgradeHeader.addEventListener('click', function() {
+                toggleSection('firmware-upgrade-content', 'firmware-upgrade-chevron');
+            });
+        }
+        
+        const upgradeActionsHeader = document.getElementById('upgrade-actions-header');
+        if (upgradeActionsHeader) {
+            upgradeActionsHeader.addEventListener('click', function() {
+                toggleSection('upgrade-actions-content', 'upgrade-actions-chevron');
+            });
+        }
+        
+        // Upgrade source radio buttons
+        const upgradeSourceRadios = document.querySelectorAll('input[name="upgrade-source"]');
+        upgradeSourceRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    switchUpgradeSource(this.id);
+                }
+            });
+        });
+        
+        // Initialize with default selection
+        switchUpgradeSource('upload-file');
+        
+        // File upload handling
+        const firmwareFileInput = document.getElementById('firmware-file');
+        const selectedFileSpan = document.getElementById('selected-file');
+        const firmwareDropZone = document.getElementById('firmware-drop-zone');
+        const uploadFirmwareBtn = document.getElementById('upload-firmware-btn');
+        const uploadIcon = document.getElementById('upload-icon');
+        const uploadText = document.getElementById('upload-text');
+        
+        let selectedFile = null;
+        
+        if (firmwareFileInput && selectedFileSpan && firmwareDropZone) {
+            // File input change
+            firmwareFileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleFileSelection(e.target.files[0]);
+                } else {
+                    clearFileSelection();
+                }
+            });
+            
+            // Drag and drop
+            firmwareDropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                firmwareDropZone.classList.add('border-green-400', 'bg-green-50');
+                if (uploadIcon) uploadIcon.className = 'fa-solid fa-download text-green-500 text-3xl mb-2';
+                if (uploadText) uploadText.textContent = 'Drop firmware file here';
+            });
+            
+            firmwareDropZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                firmwareDropZone.classList.remove('border-green-400', 'bg-green-50');
+                if (uploadIcon) uploadIcon.className = 'fa-solid fa-cloud-upload-alt text-neutral-400 text-3xl mb-2';
+                if (uploadText) uploadText.textContent = 'Click to upload';
+            });
+            
+            firmwareDropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                firmwareDropZone.classList.remove('border-green-400', 'bg-green-50');
+                if (uploadIcon) uploadIcon.className = 'fa-solid fa-cloud-upload-alt text-neutral-400 text-3xl mb-2';
+                if (uploadText) uploadText.textContent = 'Click to upload';
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelection(files[0]);
+                }
+            });
+        }
+        
+        function handleFileSelection(file) {
+            // Validate file
+            const maxSize = 32 * 1024 * 1024; // 32MB
+            const allowedExtensions = ['.bin', '.img', '.trx'];
+            
+            if (file.size === 0) {
+                showMessage('File is empty', 'error');
+                return;
+            }
+            
+            if (file.size > maxSize) {
+                showMessage('File too large (max 32MB)', 'error');
+                return;
+            }
+            
+            const fileName = file.name.toLowerCase();
+            const hasValidExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
+            
+            if (!hasValidExtension) {
+                showMessage('Invalid file type. Use .bin, .img, or .trx files', 'error');
+                return;
+            }
+            
+            selectedFile = file;
+            selectedFileSpan.textContent = file.name + ' (' + formatFileSize(file.size) + ')';
+            
+            // Show upload button
+            if (uploadFirmwareBtn) {
+                uploadFirmwareBtn.classList.remove('hidden');
+            }
+            
+            console.log('[FIRMWARE] File selected:', file.name, 'Size:', formatFileSize(file.size));
+        }
+        
+        function clearFileSelection() {
+            selectedFile = null;
+            selectedFileSpan.textContent = 'No file selected';
+            
+            if (uploadFirmwareBtn) {
+                uploadFirmwareBtn.classList.add('hidden');
+            }
+            
+            hideUploadProgress();
+        }
+        
+        // Upload button
+        if (uploadFirmwareBtn) {
+            uploadFirmwareBtn.addEventListener('click', function() {
+                if (selectedFile) {
+                    simulateUpload(selectedFile);
+                }
+            });
+        }
+        
+        // Simulate upload with progress
+        function simulateUpload(file) {
+            console.log('[FIRMWARE] Simulating upload for:', file.name);
+            showUploadProgress();
+            
+            const progressBar = document.getElementById('manual-upload-progress-bar');
+            const progressText = document.getElementById('manual-upload-progress-text');
+            const sizeText = document.getElementById('manual-upload-size-text');
+            const statusElement = document.getElementById('manual-upload-status');
+            
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    if (statusElement) statusElement.textContent = 'Completed';
+                    showMessage('File uploaded successfully! (Demo Mode - No actual upload)', 'success');
+                    
+                    setTimeout(function() {
+                        hideUploadProgress();
+                    }, 3000);
+                }
+                
+                if (progressBar) progressBar.style.width = progress + '%';
+                if (progressText) progressText.textContent = Math.round(progress) + '%';
+                if (sizeText) {
+                    const uploaded = Math.round((progress / 100) * file.size);
+                    sizeText.textContent = formatFileSize(uploaded) + ' / ' + formatFileSize(file.size);
+                }
+                if (statusElement && progress < 100) statusElement.textContent = 'Uploading';
+            }, 200);
+        }
+        
+        function showUploadProgress() {
+            const progressDisplay = document.getElementById('manual-upload-progress-display');
+            if (progressDisplay) {
+                progressDisplay.classList.remove('hidden');
+            }
+        }
+        
+        function hideUploadProgress() {
+            const progressDisplay = document.getElementById('manual-upload-progress-display');
+            if (progressDisplay) {
+                progressDisplay.classList.add('hidden');
+            }
+            
+            // Reset progress
+            const progressBar = document.getElementById('manual-upload-progress-bar');
+            const progressText = document.getElementById('manual-upload-progress-text');
+            const sizeText = document.getElementById('manual-upload-size-text');
+            const statusElement = document.getElementById('manual-upload-status');
+            
+            if (progressBar) progressBar.style.width = '0%';
+            if (progressText) progressText.textContent = '0%';
+            if (sizeText) sizeText.textContent = '0 bytes';
+            if (statusElement) statusElement.textContent = 'Idle';
+        }
+        
+        function showMessage(message, type) {
+            const existingMsg = document.getElementById('firmware-message');
+            if (existingMsg) existingMsg.remove();
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.id = 'firmware-message';
+            msgDiv.className = 'mt-3 p-3 rounded-lg text-sm';
+            
+            let bgColor, textColor, icon;
+            switch (type) {
+                case 'success':
+                    bgColor = 'bg-green-50';
+                    textColor = 'text-green-800';
+                    icon = 'fa-check-circle text-green-600';
+                    break;
+                case 'error':
+                    bgColor = 'bg-red-50';
+                    textColor = 'text-red-800';
+                    icon = 'fa-exclamation-circle text-red-600';
+                    break;
+                default:
+                    bgColor = 'bg-blue-50';
+                    textColor = 'text-blue-800';
+                    icon = 'fa-info-circle text-blue-600';
+            }
+            
+            msgDiv.className += ' ' + bgColor + ' ' + textColor;
+            msgDiv.innerHTML = '<div class="flex items-center"><i class="fa-solid ' + icon + ' mr-2"></i><span>' + message + '</span></div>';
+            
+            const fileUploadSection = document.getElementById('file-upload-section');
+            if (fileUploadSection) {
+                fileUploadSection.appendChild(msgDiv);
+                setTimeout(function() {
+                    if (msgDiv.parentNode) msgDiv.remove();
+                }, 5000);
+            }
+        }
+        
+        // Button handlers (demo mode - no backend calls)
+        const refreshBtn = document.getElementById('refresh-firmware-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                console.log('[FIRMWARE] Refresh clicked (Demo Mode)');
+                showMessage('Refreshing firmware information... (Demo Mode)', 'info');
+            });
+        }
+        
+        const verifyBtn = document.getElementById('verify-file-btn');
+        if (verifyBtn) {
+            verifyBtn.addEventListener('click', function() {
+                console.log('[FIRMWARE] Verify clicked (Demo Mode)');
+                if (selectedFile) {
+                    showMessage('Verifying file integrity... (Demo Mode)', 'info');
+                } else {
+                    showMessage('No file selected to verify', 'error');
+                }
+            });
+        }
+        
+        const checkUpdatesBtn = document.getElementById('check-updates-btn');
+        if (checkUpdatesBtn) {
+            checkUpdatesBtn.addEventListener('click', function() {
+                console.log('[FIRMWARE] Check updates clicked (Demo Mode)');
+                showMessage('Checking for online updates... (Demo Mode)', 'info');
+            });
+        }
+        
+        const testTftpBtn = document.getElementById('test-tftp-connection-btn');
+        if (testTftpBtn) {
+            testTftpBtn.addEventListener('click', function() {
+                console.log('[FIRMWARE] Test TFTP connection clicked (Demo Mode)');
+                const serverIp = document.getElementById('tftp-server-ip');
+                if (serverIp && serverIp.value) {
+                    showMessage('Testing TFTP connection to ' + serverIp.value + '... (Demo Mode)', 'info');
+                } else {
+                    showMessage('Please enter TFTP server IP', 'error');
+                }
+            });
+        }
+        
+        const startUpgradeBtn = document.getElementById('start-upgrade-btn');
+        if (startUpgradeBtn) {
+            startUpgradeBtn.addEventListener('click', function() {
+                console.log('[FIRMWARE] Start upgrade clicked (Demo Mode)');
+                showMessage('Firmware upgrade started! (Demo Mode - No actual upgrade)', 'success');
+            });
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+    console.log('[FIRMWARE] Firmware Upgrade section initialized (Frontend Demo Mode)');
+})();
+</script>

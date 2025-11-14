@@ -1,0 +1,1316 @@
+<!-- Wired Configuration Section -->
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-ethernet text-2xl text-neutral-700"></i>
+            <div>
+                <h1 class="text-2xl text-neutral-900">Wired Configuration</h1>
+                <p class="text-sm text-neutral-600">Configure Ethernet settings and network connections</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Ethernet Toggle Section -->
+    <div class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-power-off text-neutral-600"></i>
+                    <div>
+                        <h3 class="text-lg text-neutral-900">Ethernet Interface</h3>
+                        <p class="text-sm text-neutral-600">Enable or disable wired functionality</p>
+                    </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer" id="ethernet-toggle">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status Section -->
+    <div id="connection-status" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6 cursor-pointer" onclick="toggleSection('connection-status-content', 'connection-status-chevron')">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl text-neutral-900 flex items-center space-x-2">
+                    <i class="fa-solid fa-signal text-neutral-500"></i>
+                    <span>Connection Status</span>
+                </h2>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="connection-status-chevron"></i>
+            </div>
+            <p class="text-sm text-neutral-600 mt-1 mb-6">View real-time network connection details</p>
+            <div id="connection-status-content" class="space-y-6 hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-2">
+                        <div id="wired-connection-indicator" data-wired-indicator class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <span id="wired-connection-status" data-wired-status class="text-sm text-neutral-700">DISCONNECTED</span>
+                    </div>
+                    <div class="text-xs text-neutral-500">
+                        <span>Interface: </span>
+                        <span id="wired-interface-name" data-interface-name>N/A</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-network-wired text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">Connection Type</span>
+                        </div>
+                        <p id="wired-connection-type" data-connection-type class="text-lg text-neutral-900">Unknown</p>
+                        <p class="text-xs text-neutral-500 mt-1">Network Configuration</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-globe text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">IP Address</span>
+                        </div>
+                        <p id="wired-local-ip" data-local-ip class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">IPv4 Primary</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-microchip text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">MAC Address</span>
+                        </div>
+                        <p id="wired-mac-address" data-mac-address class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Physical Address</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-gauge-high text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">Link Speed</span>
+                        </div>
+                        <p id="wired-connection-speed" data-connection-speed class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Interface Speed</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-clock text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">Session Duration</span>
+                        </div>
+                        <p id="wired-session-duration" data-session-duration class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Current Session</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-server text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">Gateway</span>
+                        </div>
+                        <p id="wired-gateway-ip" data-gateway-ip class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Default Route</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-wifi text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">External IP</span>
+                        </div>
+                        <p id="wired-external-ip" data-external-ip class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Public Address</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-dns text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">DNS Servers</span>
+                        </div>
+                        <p id="wired-dns-servers" data-dns-servers class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Name Resolution</p>
+                    </div>
+
+                    <div class="bg-neutral-50 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-tachometer-alt text-neutral-600"></i>
+                            <span class="text-sm text-neutral-600">Network Speed</span>
+                        </div>
+                        <p id="wired-network-speed" data-network-speed class="text-lg text-neutral-900">N/A</p>
+                        <p class="text-xs text-neutral-500 mt-1">Download/Upload</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <button id="wired-reconnect-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Reconnect</span>
+                    </button>
+                    <button id="wired-renew-ip-btn" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700">
+                        <i class="fa-solid fa-refresh"></i>
+                        <span>Renew IP (DHCP)</span>
+                    </button>
+                    <button id="wired-refresh-status-btn" class="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        <i class="fa-solid fa-sync"></i>
+                        <span>Refresh Status</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic Settings Section -->
+    <div id="basic-settings" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6 cursor-pointer" onclick="toggleSection('basic-settings-content', 'basic-settings-chevron')">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl text-neutral-900 flex items-center space-x-2">
+                    <i class="fa-solid fa-sliders text-neutral-600"></i>
+                    <span>Basic Settings</span>
+                </h2>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="basic-settings-chevron"></i>
+            </div>
+            <p class="text-sm text-neutral-600 mt-1">Configure basic network parameters</p>
+        </div>
+        <div id="basic-settings-content" class="p-6 space-y-6 hidden">
+            <div class="space-y-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Connection Mode</label>
+                        <select id="connection-mode" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+                            <option value="dhcp" selected>DHCP (Automatic)</option>
+                            <option value="static">Static (Manual)</option>
+                            <option value="pppoe">PPPoE</option>
+                            <option value="bridge">Bridge Mode</option>
+                        </select>
+                        <p class="text-xs text-neutral-500 mt-1">Select how IP address is assigned</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Interface Priority</label>
+                        <select class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+                            <option value="high">High Priority</option>
+                            <option value="medium" selected>Medium Priority</option>
+                            <option value="low">Low Priority</option>
+                        </select>
+                        <p class="text-xs text-neutral-500 mt-1">Network interface priority level</p>
+                    </div>
+                </div>
+
+                <div id="static-config" class="space-y-4 p-4 bg-neutral-50 rounded-lg border border-neutral-200 hidden">
+                    <h4 class="text-lg text-neutral-900 mb-4">Static IP Configuration</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">IP Address</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="192.168.1.100">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Subnet Mask</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="255.255.255.0">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Gateway</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="192.168.1.1">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Preferred DNS</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="8.8.8.8">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Alternative DNS</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="8.8.4.4">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Domain Suffix</label>
+                            <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="local.domain">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3">
+                    <button class="px-6 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
+                        Cancel
+                    </button>
+                    <button class="px-6 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700">
+                        Save & Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Settings Section -->
+    <div id="advanced-settings" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6 border-b border-neutral-200 cursor-pointer" onclick="toggleSection('advanced-settings-content', 'advanced-settings-chevron')">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl text-neutral-900 flex items-center space-x-2">
+                    <i class="fa-solid fa-cog text-neutral-600"></i>
+                    <span>Advanced Settings</span>
+                </h2>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="advanced-settings-chevron"></i>
+            </div>
+            <p class="text-sm text-neutral-600 mt-1">Configure advanced network parameters and protocols</p>
+        </div>
+
+        <div id="advanced-settings-content" class="p-6 space-y-6 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm text-neutral-700 mb-2">MTU Size</label>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" class="flex-1 px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" value="1500" min="576" max="9000">
+                        <button class="px-3 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50">
+                            <i class="fa-solid fa-flask"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-neutral-500 mt-1">Maximum Transmission Unit (bytes)</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Duplex Mode</label>
+                    <select class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+                        <option value="auto" selected>Auto Negotiation</option>
+                        <option value="full">Full Duplex</option>
+                        <option value="half">Half Duplex</option>
+                    </select>
+                    <p class="text-xs text-neutral-500 mt-1">Communication mode setting</p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-neutral-50 rounded-lg border border-neutral-200">
+                <h3 class="text-lg text-neutral-900 mb-4">Additional IP Addresses</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <input type="text" class="flex-1 px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="192.168.2.100/24">
+                        <button class="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <input type="text" class="flex-1 px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" placeholder="10.0.0.50/8">
+                        <button class="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <button class="flex items-center space-x-2 px-4 py-2 border border-dashed border-neutral-300 rounded-lg hover:bg-neutral-50 w-full justify-center">
+                        <i class="fa-solid fa-plus text-neutral-400"></i>
+                        <span class="text-neutral-600">Add Secondary IP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Profiles Section -->
+    <div id="connection-profiles" class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6 cursor-pointer" onclick="toggleSection('connection-profiles-content', 'connection-profiles-chevron')">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl text-neutral-900 flex items-center space-x-2">
+                    <i class="fa-solid fa-address-book text-neutral-600"></i>
+                    <span>Connection Profiles</span>
+                </h2>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200" id="connection-profiles-chevron"></i>
+            </div>
+            <p class="text-sm text-neutral-600 mt-1">Manage multiple network configurations</p>
+        </div>
+        <div id="connection-profiles-content" class="p-6 space-y-6 hidden">
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-neutral-600">Manage multiple network configurations</p>
+                    <button id="new-profile-button" class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New Profile</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic profiles container -->
+            <div id="wired-profiles-container" data-profiles-container class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Profiles will be dynamically rendered here -->
+            </div>
+
+            <!-- No profiles message (shown when no profiles available) -->
+            <div id="no-profiles-message" data-no-profiles class="hidden text-center py-12">
+                <div class="flex flex-col items-center space-y-4">
+                    <i class="fa-solid fa-network-wired text-6xl text-neutral-300"></i>
+                    <div>
+                        <h3 class="text-lg text-neutral-700 mb-2">No Connection Profiles</h3>
+                        <p class="text-sm text-neutral-500 mb-4">Create a new connection profile to get started</p>
+                        <button class="flex items-center space-x-2 px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 mx-auto">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Create First Profile</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile template (hidden, used for JavaScript cloning) -->
+            <template id="wired-profile-template">
+                <div class="wired-profile-card border rounded-lg p-4" data-profile-id="">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-neutral-900 profile-name" data-profile-name>Profile Name</h3>
+                        <div class="profile-status-container">
+                            <!-- Active status -->
+                            <div class="active-status hidden flex items-center space-x-1" data-active-status>
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs text-green-700">Active</span>
+                            </div>
+                            <!-- Inactive status -->
+                            <div class="inactive-status flex items-center space-x-1" data-inactive-status>
+                                <span class="text-xs text-neutral-500">Inactive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Type:</span>
+                            <span class="text-neutral-900 profile-type" data-profile-type>DHCP</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">IP:</span>
+                            <span class="text-neutral-900 profile-ip" data-profile-ip>N/A</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Gateway:</span>
+                            <span class="text-neutral-900 profile-gateway" data-profile-gateway>N/A</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">DNS:</span>
+                            <span class="text-neutral-900 profile-dns" data-profile-dns>N/A</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2 mt-4">
+                        <button class="profile-activate-btn flex-1 px-3 py-1 bg-neutral-600 text-white rounded text-sm hover:bg-neutral-700" data-profile-activate>
+                            <span class="activate-text">Activate</span>
+                            <span class="active-text hidden">Active</span>
+                        </button>
+                        <button class="profile-edit-btn px-3 py-1 border border-neutral-300 rounded text-sm hover:bg-neutral-50" data-profile-edit>
+                            <i class="fa-solid fa-edit"></i>
+                        </button>
+                        <button class="profile-delete-btn px-3 py-1 border border-neutral-300 rounded text-sm hover:bg-neutral-50 text-red-600 hover:bg-red-50" data-profile-delete>
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+
+<!-- Popup for Adding New Wired Connection Profile -->
+<div id="add-wired-connection-profile-popup" class="popup-overlay" style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 12px; max-width: 400px; width: 90%; text-align: left; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); max-height: 95vh; overflow: hidden; display: flex; flex-direction: column;">
+        <div class="p-6 border-b border-neutral-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-neutral-800">Add Wired Connection Profile</h2>
+            <button class="text-neutral-400 hover:text-neutral-600 text-2xl font-bold" id="popup-close-button">
+                &times;
+            </button>
+        </div>
+        <div class="p-6 flex-grow overflow-y-auto">
+            <!-- Profile form content will be loaded here -->
+            <div class="space-y-4">
+                <div>
+                    <label for="profile-name" class="block text-sm font-medium text-neutral-700">Profile Name</label>
+                    <input type="text" id="profile-name" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm" placeholder="e.g., Home Network">
+                </div>
+                <div>
+                    <label for="profile-type" class="block text-sm font-medium text-neutral-700">Connection Type</label>
+                    <select id="profile-type" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm">
+                        <option value="dhcp">DHCP</option>
+                        <option value="static">Static</option>
+                    </select>
+                </div>
+                <!-- Static IP Configuration fields (conditionally displayed) -->
+                <div id="static-ip-fields" class="space-y-4 hidden">
+                    <div>
+                        <label for="profile-ip" class="block text-sm font-medium text-neutral-700">IP Address</label>
+                        <input type="text" id="profile-ip" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm" placeholder="192.168.1.100">
+                    </div>
+                    <div>
+                        <label for="profile-subnet" class="block text-sm font-medium text-neutral-700">Subnet Mask</label>
+                        <input type="text" id="profile-subnet" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm" placeholder="255.255.255.0">
+                    </div>
+                    <div>
+                        <label for="profile-gateway" class="block text-sm font-medium text-neutral-700">Gateway</label>
+                        <input type="text" id="profile-gateway" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm" placeholder="192.168.1.1">
+                    </div>
+                    <div>
+                        <label for="profile-dns" class="block text-sm font-medium text-neutral-700">DNS Server</label>
+                        <input type="text" id="profile-dns" class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm" placeholder="8.8.8.8">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 border-t border-neutral-200 flex justify-end space-x-3">
+            <button id="popup-cancel-button" class="px-4 py-2 border border-neutral-300 rounded-md shadow-sm text-sm font-medium text-neutral-700 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500">
+                Cancel
+            </button>
+            <button id="save-profile-button" class="px-4 py-2 bg-neutral-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500">
+                Save Profile
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Popup Overlay Styles */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: left;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-height: 95vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-overlay.show .popup-content {
+    transform: scale(1);
+}
+
+/* Form Styling */
+.popup-content input:focus,
+.popup-content select:focus,
+.popup-content textarea:focus {
+    outline: none;
+    border-color: #6b7280;
+    box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+}
+
+.popup-content .hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .popup-content {
+        max-width: 95%;
+        margin: 20px;
+    }
+}
+
+/* Section Toggle Functionality */
+</style>
+
+<script>
+// Define toggleSection function globally first
+window.toggleSection = function(contentId, chevronId) {
+    const content = document.getElementById(contentId);
+    const chevron = document.getElementById(chevronId);
+
+    if (content && chevron) {
+        const isHidden = content.classList.contains('hidden');
+
+        if (isHidden) {
+            // Expanding: show content and rotate chevron back to normal (pointing down)
+            content.classList.remove('hidden');
+            chevron.classList.remove('rotate-180');
+        } else {
+            // Collapsing: hide content and rotate chevron (pointing right)  
+            content.classList.add('hidden');
+            chevron.classList.add('rotate-180');
+        }
+    }
+};
+
+// Wired Configuration API Helper Functions
+async function sendWiredAPIRequest(endpoint, method = 'GET', data = null) {
+    try {
+        const options = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        if (data && method !== 'GET') {
+            options.body = JSON.stringify(data);
+        }
+
+        console.log(`[WIRED-API] Sending ${method} request to ${endpoint}`, data);
+
+        const response = await fetch(endpoint, options);
+        const responseData = await response.json();
+
+        console.log(`[WIRED-API] Response from ${endpoint}:`, responseData);
+
+        return responseData;
+    } catch (error) {
+        console.error(`[WIRED-API] Error calling ${endpoint}:`, error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Data update functions
+async function loadConnectionStatus() {
+    const response = await sendWiredAPIRequest('/api/network/wired/status', 'GET');
+    if (response.success && response.data) {
+        updateConnectionStatusDisplay(response.data);
+    }
+}
+
+async function loadBasicConfiguration() {
+    const response = await sendWiredAPIRequest('/api/network/wired/configure', 'GET');
+    if (response.success && response.data) {
+        updateBasicConfigurationDisplay(response.data);
+    }
+}
+
+async function loadConnectionProfiles() {
+    const response = await sendWiredAPIRequest('/api/network/wired/profiles', 'GET');
+    if (response.success && response.data) {
+        updateConnectionProfilesDisplay(response.data);
+    }
+}
+
+async function loadAdvancedSettings() {
+    const response = await sendWiredAPIRequest('/api/network/wired/advanced', 'GET');
+    if (response.success && response.data) {
+        updateAdvancedSettingsDisplay(response.data);
+    }
+}
+
+// Display update functions
+function updateConnectionStatusDisplay(data) {
+    // Check if data is available - if we have data with status, consider it available
+    const dataAvailable = data && data.status;
+
+    // Update connection status indicators
+    const connectionStatus = document.querySelector('#connection-status-content .space-y-6 .flex .space-x-2 span');
+    if (connectionStatus) {
+        connectionStatus.textContent = dataAvailable ? (data.status || 'UNKNOWN') : 'No Data Available';
+    }
+
+    // Update status indicator dot color
+    const statusDot = document.querySelector('#connection-status-content .w-3.h-3');
+    if (statusDot) {
+        statusDot.className = 'w-3 h-3 rounded-full';
+        if (dataAvailable && data.status === 'CONNECTED') {
+            statusDot.className += ' bg-green-500 animate-pulse';
+        } else if (dataAvailable) {
+            statusDot.className += ' bg-yellow-500';
+        } else {
+            statusDot.className += ' bg-gray-400';
+        }
+    }
+
+    // Update the status grid data
+    const statusGrid = document.querySelector('#connection-status-content .grid');
+    if (statusGrid) {
+        const cards = statusGrid.querySelectorAll('.bg-neutral-50');
+        if (cards.length >= 6) {
+            // Connection Type
+            const connectionTypeValue = cards[0].querySelector('.text-lg');
+            if (connectionTypeValue) {
+                connectionTypeValue.textContent = dataAvailable ? (data.connection_type || 'Unknown') : 'No data available';
+                connectionTypeValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+
+            // IP Address
+            const ipValue = cards[1].querySelector('.text-lg');
+            if (ipValue) {
+                ipValue.textContent = dataAvailable ? (data.ip_address || 'Unknown') : 'No data available';
+                ipValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+
+            // MAC Address
+            const macValue = cards[2].querySelector('.text-lg');
+            if (macValue) {
+                macValue.textContent = dataAvailable ? (data.mac_address || 'Unknown') : 'No data available';
+                macValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+
+            // Link Speed
+            const speedValue = cards[3].querySelector('.text-lg');
+            if (speedValue) {
+                speedValue.textContent = dataAvailable ? (data.link_speed || 'Unknown') : 'No data available';
+                speedValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+
+            // Uptime
+            const uptimeValue = cards[4].querySelector('.text-lg');
+            if (uptimeValue) {
+                uptimeValue.textContent = dataAvailable ? (data.uptime || 'Unknown') : 'No data available';
+                uptimeValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+
+            // Gateway
+            const gatewayValue = cards[5].querySelector('.text-lg');
+            if (gatewayValue) {
+                gatewayValue.textContent = dataAvailable ? (data.gateway || 'Unknown') : 'No data available';
+                gatewayValue.className = dataAvailable ? 'text-lg text-neutral-900' : 'text-lg text-neutral-400 italic';
+            }
+        }
+    }
+
+    console.log('[WIRED-CONFIG] Connection status display updated, data available:', dataAvailable);
+}
+
+function updateBasicConfigurationDisplay(data) {
+    // Update ethernet toggle
+    const ethernetToggle = document.getElementById('ethernet-toggle');
+    if (ethernetToggle) {
+        ethernetToggle.checked = data.ethernet_enabled;
+    }
+
+    // Update connection mode dropdown
+    const connectionMode = document.getElementById('connection-mode');
+    if (connectionMode) {
+        connectionMode.value = data.connection_mode || 'dhcp';
+    }
+
+    console.log('[WIRED-CONFIG] Basic configuration display updated');
+}
+
+function updateConnectionProfilesDisplay(data) {
+    const dataAvailable = data && data.profiles && data.profiles.length > 0;
+    const profilesContainer = document.querySelector('#connection-profiles-content .grid');
+
+    if (!profilesContainer) {
+        console.log('[WIRED-CONFIG] Profiles container not found');
+        return;
+    }
+
+    // Clear existing profiles
+    profilesContainer.innerHTML = '';
+
+    if (dataAvailable && data.profiles.length > 0) {
+        // Display actual profiles from backend
+        data.profiles.forEach(profile => {
+            const profileCard = createProfileCard(profile);
+            profilesContainer.appendChild(profileCard);
+        });
+        console.log('[WIRED-CONFIG] Connection profiles display updated with', data.profiles.length, 'profiles');
+    } else {
+        // Display placeholder when no data is available
+        const placeholderCard = createPlaceholderProfileCard();
+        profilesContainer.appendChild(placeholderCard);
+        console.log('[WIRED-CONFIG] Connection profiles display updated with placeholder (no data available)');
+    }
+}
+
+function createProfileCard(profile) {
+    const cardDiv = document.createElement('div');
+    const isActive = profile.is_active || false;
+    const borderClass = isActive ? 'border-neutral-500' : 'border-neutral-300';
+    const bgClass = isActive ? 'bg-neutral-50' : 'bg-white';
+
+    cardDiv.className = `border ${borderClass} rounded-lg p-4 ${bgClass}`;
+    cardDiv.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+            <h3 class="text-neutral-900">${profile.name || 'Unknown Profile'}</h3>
+            <div class="flex items-center space-x-1">
+                ${isActive ? 
+                    '<div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-xs text-neutral-700">Active</span>' :
+                    '<span class="text-xs text-neutral-500">Inactive</span>'
+                }
+            </div>
+        </div>
+        <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+                <span class="text-neutral-600">Type:</span>
+                <span class="text-neutral-900">${profile.type || 'Unknown'}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-neutral-600">IP:</span>
+                <span class="text-neutral-900">${profile.ip_address || 'Not set'}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-neutral-600">Gateway:</span>
+                <span class="text-neutral-900">${profile.gateway || 'Not set'}</span>
+            </div>
+        </div>
+        <div class="flex space-x-2 mt-4">
+            <button class="flex-1 px-3 py-1 ${isActive ? 'bg-neutral-600 text-white' : 'bg-neutral-600 text-white'} rounded text-sm hover:bg-neutral-700" ${isActive ? 'disabled' : ''}>
+                ${isActive ? 'Active' : 'Activate'}
+            </button>
+            <button class="profile-edit-btn px-3 py-1 border border-neutral-300 rounded text-sm hover:bg-neutral-50" data-profile-edit>
+                <i class="fa-solid fa-edit"></i>
+            </button>
+            <button class="profile-delete-btn px-3 py-1 border border-neutral-300 rounded text-sm hover:bg-neutral-50 text-red-600 hover:bg-red-50" data-profile-delete>
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
+    `;
+
+    // Add event listeners for edit and delete buttons
+    const editButton = cardDiv.querySelector('.profile-edit-btn');
+    const deleteButton = cardDiv.querySelector('.profile-delete-btn');
+
+    if (editButton) {
+        editButton.addEventListener('click', () => {
+            console.log('Edit profile clicked:', profile.id);
+            // Implement edit functionality here, e.g., open popup with profile data
+        });
+    }
+
+    if (deleteButton) {
+        deleteButton.addEventListener('click', async () => {
+            console.log('Delete profile clicked:', profile.id);
+            const confirmDelete = confirm('Are you sure you want to delete this profile?');
+            if (confirmDelete) {
+                await sendWiredAPIRequest('/api/network/wired/profiles', 'DELETE', { profile_id: profile.id });
+                loadConnectionProfiles(); // Reload profiles after deletion
+            }
+        });
+    }
+
+    return cardDiv;
+}
+
+function createPlaceholderProfileCard() {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'col-span-full border border-neutral-200 rounded-lg p-6 bg-neutral-50 text-center';
+    cardDiv.innerHTML = `
+        <div class="flex flex-col items-center space-y-3">
+            <i class="fa-solid fa-network-wired text-3xl text-neutral-400"></i>
+            <h3 class="text-lg text-neutral-600">No Network Profiles Available</h3>
+            <p class="text-sm text-neutral-500 max-w-md">
+                Network profile data is not currently available. This could be because:
+            </p>
+            <ul class="text-xs text-neutral-400 space-y-1 list-disc list-inside">
+                <li>No profiles have been configured yet</li>
+                <li>Network service is not running</li>
+                <li>Unable to connect to network management system</li>
+            </ul>
+            <p class="text-xs text-neutral-400 mt-2">
+                Try refreshing the page or create a new profile to get started.
+            </p>
+        </div>
+    `;
+
+    return cardDiv;
+}
+
+function updateAdvancedSettingsDisplay(data) {
+    // Update MTU size
+    const mtuInput = document.querySelector('#advanced-settings-content input[type="number"]');
+    if (mtuInput) {
+        mtuInput.value = data.mtu_size || 1500;
+    }
+
+    // Update duplex mode
+    const duplexSelect = document.querySelector('#advanced-settings-content select');
+    if (duplexSelect) {
+        duplexSelect.value = data.duplex_mode || 'auto';
+    }
+
+    console.log('[WIRED-CONFIG] Advanced settings display updated');
+}
+
+function initializeWiredConfig() {
+    console.log('Initializing wired configuration...');
+
+    // Load initial data from backend
+    loadConnectionStatus();
+    loadBasicConfiguration();
+    loadConnectionProfiles();
+    loadAdvancedSettings();
+
+    // Connection mode dropdown change handler
+    const connectionModeSelect = document.getElementById('connection-mode');
+    const staticConfig = document.getElementById('static-config');
+
+    if (connectionModeSelect && staticConfig) {
+        connectionModeSelect.addEventListener('change', async function() {
+            const newMode = this.value;
+            console.log('[WIRED-CONFIG] Connection mode changed to:', newMode);
+
+            // Update UI
+            if (newMode === 'static') {
+                staticConfig.classList.remove('hidden');
+            } else {
+                staticConfig.classList.add('hidden');
+            }
+
+            // Send to backend
+            await sendWiredAPIRequest('/api/network/wired/configure', 'POST', {
+                action: 'update_connection_mode',
+                connection_mode: newMode,
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Ethernet toggle functionality
+    const ethernetToggle = document.getElementById('ethernet-toggle');
+    if (ethernetToggle) {
+        ethernetToggle.addEventListener('change', async function() {
+            const isEnabled = this.checked;
+            console.log('[WIRED-CONFIG] Ethernet toggle changed to:', isEnabled);
+
+            const sections = ['connection-status', 'basic-settings', 'advanced-settings', 'connection-profiles'];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    if (isEnabled) {
+                        section.style.opacity = '1';
+                        section.style.pointerEvents = 'auto';
+                    } else {
+                        section.style.opacity = '0.5';
+                        section.style.pointerEvents = 'none';
+                    }
+                }
+            });
+
+            // Send to backend
+            await sendWiredAPIRequest('/api/network/wired/configure', 'POST', {
+                action: 'toggle_ethernet',
+                ethernet_enabled: isEnabled,
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Connection Status Action Buttons
+    const reconnectButton = document.querySelector('#connection-status-content button:first-of-type');
+    if (reconnectButton) {
+        reconnectButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Reconnect button clicked');
+            await sendWiredAPIRequest('/api/network/wired/status', 'POST', {
+                action: 'reconnect',
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    const renewIpButton = document.querySelector('#connection-status-content button:nth-of-type(2)');
+    if (renewIpButton) {
+        renewIpButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Renew IP button clicked');
+            await sendWiredAPIRequest('/api/network/wired/status', 'POST', {
+                action: 'renew_ip',
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Basic Settings Save & Apply Button
+    const saveApplyButton = document.querySelector('#basic-settings-content button:last-of-type');
+    if (saveApplyButton) {
+        saveApplyButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Save & Apply button clicked');
+
+            // Collect form data
+            const connectionMode = document.getElementById('connection-mode')?.value;
+            const interfacePriority = document.querySelector('#basic-settings-content select:last-of-type')?.value;
+
+            const configData = {
+                action: 'save_basic_settings',
+                connection_mode: connectionMode,
+                interface_priority: interfacePriority,
+                timestamp: Date.now()
+            };
+
+            // If static mode, collect static IP configuration
+            if (connectionMode === 'static') {
+                const staticInputs = document.querySelectorAll('#static-config input');
+                if (staticInputs.length >= 6) {
+                    configData.static_config = {
+                        ip_address: staticInputs[0].value,
+                        subnet_mask: staticInputs[1].value,
+                        gateway: staticInputs[2].value,
+                        dns_primary: staticInputs[3].value,
+                        dns_secondary: staticInputs[4].value,
+                        domain_suffix: staticInputs[5].value
+                    };
+                }
+            }
+
+            await sendWiredAPIRequest('/api/network/wired/configure', 'POST', configData);
+        });
+    }
+
+    // Basic Settings Cancel Button
+    const cancelButton = document.querySelector('#basic-settings-content button:first-of-type');
+    if (cancelButton) {
+        cancelButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Cancel button clicked');
+            // Reload configuration from backend
+            await loadBasicConfiguration();
+        });
+    }
+
+    // Advanced Settings - MTU Test Button
+    const mtuTestButton = document.querySelector('#advanced-settings-content button');
+    if (mtuTestButton) {
+        mtuTestButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] MTU test button clicked');
+            const mtuValue = document.querySelector('#advanced-settings-content input[type="number"]')?.value;
+            await sendWiredAPIRequest('/api/network/wired/advanced', 'POST', {
+                action: 'test_mtu',
+                mtu_size: parseInt(mtuValue),
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Profile Management Buttons
+    // Event listeners for activate, edit, delete are now handled within createProfileCard
+
+    // Add additional IP buttons in advanced settings
+    const advancedButtons = document.querySelectorAll('#advanced-settings-content button');
+    const addIpButton = Array.from(advancedButtons).find(button => 
+        button.textContent.includes('Add Secondary IP')
+    );
+    if (addIpButton) {
+        addIpButton.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Add secondary IP button clicked');
+            await sendWiredAPIRequest('/api/network/wired/advanced', 'POST', {
+                action: 'add_secondary_ip',
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Remove IP buttons
+    const removeIpButtons = document.querySelectorAll('#advanced-settings-content .bg-red-600');
+    removeIpButtons.forEach((button, index) => {
+        button.addEventListener('click', async function() {
+            console.log('[WIRED-CONFIG] Remove IP button clicked for IP', index);
+            await sendWiredAPIRequest('/api/network/wired/advanced', 'POST', {
+                action: 'remove_secondary_ip',
+                ip_index: index,
+                timestamp: Date.now()
+            });
+        });
+    });
+
+    // Initialize all sections as collapsed and set correct chevron rotation
+    const sectionsToInit = [
+        { contentId: 'basic-settings-content', chevronId: 'basic-settings-chevron' },
+        { contentId: 'advanced-settings-content', chevronId: 'advanced-settings-chevron' },
+        { contentId: 'connection-profiles-content', chevronId: 'connection-profiles-chevron' },
+        { contentId: 'connection-status-content', chevronId: 'connection-status-chevron' }
+    ];
+
+    sectionsToInit.forEach(section => {
+        const content = document.getElementById(section.contentId);
+        const chevron = document.getElementById(section.chevronId);
+
+        if (content && chevron) {
+            // Ensure section starts collapsed
+            content.classList.add('hidden');
+            // Rotate chevron to indicate collapsed state (pointing right)
+            chevron.classList.add('rotate-180');
+        }
+    });
+}
+
+// Initialize when the DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWiredConfig);
+} else {
+    initializeWiredConfig();
+}
+
+// Popup handler registration and event listeners
+function registerPopupHandlers() {
+    console.log('[WIRED-CONFIG] Registering popup handlers...');
+    
+    // Use event delegation for dynamically added elements
+    document.addEventListener('click', function(e) {
+        // Handle new profile button click
+        if (e.target.id === 'new-profile-button' || e.target.closest('#new-profile-button')) {
+            e.preventDefault();
+            console.log('[WIRED-CONFIG] New profile button clicked');
+            showAddWiredConnectionProfilePopup();
+        }
+        
+        // Handle popup close button
+        if (e.target.id === 'popup-close-button' || e.target.closest('#popup-close-button')) {
+            e.preventDefault();
+            console.log('[WIRED-CONFIG] Popup close button clicked');
+            closeAddWiredConnectionProfilePopup();
+        }
+        
+        // Handle save profile button
+        if (e.target.id === 'save-profile-button') {
+            e.preventDefault();
+            console.log('[WIRED-CONFIG] Save profile button clicked');
+            handleSaveProfile();
+        }
+        
+        // Handle cancel button in popup
+        if (e.target.id === 'popup-cancel-button' || e.target.closest('#popup-cancel-button')) {
+            e.preventDefault();
+            console.log('[WIRED-CONFIG] Cancel button clicked');
+            closeAddWiredConnectionProfilePopup();
+        }
+    });
+
+    // Handle profile type selection change
+    document.addEventListener('change', function(e) {
+        if (e.target.id === 'profile-type') {
+            const staticIpFields = document.getElementById('static-ip-fields');
+            if (staticIpFields) {
+                if (e.target.value === 'static') {
+                    staticIpFields.classList.remove('hidden');
+                    console.log('[WIRED-CONFIG] Static IP fields shown');
+                } else {
+                    staticIpFields.classList.add('hidden');
+                    console.log('[WIRED-CONFIG] Static IP fields hidden');
+                }
+            }
+        }
+    });
+    
+    console.log('[WIRED-CONFIG] Popup handlers registered successfully');
+}
+
+// Handle save profile functionality
+async function handleSaveProfile() {
+    console.log('[WIRED-CONFIG] Processing profile save...');
+    
+    const profileName = document.getElementById('profile-name')?.value;
+    const profileType = document.getElementById('profile-type')?.value;
+    
+    if (!profileName || !profileType) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    let profileData = { 
+        name: profileName, 
+        type: profileType,
+        timestamp: Date.now()
+    };
+
+    if (profileType === 'static') {
+        const ipAddress = document.getElementById('profile-ip')?.value;
+        const subnetMask = document.getElementById('profile-subnet')?.value;
+        const gateway = document.getElementById('profile-gateway')?.value;
+        const dnsServer = document.getElementById('profile-dns')?.value;
+        
+        if (!ipAddress || !subnetMask || !gateway) {
+            alert('Please fill in all static IP configuration fields.');
+            return;
+        }
+        
+        profileData.ip_address = ipAddress;
+        profileData.subnet_mask = subnetMask;
+        profileData.gateway = gateway;
+        profileData.dns_server = dnsServer;
+    }
+
+    console.log('[WIRED-CONFIG] Sending profile data:', profileData);
+    
+    try {
+        const response = await sendWiredAPIRequest('/api/network/wired/profiles', 'POST', profileData);
+        if (response.success) {
+            console.log('[WIRED-CONFIG] Profile created successfully');
+            closeAddWiredConnectionProfilePopup();
+            loadConnectionProfiles(); // Reload profiles after creation
+        } else {
+            console.error('[WIRED-CONFIG] Failed to create profile:', response);
+            alert('Failed to create profile. Please check the details.');
+        }
+    } catch (error) {
+        console.error('[WIRED-CONFIG] Error creating profile:', error);
+        alert('Error creating profile. Please try again.');
+    }
+}
+
+// Show popup function - Following smooth-popup-integration.md guide
+function showAddWiredConnectionProfilePopup() {
+    console.log('[WIRED-CONFIG] Showing add profile popup...');
+    const overlay = document.getElementById('add-wired-connection-profile-popup');
+    
+    if (!overlay) {
+        console.error('[WIRED-CONFIG] Popup overlay not found');
+        return false;
+    }
+
+    // Reset form fields before showing
+    resetAddProfileForm();
+    
+    // Show popup with smooth animation
+    overlay.style.opacity = '1';
+    overlay.style.visibility = 'visible';
+    overlay.classList.add('show');
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management - focus first input field
+    setTimeout(() => {
+        const firstInput = overlay.querySelector('#profile-name');
+        if (firstInput) {
+            firstInput.focus();
+        }
+    }, 100);
+    
+    console.log('[WIRED-CONFIG] Add profile popup shown successfully');
+    return true;
+}
+
+// Close popup function - Following smooth-popup-integration.md guide
+function closeAddWiredConnectionProfilePopup() {
+    console.log('[WIRED-CONFIG] Closing add profile popup...');
+    const overlay = document.getElementById('add-wired-connection-profile-popup');
+    
+    if (!overlay) {
+        console.error('[WIRED-CONFIG] Popup overlay not found');
+        return false;
+    }
+
+    // Hide popup with smooth animation
+    overlay.classList.remove('show');
+    overlay.style.opacity = '0';
+    overlay.style.visibility = 'hidden';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+    
+    // Reset form for next use
+    setTimeout(() => {
+        resetAddProfileForm();
+    }, 300);
+    
+    console.log('[WIRED-CONFIG] Add profile popup closed successfully');
+    return true;
+}
+
+// Reset form fields helper function
+function resetAddProfileForm() {
+    const profileName = document.getElementById('profile-name');
+    const profileType = document.getElementById('profile-type');
+    const staticIpFields = document.getElementById('static-ip-fields');
+    const profileIp = document.getElementById('profile-ip');
+    const profileSubnet = document.getElementById('profile-subnet');
+    const profileGateway = document.getElementById('profile-gateway');
+    const profileDns = document.getElementById('profile-dns');
+    
+    if (profileName) profileName.value = '';
+    if (profileType) profileType.value = 'dhcp';
+    if (staticIpFields) staticIpFields.classList.add('hidden');
+    if (profileIp) profileIp.value = '';
+    if (profileSubnet) profileSubnet.value = '';
+    if (profileGateway) profileGateway.value = '';
+    if (profileDns) profileDns.value = '';
+    
+    console.log('[WIRED-CONFIG] Form fields reset');
+}
+
+// Listen for messages from the popup iframe (not used in this inline implementation)
+// window.addEventListener('message', function(event) {
+//     if (event.data.type === 'close-popup') {
+//         closeAddWiredConnectionProfilePopup();
+//     } else if (event.data.type === 'profile-created') {
+//         console.log('Profile created:', event.data.data);
+//         closeAddWiredConnectionProfilePopup();
+//         loadConnectionProfiles(); // Reload profiles
+//     }
+// });
+
+// Global popup event handlers - Following smooth-popup-integration.md guide
+function setupGlobalPopupEventHandlers() {
+    // Close popup on overlay click
+    document.addEventListener('click', function(event) {
+        const overlay = document.getElementById('add-wired-connection-profile-popup');
+        if (overlay && event.target === overlay) {
+            console.log('[WIRED-CONFIG] Popup overlay clicked - closing popup');
+            closeAddWiredConnectionProfilePopup();
+        }
+    });
+
+    // Close popup on ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const overlay = document.getElementById('add-wired-connection-profile-popup');
+            if (overlay && overlay.classList.contains('show')) {
+                console.log('[WIRED-CONFIG] ESC key pressed - closing popup');
+                closeAddWiredConnectionProfilePopup();
+            }
+        }
+    });
+    
+    // Prevent popup content clicks from closing popup
+    const popupContent = document.querySelector('#add-wired-connection-profile-popup .popup-content');
+    if (popupContent) {
+        popupContent.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    }
+    
+    console.log('[WIRED-CONFIG] Global popup event handlers setup complete');
+}
+
+// Call global setup
+setupGlobalPopupEventHandlers();
+
+// Initialize popup system immediately
+function initializePopupSystem() {
+    console.log('[WIRED-CONFIG] Initializing popup system...');
+    
+    // Register popup handlers
+    registerPopupHandlers();
+    
+    // Setup global event handlers
+    setupGlobalPopupEventHandlers();
+    
+    // Ensure popup is properly initialized
+    const popup = document.getElementById('add-wired-connection-profile-popup');
+    if (popup) {
+        // Ensure popup starts hidden
+        popup.style.opacity = '0';
+        popup.style.visibility = 'hidden';
+        popup.classList.remove('show');
+        console.log('[WIRED-CONFIG] Popup initialized in hidden state');
+    }
+    
+    console.log('[WIRED-CONFIG] Popup system initialization complete');
+}
+
+// Ensure popup handlers are registered when the DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePopupSystem();
+        initializeWiredConfig();
+    });
+} else {
+    initializePopupSystem();
+    initializeWiredConfig();
+}
+
+// Re-initialize wired config if new profile button is added dynamically
+if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes) {
+                mutation.addedNodes.forEach(function(node) {
+                    // Check if the new profile button is added
+                    if (node.nodeType === 1 && (node.id === 'new-profile-button' || node.querySelector('#new-profile-button'))) {
+                        console.log('[WIRED-CONFIG] New profile button detected, re-registering handlers');
+                        registerPopupHandlers();
+                    }
+                    // Check if wired config elements are present to initialize
+                    if (node.nodeType === 1 && node.querySelector('#ethernet-toggle')) {
+                        console.log('[WIRED-CONFIG] Wired config elements detected, initializing');
+                        initializeWiredConfig();
+                    }
+                });
+            }
+        });
+    });
+    // Observe changes in the body to catch dynamically added elements
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+</script>

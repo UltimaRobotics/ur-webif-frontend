@@ -1,0 +1,3680 @@
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <div class="mb-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl text-neutral-900 mb-2">Network Utility & Diagnostics</h2>
+        <p class="text-neutral-600">Test network performance and diagnose connectivity issues</p>
+      </div>
+      <div class="flex items-center">
+        <i class="fa-solid fa-network-wired text-neutral-600 text-xl"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Server Status Section -->
+  <section id="server-status" class="mb-8">
+    <div class="bg-white rounded-lg shadow-sm border border-neutral-200">
+      <div class="p-6 cursor-pointer" onclick="toggleSection('server-status-content', 'server-status-chevron')">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl text-neutral-800 flex items-center">
+            <i class="fa-solid fa-server mr-3 text-neutral-600"></i>
+            Server Status & Information
+          </h2>
+          <i id="server-status-chevron" class="fa-solid fa-chevron-down text-neutral-600 transition-transform duration-300 rotate-180"></i>
+        </div>
+      </div>
+
+      <div id="server-status-content" class="hidden">
+        <div id="main-wrapper" class="w-full bg-white">
+          <!-- Action Bar -->
+          <div id="action-bar" class="bg-neutral-50 border-b border-neutral-300 px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button class="px-4 py-2 bg-neutral-200 text-neutral-800 rounded hover:bg-neutral-300 flex items-center gap-2">
+                  <i class="text-sm" data-fa-i2svg=""><svg class="svg-inline--fa fa-rotate" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rotate" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M142.9 142.9c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5c0 0 0 0 0 0H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5c7.7-21.8 20.2-42.3 37.8-59.8zM16 312v7.6 .7V440c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l41.6-41.6c87.6 86.5 228.7 86.2 315.8-1c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.2 62.2-162.7 62.5-225.3 1L185 329c6.9-6.9 8.9-17.2 5.2-26.2s-12.5-14.8-22.2-14.8H48.4h-.7H40c-13.3 0-24 10.7-24 24z"></path></svg></i>
+                  <span>Refresh Status</span>
+                </button>
+                <button class="px-4 py-2 bg-neutral-600 text-white rounded hover:bg-neutral-700 flex items-center gap-2">
+                  <i class="text-sm" data-fa-i2svg=""><svg class="svg-inline--fa fa-play" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg></i>
+                  <span>Test All Servers</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-neutral-600">
+                <i data-fa-i2svg=""><svg class="svg-inline--fa fa-clock" aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg></i>
+                <span>Last updated: 2025-01-15 14:32:18</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <main id="main-content" class="px-6 py-6">
+            <!-- Filters Section -->
+            <div id="filters-section" class="bg-white border border-neutral-300 rounded-lg mb-6">
+              <button id="filters-toggle-btn" class="w-full px-6 py-4 flex items-center justify-between hover:bg-neutral-50" onclick="toggleFilters()">
+                <div class="flex items-center gap-2">
+                  <i class="text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-filter" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="filter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"></path></svg></i>
+                  <span class="text-neutral-900">Filters</span>
+                </div>
+                <i id="filters-chevron" class="text-neutral-600 transition-transform duration-300" data-fa-i2svg=""><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></i>
+              </button>
+              
+              <div id="filters-content" class="hidden px-6 pb-6 border-t border-neutral-200">
+                <div class="grid grid-cols-4 gap-4 mt-4">
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Keyword</label>
+                    <input type="text" placeholder="Search..." class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Continent</label>
+                    <select class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-600">
+                      <option>All Continents</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Country</label>
+                    <select class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-600">
+                      <option>All Countries</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Site</label>
+                    <select class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-600">
+                      <option>All Sites</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Provider</label>
+                    <select class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-600">
+                      <option>All Providers</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Host</label>
+                    <input type="text" placeholder="Enter host..." class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Port</label>
+                    <input type="text" placeholder="Enter port..." class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-sm text-neutral-700 mb-2">Min Speed (Mbps)</label>
+                    <input type="number" placeholder="0" class="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm">
+                  </div>
+                </div>
+                
+                <div class="mt-4">
+                  
+                  
+                </div>
+
+                <div class="flex items-center gap-3 mt-6">
+                  <button class="px-4 py-2 bg-neutral-200 text-neutral-800 rounded hover:bg-neutral-300">
+                    Reset
+                  </button>
+                  <button class="px-4 py-2 bg-neutral-600 text-white rounded hover:bg-neutral-700">
+                    Apply Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div id="summary-cards" class="grid grid-cols-4 gap-4 mb-6">
+              <div class="bg-white border border-neutral-300 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm text-neutral-600">Total Servers</span>
+                  <i class="text-neutral-400" data-fa-i2svg="">
+</i>
+                </div>
+                <div class="text-3xl text-neutral-900">247</div>
+              </div>
+              <div class="bg-white border border-neutral-300 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm text-neutral-600">Online</span>
+                  <i class="text-neutral-400" data-fa-i2svg=""></i>
+                </div>
+                <div class="text-3xl text-neutral-900">234</div>
+              </div>
+              <div class="bg-white border border-neutral-300 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm text-neutral-600">Offline</span>
+                  
+                </div>
+                <div class="text-3xl text-neutral-900">13</div>
+              </div>
+              <div class="bg-white border border-neutral-300 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm text-neutral-600">Avg Ping</span>
+                  
+                </div>
+                <div class="text-3xl text-neutral-900">42ms</div>
+              </div>
+            </div>
+
+            <!-- Server List Table -->
+            <div id="server-table-section" class="bg-white border border-neutral-300 rounded-lg">
+              <div class="px-6 py-4 border-b border-neutral-200 flex items-center justify-between">
+                <h2 class="text-lg text-neutral-900">Server List</h2>
+                <div class="flex items-center gap-2">
+                  <div class="w-4 h-4 border-2 border-neutral-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span class="text-sm text-neutral-600">Testing servers... 47/247</span>
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead>
+                    <tr class="bg-neutral-50 border-b border-neutral-200">
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Server Name</th>
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Region</th>
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Host / IP</th>
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Ports</th>
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Current Status</th>
+                      <th class="px-6 py-3 text-left text-xs text-neutral-700 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-neutral-200 hover:bg-neutral-50">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <i class="text-neutral-600" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                          <span class="text-neutral-900">US-EAST-01</span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">North America</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">192.168.1.100</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">443, 8080</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 bg-neutral-600 text-white text-xs rounded">FAIR</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <button class="px-3 py-1 bg-neutral-600 text-white text-xs rounded hover:bg-neutral-700">Start Test</button>
+                          <button class="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded hover:bg-neutral-300">View Config</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-neutral-200 hover:bg-neutral-50">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <i class="text-neutral-600" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                          <span class="text-neutral-900">EU-WEST-03</span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">Europe</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">10.0.45.23</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">443, 3000</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 bg-neutral-600 text-white text-xs rounded">POOR</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <button class="px-3 py-1 bg-neutral-600 text-white text-xs rounded hover:bg-neutral-700">Start Test</button>
+                          <button class="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded hover:bg-neutral-300">View Config</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-neutral-200 hover:bg-neutral-50">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <i class="text-neutral-600" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                          <span class="text-neutral-900">ASIA-SOUTH-02</span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">Asia</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">172.16.0.88</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">443</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 bg-neutral-600 text-white text-xs rounded">UNREACHABLE</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <button class="px-3 py-1 bg-neutral-600 text-white text-xs rounded hover:bg-neutral-700">Start Test</button>
+                          <button class="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded hover:bg-neutral-300">View Config</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-neutral-200 hover:bg-neutral-50">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <i class="text-neutral-600" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                          <span class="text-neutral-900">US-WEST-05</span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">North America</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">192.168.2.45</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">443, 8080, 9000</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 bg-neutral-600 text-white text-xs rounded">FAIR</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <button class="px-3 py-1 bg-neutral-600 text-white text-xs rounded hover:bg-neutral-700">Start Test</button>
+                          <button class="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded hover:bg-neutral-300">View Config</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="border-b border-neutral-200 hover:bg-neutral-50">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <i class="text-neutral-600" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                          <span class="text-neutral-900">EU-NORTH-01</span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">Europe</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">10.0.12.67</td>
+                      <td class="px-6 py-4 text-sm text-neutral-700">443</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 bg-neutral-600 text-white text-xs rounded">FAIR</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <button class="px-3 py-1 bg-neutral-600 text-white text-xs rounded hover:bg-neutral-700">Start Test</button>
+                          <button class="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded hover:bg-neutral-300">View Config</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="px-6 py-4 border-t border-neutral-200 flex items-center justify-between">
+                <div class="text-sm text-neutral-600">Showing 1 to 5 of 247 servers</div>
+                <div class="flex items-center gap-2">
+                  <button class="px-3 py-1 border border-neutral-300 rounded hover:bg-neutral-50 text-sm text-neutral-700">Previous</button>
+                  <button class="px-3 py-1 bg-neutral-600 text-white rounded text-sm">1</button>
+                  <button class="px-3 py-1 border border-neutral-300 rounded hover:bg-neutral-50 text-sm text-neutral-700">2</button>
+                  <button class="px-3 py-1 border border-neutral-300 rounded hover:bg-neutral-50 text-sm text-neutral-700">3</button>
+                  <span class="px-2 text-neutral-600">...</span>
+                  <button class="px-3 py-1 border border-neutral-300 rounded hover:bg-neutral-50 text-sm text-neutral-700">50</button>
+                  <button class="px-3 py-1 border border-neutral-300 rounded hover:bg-neutral-50 text-sm text-neutral-700">Next</button>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagnostic Tools Section -->
+  <section id="diagnostic-tools">
+    <div class="bg-white rounded-lg shadow-sm border border-neutral-200">
+      <div class="p-6 cursor-pointer" onclick="toggleSection('diagnostic-tools-content', 'diagnostic-tools-chevron')">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl text-neutral-800 flex items-center">
+            <i class="fa-solid fa-tools mr-3 text-neutral-600"></i>
+            Network Diagnostic Tools
+          </h2>
+          <i id="diagnostic-tools-chevron" class="fa-solid fa-chevron-down text-neutral-600 transition-transform duration-300 rotate-180"></i>
+        </div>
+      </div>
+
+      <div id="diagnostic-tools-content" class="hidden">
+        <div class="px-6 pb-6">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="space-y-4">
+              <h3 class="text-lg text-neutral-700">Network Tests</h3>
+
+              <button id="traceroute-btn" class="w-full bg-neutral-50 hover:bg-neutral-100 text-neutral-700 border border-neutral-200 px-4 py-3 rounded-md text-left flex items-center justify-between transition-colors">
+                <div class="flex items-center">
+                  <i class="fa-solid fa-network-wired mr-3 text-neutral-600"></i>
+                  <div>
+                    <div class="font-medium">Traceroute</div>
+                    <div class="text-sm text-neutral-500">Trace network path to destination</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+              </button>
+
+              <button id="ping-test-btn" class="w-full bg-neutral-50 hover:bg-neutral-100 text-neutral-700 border border-neutral-200 px-4 py-3 rounded-md text-left flex items-center justify-between transition-colors">
+                <div class="flex items-center">
+                  <i class="fa-solid fa-wifi mr-3 text-neutral-600"></i>
+                  <div>
+                    <div class="font-medium">Ping Test</div>
+                    <div class="text-sm text-neutral-500">Test connectivity and latency</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+              </button>
+
+              <button id="dns-lookup-btn" class="w-full bg-neutral-50 hover:bg-neutral-100 text-neutral-700 border border-neutral-200 px-4 py-3 rounded-md text-left flex items-center justify-between transition-colors">
+                <div class="flex items-center">
+                  <i class="fa-solid fa-globe mr-3 text-neutral-600"></i>
+                  <div>
+                    <div class="font-medium">DNS Lookup</div>
+                    <div class="text-sm text-neutral-500">Resolve domain names</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+              </button>
+            </div>
+
+            <div class="space-y-4">
+              <h3 class="text-lg text-neutral-700">Bandwidth Tests</h3>
+
+              <button id="bandwidth-test-btn" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-4 py-3 rounded-md text-left flex items-center justify-between transition-colors">
+                <div class="flex items-center">
+                  <i class="fa-solid fa-tachometer-alt mr-3 text-blue-600"></i>
+                  <div>
+                    <div class="font-medium">Bandwidth Test</div>
+                    <div class="text-sm text-blue-500">Test upload/download speeds</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-blue-400"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Traceroute Popup -->
+<div id="traceroutePopup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 12px; padding: 0; width: 800px; max-width: 4xl; transform: scale(0.9); transition: transform 0.3s ease, width 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    <!-- Header -->
+    <header id="modal-header" class="bg-white text-neutral-800 px-6 py-4 rounded-t-lg flex items-center justify-between border-b border-neutral-200">
+      <div class="flex items-center gap-3">
+        <i class="text-xl text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-grip" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grip" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40H88c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40H40c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40H88c22.1 0 40-17.9 40-40V328zm32-192v48c0 22.1 17.9 40 40 40h48c22.1 0 40-17.9 40-40V136c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40H200c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40h48c22.1 0 40-17.9 40-40V328zm32-192v48c0 22.1 17.9 40 40 40h48c22.1 0 40-17.9 40-40V136c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40H360c-22.1 0-40 17.9-40 40v48c0 22.1 17.9 40 40 40h48c22.1 0 40-17.9 40-40V328z"></path></svg></i>
+        <div>
+          <h2 class="text-xl">Traceroute Test</h2>
+          <p class="text-neutral-500 text-sm">Network path tracing and hop analysis</p>
+        </div>
+      </div>
+      <button id="closeTraceroute" class="text-neutral-500 hover:text-neutral-800">
+        <i class="text-xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></i>
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main id="modal-content" class="p-6">
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Test Configuration -->
+        <section id="test-configuration" class="space-y-6">
+          <h3 class="text-lg text-neutral-800 mb-4">Test Configuration</h3>
+          
+          <div class="space-y-2">
+            <label class="block text-sm text-neutral-700">Target Host</label>
+            <input type="text" id="traceroute-target-host" placeholder="Enter IP address or hostname" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400">
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-sm text-neutral-700">Maximum Hops</label>
+            <input type="number" id="traceroute-max-hops" value="30" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400">
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-sm text-neutral-700">Timeout (seconds)</label>
+            <input type="number" id="traceroute-timeout" value="5" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400">
+          </div>
+
+          <div class="space-y-3">
+            <label class="block text-sm text-neutral-700">Protocol</label>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="radio" name="traceroute-protocol" value="icmp" checked class="mr-2 text-neutral-600">
+                <span class="text-sm">ICMP</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="traceroute-protocol" value="udp" class="mr-2 text-neutral-600">
+                <span class="text-sm">UDP</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="traceroute-protocol" value="tcp" class="mr-2 text-neutral-600">
+                <span class="text-sm">TCP</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Test Status -->
+        <section id="test-status" class="space-y-6">
+          <h3 class="text-lg text-neutral-800 mb-4">Test Status</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-700">Status:</span>
+              <div class="flex items-center gap-2">
+                <div id="traceroute-status-indicator" class="w-2 h-2 bg-neutral-400 rounded-full"></div>
+                <span id="traceroute-status-text" class="text-sm text-neutral-600">Ready</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-700">Current Hop:</span>
+              <span id="traceroute-current-hop" class="text-sm text-neutral-600">0 of 30</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-700">Elapsed Time:</span>
+              <span id="traceroute-elapsed-time" class="text-sm text-neutral-600">00:00</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-700">Total Hops:</span>
+              <span id="traceroute-total-hops" class="text-sm text-neutral-600">0</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-neutral-700">Progress</span>
+                <span id="traceroute-progress-text" class="text-xs text-neutral-500">0% Complete</span>
+              </div>
+              <div class="w-full bg-neutral-200 rounded-full h-2">
+                <div id="traceroute-progress-bar" class="bg-neutral-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Action Buttons -->
+      <div id="action-buttons" class="flex items-center justify-center gap-4 mt-8 pt-6 border-t border-neutral-200">
+        <button id="start-traceroute-btn" class="flex items-center gap-2 bg-neutral-700 text-white px-6 py-2 rounded-md hover:bg-neutral-600 transition-colors">
+          <i class="text-sm" data-fa-i2svg=""><svg class="svg-inline--fa fa-play" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg></i>
+          <span>Start Traceroute</span>
+        </button>
+        <button id="reset-traceroute-btn" class="flex items-center gap-2 bg-white text-neutral-700 px-6 py-2 rounded-md border border-neutral-300 hover:bg-neutral-50 transition-colors">
+          <i class="text-sm" data-fa-i2svg=""><svg class="svg-inline--fa fa-rotate-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rotate-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"></path></svg></i>
+          <span>Reset</span>
+        </button>
+        <button id="stop-traceroute-btn" class="flex items-center gap-2 bg-neutral-600 text-white px-6 py-2 rounded-md hover:bg-neutral-700 transition-colors" style="display: none;">
+          <i class="text-sm" data-fa-i2svg=""><svg class="svg-inline--fa fa-stop" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"></path></svg></i>
+          <span>Stop Test</span>
+        </button>
+      </div>
+
+      <!-- Traceroute Results (Initially Hidden) -->
+      <section id="traceroute-results" class="mt-8" style="display: none;">
+        <h3 class="text-lg text-neutral-800 mb-4">Traceroute Results</h3>
+        <div class="border border-neutral-300 rounded-lg overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-neutral-100">
+                <tr>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">Hop</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">IP Address</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">Hostname</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">RTT 1</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">RTT 2</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">RTT 3</th>
+                  <th class="px-4 py-3 text-left text-sm text-neutral-700 border-b border-neutral-300">Avg RTT</th>
+                </tr>
+              </thead>
+              <tbody id="traceroute-results-tbody" class="bg-white">
+                <tr id="traceroute-no-data">
+                  <td colspan="7" class="py-8 text-center text-neutral-500">
+                    Click "Start Traceroute" to begin network path analysis
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Ping Test Popup -->
+<div id="pingTestPopup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+  <div id="ping-modal" class="popup-content bg-neutral-100 rounded-lg w-full max-w-2xl" style="transform: scale(0.9); transition: transform 0.3s ease, width 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    <!-- Header -->
+    <div id="modal-header" class="flex items-start justify-between p-6 border-b border-neutral-300">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-neutral-300 rounded-lg flex items-center justify-center">
+          <i class="text-xl text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-network-wired" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="network-wired" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M256 64H384v64H256V64zM240 0c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h48v32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96v32H80c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48H240c26.5 0 48-21.5 48-48V368c0-26.5-21.5-48-48-48H192V288H448v32H400c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48H560c26.5 0 48-21.5 48-48V368c0-26.5-21.5-48-48-48H512V288h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H352V192h48c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H240zM96 448V384H224v64H96zm320-64H544v64H416V384z"></path></svg></i>
+        </div>
+        <div>
+          <h2 class="text-xl text-neutral-900">Network Ping Test</h2>
+          <p class="text-sm text-neutral-600 mt-1">Test network connectivity and latency</p>
+        </div>
+      </div>
+      <button id="closePingTest" class="text-neutral-500 hover:text-neutral-700 text-xl">
+        <i data-fa-i2svg=""><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></i>
+      </button>
+    </div>
+
+    <!-- Initial Configuration Content -->
+    <div id="ping-config-content" class="p-6">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Target Host -->
+        <div class="col-span-2">
+          <label class="block text-sm text-neutral-700 mb-2">Target Host</label>
+          <input type="text" id="ping-target-host" placeholder="IP address or hostname" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400">
+        </div>
+
+        <!-- Packet Count -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Packet Count</label>
+          <input type="number" id="ping-count" value="10" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400">
+        </div>
+
+        <!-- Packet Size -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Packet Size (bytes)</label>
+          <input type="number" id="ping-size" value="64" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400">
+        </div>
+
+        <!-- Interval -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Interval (seconds)</label>
+          <input type="number" id="ping-interval" value="1" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400">
+        </div>
+
+        <!-- Timeout -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Timeout (seconds)</label>
+          <input type="number" id="ping-timeout" value="5" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400">
+        </div>
+
+        <!-- Continuous Ping -->
+        <div class="col-span-2 flex items-center gap-3 mt-2">
+          <input type="checkbox" id="continuous-ping" class="w-4 h-4 border-neutral-300 rounded text-neutral-900 focus:ring-2 focus:ring-neutral-400">
+          <label for="continuous-ping" class="text-sm text-neutral-700">Continuous Ping</label>
+        </div>
+      </div>
+
+      <!-- Start Button -->
+      <div class="mt-6">
+        <button id="start-ping-test" class="inline-flex items-center gap-2 px-6 py-2.5 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors">
+          <i data-fa-i2svg=""><svg class="svg-inline--fa fa-play" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg></i>
+          <span>Start Ping Test</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Running Test Content (Initially Hidden) -->
+    <div id="ping-running-content" class="p-6" style="display: none;">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Target Host (Read-only during test) -->
+        <div class="col-span-2">
+          <label class="block text-sm text-neutral-700 mb-2">Target Host</label>
+          <input type="text" id="ping-target-host-running" placeholder="IP address or hostname" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400" readonly>
+        </div>
+
+        <!-- Packet Count -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Packet Count</label>
+          <input type="number" id="ping-count-running" value="10" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400" readonly>
+        </div>
+
+        <!-- Packet Size -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Packet Size (bytes)</label>
+          <input type="number" id="ping-size-running" value="64" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400" readonly>
+        </div>
+
+        <!-- Interval -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Interval (seconds)</label>
+          <input type="number" id="ping-interval-running" value="1" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400" readonly>
+        </div>
+
+        <!-- Timeout -->
+        <div>
+          <label class="block text-sm text-neutral-700 mb-2">Timeout (seconds)</label>
+          <input type="number" id="ping-timeout-running" value="5" class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400" readonly>
+        </div>
+
+        <!-- Continuous Ping -->
+        <div class="col-span-2 flex items-center gap-3 mt-2">
+          <input type="checkbox" id="continuous-ping-running" class="w-4 h-4 border-neutral-300 rounded text-neutral-900 focus:ring-2 focus:ring-neutral-400" disabled>
+          <label for="continuous-ping-running" class="text-sm text-neutral-700">Continuous Ping</label>
+        </div>
+      </div>
+
+      <!-- Test Statistics -->
+      <div id="test-statistics" class="mt-6 p-4 bg-white border border-neutral-300 rounded-lg">
+        <h3 class="text-sm text-neutral-900 mb-4">Test Statistics</h3>
+        <div class="grid grid-cols-4 gap-4">
+          <div>
+            <p class="text-xs text-neutral-600 mb-1">Packets Sent</p>
+            <p class="text-lg text-neutral-900" id="ping-packets-sent">0</p>
+          </div>
+          <div>
+            <p class="text-xs text-neutral-600 mb-1">Packets Received</p>
+            <p class="text-lg text-neutral-900" id="ping-packets-received">0</p>
+          </div>
+          <div>
+            <p class="text-xs text-neutral-600 mb-1">Packet Loss</p>
+            <p class="text-lg text-neutral-900" id="ping-packet-loss">0%</p>
+          </div>
+          <div>
+            <p class="text-xs text-neutral-600 mb-1">Avg Latency</p>
+            <p class="text-lg text-neutral-900" id="ping-avg-latency">0ms</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ping Results Table -->
+      <div id="ping-results" class="mt-6">
+        <h3 class="text-sm text-neutral-900 mb-3">Ping Results</h3>
+        <div class="bg-white border border-neutral-300 rounded-lg overflow-hidden">
+          <div class="overflow-y-auto max-h-64">
+            <table class="w-full">
+              <thead class="bg-neutral-200 sticky top-0">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">Sequence</th>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">Time</th>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">Bytes</th>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">TTL</th>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">Latency</th>
+                  <th class="px-4 py-3 text-left text-xs text-neutral-700">Status</th>
+                </tr>
+              </thead>
+              <tbody id="ping-results-tbody" class="divide-y divide-neutral-200">
+                <tr>
+                  <td colspan="6" class="px-4 py-8 text-center text-neutral-500">
+                    Click "Start Ping Test" to begin connectivity testing
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3 mt-6">
+        <button id="stop-ping-test" class="inline-flex items-center gap-2 px-6 py-2.5 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors">
+          <i data-fa-i2svg=""><svg class="svg-inline--fa fa-stop" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"></path></svg></i>
+          <span>Stop Test</span>
+        </button>
+        <button id="restart-ping-test" class="inline-flex items-center gap-2 px-6 py-2.5 bg-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-300 transition-colors">
+          <i data-fa-i2svg=""><svg class="svg-inline--fa fa-rotate-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rotate-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"></path></svg></i>
+          <span>Restart Test</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="modal-footer" class="flex justify-end p-6 border-t border-neutral-300">
+      <button id="closePingTestFooter" class="px-6 py-2.5 bg-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-300 transition-colors">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DNS Lookup Popup -->
+<div id="dnsLookupPopup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+  <div class="popup-content bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4" style="transform: scale(0.9); transition: transform 0.3s ease;">
+    
+    <!-- Test Selection UI (Default) -->
+    <div id="dns-selection-ui">
+      <!-- Modal Header -->
+      <div id="modal-header" class="bg-white text-neutral-800 px-6 py-4 rounded-t-lg flex items-center justify-between border-b border-neutral-200">
+        <div class="flex items-center gap-3">
+          <i class="text-xl text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-globe" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="globe" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"></path></svg></i>
+          <div>
+            <h2 class="text-xl">DNS Lookup Tool</h2>
+            <p class="text-neutral-500 text-sm">Resolve domain names and analyze DNS records</p>
+          </div>
+        </div>
+        <button id="closeDnsLookup" class="text-neutral-500 hover:text-neutral-800">
+          <i class="text-xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></i>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div id="modal-content" class="p-6 bg-neutral-50">
+        
+        <!-- Input Form Grid -->
+        <div id="form-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          
+          <!-- Domain/IP Input with Lookup Button -->
+          <div class="md:col-span-2">
+            <label class="block text-sm text-neutral-700 mb-2">Domain or IP Address</label>
+            <div class="flex space-x-2">
+              <input type="text" id="domain-input" placeholder="Enter domain name or IP address" class="flex-1 px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+              <button id="lookup-button" class="px-4 py-2 bg-neutral-900 text-white rounded-md hover:bg-neutral-800 transition-colors flex items-center space-x-2">
+                <i data-fa-i2svg=""><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></i>
+                <span>Lookup</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Record Type Dropdown -->
+          <div>
+            <label class="block text-sm text-neutral-700 mb-2">Record Type</label>
+            <select id="record-type" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+              <option value="A">A (IPv4 Address)</option>
+              <option value="AAAA">AAAA (IPv6 Address)</option>
+              <option value="CNAME">CNAME (Canonical Name)</option>
+              <option value="MX">MX (Mail Exchange)</option>
+              <option value="NS">NS (Name Server)</option>
+              <option value="TXT">TXT (Text Record)</option>
+              <option value="SOA">SOA (Start of Authority)</option>
+              <option value="PTR">PTR (Pointer Record)</option>
+            </select>
+          </div>
+
+          <!-- Timeout Input -->
+          <div>
+            <label class="block text-sm text-neutral-700 mb-2">Timeout (seconds)</label>
+            <input type="number" id="timeout-input" value="5" min="1" max="60" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+          </div>
+
+          <!-- DNS Server Input -->
+          <div class="md:col-span-2">
+            <label class="block text-sm text-neutral-700 mb-2">DNS Server</label>
+            <input type="text" id="dns-server" placeholder="e.g., 8.8.8.8 or leave blank for system default" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div id="modal-footer" class="flex justify-end p-6 border-t border-neutral-200 bg-white rounded-b-lg">
+        <button id="closeDnsLookupFooter" class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-md hover:bg-neutral-200 transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Running Test UI (Initially Hidden) -->
+    <div id="dns-running-ui" style="display: none;">
+      <!-- Modal Header -->
+      <div id="modal-header" class="bg-white text-neutral-800 px-6 py-4 rounded-t-lg flex items-center justify-between border-b border-neutral-200">
+        <div class="flex items-center gap-3">
+          <i class="text-xl text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-globe" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="globe" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"></path></svg></i>
+          <div>
+            <h2 class="text-xl">DNS Lookup Tool</h2>
+            <p class="text-neutral-500 text-sm">Resolve domain names and analyze DNS records</p>
+          </div>
+        </div>
+        <button id="closeDnsLookupRunning" class="text-neutral-500 hover:text-neutral-800">
+          <i class="text-xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></i>
+        </button>
+      </div>
+
+      <!-- Main Content -->
+      <div id="modal-content" class="p-6 bg-neutral-50 overflow-y-auto max-h-[calc(90vh-200px)]">
+        
+        <!-- Input Form Grid -->
+        <div id="form-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          
+          <!-- Domain/IP Input with Lookup Button -->
+          <div class="md:col-span-2">
+            <label class="block text-sm text-neutral-700 mb-2">Domain or IP Address</label>
+            <div class="flex space-x-2">
+              <input type="text" id="domain-input-running" placeholder="Enter domain name or IP address" class="flex-1 px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" readonly>
+              <button id="lookup-button-running" class="px-4 py-2 bg-neutral-900 text-white rounded-md hover:bg-neutral-800 transition-colors flex items-center space-x-2" disabled>
+                <i data-fa-i2svg=""><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></i>
+                <span>Lookup</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Record Type Dropdown -->
+          <div>
+            <label class="block text-sm text-neutral-700 mb-2">Record Type</label>
+            <select id="record-type-running" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" disabled>
+              <option value="A">A (IPv4 Address)</option>
+              <option value="AAAA">AAAA (IPv6 Address)</option>
+              <option value="CNAME">CNAME (Canonical Name)</option>
+              <option value="MX">MX (Mail Exchange)</option>
+              <option value="NS">NS (Name Server)</option>
+              <option value="TXT">TXT (Text Record)</option>
+              <option value="SOA">SOA (Start of Authority)</option>
+              <option value="PTR">PTR (Pointer Record)</option>
+            </select>
+          </div>
+
+          <!-- Timeout Input -->
+          <div>
+            <label class="block text-sm text-neutral-700 mb-2">Timeout (seconds)</label>
+            <input type="number" id="timeout-input-running" value="5" min="1" max="60" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" readonly>
+          </div>
+
+          <!-- DNS Server Input -->
+          <div class="md:col-span-2">
+            <label class="block text-sm text-neutral-700 mb-2">DNS Server</label>
+            <input type="text" id="dns-server-running" placeholder="e.g., 8.8.8.8 or leave blank for system default" class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" readonly>
+          </div>
+        </div>
+
+        <!-- Results Area -->
+        <div id="results-section" class="mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg text-neutral-900">Lookup Results</h3>
+            <button id="copy-results" class="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-md hover:bg-neutral-200 transition-colors text-sm flex items-center space-x-1">
+              <i data-fa-i2svg=""><svg class="svg-inline--fa fa-copy" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M272 0H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128H192v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"></path></svg></i>
+              <span>Copy</span>
+            </button>
+          </div>
+          
+          <div id="results-area" class="bg-white rounded-lg border border-neutral-200 p-4 min-h-[300px]">
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3 pb-3 border-b border-neutral-100">
+                <i class="text-neutral-600 mt-1" data-fa-i2svg=""><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg></i>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-neutral-500">A Record</span>
+                    <span class="text-xs text-neutral-400">TTL: 300</span>
+                  </div>
+                  <p class="text-neutral-900">93.184.216.34</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3 pb-3 border-b border-neutral-100">
+                <i class="text-neutral-600 mt-1" data-fa-i2svg=""><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg></i>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-neutral-500">A Record</span>
+                    <span class="text-xs text-neutral-400">TTL: 300</span>
+                  </div>
+                  <p class="text-neutral-900">93.184.216.35</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3 pb-3 border-b border-neutral-100">
+                <i class="text-neutral-600 mt-1" data-fa-i2svg=""><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg></i>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-neutral-500">AAAA Record</span>
+                    <span class="text-xs text-neutral-400">TTL: 300</span>
+                  </div>
+                  <p class="text-neutral-900">2606:2800:220:1:248:1893:25c8:1946</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <i class="text-neutral-600 mt-1" data-fa-i2svg=""><svg class="svg-inline--fa fa-circle-check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path></svg></i>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-neutral-500">NS Record</span>
+                    <span class="text-xs text-neutral-400">TTL: 86400</span>
+                  </div>
+                  <p class="text-neutral-900">a.iana-servers.net</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Query Information -->
+          <div id="query-info" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white rounded-lg border border-neutral-200 p-3">
+              <label class="block text-xs text-neutral-500 mb-1">Query Time</label>
+              <span id="query-time" class="text-sm text-neutral-900">42ms</span>
+            </div>
+            <div class="bg-white rounded-lg border border-neutral-200 p-3">
+              <label class="block text-xs text-neutral-500 mb-1">DNS Server Used</label>
+              <span id="server-used" class="text-sm text-neutral-900">8.8.8.8</span>
+            </div>
+            <div class="bg-white rounded-lg border border-neutral-200 p-3">
+              <label class="block text-xs text-neutral-500 mb-1">Records Found</label>
+              <span id="records-count" class="text-sm text-neutral-900">4</span>
+            </div>
+          </div>
+
+          <!-- Raw Response -->
+          <div id="raw-response-section" class="mt-4">
+            <div id="raw-response" class="bg-neutral-900 text-neutral-100 rounded-lg p-4 hidden">
+              <pre class="text-xs whitespace-pre-wrap">Raw DNS response data will appear here...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div id="modal-footer" class="flex justify-end p-6 border-t border-neutral-200 bg-white rounded-b-lg">
+        <button id="new-lookup-btn" class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-md hover:bg-neutral-200 transition-colors mr-2">
+          New Lookup
+        </button>
+        <button id="closeDnsLookupFooterRunning" class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-md hover:bg-neutral-200 transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bandwidth Test Popup -->
+<div id="bandwidthTestPopup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 12px; padding: 0; max-width: 1000px; width: 90%; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+    
+    <!-- Test Selection UI (Default) -->
+    <div id="bandwidth-selection-ui">
+      <!-- Modal Header -->
+      <div id="modal-header" class="bg-neutral-50 px-6 py-4 rounded-t-lg border-b border-neutral-200 flex items-start justify-between">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 bg-neutral-300 rounded flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-gauge-high text-neutral-600 text-lg"></i>
+          </div>
+          <div>
+            <h2 class="text-lg text-neutral-900">Bandwidth Test</h2>
+            <p class="text-sm text-neutral-500 mt-0.5">Test network upload and download speeds</p>
+          </div>
+        </div>
+        <button id="closeBandwidthTest" class="text-neutral-400 hover:text-neutral-600 transition-colors">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div id="modal-content" class="px-6 py-6">
+        
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          
+          <!-- Left Column: Test Configuration -->
+          <div id="test-config">
+            <h3 class="text-sm text-neutral-900 mb-4">Test Configuration</h3>
+            
+            <!-- Test Server Dropdown -->
+            <div class="mb-4">
+              <label class="block text-sm text-neutral-700 mb-2">Test Server</label>
+              <div class="relative">
+                <select id="bandwidth-server" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-900 bg-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+                  <option>Auto-select (Recommended)</option>
+                  <option>US East (New York)</option>
+                  <option>US West (Los Angeles)</option>
+                  <option>Europe (London)</option>
+                  <option>Asia (Singapore)</option>
+                </select>
+                <i class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 text-xs pointer-events-none fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <!-- Test Duration Input -->
+            <div class="mb-4">
+              <label class="block text-sm text-neutral-700 mb-2">Test Duration (seconds)</label>
+              <input type="number" id="bandwidth-duration" value="10" min="5" max="60" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+            </div>
+
+            <!-- Protocol Radio Buttons -->
+            <div>
+              <label class="block text-sm text-neutral-700 mb-3">Protocol</label>
+              <div class="space-y-2">
+                <label class="flex items-center cursor-pointer group">
+                  <input type="radio" name="bandwidth-protocol" value="tcp" checked class="w-4 h-4 text-neutral-600 border-neutral-300 focus:ring-neutral-500">
+                  <span class="ml-2 text-sm text-neutral-900 group-hover:text-neutral-700">TCP</span>
+                </label>
+                <label class="flex items-center cursor-pointer group">
+                  <input type="radio" name="bandwidth-protocol" value="udp" class="w-4 h-4 text-neutral-600 border-neutral-300 focus:ring-neutral-500">
+                  <span class="ml-2 text-sm text-neutral-900 group-hover:text-neutral-700">UDP</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Test Options -->
+          <div id="test-options">
+            <h3 class="text-sm text-neutral-900 mb-4">Test Options</h3>
+            
+            <!-- Parallel Connections Input -->
+            <div class="mb-4">
+              <label class="block text-sm text-neutral-700 mb-2">Parallel Connections</label>
+              <input type="number" id="bandwidth-parallel" value="5" min="1" max="20" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500">
+              <p class="text-xs text-neutral-500 mt-1">Number of simultaneous connections</p>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="space-y-3">
+              <label class="flex items-start cursor-pointer group">
+                <input type="checkbox" id="bandwidth-bidirectional" class="w-4 h-4 text-neutral-600 border-neutral-300 rounded focus:ring-neutral-500 mt-0.5">
+                <div class="ml-2">
+                  <span class="text-sm text-neutral-900 group-hover:text-neutral-700 block">Bidirectional Test</span>
+                  <span class="text-xs text-neutral-500">Test upload and download simultaneously</span>
+                </div>
+              </label>
+              
+              <label class="flex items-start cursor-pointer group">
+                <input type="checkbox" id="bandwidth-reverse" class="w-4 h-4 text-neutral-600 border-neutral-300 rounded focus:ring-neutral-500 mt-0.5">
+                <div class="ml-2">
+                  <span class="text-sm text-neutral-900 group-hover:text-neutral-700 block">Reverse Mode</span>
+                  <span class="text-xs text-neutral-500">Server sends data to client</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-neutral-200 mb-6"></div>
+
+        <!-- Action Buttons -->
+        <div id="test-actions" class="flex items-center justify-center gap-3">
+          <button id="start-bandwidth-test" class="px-5 py-2.5 bg-neutral-600 text-white rounded-md text-sm hover:bg-neutral-700 transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-play text-xs"></i>
+            Start Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div id="modal-footer" class="bg-neutral-50 px-6 py-4 rounded-b-lg border-t border-neutral-200 flex items-center justify-end gap-3">
+        <button class="px-4 py-2 bg-neutral-200 text-neutral-700 rounded-md text-sm hover:bg-neutral-300 transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Running Test UI (Hidden by default) -->
+    <div id="bandwidth-running-ui" style="display: none;">
+      <!-- Modal Header -->
+      <div id="modal-header" class="bg-neutral-50 px-6 py-4 border-b border-neutral-200 flex items-start justify-between">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 bg-neutral-300 rounded flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-gauge-high text-neutral-600 text-lg"></i>
+          </div>
+          <div>
+            <h2 class="text-lg text-neutral-900">Bandwidth Test - Running</h2>
+            <p class="text-sm text-neutral-500 mt-0.5">Real-time network speed monitoring</p>
+          </div>
+        </div>
+        <button id="closeBandwidthTestRunning" class="text-neutral-400 hover:text-neutral-600 transition-colors">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div id="modal-content" class="px-6 py-6 overflow-y-auto" style="max-height: calc(90vh - 200px);">
+        
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          
+          <!-- Left Column: Test Configuration (Readonly) -->
+          <div id="test-config">
+            <h3 class="text-sm text-neutral-900 mb-4">Test Configuration</h3>
+            
+            <!-- Test Server Dropdown -->
+            <div class="mb-4">
+              <label class="block text-sm text-neutral-700 mb-2">Test Server</label>
+              <div class="relative">
+                <select id="bandwidth-server-running" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-900 bg-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" disabled>
+                  <option>US East (New York)</option>
+                </select>
+                <i class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 text-xs pointer-events-none fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <!-- Test Duration Input -->
+            <div class="mb-4">
+              <label class="block text-sm text-neutral-700 mb-2">Test Duration (seconds)</label>
+              <input type="number" id="bandwidth-duration-running" value="30" min="5" max="60" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500" disabled>
+            </div>
+
+            <!-- Protocol Radio Buttons -->
+            <div>
+              <label class="block text-sm text-neutral-700 mb-3">Protocol</label>
+              <div class="space-y-2">
+                <label class="flex items-center cursor-pointer group">
+                  <input type="radio" name="bandwidth-protocol-running" value="tcp" checked class="w-4 h-4 text-neutral-600 border-neutral-300 focus:ring-neutral-500" disabled>
+                  <span class="ml-2 text-sm text-neutral-700">TCP</span>
+                </label>
+                <label class="flex items-center cursor-pointer group">
+                  <input type="radio" name="bandwidth-protocol-running" value="udp" class="w-4 h-4 text-neutral-600 border-neutral-300 focus:ring-neutral-500" disabled>
+                  <span class="ml-2 text-sm text-neutral-700">UDP</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Current Status -->
+          <div id="test-status">
+            <h3 class="text-sm text-neutral-900 mb-4">Current Status</h3>
+            
+            <!-- Progress Bar -->
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm text-neutral-700">Progress</span>
+                <span class="text-sm text-neutral-600">18/30 seconds</span>
+              </div>
+              <div class="w-full bg-neutral-200 rounded-full h-2">
+                <div class="bg-neutral-600 h-2 rounded-full" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <!-- Live Metrics -->
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-sm text-neutral-700">Download Speed</span>
+                <span class="text-sm text-neutral-900">156.8 Mbps</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-sm text-neutral-700">Upload Speed</span>
+                <span class="text-sm text-neutral-900">89.2 Mbps</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-sm text-neutral-700">Latency</span>
+                <span class="text-sm text-neutral-900">12 ms</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-sm text-neutral-700">Jitter</span>
+                <span class="text-sm text-neutral-900">2.1 ms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-neutral-200 mb-6"></div>
+
+        <!-- Action Buttons -->
+        <div id="test-actions" class="flex items-center justify-center gap-3 mb-6">
+          <button id="stop-bandwidth-test" class="px-5 py-2.5 bg-neutral-600 text-white rounded-md text-sm hover:bg-neutral-700 transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-stop text-xs"></i>
+            Stop Test
+          </button>
+          <button id="restart-bandwidth-test" class="px-5 py-2.5 bg-neutral-600 text-white rounded-md text-sm hover:bg-neutral-700 transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-rotate-right text-xs"></i>
+            Restart Test
+          </button>
+        </div>
+
+        <!-- Results Table -->
+        <div id="results-section">
+          <h3 class="text-sm text-neutral-900 mb-4">Test Results</h3>
+          
+          <div class="bg-neutral-50 rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-neutral-100 border-b border-neutral-200">
+                  <tr>
+                    <th class="px-4 py-3 text-left text-xs text-neutral-600 uppercase tracking-wider">Time (s)</th>
+                    <th class="px-4 py-3 text-left text-xs text-neutral-600 uppercase tracking-wider">Download</th>
+                    <th class="px-4 py-3 text-left text-xs text-neutral-600 uppercase tracking-wider">Upload</th>
+                    <th class="px-4 py-3 text-left text-xs text-neutral-600 uppercase tracking-wider">Latency</th>
+                    <th class="px-4 py-3 text-left text-xs text-neutral-600 uppercase tracking-wider">Jitter</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200">
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">18</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">156.8 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">89.2 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">12 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">2.1 ms</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">17</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">154.2 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">88.7 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">11 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">1.9 ms</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">16</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">158.1 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">90.4 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">13 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">2.3 ms</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">15</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">155.6 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">89.8 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">12 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">2.0 ms</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">14</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">152.9 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">87.3 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">14 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">2.4 ms</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 text-sm text-neutral-900">13</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">159.3 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">91.1 Mbps</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">11 ms</td>
+                    <td class="px-4 py-3 text-sm text-neutral-900">1.8 ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div id="modal-footer" class="bg-neutral-50 px-6 py-4 border-t border-neutral-200 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-sm text-neutral-600">
+          <i class="fa-solid fa-circle-info text-xs"></i>
+          <span>Test will automatically stop after 30 seconds</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="px-4 py-2 bg-white border border-neutral-300 text-neutral-700 rounded-md text-sm hover:bg-neutral-50 transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-download text-xs"></i>
+            Export Results
+          </button>
+          <button class="px-4 py-2 bg-neutral-200 text-neutral-700 rounded-md text-sm hover:bg-neutral-300 transition-colors">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Network Utility Section Implementation
+(function() {
+    'use strict';
+
+    console.log('[NETWORK-UTILITY] Initializing network utility section...');
+
+    // State management
+    const state = {
+        servers: [],
+        activeTests: new Map(),
+        updateIntervals: new Map(),
+        isLoading: false,
+        serverTestQueue: [],
+        isTestingServers: false,
+        testProgress: { current: 0, total: 0 },
+        isVisible: true // Add visibility state
+    };
+
+    // API endpoints
+    const endpoints = {
+        servers: {
+            status: '/api/network-utility/servers/status',
+            test: '/api/network-utility/servers/test'
+        },
+        traceroute: {
+            start: '/api/network-utility/traceroute/start',
+            stop: '/api/network-utility/traceroute/stop',
+            results: '/api/network-utility/traceroute/results'
+        },
+        ping: {
+            start: '/api/network-utility/ping/start',
+            stop: '/api/network-utility/ping/stop',
+            results: '/api/network-utility/ping/results'
+        },
+        dns: {
+            lookup: '/api/network-utility/dns/lookup'
+        },
+        bandwidth: {
+            start: '/api/network-utility/bandwidth/start',
+            stop: '/api/network-utility/bandwidth/stop',
+            status: '/api/network-utility/bandwidth/status'
+        }
+    };
+
+    // Utility functions
+    function log(message, data = '') {
+        console.log(`[NETWORK-UTILITY] ${message}`, data);
+    }
+
+    function showError(message) {
+        const errorDiv = document.getElementById('network-utility-error-message');
+        const errorText = document.getElementById('network-utility-error-text');
+
+        if (errorDiv && errorText) {
+            errorText.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => errorDiv.style.display = 'none', 5000);
+        }
+    }
+
+    function showSuccess(message) {
+        const successDiv = document.getElementById('network-utility-success-message');
+        const successText = document.getElementById('network-utility-success-text');
+
+        if (successDiv && successText) {
+            successText.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => successDiv.style.display = 'none', 5000);
+        }
+    }
+
+    async function makeApiRequest(method, url, data = null) {
+        try {
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            if (data && (method === 'POST' || method === 'PUT')) {
+                options.body = JSON.stringify(data);
+            }
+
+            log(`Making ${method} request to ${url}`);
+            const response = await fetch(url, options);
+
+            if (!response.ok) {
+                let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorMessage;
+                } catch (e) {
+                    // Ignore if response is not JSON
+                }
+                throw new Error(errorMessage);
+            }
+
+            const result = await response.json();
+            log(`Response received:`, Object.keys(result));
+            return result;
+        } catch (error) {
+            log(`Request failed for ${url}:`, error);
+            throw error;
+        }
+    }
+
+    function updateElement(id, content) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = content;
+        }
+    }
+
+    function showPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Add show class for CSS animations
+            popup.classList.add('show');
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Reset bandwidth test UI to selection mode when opening
+            if (popupId === 'bandwidthTestPopup') {
+                showBandwidthSelectionUI();
+            }
+        }
+    }
+
+    function hidePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            // Remove show class
+            popup.classList.remove('show');
+            popup.style.opacity = '0';
+            popup.style.visibility = 'hidden';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(0.9)';
+            }
+
+            // Restore body scroll
+            document.body.style.overflow = '';
+
+            // Stop bandwidth test if running when closing
+            if (popupId === 'bandwidthTestPopup') {
+                stopBandwidthTest();
+            }
+        }
+    }
+
+    // Bandwidth UI switching functions
+    function showBandwidthSelectionUI() {
+        const selectionUI = document.getElementById('bandwidth-selection-ui');
+        const runningUI = document.getElementById('bandwidth-running-ui');
+        
+        if (selectionUI) selectionUI.style.display = 'block';
+        if (runningUI) runningUI.style.display = 'none';
+    }
+
+    function showBandwidthRunningUI() {
+        const selectionUI = document.getElementById('bandwidth-selection-ui');
+        const runningUI = document.getElementById('bandwidth-running-ui');
+        
+        if (selectionUI) selectionUI.style.display = 'none';
+        if (runningUI) runningUI.style.display = 'block';
+        
+        // Copy configuration values to running UI
+        copyConfigurationToRunningUI();
+    }
+
+    function copyConfigurationToRunningUI() {
+        const serverSelect = document.getElementById('bandwidth-server');
+        const durationInput = document.getElementById('bandwidth-duration');
+        const protocolRadios = document.getElementsByName('bandwidth-protocol');
+        
+        const serverSelectRunning = document.getElementById('bandwidth-server-running');
+        const durationInputRunning = document.getElementById('bandwidth-duration-running');
+        const protocolRadiosRunning = document.getElementsByName('bandwidth-protocol-running');
+        
+        if (serverSelect && serverSelectRunning) {
+            serverSelectRunning.value = serverSelect.value;
+        }
+        
+        if (durationInput && durationInputRunning) {
+            durationInputRunning.value = durationInput.value;
+        }
+        
+        // Copy selected protocol
+        let selectedProtocol = 'tcp';
+        if (protocolRadios) {
+            for (const radio of protocolRadios) {
+                if (radio.checked) {
+                    selectedProtocol = radio.value;
+                    break;
+                }
+            }
+        }
+        
+        if (protocolRadiosRunning) {
+            for (const radio of protocolRadiosRunning) {
+                if (radio.value === selectedProtocol) {
+                    radio.checked = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Server status functions
+    async function loadServerStatus() {
+        try {
+            log('Loading server status...');
+            state.isLoading = true;
+
+            const response = await makeApiRequest('GET', endpoints.servers.status);
+
+            if (response.success && response.servers) {
+                state.servers = response.servers;
+                updateServerStatusDisplay(response.servers);
+                updateServerStatusCards(response.servers);
+                updateLastUpdateTime();
+                log('Server status loaded successfully');
+            } else {
+                showError('Failed to load server status');
+            }
+        } catch (error) {
+            log('Server status request failed:', error);
+            showError('Network error while loading server status');
+        } finally {
+            state.isLoading = false;
+        }
+    }
+
+    function updateServerStatusCards(servers) {
+        const totalServers = servers.length;
+        const onlineServers = servers.filter(s => s.status === 'Online').length;
+        const offlineServers = totalServers - onlineServers;
+        const avgPing = totalServers > 0 ?
+            (servers.reduce((sum, s) => sum + (s.ping_ms || 0), 0) / totalServers).toFixed(1) : 0;
+
+        updateElement('total-servers', totalServers.toString());
+        updateElement('online-servers', onlineServers.toString());
+        updateElement('offline-servers', offlineServers.toString());
+        updateElement('avg-ping', `${avgPing}ms`);
+    }
+
+    function updateServerStatusDisplay(servers) {
+        const tbody = document.getElementById('server-status-tbody');
+        if (!tbody) return;
+
+        if (servers.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="8" class="py-8 text-center text-neutral-500">
+                        No servers available
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        tbody.innerHTML = servers.map(server => `
+            <tr class="hover:bg-neutral-50">
+                <td class="py-3 px-4 text-sm text-neutral-900">${server.name || server.hostname}</td>
+                <td class="py-3 px-4 text-sm text-neutral-600">${server.location || 'Unknown'}</td>
+                <td class="py-3 px-4 text-sm text-neutral-600">${server.ip_address || server.hostname}</td>
+                <td class="py-3 px-4 text-sm text-neutral-600 text-right">${server.port}</td>
+                <td class="py-3 px-4 text-sm text-neutral-600 text-right">${server.load_percent || 0}%</td>
+                <td class="py-3 px-4 text-sm text-neutral-600 text-right">${(server.uptime_percent || 0).toFixed(1)}%</td>
+                <td class="py-3 px-4 text-center">
+                    <span class="px-2 py-1 text-xs rounded-full ${getServerStatusBadgeClass(server.status)}">
+                        ${server.status}
+                    </span>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <button class="test-server-btn text-neutral-600 hover:text-neutral-800 disabled:text-neutral-400" 
+                          onclick="window.testServer('${server.id}')" 
+                          data-server-id="${server.id}">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function getServerStatusBadgeClass(status) {
+        switch (status?.toLowerCase()) {
+            case 'online':
+                return 'bg-green-100 text-green-800';
+            case 'offline':
+                return 'bg-red-100 text-red-800';
+            case 'degraded':
+                return 'bg-yellow-100 text-yellow-800';
+            default:
+                return 'bg-gray-100 text-gray-800';
+        }
+    }
+
+    function updateLastUpdateTime() {
+        updateElement('last-update-time', new Date().toLocaleTimeString());
+    }
+
+    async function testServer(serverId) {
+        try {
+            log('Testing server:', serverId);
+            // Find the button and disable it
+            const testButton = document.querySelector(`.test-server-btn[data-server-id="${serverId}"]`);
+            if (testButton) {
+                testButton.disabled = true;
+                testButton.querySelector('i').classList.add('fa-spin');
+            }
+
+            const response = await makeApiRequest('POST', endpoints.servers.test, { serverId });
+
+            if (response.success) {
+                log(`Server test completed for ${serverId}: ${response.connected ? 'Connected' : 'Failed'}`);
+                // Update the specific server status in our local state
+                const serverIndex = state.servers.findIndex(s => s.id === serverId);
+                if (serverIndex !== -1) {
+                    state.servers[serverIndex].status = response.connected ? 'online' : 'offline';
+                    state.servers[serverIndex].last_tested = new Date().toISOString();
+                    state.servers[serverIndex].ping_ms = response.ping_ms || -1;
+                    state.servers[serverIndex].response_time_ms = response.response_time_ms || -1;
+                }
+                // Refresh the display
+                updateServerStatusDisplay(state.servers);
+                updateServerStatusCards(state.servers);
+            } else {
+                log('Server test failed for:', serverId);
+            }
+        } catch (error) {
+            log('Server test failed:', error);
+        } finally {
+             // Re-enable the button and remove spinner if it exists
+             const testButton = document.querySelector(`.test-server-btn[data-server-id="${serverId}"]`);
+             if (testButton) {
+                testButton.disabled = false;
+                testButton.querySelector('i').classList.remove('fa-spin');
+             }
+        }
+    }
+
+    async function testAllServers() {
+        if (state.isTestingServers) {
+            log('Server testing already in progress');
+            return;
+        }
+
+        try {
+            state.isTestingServers = true;
+            state.testProgress.current = 0;
+            state.testProgress.total = state.servers.length;
+
+            const testAllBtn = document.getElementById('test-all-servers-btn');
+            if (testAllBtn) {
+                testAllBtn.disabled = true;
+                testAllBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Testing All...';
+            }
+
+            log(`Starting test of ${state.servers.length} servers`);
+            showSuccess(`Starting test of ${state.servers.length} servers...`);
+
+            // Test servers in batches to avoid overwhelming the system
+            const batchSize = 5;
+            for (let i = 0; i < state.servers.length; i += batchSize) {
+                const batch = state.servers.slice(i, i + batchSize);
+                const promises = batch.map(server => testServer(server.id));
+
+                await Promise.allSettled(promises);
+                state.testProgress.current = Math.min(i + batchSize, state.servers.length);
+
+                // Update progress
+                const progress = Math.round((state.testProgress.current / state.testProgress.total) * 100);
+                if (testAllBtn) {
+                    testAllBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i>Testing... ${progress}%`;
+                }
+
+                // Small delay between batches
+                if (i + batchSize < state.servers.length) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
+
+            showSuccess(`Server testing completed. Tested ${state.servers.length} servers.`);
+            log('All server testing completed');
+
+        } catch (error) {
+            log('Error during bulk server testing:', error);
+            showError('Error occurred during server testing');
+        } finally {
+            state.isTestingServers = false;
+
+            const testAllBtn = document.getElementById('test-all-servers-btn');
+            if (testAllBtn) {
+                testAllBtn.disabled = false;
+                testAllBtn.innerHTML = '<i class="fa-solid fa-play mr-2"></i>Test All Servers';
+            }
+        }
+    }
+
+    function startAutoServerTesting() {
+        stopAutoServerTesting(); // Clear any existing interval
+
+        // Only start if section is visible
+        if (!state.isVisible) {
+            log('Auto server testing not started - section not visible');
+            return;
+        }
+
+        const autoTestToggle = document.getElementById('auto-test-servers');
+        if (!autoTestToggle.checked) {
+            return;
+        }
+
+        const autoTestDelayInput = document.getElementById('auto-test-delay');
+        const delay = parseInt(autoTestDelayInput.value) || 60;
+
+        const interval = setInterval(() => {
+            // Double-check visibility before testing servers
+            if (!state.isTestingServers && state.servers.length > 0 && state.isVisible) {
+                log('Auto-testing servers...');
+                testAllServers();
+            }
+        }, delay * 1000);
+
+        state.updateIntervals.set('autoServerTest', interval);
+        log(`Auto server testing started with ${delay}s interval`);
+    }
+
+    function stopAutoServerTesting() {
+        const interval = state.updateIntervals.get('autoServerTest');
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete('autoServerTest');
+            log('Auto server testing stopped');
+        }
+    }
+
+    // Traceroute functions
+    async function startTraceroute() {
+        try {
+            const targetHost = document.getElementById('traceroute-target-host')?.value.trim();
+            const maxHops = parseInt(document.getElementById('traceroute-max-hops')?.value) || 30;
+            const timeout = parseInt(document.getElementById('traceroute-timeout')?.value) || 5;
+            const protocol = document.querySelector('input[name="traceroute-protocol"]:checked')?.value || 'icmp';
+
+            if (!targetHost) {
+                showError('Please enter a target host');
+                return;
+            }
+
+            const config = {
+                targetHost: targetHost,
+                maxHops: maxHops,
+                timeout: timeout,
+                protocol: protocol
+            };
+
+            log('Starting traceroute test:', config);
+            clearTracerouteResults();
+            updateTracerouteUI('running');
+
+            // Start the traceroute test
+            const response = await makeApiRequest('POST', endpoints.traceroute.start, config);
+
+            if (response.success) {
+                const testId = response.testId;
+                state.activeTests.set('traceroute', testId);
+                startTracerouteMonitoring(testId);
+                showSuccess('Traceroute started successfully');
+
+                // Start elapsed time counter
+                startElapsedTimeCounter('traceroute');
+            } else {
+                updateTracerouteUI('ready');
+                throw new Error(response.message || 'Failed to start traceroute');
+            }
+        } catch (error) {
+            log('Traceroute start failed:', error);
+            updateTracerouteUI('ready');
+            showError('Failed to start traceroute: ' + error.message);
+        }
+    }
+
+    async function stopTraceroute() {
+        try {
+            const testId = state.activeTests.get('traceroute');
+            const response = await makeApiRequest('POST', endpoints.traceroute.stop, { test_id: testId });
+
+            stopTracerouteMonitoring();
+            stopElapsedTimeCounter('traceroute');
+            updateTracerouteUI('stopped');
+
+            if (response.success) {
+                showSuccess('Traceroute stopped successfully');
+            }
+        } catch (error) {
+            log('Traceroute stop failed:', error);
+            showError('Failed to stop traceroute');
+        }
+    }
+
+    function resetTraceroute() {
+        stopTracerouteMonitoring();
+        stopElapsedTimeCounter('traceroute');
+        clearTracerouteResults();
+        updateTracerouteUI('ready');
+        state.activeTests.delete('traceroute');
+    }
+
+    function startTracerouteMonitoring(testId) {
+        stopTracerouteMonitoring();
+
+        const interval = setInterval(async () => {
+            await updateTracerouteProgress(testId);
+        }, 2000); // Poll every 2 seconds
+
+        state.updateIntervals.set('traceroute', interval);
+    }
+
+    function stopTracerouteMonitoring() {
+        const interval = state.updateIntervals.get('traceroute');
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete('traceroute');
+        }
+    }
+
+    async function updateTracerouteProgress(testId) {
+        try {
+            const response = await makeApiRequest('GET', `${endpoints.traceroute.results}?test_id=${testId}`);
+
+            if (response.success && response.activeTests && response.activeTests.length > 0) {
+                const testData = response.activeTests.find(test => test.testId === testId);
+
+                if (!testData) {
+                    log('Test not found:', testId);
+                    return;
+                }
+
+                // Update progress information
+                if (testData.progress !== undefined) {
+                    const progress = Math.round(testData.progress);
+                    updateElement('traceroute-progress-text', `${progress}% Complete`);
+
+                    const progressBar = document.getElementById('traceroute-progress-bar');
+                    if (progressBar) {
+                        progressBar.style.width = `${progress}%`;
+                    }
+                }
+
+                // Parse results from JSON string if needed
+                let hops = [];
+                if (testData.results) {
+                    try {
+                        hops = typeof testData.results === 'string' ? JSON.parse(testData.results) : testData.results;
+                    } catch (parseError) {
+                        log('Failed to parse traceroute results:', parseError);
+                        hops = [];
+                    }
+                }
+
+                // Update current hop information
+                const maxHops = parseInt(document.getElementById('traceroute-max-hops')?.value || 30);
+                const currentHop = hops.length > 0 ? hops[hops.length - 1].hop : 0;
+                updateElement('traceroute-current-hop', `${currentHop} of ${maxHops}`);
+
+                // Update results table
+                if (Array.isArray(hops) && hops.length > 0) {
+                    updateTracerouteResults(hops);
+                    updateElement('traceroute-total-hops', hops.length.toString());
+                }
+
+                // Check if test is complete
+                if (testData.isRunning === false) {
+                    stopTracerouteMonitoring();
+                    stopElapsedTimeCounter('traceroute');
+                    updateTracerouteUI('complete');
+                } else if (testData.isRunning === true) {
+                    // Update UI to show running state
+                    updateTracerouteUI('running');
+                }
+            }
+        } catch (error) {
+            log('Traceroute progress update failed:', error);
+            // Don't show error messages for monitoring failures to avoid spam
+        }
+    }
+
+    function updateTracerouteResults(hops) {
+        const tbody = document.getElementById('traceroute-results-tbody');
+        if (!tbody) return;
+
+        // Remove no-data row if it exists
+        const noDataRow = document.getElementById('traceroute-no-data');
+        if (noDataRow) {
+            noDataRow.remove();
+        }
+
+        // Clear existing rows to avoid duplicates
+        tbody.innerHTML = '';
+
+        // Add or update each hop
+        hops.forEach(hop => {
+            addOrUpdateTracerouteHop(hop);
+        });
+    }
+
+    function addOrUpdateTracerouteHop(hop) {
+        const tbody = document.getElementById('traceroute-results-tbody');
+        if (!tbody) return;
+
+        // Check if row already exists and update it, or create new one
+        let row = tbody.querySelector(`tr[data-hop="${hop.hop}"]`);
+        if (!row) {
+            row = document.createElement('tr');
+            row.className = 'hover:bg-neutral-50';
+            row.dataset.hop = hop.hop;
+            tbody.appendChild(row);
+        }
+
+        const statusIcon = getTracerouteStatusIcon(hop.status);
+        const formatRTT = (rtt) => {
+            if (rtt === null || rtt === undefined || rtt <= 0) return '*';
+            return `${rtt.toFixed(3)}ms`;
+        };
+
+        // Map backend field names correctly
+        const hopNumber = hop.hop || 0;
+        const ipAddress = hop.ip || hop.hostname || '*';
+        const hostname = hop.hostname || hop.ip || '*';
+        const rtt1 = hop.rtt1 || null;
+        const rtt2 = hop.rtt2 || null;
+        const rtt3 = hop.rtt3 || null;
+
+        row.innerHTML = `
+            <td class="py-3 px-4 text-neutral-800">${hopNumber}</td>
+            <td class="py-3 px-4 text-neutral-600 font-mono text-sm">${ipAddress}</td>
+            <td class="py-3 px-4 text-neutral-600 text-sm">${hostname}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right font-mono text-sm">${formatRTT(rtt1)}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right font-mono text-sm">${formatRTT(rtt2)}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right font-mono text-sm">${formatRTT(rtt3)}</td>
+            <td class="py-3 px-4 text-center">${statusIcon}</td>
+        `;
+    }
+
+    function getTracerouteStatusIcon(status) {
+        switch (status?.toLowerCase()) {
+            case 'success':
+            case 'completed':
+            case 'reached':
+                return '<i class="fa-solid fa-check text-green-500"></i>';
+            case 'timeout':
+            case 'no_response':
+                return '<i class="fa-solid fa-clock text-yellow-500"></i>';
+            case 'running':
+            case 'in_progress':
+                return '<i class="fa-solid fa-spinner fa-spin text-blue-500"></i>';
+            case 'error':
+            case 'failed':
+                return '<i class="fa-solid fa-exclamation-triangle text-red-500"></i>';
+            default:
+                return '<i class="fa-solid fa-question text-gray-500"></i>';
+        }
+    }
+
+    function updateTracerouteUI(status) {
+        const startBtn = document.getElementById('start-traceroute-btn');
+        const stopBtn = document.getElementById('stop-traceroute-btn');
+        const resetBtn = document.getElementById('reset-traceroute-btn');
+        const statusIndicator = document.getElementById('traceroute-status-indicator');
+        const statusText = document.getElementById('traceroute-status-text');
+        const popup = document.getElementById('traceroutePopup');
+        const modalContent = popup?.querySelector('.popup-content');
+        const resultsSection = document.getElementById('traceroute-results');
+
+        // Update UI based on status
+        switch (status) {
+            case 'ready':
+            case 'complete':
+            case 'stopped':
+            case 'error':
+                // Show configuration UI (smaller, no results)
+                if (modalContent) {
+                    modalContent.style.width = '800px';
+                    modalContent.style.maxWidth = '56rem'; // 4xl in Tailwind
+                }
+                if (resultsSection) {
+                    resultsSection.style.display = 'none';
+                }
+                
+                // Enable configuration inputs
+                enableTracerouteInputs(true);
+                
+                // Update buttons
+                if (startBtn) {
+                    startBtn.disabled = false;
+                    startBtn.style.display = 'flex';
+                }
+                if (stopBtn) {
+                    stopBtn.disabled = true;
+                    stopBtn.style.display = 'none';
+                }
+                if (resetBtn) {
+                    resetBtn.disabled = false;
+                }
+                break;
+                
+            case 'running':
+                // Show running UI (larger, with results)
+                if (modalContent) {
+                    modalContent.style.width = '1200px';
+                    modalContent.style.maxWidth = '72rem'; // 6xl in Tailwind
+                }
+                if (resultsSection) {
+                    resultsSection.style.display = 'block';
+                }
+                
+                // Disable configuration inputs
+                enableTracerouteInputs(false);
+                
+                // Update buttons
+                if (startBtn) {
+                    startBtn.disabled = true;
+                    startBtn.style.display = 'none';
+                }
+                if (stopBtn) {
+                    stopBtn.disabled = false;
+                    stopBtn.style.display = 'flex';
+                }
+                if (resetBtn) {
+                    resetBtn.disabled = true;
+                }
+                break;
+        }
+
+        // Update status indicator
+        if (statusIndicator && statusText) {
+            let colorClass = '';
+            let statusTextContent = '';
+
+            switch (status) {
+                case 'ready':
+                    colorClass = 'bg-neutral-400';
+                    statusTextContent = 'Ready';
+                    break;
+                case 'running':
+                    colorClass = 'bg-neutral-500 animate-pulse';
+                    statusTextContent = 'Running';
+                    break;
+                case 'complete':
+                    colorClass = 'bg-green-500';
+                    statusTextContent = 'Complete';
+                    break;
+                case 'stopped':
+                    colorClass = 'bg-yellow-500';
+                    statusTextContent = 'Stopped';
+                    break;
+                case 'error':
+                    colorClass = 'bg-red-500';
+                    statusTextContent = 'Error';
+                    break;
+            }
+
+            statusIndicator.className = `w-2 h-2 ${colorClass} rounded-full`;
+            statusText.textContent = statusTextContent;
+        }
+    }
+
+    function enableTracerouteInputs(enable) {
+        const targetHost = document.getElementById('traceroute-target-host');
+        const maxHops = document.getElementById('traceroute-max-hops');
+        const timeout = document.getElementById('traceroute-timeout');
+        const protocolRadios = document.querySelectorAll('input[name="traceroute-protocol"]');
+        
+        if (targetHost) {
+            targetHost.disabled = !enable;
+            targetHost.className = enable ? 
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400' :
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-neutral-50';
+        }
+        
+        if (maxHops) {
+            maxHops.disabled = !enable;
+            maxHops.className = enable ? 
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400' :
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-neutral-50';
+        }
+        
+        if (timeout) {
+            timeout.disabled = !enable;
+            timeout.className = enable ? 
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400' :
+                'w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-neutral-50';
+        }
+        
+        protocolRadios.forEach(radio => {
+            radio.disabled = !enable;
+            const label = radio.parentElement;
+            if (label && label.querySelector('span')) {
+                label.querySelector('span').className = enable ? 'text-sm' : 'text-sm text-neutral-500';
+            }
+        });
+    }
+
+    function clearTracerouteResults() {
+        const tbody = document.getElementById('traceroute-results-tbody');
+        if (tbody) {
+            tbody.innerHTML = '<tr id="traceroute-no-data"><td colspan="7" class="py-8 text-center text-neutral-500">Click "Start Traceroute" to begin network path analysis</td></tr>';
+        }
+
+        updateElement('traceroute-current-hop', '0 of 30');
+        updateElement('traceroute-elapsed-time', '00:00');
+        updateElement('traceroute-total-hops', '0');
+        updateElement('traceroute-progress-text', '0% Complete');
+
+        const progressBar = document.getElementById('traceroute-progress-bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
+    }
+
+    // Elapsed time counter for traceroute
+    function startElapsedTimeCounter(testType) {
+        stopElapsedTimeCounter(testType);
+
+        const startTime = Date.now();
+        const interval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            updateElement(`${testType}-elapsed-time`, timeString);
+        }, 1000);
+
+        state.updateIntervals.set(`${testType}-timer`, interval);
+    }
+
+    function stopElapsedTimeCounter(testType) {
+        const interval = state.updateIntervals.get(`${testType}-timer`);
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete(`${testType}-timer`);
+        }
+    }
+
+    // Ping test functions
+    async function startPingTest() {
+        try {
+            const targetHost = document.getElementById('ping-target-host')?.value.trim();
+            const count = parseInt(document.getElementById('ping-count')?.value) || 10;
+            const packetSize = parseInt(document.getElementById('ping-size')?.value) || 64;
+            const interval = parseFloat(document.getElementById('ping-interval')?.value) || 1;
+            const timeout = parseInt(document.getElementById('ping-timeout')?.value) || 5;
+            const continuous = document.getElementById('ping-continuous')?.checked || false;
+
+
+            if (!targetHost) {
+                showError('Please enter a target host');
+                return;
+            }
+
+            const config = {
+                targetHost: targetHost,
+                count: continuous ? 0 : count, // If continuous, send 0 count to indicate continuous
+                packetSize: packetSize,
+                interval: interval,
+                timeout: timeout,
+                continuous: continuous // Explicitly pass the continuous flag
+            };
+
+            log('Starting ping test:', config);
+
+            const response = await makeApiRequest('POST', endpoints.ping.start, config);
+
+            if (response.success) {
+                const testId = response.testId;
+                state.activeTests.set('ping', testId);
+                updatePingUI('running');
+                clearPingResults();
+                startPingMonitoring(testId);
+                showSuccess('Ping test started successfully');
+            } else {
+                throw new Error(response.message || 'Failed to start ping test');
+            }
+        } catch (error) {
+            log('Ping test start failed:', error);
+            showError('Failed to start ping test: ' + error.message);
+        }
+    }
+
+    async function stopPingTest() {
+        try {
+            const response = await makeApiRequest('POST', endpoints.ping.stop);
+
+            if (response.success) {
+                stopPingMonitoring();
+                updatePingUI('stopped');
+                showSuccess('Ping test stopped successfully');
+            }
+        } catch (error) {
+            log('Ping test stop failed:', error);
+            showError('Failed to stop ping test');
+        }
+    }
+
+    async function restartPingTest() {
+        try {
+            // Stop current test if running
+            if (state.activeTests.has('ping')) {
+                await makeApiRequest('POST', endpoints.ping.stop);
+                stopPingMonitoring();
+            }
+            
+            // Clear results and reset UI
+            clearPingResults();
+            updatePingUI('ready');
+            
+            // Start new test with same configuration
+            await startPingTest();
+        } catch (error) {
+            log('Ping test restart failed:', error);
+            showError('Failed to restart ping test: ' + error.message);
+        }
+    }
+
+    function startPingMonitoring(testId) {
+        stopPingMonitoring();
+
+        const interval = setInterval(async () => {
+            await updatePingProgress(testId);
+        }, 1000);
+
+        state.updateIntervals.set('ping', interval);
+    }
+
+    function stopPingMonitoring() {
+        const interval = state.updateIntervals.get('ping');
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete('ping');
+        }
+    }
+
+    async function updatePingProgress(testId) {
+        try {
+            const response = await makeApiRequest('GET', endpoints.ping.results);
+
+            if (response.success && response.activeTests) {
+                const test = response.activeTests.find(t => t.testId === testId);
+
+                if (test) {
+                    updatePingDisplay(test);
+
+                    if (!test.isRunning) {
+                        stopPingMonitoring();
+                        updatePingUI('complete');
+                    }
+                }
+            }
+        } catch (error) {
+            log('Ping progress update failed:', error);
+        }
+    }
+
+    function updatePingDisplay(test) {
+        // Update statistics
+        updateElement('ping-packets-sent', test.packetsSent || 0);
+        updateElement('ping-packets-received', test.packetsReceived || 0);
+
+        const packetLoss = test.packetsSent > 0 ?
+            Math.round(((test.packetsSent - test.packetsReceived) / test.packetsSent) * 100) : 0;
+        updateElement('ping-packet-loss', `${packetLoss}%`);
+
+        const avgRtt = test.averageRtt || 0;
+        updateElement('ping-avg-latency', `${avgRtt.toFixed(1)}ms`);
+
+        // Update results table
+        if (test.realTimeResults && Array.isArray(test.realTimeResults)) {
+            updatePingResults(test.realTimeResults);
+        }
+    }
+
+    function updatePingResults(results) {
+        const tbody = document.getElementById('ping-results-tbody');
+        if (!tbody) return;
+
+        const noDataRow = document.getElementById('ping-no-data');
+        if (noDataRow) {
+            noDataRow.remove();
+        }
+
+        results.forEach(ping => {
+            addOrUpdatePingResult(ping);
+        });
+    }
+
+    function addOrUpdatePingResult(ping) {
+        const tbody = document.getElementById('ping-results-tbody');
+        if (!tbody) return;
+
+        let row = tbody.querySelector(`tr[data-seq="${ping.sequence}"]`);
+
+        if (!row) {
+            row = document.createElement('tr');
+            row.className = 'hover:bg-neutral-50';
+            row.dataset.seq = ping.sequence;
+            tbody.appendChild(row);
+        }
+
+        const statusIcon = getPingStatusIcon(ping.status);
+        const rtt = ping.rtt && ping.rtt > 0 ? `${ping.rtt.toFixed(1)}` : 'timeout';
+
+        row.innerHTML = `
+            <td class="py-3 px-4 text-neutral-800">${ping.sequence}</td>
+            <td class="py-3 px-4 text-neutral-600">${ping.host || ping.targetHost}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right">${rtt}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right">${ping.ttl || '-'}</td>
+            <td class="py-3 px-4 text-neutral-600 text-right">${ping.size || 64}</td>
+            <td class="py-3 px-4 text-center">${statusIcon}</td>
+            <td class="py-3 px-4 text-neutral-600">${new Date(ping.timestamp).toLocaleTimeString()}</td>
+        `;
+    }
+
+    function getPingStatusIcon(status) {
+        switch (status?.toLowerCase()) {
+            case 'success':
+                return '<i class="fa-solid fa-check text-green-500"></i>';
+            case 'timeout':
+                return '<i class="fa-solid fa-clock text-red-500"></i>';
+            case 'running':
+                return '<i class="fa-solid fa-spinner fa-spin text-blue-500"></i>';
+            case 'error':
+                return '<i class="fa-solid fa-exclamation-triangle text-red-500"></i>';
+            default:
+                return '<i class="fa-solid fa-question text-gray-500"></i>';
+        }
+    }
+
+    function updatePingUI(status) {
+        const startBtn = document.getElementById('start-ping-test');
+        const stopBtn = document.getElementById('stop-ping-test');
+        const restartBtn = document.getElementById('restart-ping-test');
+        const configContent = document.getElementById('ping-config-content');
+        const runningContent = document.getElementById('ping-running-content');
+        const modal = document.getElementById('ping-modal');
+        const popup = document.getElementById('pingTestPopup');
+        const modalContent = popup?.querySelector('.popup-content');
+
+        // Handle UI state switching
+        if (status === 'running') {
+            // Switch to running UI
+            if (configContent) configContent.style.display = 'none';
+            if (runningContent) runningContent.style.display = 'block';
+            
+            // Expand modal for running UI (match traceroute expansion)
+            if (modal) {
+                modal.classList.remove('max-w-2xl');
+                modal.classList.add('max-w-6xl');
+            }
+            if (modalContent) {
+                modalContent.style.width = '1200px';
+                modalContent.style.maxWidth = '72rem'; // 6xl in Tailwind
+            }
+            
+            // Copy values from config to running display
+            const targetHost = document.getElementById('ping-target-host')?.value || '';
+            const count = document.getElementById('ping-count')?.value || '10';
+            const size = document.getElementById('ping-size')?.value || '64';
+            const interval = document.getElementById('ping-interval')?.value || '1';
+            const timeout = document.getElementById('ping-timeout')?.value || '5';
+            const continuous = document.getElementById('ping-continuous')?.checked || false;
+            
+            document.getElementById('ping-target-host-running').value = targetHost;
+            document.getElementById('ping-count-running').value = count;
+            document.getElementById('ping-size-running').value = size;
+            document.getElementById('ping-interval-running').value = interval;
+            document.getElementById('ping-timeout-running').value = timeout;
+            document.getElementById('continuous-ping-running').checked = continuous;
+            
+        } else {
+            // Switch back to configuration UI
+            if (configContent) configContent.style.display = 'block';
+            if (runningContent) runningContent.style.display = 'none';
+            
+            // Shrink modal back to original size
+            if (modal) {
+                modal.classList.remove('max-w-6xl');
+                modal.classList.add('max-w-2xl');
+            }
+            if (modalContent) {
+                modalContent.style.width = '';
+                modalContent.style.maxWidth = '';
+            }
+        }
+        
+        // Update button states
+        if (startBtn) {
+            startBtn.disabled = (status === 'running');
+        }
+        if (stopBtn) {
+            stopBtn.disabled = (status !== 'running');
+        }
+        if (restartBtn) {
+            restartBtn.disabled = (status === 'running');
+        }
+    }
+
+    function copyPingConfigToRunning() {
+        // Copy configuration values to running display
+        const targetHost = document.getElementById('ping-target-host')?.value;
+        const count = document.getElementById('ping-count')?.value;
+        const size = document.getElementById('ping-size')?.value;
+        const interval = document.getElementById('ping-interval')?.value;
+        const timeout = document.getElementById('ping-timeout')?.value;
+        const continuous = document.getElementById('continuous-ping')?.checked;
+
+        if (targetHost) {
+            const runningTarget = document.getElementById('ping-target-host-running');
+            if (runningTarget) runningTarget.value = targetHost;
+        }
+        if (count) {
+            const runningCount = document.getElementById('ping-count-running');
+            if (runningCount) runningCount.value = count;
+        }
+        if (size) {
+            const runningSize = document.getElementById('ping-size-running');
+            if (runningSize) runningSize.value = size;
+        }
+        if (interval) {
+            const runningInterval = document.getElementById('ping-interval-running');
+            if (runningInterval) runningInterval.value = interval;
+        }
+        if (timeout) {
+            const runningTimeout = document.getElementById('ping-timeout-running');
+            if (runningTimeout) runningTimeout.value = timeout;
+        }
+        
+        const runningContinuous = document.getElementById('continuous-ping-running');
+        if (runningContinuous) runningContinuous.checked = continuous;
+    }
+
+    function clearPingResults() {
+        const tbody = document.getElementById('ping-results-tbody');
+        if (tbody) {
+            tbody.innerHTML = '<tr id="ping-no-data"><td colspan="6" class="px-4 py-8 text-center text-neutral-500">Click "Start Ping Test" to begin connectivity testing</td></tr>';
+        }
+
+        updateElement('ping-packets-sent', '0');
+        updateElement('ping-packets-received', '0');
+        updateElement('ping-packet-loss', '0%');
+        updateElement('ping-avg-latency', '0ms');
+    }
+
+    // DNS lookup functions
+    async function startDnsLookup() {
+        try {
+            const domain = document.getElementById('dns-domain')?.value.trim();
+            const recordType = document.getElementById('dns-record-type')?.value || 'A';
+            const dnsServer = document.getElementById('dns-server')?.value.trim() || 'default'; // Use 'default' if empty
+            const timeout = parseInt(document.getElementById('dns-timeout')?.value) || 5;
+            const trace = document.getElementById('dns-trace')?.checked || false;
+            const recursive = document.getElementById('dns-recursive')?.checked || true;
+
+            if (!domain) {
+                showError('Please enter a domain or IP address');
+                return;
+            }
+
+            const config = {
+                domain: domain,
+                recordType: recordType,
+                dnsServer: dnsServer,
+                timeout: timeout,
+                trace: trace,
+                recursive: recursive
+            };
+
+            log('Starting DNS lookup:', config);
+
+            // Clear previous results
+            clearDnsResults();
+            updateDnsUI('running');
+
+            const response = await makeApiRequest('POST', endpoints.dns.lookup, config);
+
+            if (response.success) {
+                showSuccess('DNS lookup completed successfully');
+                displayDnsResults(response);
+                updateDnsUI('complete');
+            } else {
+                updateDnsUI('error'); // Update UI to error state
+                throw new Error(response.message || 'Failed to perform DNS lookup');
+            }
+        } catch (error) {
+            log('DNS lookup failed:', error);
+            updateDnsUI('error'); // Ensure UI is in error state
+            showError('Failed to perform DNS lookup: ' + error.message);
+        }
+    }
+
+    function displayDnsResults(response) {
+        const resultsSection = document.getElementById('dns-results-section');
+        const recordsContainer = document.getElementById('dns-records-container');
+
+        if (resultsSection) {
+            resultsSection.classList.remove('hidden');
+        }
+
+        // Update status information with real data from response
+        const queryTime = response.query_time_ms || response.queryTime || 0;
+        const serverUsed = response.dns_server || response.server_used || 'System Default';
+        const recordsCount = response.records ? response.records.length : 0;
+        const responseCode = response.response_code || response.responseCode || 'NOERROR';
+
+        updateElement('dns-query-time', `${queryTime}ms`);
+        updateElement('dns-server-used', serverUsed);
+        updateElement('dns-records-count', recordsCount.toString());
+        updateElement('dns-response-code', responseCode);
+
+        // Display actual DNS records
+        if (recordsContainer && response.records && Array.isArray(response.records)) {
+            if (response.records.length === 0) {
+                recordsContainer.innerHTML = `
+                    <div class="text-center text-neutral-500 py-8">
+                        <i class="fa-solid fa-exclamation-triangle text-neutral-400 text-2xl mb-2"></i>
+                        <div>No DNS records found for this query</div>
+                    </div>
+                `;
+            } else {
+                recordsContainer.innerHTML = `
+                    <div class="space-y-3">
+                        ${response.records.map(record => createDnsRecordElement(record)).join('')}
+                    </div>
+                `;
+            }
+        } else {
+            recordsContainer.innerHTML = `
+                <div class="text-center text-neutral-500 py-8">
+                    <i class="fa-solid fa-exclamation-triangle text-neutral-400 text-2xl mb-2"></i>
+                    <div>Invalid response format received</div>
+                </div>
+            `;
+        }
+    }
+
+    function createDnsRecordElement(record) {
+        const recordType = record.type || record.record_type || 'UNKNOWN';
+        const recordValue = record.value || record.data || record.address || 'No data';
+        const ttl = record.ttl || record.time_to_live || 'Unknown';
+        const priority = record.priority || record.preference;
+        const name = record.name || record.hostname || 'Unknown';
+
+        let additionalInfo = '';
+
+        // Add specific information based on record type
+        switch (recordType.toUpperCase()) {
+            case 'MX':
+                if (priority !== undefined) {
+                    additionalInfo = `<div class="text-xs text-neutral-500 mt-1">Priority: ${priority}</div>`;
+                }
+                break;
+            case 'SOA':
+                if (record.serial) {
+                    additionalInfo = `<div class="text-xs text-neutral-500 mt-1">Serial: ${record.serial}</div>`;
+                }
+                break;
+            case 'SRV':
+                if (record.port && record.weight) {
+                    additionalInfo = `<div class="text-xs text-neutral-500 mt-1">Port: ${record.port}, Weight: ${record.weight}</div>`;
+                }
+                break;
+        }
+
+        return `
+            <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm bg-neutral-100 text-neutral-800 px-2 py-1 rounded font-mono">${recordType}</span>
+                    <span class="text-sm text-neutral-500">TTL: ${ttl}</span>
+                </div>
+                <div class="text-neutral-800 font-medium">${name}</div>
+                <div class="text-neutral-600 font-mono text-sm mt-1">${recordValue}</div>
+                ${additionalInfo}
+            </div>
+        `;
+    }
+
+    function updateDnsUI(status) {
+        const lookupBtn = document.getElementById('start-dns-lookup');
+        const statusIndicator = document.getElementById('dns-status-indicator');
+        const statusText = document.getElementById('dns-status-text');
+
+        if (lookupBtn) {
+            lookupBtn.disabled = (status === 'running');
+
+            if (status === 'running') {
+                lookupBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Looking up...';
+            } else {
+                lookupBtn.innerHTML = '<i class="fa-solid fa-search mr-2"></i>Lookup';
+            }
+        }
+
+        if (statusIndicator && statusText) {
+            let colorClass = '';
+            let statusTextValue = '';
+
+            switch (status) {
+                case 'ready':
+                    colorClass = 'bg-gray-400';
+                    statusTextValue = 'Ready';
+                    break;
+                case 'running':
+                    colorClass = 'bg-blue-500 animate-pulse';
+                    statusTextValue = 'Looking up...';
+                    break;
+                case 'complete':
+                    colorClass = 'bg-green-500';
+                    statusTextValue = 'Complete';
+                    break;
+                case 'error':
+                    colorClass = 'bg-red-500';
+                    statusTextValue = 'Error';
+                    break;
+            }
+
+            statusIndicator.className = `w-2 h-2 ${colorClass} rounded-full mr-2`;
+            statusText.textContent = statusTextValue;
+        }
+    }
+
+    function clearDnsResults() {
+        const resultsSection = document.getElementById('dns-results-section');
+        const recordsContainer = document.getElementById('dns-records-container');
+
+        if (resultsSection) {
+            resultsSection.classList.add('hidden');
+        }
+
+        if (recordsContainer) {
+            recordsContainer.innerHTML = `
+                <div class="text-center text-neutral-500 py-8">
+                    No DNS records to display
+                </div>
+            `;
+        }
+
+        // Reset status fields
+        updateElement('dns-query-time', '0ms');
+        updateElement('dns-server-used', 'System Default');
+        updateElement('dns-records-count', '0');
+        updateElement('dns-response-code', 'NOERROR');
+    }
+
+    function copyDnsResults() {
+        const recordsContainer = document.getElementById('dns-records-container');
+        if (!recordsContainer) return;
+
+        const domain = document.getElementById('dns-domain')?.value || 'unknown';
+        const recordType = document.getElementById('dns-record-type')?.value || 'A';
+        const queryTime = document.getElementById('dns-query-time')?.textContent || '0ms';
+        const serverUsed = document.getElementById('dns-server-used')?.textContent || 'Unknown';
+
+        let text = `DNS Lookup Results for ${domain} (${recordType})\n`;
+        text += `Query Time: ${queryTime}\n`;
+        text += `DNS Server: ${serverUsed}\n`;
+        text += `Timestamp: ${new Date().toLocaleString()}\n\n`;
+
+        const records = recordsContainer.querySelectorAll('.bg-neutral-50');
+        if (records.length === 0) {
+            text += 'No records found\n';
+        } else {
+            records.forEach((record, index) => {
+                const type = record.querySelector('.bg-neutral-100')?.textContent?.trim() || 'Unknown';
+                const name = record.querySelector('.text-neutral-800')?.textContent?.trim() || 'Unknown';
+                const value = record.querySelector('.font-mono')?.textContent?.trim() || 'Unknown';
+                const ttl = record.querySelector('.text-neutral-500')?.textContent?.replace('TTL: ', '').trim() || 'Unknown';
+
+                text += `Record ${index + 1}:\n`;
+                text += `  Type: ${type}\n`;
+                text += `  Name: ${name}\n`;
+                text += `  Value: ${value}\n`;
+                text += `  TTL: ${ttl}\n\n`;
+            });
+        }
+
+        navigator.clipboard.writeText(text).then(() => {
+            showSuccess('DNS results copied to clipboard');
+        }).catch(() => {
+            showError('Failed to copy results to clipboard');
+        });
+    }
+
+    // Bandwidth test functions
+    async function startBandwidthTest() {
+        try {
+            const targetServer = document.getElementById('bandwidth-server')?.value;
+            const duration = parseInt(document.getElementById('bandwidth-duration')?.value) || 10;
+            const protocol = document.querySelector('input[name="bandwidth-protocol"]:checked')?.value || 'tcp';
+            const parallelConnections = parseInt(document.getElementById('bandwidth-parallel')?.value) || 1;
+            const bidirectional = document.getElementById('bandwidth-bidirectional')?.checked || false;
+            const reverseMode = document.getElementById('bandwidth-reverse')?.checked || false;
+
+            if (!targetServer) {
+                showError('Please select a target server');
+                return;
+            }
+
+            const config = {
+                target_server: targetServer,
+                duration: duration,
+                protocol: protocol,
+                parallel_connections: parallelConnections,
+                bidirectional: bidirectional,
+                reverse_mode: reverseMode
+            };
+
+            log('Starting bandwidth test:', config);
+            clearBandwidthResults();
+            updateBandwidthUI('running');
+
+            // Switch to running UI
+            showBandwidthRunningUI();
+
+            const response = await makeApiRequest('POST', endpoints.bandwidth.start, config);
+
+            if (response.success) {
+                const testId = response.test_id || response.testId;
+                state.activeTests.set('bandwidth', testId);
+                startBandwidthMonitoring(testId);
+                showSuccess('Bandwidth test started successfully');
+            } else {
+                // Switch back to selection UI if test failed to start
+                showBandwidthSelectionUI();
+                updateBandwidthUI('ready');
+                throw new Error(response.message || 'Failed to start bandwidth test');
+            }
+        } catch (error) {
+            log('Bandwidth test start failed:', error);
+            // Switch back to selection UI if test failed to start
+            showBandwidthSelectionUI();
+            updateBandwidthUI('ready');
+            showError('Failed to start bandwidth test: ' + error.message);
+        }
+    }
+
+    async function stopBandwidthTest() {
+        try {
+            const testId = state.activeTests.get('bandwidth');
+            const response = await makeApiRequest('POST', endpoints.bandwidth.stop, { test_id: testId });
+
+            stopBandwidthMonitoring();
+            updateBandwidthUI('stopped');
+
+            // Switch back to selection UI when test is stopped
+            showBandwidthSelectionUI();
+
+            if (response.success) {
+                showSuccess('Bandwidth test stopped successfully');
+            }
+        } catch (error) {
+            log('Bandwidth test stop failed:', error);
+            showError('Failed to stop bandwidth test');
+        }
+    }
+
+    function startBandwidthMonitoring(testId) {
+        stopBandwidthMonitoring();
+
+        const interval = setInterval(async () => {
+            await updateBandwidthProgress(testId);
+        }, 1000); // Poll every second for real-time updates
+
+        state.updateIntervals.set('bandwidth', interval);
+    }
+
+    function stopBandwidthMonitoring() {
+        const interval = state.updateIntervals.get('bandwidth');
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete('bandwidth');
+        }
+    }
+
+    async function updateBandwidthProgress(testId) {
+        try {
+            const response = await makeApiRequest('GET', `${endpoints.bandwidth.status}?test_id=${testId}`);
+
+            if (response.success) {
+                const testData = response.test_data || response;
+
+                // Update speed displays
+                if (testData.download_speed !== undefined) {
+                    updateElement('bandwidth-download', `${testData.download_speed.toFixed(2)} Mbps`);
+                }
+
+                if (testData.upload_speed !== undefined) {
+                    updateElement('bandwidth-upload', `${testData.upload_speed.toFixed(2)} Mbps`);
+                }
+
+                if (testData.latency !== undefined) {
+                    updateElement('bandwidth-latency', `${testData.latency.toFixed(1)} ms`);
+                }
+
+                // Update progress bar
+                if (testData.progress !== undefined) {
+                    const progress = Math.round(testData.progress);
+                    updateElement('bandwidth-progress-text', `${progress}% Complete`);
+
+                    const progressBar = document.getElementById('bandwidth-progress-bar');
+                    if (progressBar) {
+                        progressBar.style.width = `${progress}%`;
+                    }
+                }
+
+                // Check if test is complete
+                if (testData.status === 'completed' || testData.is_running === false) {
+                    stopBandwidthMonitoring();
+                    updateBandwidthUI('complete');
+
+                    // Final results update
+                    if (testData.final_results) {
+                        displayFinalBandwidthResults(testData.final_results);
+                    }
+                }
+            }
+        } catch (error) {
+            log('Bandwidth progress update failed:', error);
+            // Don't show error messages for monitoring failures to avoid spam
+        }
+    }
+
+    function displayFinalBandwidthResults(results) {
+        if (results.download_speed_mbps !== undefined) {
+            updateElement('bandwidth-download', `${results.download_speed_mbps.toFixed(2)} Mbps`);
+        }
+
+        if (results.upload_speed_mbps !== undefined) {
+            updateElement('bandwidth-upload', `${results.upload_speed_mbps.toFixed(2)} Mbps`);
+        }
+
+        if (results.average_latency_ms !== undefined) {
+            updateElement('bandwidth-latency', `${results.average_latency_ms.toFixed(1)} ms`);
+        }
+    }
+
+    function updateBandwidthUI(status) {
+        const startBtn = document.getElementById('start-bandwidth-test');
+        const stopBtn = document.getElementById('stop-bandwidth-test');
+
+        if (startBtn) startBtn.disabled = (status === 'running');
+        if (stopBtn) stopBtn.disabled = (status !== 'running');
+    }
+
+    function clearBandwidthResults() {
+        updateElement('bandwidth-download', '0 Mbps');
+        updateElement('bandwidth-upload', '0 Mbps');
+        updateElement('bandwidth-latency', '0 ms');
+        updateElement('bandwidth-progress-text', '0% Complete');
+
+        const progressBar = document.getElementById('bandwidth-progress-bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
+    }
+
+    async function loadBandwidthServers() {
+        try {
+            // Use the existing server status data if available
+            if (state.servers && state.servers.length > 0) {
+                populateBandwidthServerDropdown(state.servers);
+                return;
+            }
+
+            // If no server status data is available, try loading it first
+            await loadServerStatus();
+
+            if (state.servers && state.servers.length > 0) {
+                populateBandwidthServerDropdown(state.servers);
+            } else {
+                log('No servers available for bandwidth testing');
+                populateBandwidthServerDropdown([]);
+            }
+        } catch (error) {
+            log('Failed to load bandwidth servers:', error);
+            populateBandwidthServerDropdown([]);
+        }
+    }
+
+    function populateBandwidthServerDropdown(servers) {
+        const select = document.getElementById('bandwidth-server');
+        if (!select) return;
+
+        // Clear existing options except the first one
+        select.innerHTML = '<option value="">Select a server...</option>';
+
+        if (!servers || servers.length === 0) {
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'No servers available';
+            option.disabled = true;
+            select.appendChild(option);
+            return;
+        }
+
+        servers.forEach(server => {
+            const option = document.createElement('option');
+            // Use server hostname or IP as the value
+            option.value = server.hostname || server.ip_address || server.id;
+            // Display server name, hostname, location and status
+            const name = server.name || server.hostname || server.ip_address;
+            const location = server.location || 'Unknown location';
+            const status = server.status || 'Unknown';
+            const statusIndicator = status.toLowerCase() === 'online' ? '🟢' : '🔴';
+
+            option.textContent = `${statusIndicator} ${name} (${location}) - ${status}`;
+
+            // Disable offline servers
+            if (status.toLowerCase() !== 'online') {
+                option.disabled = true;
+                option.style.color = '#999';
+            }
+
+            select.appendChild(option);
+        });
+    }
+
+    function saveBandwidthResults() {
+        const results = {
+            timestamp: new Date().toISOString(),
+            test_config: {
+                target_server: document.getElementById('bandwidth-server')?.value || 'Unknown',
+                duration: document.getElementById('bandwidth-duration')?.value || '10',
+                protocol: document.querySelector('input[name="bandwidth-protocol"]:checked')?.value || 'tcp'
+            },
+            results: {
+                download_speed: document.getElementById('bandwidth-download')?.textContent || '0 Mbps',
+                upload_speed: document.getElementById('bandwidth-upload')?.textContent || '0 Mbps',
+                latency: document.getElementById('bandwidth-latency')?.textContent || '0 ms'
+            }
+        };
+
+        const jsonString = JSON.stringify(results, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `bandwidth_test_${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        showSuccess('Bandwidth test results saved successfully');
+    }
+
+    // Event handlers setup
+    function setupEventHandlers() {
+        log('Setting up event handlers...');
+
+        // Server status refresh
+        const refreshBtn = document.getElementById('refresh-server-status-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', loadServerStatus);
+        }
+
+        // Test all servers button
+        const testAllBtn = document.getElementById('test-all-servers-btn');
+        if (testAllBtn) {
+            testAllBtn.addEventListener('click', testAllServers);
+        }
+
+        // Auto-refresh toggle and delay
+        const autoRefreshToggle = document.getElementById('auto-refresh-toggle');
+        const autoRefreshDelayInput = document.getElementById('auto-refresh-delay');
+
+        function updateAutoRefresh() {
+            if (autoRefreshToggle && autoRefreshToggle.checked) {
+                startAutoRefresh();
+            } else {
+                stopAutoRefresh();
+            }
+        }
+
+        if (autoRefreshToggle) {
+            autoRefreshToggle.addEventListener('change', updateAutoRefresh);
+        }
+
+        if (autoRefreshDelayInput) {
+            autoRefreshDelayInput.addEventListener('input', () => {
+                // Restart the interval if auto-refresh is currently active
+                if (autoRefreshToggle && autoRefreshToggle.checked) {
+                    startAutoRefresh();
+                }
+            });
+        }
+
+        // Auto server testing controls
+        const autoTestToggle = document.getElementById('auto-test-servers');
+        const autoTestDelayInput = document.getElementById('auto-test-delay');
+
+        function updateAutoServerTesting() {
+            if (autoTestToggle.checked) {
+                startAutoServerTesting();
+            } else {
+                stopAutoServerTesting();
+            }
+        }
+
+        if (autoTestToggle) {
+            autoTestToggle.addEventListener('change', updateAutoServerTesting);
+        }
+
+        if (autoTestDelayInput) {
+            autoTestDelayInput.addEventListener('input', () => {
+                // Restart the interval if auto-testing is currently active
+                if (autoTestToggle.checked) {
+                    startAutoServerTesting();
+                }
+            });
+        }
+
+        // Diagnostic tool buttons
+        const tracerouteBtn = document.getElementById('traceroute-btn');
+        if (tracerouteBtn) {
+            tracerouteBtn.addEventListener('click', () => {
+                showPopup('traceroutePopup');
+                // Initialize UI state when popup opens
+                updateTracerouteUI('ready');
+                clearTracerouteResults();
+            });
+        }
+
+        const pingTestBtn = document.getElementById('ping-test-btn');
+        if (pingTestBtn) {
+            pingTestBtn.addEventListener('click', () => showPopup('pingTestPopup'));
+        }
+
+        const dnsLookupBtn = document.getElementById('dns-lookup-btn');
+        if (dnsLookupBtn) {
+            dnsLookupBtn.addEventListener('click', () => showPopup('dnsLookupPopup'));
+        }
+
+        const bandwidthTestBtn = document.getElementById('bandwidth-test-btn');
+        if (bandwidthTestBtn) {
+            bandwidthTestBtn.addEventListener('click', () => {
+                showPopup('bandwidthTestPopup');
+                loadBandwidthServers(); // Load available servers when popup opens
+            });
+        }
+
+        // Popup close handlers
+        setupPopupCloseHandlers();
+
+        // Test control handlers
+        setupTestControlHandlers();
+
+        log('Event handlers setup complete');
+    }
+
+    function setupPopupCloseHandlers() {
+        const popups = ['traceroutePopup', 'pingTestPopup', 'dnsLookupPopup', 'bandwidthTestPopup'];
+
+        popups.forEach(popupId => {
+            // Main close button
+            const closeBtn = document.getElementById(`close${popupId.replace('Popup', '')}`);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => hidePopup(popupId));
+            }
+
+            // Footer close button
+            const footerCloseBtn = document.getElementById(`close${popupId.replace('Popup', '')}Footer`);
+            if (footerCloseBtn) {
+                footerCloseBtn.addEventListener('click', () => {
+                    // Stop any running tests when closing
+                    if (popupId === 'bandwidthTestPopup') {
+                        stopBandwidthMonitoring();
+                        state.activeTests.delete('bandwidth');
+                    }
+                    // Also stop other tests if they are running
+                    if (popupId === 'traceroutePopup') {
+                        stopTracerouteMonitoring();
+                        state.activeTests.delete('traceroute');
+                    }
+                    if (popupId === 'pingTestPopup') {
+                        stopPingMonitoring();
+                        state.activeTests.delete('ping');
+                    }
+                    hidePopup(popupId);
+                });
+            }
+
+            // Additional close buttons for running states (DNS and Bandwidth)
+            if (popupId === 'dnsLookupPopup') {
+                const closeDnsRunningBtn = document.getElementById('closeDnsLookupRunning');
+                if (closeDnsRunningBtn) {
+                    closeDnsRunningBtn.addEventListener('click', () => hidePopup(popupId));
+                }
+                const closeDnsFooterRunningBtn = document.getElementById('closeDnsLookupFooterRunning');
+                if (closeDnsFooterRunningBtn) {
+                    closeDnsFooterRunningBtn.addEventListener('click', () => hidePopup(popupId));
+                }
+            }
+            
+            if (popupId === 'bandwidthTestPopup') {
+                const closeBandwidthRunningBtn = document.getElementById('closeBandwidthTestRunning');
+                if (closeBandwidthRunningBtn) {
+                    closeBandwidthRunningBtn.addEventListener('click', () => hidePopup(popupId));
+                }
+            }
+
+            // Click outside to close
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.addEventListener('click', (e) => {
+                    if (e.target === popup) {
+                        hidePopup(popupId);
+                    }
+                });
+            }
+        });
+
+        // Escape key handler
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                popups.forEach(popupId => hidePopup(popupId));
+            }
+        });
+    }
+
+    function setupTestControlHandlers() {
+        // Traceroute controls
+        const startTracerouteBtn = document.getElementById('start-traceroute-btn');
+        if (startTracerouteBtn) {
+            startTracerouteBtn.addEventListener('click', startTraceroute);
+        }
+
+        const stopTracerouteBtn = document.getElementById('stop-traceroute-btn');
+        if (stopTracerouteBtn) {
+            stopTracerouteBtn.addEventListener('click', stopTraceroute);
+        }
+
+        const resetTracerouteBtn = document.getElementById('reset-traceroute-btn');
+        if (resetTracerouteBtn) {
+            resetTracerouteBtn.addEventListener('click', resetTraceroute);
+        }
+
+        // Traceroute copy and export functionality
+        const copyTracerouteBtn = document.getElementById('copy-traceroute-results');
+        if (copyTracerouteBtn) {
+            copyTracerouteBtn.addEventListener('click', () => {
+                copyTracerouteResults();
+            });
+        }
+
+        const exportTracerouteBtn = document.getElementById('export-traceroute-results');
+        if (exportTracerouteBtn) {
+            exportTracerouteBtn.addEventListener('click', () => {
+                exportTracerouteResults();
+            });
+        }
+
+        // Ping controls
+        const startPingBtn = document.getElementById('start-ping-test');
+        if (startPingBtn) {
+            startPingBtn.addEventListener('click', startPingTest);
+        }
+
+        const stopPingBtn = document.getElementById('stop-ping-test');
+        if (stopPingBtn) {
+            stopPingBtn.addEventListener('click', stopPingTest);
+        }
+
+        const restartPingBtn = document.getElementById('restart-ping-test');
+        if (restartPingBtn) {
+            restartPingBtn.addEventListener('click', restartPingTest);
+        }
+
+        // DNS controls
+        const startDnsBtn = document.getElementById('start-dns-lookup');
+        if (startDnsBtn) {
+            startDnsBtn.addEventListener('click', startDnsLookup);
+        }
+
+        // DNS copy functionality
+        const copyDnsBtn = document.getElementById('copy-dns-results');
+        if (copyDnsBtn) {
+            copyDnsBtn.addEventListener('click', copyDnsResults);
+        }
+
+        // Bandwidth controls
+        const startBandwidthBtn = document.getElementById('start-bandwidth-test');
+        if (startBandwidthBtn) {
+            startBandwidthBtn.addEventListener('click', startBandwidthTest);
+        }
+
+        const stopBandwidthBtn = document.getElementById('stop-bandwidth-test');
+        if (stopBandwidthBtn) {
+            stopBandwidthBtn.addEventListener('click', stopBandwidthTest);
+        }
+
+        const saveBandwidthBtn = document.getElementById('save-bandwidth-results');
+        if (saveBandwidthBtn) {
+            saveBandwidthBtn.addEventListener('click', saveBandwidthResults);
+        }
+    }
+
+    function startAutoRefresh() {
+        stopAutoRefresh(); // Clear any existing interval first
+
+        const autoRefreshToggle = document.getElementById('auto-refresh-toggle');
+        if (!autoRefreshToggle || !autoRefreshToggle.checked) {
+            console.log('[AUTO REFRESH] Auto-refresh toggle not found or not checked');
+            return;
+        }
+
+        const autoRefreshDelayInput = document.getElementById('auto-refresh-delay');
+        if (!autoRefreshDelayInput) {
+            console.log('[AUTO REFRESH] Auto-refresh delay input not found');
+            return;
+        }
+        
+        const delay = parseInt(autoRefreshDelayInput.value) || 15; // Default to 15 seconds
+
+        const interval = setInterval(() => {
+            if (!state.isLoading) {
+                loadServerStatus();
+            }
+        }, delay * 1000); // Convert seconds to milliseconds
+
+        state.updateIntervals.set('serverStatus', interval);
+        log(`Auto-refresh started with ${delay}s interval`);
+    }
+
+    function stopAutoRefresh() {
+        const interval = state.updateIntervals.get('serverStatus');
+        if (interval) {
+            clearInterval(interval);
+            state.updateIntervals.delete('serverStatus');
+            log('Auto-refresh stopped');
+        }
+    }
+
+    // Global toggle function for sections
+    window.toggleSection = function(contentId, chevronId) {
+        const content = document.getElementById(contentId);
+        const chevron = document.getElementById(chevronId);
+
+        if (content && chevron) {
+            const isHidden = content.classList.contains('hidden');
+
+            if (isHidden) {
+                content.classList.remove('hidden');
+                chevron.classList.remove('rotate-180');
+                state.isVisible = true; // Set visibility to true when section is opened
+            } else {
+                content.classList.add('hidden');
+                chevron.classList.add('rotate-180');
+                state.isVisible = false; // Set visibility to false when section is closed
+            }
+            // Restart intervals based on visibility change
+            try {
+                startAutoRefresh();
+                startAutoServerTesting();
+            } catch (error) {
+                console.warn('[SECTION TOGGLE] Error restarting intervals:', error);
+            }
+        }
+    };
+
+    // Copy and export functions for traceroute
+    function copyTracerouteResults() {
+        const tbody = document.getElementById('traceroute-results-tbody');
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll('tr:not(#traceroute-no-data)');
+        if (rows.length === 0) {
+            showError('No traceroute results to copy');
+            return;
+        }
+
+        let text = 'Hop\tIP Address\tHostname\tRTT 1\tRTT 2\tRTT 3\tStatus\n';
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length >= 7) {
+                const rowData = [
+                    cells[0].textContent.trim(),
+                    cells[1].textContent.trim(),
+                    cells[2].textContent.trim(),
+                    cells[3].textContent.trim(),
+                    cells[4].textContent.trim(),
+                    cells[5].textContent.trim(),
+                    cells[6].textContent.trim().replace(/\s+/g, ' ')
+                ];
+                text += rowData.join('\t') + '\n';
+            }
+        });
+
+        navigator.clipboard.writeText(text).then(() => {
+            showSuccess('Traceroute results copied to clipboard');
+        }).catch(() => {
+            showError('Failed to copy results to clipboard');
+        });
+    }
+
+    function exportTracerouteResults() {
+        const tbody = document.getElementById('traceroute-results-tbody');
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll('tr:not(#traceroute-no-data)');
+        if (rows.length === 0) {
+            showError('No traceroute results to export');
+            return;
+        }
+
+        const targetHost = document.getElementById('traceroute-target-host')?.value || 'unknown';
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+
+        let csvContent = 'Hop,IP Address,Hostname,RTT 1,RTT 2,RTT 3,Status\n';
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length >= 7) {
+                const rowData = [
+                    cells[0].textContent.trim(),
+                    `"${cells[1].textContent.trim()}"`,
+                    `"${cells[2].textContent.trim()}"`,
+                    cells[3].textContent.trim(),
+                    cells[4].textContent.trim(),
+                    cells[5].textContent.trim(),
+                    `"${cells[6].textContent.trim().replace(/\s+/g, ' ')}"`
+                ];
+                csvContent += rowData.join(',') + '\n';
+            }
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `traceroute_${targetHost}_${timestamp}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        showSuccess('Traceroute results exported successfully');
+    }
+
+    // Global test server function
+    window.testServer = testServer;
+
+    // Initialize when DOM is ready
+    function init() {
+        // Check initial visibility of the section
+        const serverStatusContent = document.getElementById('server-status-content');
+        if (serverStatusContent) {
+            state.isVisible = !serverStatusContent.classList.contains('hidden');
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setupEventHandlers();
+                loadServerStatus();
+                startAutoRefresh(); // Start initial auto-refresh
+                startAutoServerTesting(); // Start initial auto server testing
+                // Initialize UI states
+                updateDnsUI('ready');
+            });
+        } else {
+            setupEventHandlers();
+            loadServerStatus();
+            startAutoRefresh(); // Start initial auto-refresh
+            startAutoServerTesting(); // Start initial auto server testing
+            // Initialize UI states
+            updateDnsUI('ready');
+        }
+    }
+
+    // Cleanup function to stop all intervals
+    function cleanup() {
+        stopAutoRefresh();
+        stopAutoServerTesting();
+        // Stop all other intervals
+        state.updateIntervals.forEach(interval => clearInterval(interval));
+        state.updateIntervals.clear();
+    }
+
+    // Setup cleanup on page unload
+    window.addEventListener('beforeunload', cleanup);
+
+    init();
+    log('Network utility section initialized successfully');
+})();
+</script>
+
+<style>
+    /* Popup Animation Styles */
+    .popup-overlay.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .popup-overlay.show .popup-content {
+        transform: scale(1) !important;
+    }
+
+    /* Focus Management */
+    .popup-content:focus {
+        outline: none;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .popup-content {
+            width: 95% !important;
+            max-width: 95% !important;
+            max-height: 95vh !important;
+            margin: 10px !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .popup-content {
+            width: 98% !important;
+            max-width: 98% !important;
+            margin: 5px !important;
+        }
+        
+        /* Adjust grid layout for mobile */
+        #modal-content .grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+        }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Improved Button Hover States */
+    .popup-content button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Smooth width transitions for modal */
+    .popup-content {
+        transition: transform 0.3s ease, width 0.3s ease, max-width 0.3s ease;
+    }
+
+    /* Loading spinner animation */
+    .fa-spinner.fa-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    /* Status indicator animations */
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: .5;
+        }
+    }
+
+    /* Results table styling */
+    #traceroute-results table {
+        font-size: 0.875rem;
+    }
+
+    #traceroute-results th {
+        font-weight: 600;
+        background-color: #f9fafb;
+    }
+
+    #traceroute-results td {
+        vertical-align: middle;
+    }
+
+    /* Progress bar animation */
+    #traceroute-progress-bar {
+        transition: width 0.3s ease-in-out;
+    }
+</style>
+
+<script>
+// Make functions globally available for dashboard system
+window.toggleFilters = function() {
+    const filtersContent = document.getElementById('filters-content');
+    const filtersChevron = document.getElementById('filters-chevron');
+    
+    if (!filtersContent || !filtersChevron) {
+        console.warn('[FILTERS] Required elements not found');
+        return;
+    }
+    
+    if (filtersContent.classList.contains('hidden')) {
+        // Expand
+        filtersContent.classList.remove('hidden');
+        filtersChevron.style.transform = 'rotate(180deg)';
+    } else {
+        // Collapse
+        filtersContent.classList.add('hidden');
+        filtersChevron.style.transform = 'rotate(0deg)';
+    }
+};
+
+// Make functions globally available for dashboard system
+window.showServerConfig = function(serverName, serverData) {
+    // Create popup modal
+    const popup = document.createElement('div');
+    popup.className = 'popup-overlay server-config-popup';
+    popup.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;';
+    
+    popup.innerHTML = `
+        <div class="popup-content bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4" style="transform: scale(0.9); transition: transform 0.3s ease;">
+            <div class="bg-white text-neutral-800 px-6 py-4 rounded-t-lg flex items-center justify-between border-b border-neutral-200">
+                <div class="flex items-center gap-3">
+                    <i class="text-xl text-neutral-700" data-fa-i2svg=""><svg class="svg-inline--fa fa-server" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="server" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"></path></svg></i>
+                    <div>
+                        <h2 class="text-xl">Server Configuration: ${serverName}</h2>
+                        <p class="text-neutral-500 text-sm">View server connection details</p>
+                    </div>
+                </div>
+                <button onclick="window.closeServerConfigPopup()" class="text-neutral-500 hover:text-neutral-800">
+                    <i class="text-xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></i>
+                </button>
+            </div>
+            <div class="p-6 bg-neutral-50">
+                <pre class="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto text-sm">${JSON.stringify(serverData, null, 2)}</pre>
+            </div>
+            <div class="flex justify-end p-6 border-t border-neutral-200 bg-white rounded-b-lg">
+                <button onclick="window.closeServerConfigPopup()" class="px-4 py-2 bg-neutral-200 text-neutral-700 rounded-md hover:bg-neutral-300 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(popup);
+    
+    // Animate in
+    setTimeout(() => {
+        popup.style.opacity = '1';
+        popup.style.visibility = 'visible';
+        popup.querySelector('.popup-content').style.transform = 'scale(1)';
+    }, 10);
+};
+
+// Make functions globally available for dashboard system
+window.closeServerConfigPopup = function() {
+    const popup = document.querySelector('.server-config-popup');
+    if (popup) {
+        popup.style.opacity = '0';
+        popup.style.visibility = 'hidden';
+        popup.querySelector('.popup-content').style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            document.body.removeChild(popup);
+        }, 300);
+    }
+};
+
+// Make functions globally available for dashboard system
+window.startServerTest = function(serverName, serverData) {
+    console.log('[SERVER TEST] Starting test for:', serverName, serverData);
+    
+    // Try to find and open bandwidth test popup
+    const bandwidthPopup = document.getElementById('bandwidthTestPopup');
+    if (bandwidthPopup) {
+        bandwidthPopup.style.display = 'flex';
+        bandwidthPopup.style.opacity = '1';
+        bandwidthPopup.style.visibility = 'visible';
+        
+        // Pre-fill the bandwidth test with server data
+        setTimeout(() => {
+            const serverSelect = document.getElementById('bandwidth-server');
+            if (serverSelect && serverData) {
+                // Create a new option with the server data
+                const newOption = document.createElement('option');
+                newOption.value = JSON.stringify(serverData);
+                newOption.textContent = `${serverName} (${serverData.IP || serverData['IP/HOST']})`;
+                newOption.selected = true;
+                serverSelect.appendChild(newOption);
+            }
+            
+            // Auto-start the test
+            const startButton = document.getElementById('start-bandwidth-test');
+            if (startButton) {
+                startButton.click();
+            }
+        }, 100);
+    } else {
+        console.warn('[SERVER TEST] Bandwidth test popup not found');
+        alert('Bandwidth test popup not available. Please ensure the bandwidth test component is loaded.');
+    }
+};
+
+// Initialize server data and attach event listeners
+function initializeServerActions() {
+    console.log('[SERVER ACTIONS] Initializing server action buttons');
+    
+    // Server data
+    const serverDataMap = {
+        'US-EAST-01': {
+            "IP/HOST": "192.168.1.100",
+            "PORT": "443, 8080",
+            "OPTIONS": "-R,-6",
+            "GB/S": "10",
+            "CONTINENT": "North America",
+            "COUNTRY": "US",
+            "SITE": "East Coast",
+            "PROVIDER": "Test Provider"
+        },
+        'EU-WEST-03': {
+            "IP/HOST": "10.0.45.23",
+            "PORT": "443, 3000",
+            "OPTIONS": "-R,-u",
+            "GB/S": "5",
+            "CONTINENT": "Europe",
+            "COUNTRY": "UK",
+            "SITE": "London",
+            "PROVIDER": "EU Networks"
+        },
+        'ASIA-SOUTH-02': {
+            "IP/HOST": "172.16.0.88",
+            "PORT": "443",
+            "OPTIONS": "-R,-6,-u",
+            "GB/S": "8",
+            "CONTINENT": "Asia",
+            "COUNTRY": "SG",
+            "SITE": "Singapore",
+            "PROVIDER": "Asia Telecom"
+        },
+        'US-WEST-05': {
+            "IP/HOST": "192.168.2.45",
+            "PORT": "443, 8080, 9000",
+            "OPTIONS": "-R",
+            "GB/S": "12",
+            "CONTINENT": "North America",
+            "COUNTRY": "US",
+            "SITE": "West Coast",
+            "PROVIDER": "West Networks"
+        },
+        'EU-NORTH-01': {
+            "IP/HOST": "10.0.12.67",
+            "PORT": "443",
+            "OPTIONS": "-R,-6",
+            "GB/S": "6",
+            "CONTINENT": "Europe",
+            "COUNTRY": "SE",
+            "SITE": "Stockholm",
+            "PROVIDER": "Nordic Telecom"
+        }
+    };
+    
+    // Attach click handlers to server action buttons
+    const serverRows = document.querySelectorAll('tbody tr');
+    serverRows.forEach((row, index) => {
+        try {
+            const serverNameElement = row.querySelector('td:first-child span');
+            if (!serverNameElement) return;
+            
+            const serverName = serverNameElement.textContent;
+            const serverData = serverDataMap[serverName];
+            
+            if (serverData) {
+                const buttons = row.querySelectorAll('button');
+                const startTestBtn = buttons[0];
+                const viewConfigBtn = buttons[1];
+                
+                if (viewConfigBtn) {
+                    viewConfigBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        console.log('[VIEW CONFIG] Opening config for:', serverName);
+                        window.showServerConfig(serverName, serverData);
+                    };
+                }
+                
+                if (startTestBtn) {
+                    startTestBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        console.log('[START TEST] Starting test for:', serverName);
+                        window.startServerTest(serverName, serverData);
+                    };
+                }
+            }
+        } catch (error) {
+            console.error('[SERVER ACTIONS] Error setting up row', index, ':', error);
+        }
+    });
+    
+    console.log('[SERVER ACTIONS] Server action buttons initialized');
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeServerActions);
+} else {
+    initializeServerActions();
+}
+
+// Also initialize after a short delay to handle dynamic loading
+setTimeout(initializeServerActions, 1000);
+</script>

@@ -1,0 +1,1709 @@
+<!-- Global Cellular Toggle Section -->
+    <div class="bg-white border border-neutral-200 rounded-lg">
+        <div class="p-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-power-off text-neutral-600"></i>
+                    <div>
+                        <h3 class="text-lg text-neutral-900">Cellular Interface</h3>
+                        <p class="text-sm text-neutral-600">Enable or disable Cellular functionality</p>
+                    </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer" id="cellular-toggle">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+<!-- Connection Status Section -->
+<section id="connection-status" class="bg-white rounded-lg border border-neutral-200">
+    <div class="p-6 cursor-pointer" onclick="toggleSection('connection-status-content', 'connection-status-chevron')">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg flex items-center">
+                <i class="fa-solid fa-signal mr-2"></i>Connection Status
+            </h2>
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <div id="cellular-connection-indicator" class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <span id="cellular-connection-status" class="text-sm text-neutral-600">Disconnected</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200 rotate-180" id="connection-status-chevron"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="connection-status-content" class="p-6 space-y-6 hidden">
+        <!-- Error Message Display -->
+        <div id="cellular-error-message" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm" style="display: none;">
+            <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+            <span id="cellular-error-text">Error message will appear here</span>
+        </div>
+
+        <!-- Success Message Display -->
+        <div id="cellular-success-message" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md text-sm" style="display: none;">
+            <i class="fa-solid fa-check-circle mr-2"></i>
+            <span id="cellular-success-text">Success message will appear here</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Network Information Panel -->
+            <div id="cellular-network-info" class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-3">Network Information</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Operator:</span>
+                            <span id="cellular-network-name" class="text-neutral-800">Not Connected</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Network Type:</span>
+                            <span id="cellular-technology" class="text-neutral-800">N/A</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Band:</span>
+                            <span id="cellular-band" class="text-neutral-800">N/A</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Cell ID:</span>
+                            <span id="cellular-cell-id" class="text-neutral-800">Unknown</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">APN:</span>
+                            <span id="cellular-apn-display" class="text-neutral-800">Not Set</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signal Quality Panel -->
+            <div id="cellular-signal-info" class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-3">Signal Quality</h3>
+                    <div class="flex items-center mb-3">
+                        <div id="cellular-signal-bars" class="flex space-x-1 mr-3">
+                            <div class="w-2 h-6 bg-neutral-300 rounded-sm signal-bar" data-bar="1"></div>
+                            <div class="w-2 h-6 bg-neutral-300 rounded-sm signal-bar" data-bar="2"></div>
+                            <div class="w-2 h-6 bg-neutral-300 rounded-sm signal-bar" data-bar="3"></div>
+                            <div class="w-2 h-6 bg-neutral-300 rounded-sm signal-bar" data-bar="4"></div>
+                            <div class="w-2 h-6 bg-neutral-300 rounded-sm signal-bar" data-bar="5"></div>
+                        </div>
+                        <span id="cellular-signal-strength" class="text-sm text-neutral-600">0/5 bars</span>
+                    </div>
+                    <div class="space-y-1 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">RSSI:</span>
+                            <span id="cellular-rssi" class="text-neutral-800">0 dBm</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">RSRP:</span>
+                            <span id="cellular-rsrp" class="text-neutral-800">0 dBm</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">RSRQ:</span>
+                            <span id="cellular-rsrq" class="text-neutral-800">0 dB</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">SINR:</span>
+                            <span id="cellular-sinr" class="text-neutral-800">0 dB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Usage & Connection Info Panel -->
+            <div id="cellular-connection-info" class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-3">Connection Details</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Status:</span>
+                            <span id="cellular-detailed-status" class="text-neutral-800">Disconnected</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Data Usage:</span>
+                            <span id="cellular-data-usage" class="text-neutral-800">0 MB</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Connection Time:</span>
+                            <span id="cellular-connection-time" class="text-neutral-800">0 seconds</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-600">Signal Status:</span>
+                            <span id="cellular-signal-status" class="text-neutral-800">No Signal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available Networks Display -->
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-3">Scan Status</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-neutral-600">Last Scan:</span>
+                            <span id="cellular-scan-status" class="text-xs text-neutral-800">Not scanned</span>
+                        </div>
+                        <div id="cellular-available-networks" class="space-y-1 max-h-20 overflow-y-auto">
+                            <div class="cellular-no-networks text-xs text-neutral-500">No networks scanned</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="flex items-center justify-between pt-4 border-t border-neutral-200">
+            <div class="flex space-x-3">
+                <button id="cellular-connect-btn" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 disabled:bg-neutral-400">
+                    <i class="fa-solid fa-plug mr-2"></i>Connect
+                </button>
+                <button id="cellular-disconnect-btn" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 disabled:bg-neutral-400">
+                    <i class="fa-solid fa-power-off mr-2"></i>Disconnect
+                </button>
+                <button id="cellular-scan-btn" class="px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50 disabled:bg-neutral-100">
+                    <i class="fa-solid fa-search mr-2"></i>Scan Networks
+                </button>
+                <button id="cellular-refresh-status-btn" class="px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50">
+                    <i class="fa-solid fa-arrows-rotate mr-2"></i>Refresh Status
+                </button>
+                <button id="cellular-reset-data-btn" class="px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50">
+                    <i class="fa-solid fa-trash mr-2"></i>Reset Data
+                </button>
+            </div>
+            <div class="text-xs text-neutral-500">
+                Last updated: <span id="cellular-last-updated">Never</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cellular Configuration Form Section -->
+<section id="general-settings" class="bg-white rounded-lg border border-neutral-200">
+    <div class="p-6 cursor-pointer" onclick="toggleSection('general-settings-content', 'general-settings-chevron')">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg flex items-center">
+                <i class="fa-solid fa-gear mr-2"></i>Cellular Configuration
+            </h2>
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200 rotate-180" id="general-settings-chevron"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="general-settings-content" class="p-6 space-y-6 hidden">
+        <form id="cellular-config-form" class="space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Network Type</label>
+                        <select id="cellular-network-type" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                            <option value="auto" selected>Auto (5G/LTE/3G)</option>
+                            <option value="5g-only">5G Only</option>
+                            <option value="lte-only">LTE Only</option>
+                            <option value="3g-fallback">3G Fallback</option>
+                            <option value="2g-emergency">2G Emergency</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Network Selection</label>
+                        <div class="flex items-center space-x-3">
+                            <select id="network-selection" class="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                <option value="automatic" selected>Automatic</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                            <button type="button" id="scan-networks-btn" class="px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50">
+                                <i class="fa-solid fa-search mr-2"></i>Scan Networks
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="available-networks" class="bg-neutral-50 p-4 rounded-lg">
+                        <h3 class="text-sm text-neutral-700 mb-3">Available Networks</h3>
+                        <div id="available-networks-list" class="space-y-2 max-h-32 overflow-y-auto">
+                            <div class="text-xs text-neutral-500">Click 'Scan Networks' to find available networks</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div id="apn-settings" class="bg-neutral-50 p-4 rounded-lg">
+                        <h3 class="text-sm text-neutral-700 mb-4">APN Settings</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-neutral-600 mb-1">Access Point Name (APN)</label>
+                                <input id="cellular-apn" type="text" value="internet" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-neutral-600 mb-1">Authentication Type</label>
+                                <select id="auth-type" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                    <option value="none" selected>None</option>
+                                    <option value="pap">PAP</option>
+                                    <option value="chap">CHAP</option>
+                                    <option value="pap-chap">PAP/CHAP</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs text-neutral-600 mb-1">Username</label>
+                                    <input id="cellular-username" type="text" placeholder="Optional" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-neutral-600 mb-1">Password</label>
+                                    <input id="cellular-password" type="password" placeholder="Optional" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-3">Auto Connect</label>
+                            <div class="flex items-center justify-between p-3 border border-neutral-300 rounded-md">
+                                <div>
+                                    <span class="text-sm">Auto Connect on Startup</span>
+                                    <p class="text-xs text-neutral-500">Automatically connect when device starts</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="cellular-auto-connect" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-3">Roaming Settings</label>
+                            <div class="flex items-center justify-between p-3 border border-neutral-300 rounded-md">
+                                <div>
+                                    <span class="text-sm">Data Roaming</span>
+                                    <p class="text-xs text-neutral-500">Allow data usage when roaming</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="cellular-data-roaming" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-3">Data Limit</label>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 border border-neutral-300 rounded-md">
+                                    <div>
+                                        <span class="text-sm">Enable Data Limit</span>
+                                        <p class="text-xs text-neutral-500">Set monthly data usage limit</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="cellular-data-limit-enabled" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neutral-600"></div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-neutral-600 mb-1">Data Limit (MB)</label>
+                                    <input id="cellular-data-limit" type="number" min="0" value="0" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-3 pt-4 border-t border-neutral-200">
+                <button type="button" id="reset-cellular-config-btn" class="px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50">
+                    <i class="fa-solid fa-undo mr-2"></i>Reset
+                </button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                    <i class="fa-solid fa-save mr-2"></i>Save Configuration
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- SIM & Device Information Section -->
+<section id="sim-device-info" class="bg-white rounded-lg border border-neutral-200">
+    <div class="p-6 cursor-pointer" onclick="toggleSection('sim-device-info-content', 'sim-device-info-chevron')">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg flex items-center">
+                <i class="fa-solid fa-sim-card mr-2"></i>SIM & Device Information
+            </h2>
+            <div class="flex items-center space-x-2">
+                <div id="cellular-sim-indicator" class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span id="cellular-sim-header-status" class="text-sm text-neutral-600">SIM Not Available</span>
+                <i class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform duration-200 rotate-180" id="sim-device-info-chevron"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="sim-device-info-content" class="p-6 space-y-8 hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-6">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-4">SIM Information</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">SIM Status:</span>
+                            <span id="cellular-sim-status" class="text-sm text-neutral-800">Not Available</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">IMSI:</span>
+                            <span id="cellular-imsi" class="text-sm text-neutral-800">Not Available</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">ICCID:</span>
+                            <span id="cellular-iccid" class="text-sm text-neutral-800">Not Available</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">SIM Type:</span>
+                            <span id="cellular-sim-type" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">PIN Status:</span>
+                            <span id="cellular-pin-status" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-4">PIN Management</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-neutral-600 mb-2">Enter SIM PIN</label>
+                            <div class="flex space-x-2">
+                                <input id="pin-input" type="password" maxlength="8" placeholder="Enter PIN" class="flex-1 px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                <button id="unlock-pin-btn" class="px-4 py-2 bg-black text-white text-sm rounded-md hover:bg-neutral-800">Unlock</button>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-neutral-200 pt-4">
+                            <h4 class="text-xs text-neutral-700 mb-3">Change PIN</h4>
+                            <div class="space-y-3">
+                                <input id="current-pin" type="password" maxlength="8" placeholder="Current PIN" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                <input id="new-pin" type="password" maxlength="8" placeholder="New PIN" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                <input id="confirm-pin" type="password" maxlength="8" placeholder="Confirm New PIN" class="w-full px-3 py-2 border border-neutral-300 rounded-md text-sm">
+                                <button id="change-pin-btn" class="w-full px-4 py-2 border border-neutral-300 text-sm rounded-md hover:bg-neutral-50">Change PIN</button>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-neutral-200 pt-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-sm">PIN Lock</span>
+                                    <p class="text-xs text-neutral-500">Require PIN on startup</p>
+                                </div>
+                                <div id="pin-lock-toggle" class="w-12 h-6 bg-black rounded-full relative cursor-pointer">
+                                    <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                    <h3 class="text-sm text-neutral-700 mb-4">Device Information</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">IMEI:</span>
+                            <span id="cellular-imei" class="text-sm text-neutral-800">Not Available</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">Model:</span>
+                            <span id="cellular-device-model" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">Firmware:</span>
+                            <span id="cellular-firmware-version" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">Temperature:</span>
+                            <span id="cellular-temperature" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-neutral-600">Manufacturer:</span>
+                            <span id="cellular-manufacturer" class="text-sm text-neutral-800">Unknown</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h3 class="text-sm text-red-800 mb-3 flex items-center">
+                        <i class="fa-solid fa-exclamation-triangle mr-2"></i>PUK Unlock
+                    </h3>
+                    <p class="text-xs text-red-700 mb-3">Use only if SIM is blocked after multiple incorrect PIN attempts</p>
+                    <div class="space-y-2">
+                        <input id="puk-code" type="text" maxlength="8" placeholder="PUK Code" class="w-full px-3 py-2 border border-red-300 rounded-md text-sm">
+                        <input id="puk-new-pin" type="password" maxlength="8" placeholder="New PIN" class="w-full px-3 py-2 border border-red-300 rounded-md text-sm">
+                        <button id="unlock-puk-btn" class="w-full px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">Unlock with PUK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+/**
+ * Cellular Section Manager - Complete rewrite inspired by wireless mechanisms
+ * Maintains same endpoints and data structures but with improved architecture
+ */
+
+class CellularSection {
+    constructor() {
+        this.sectionName = 'cellular';
+        this.config = {
+            autoRefreshInterval: 30000,
+            enableAutoRefresh: true,
+            retryAttempts: 3
+        };
+
+        // API endpoints - keeping same as before
+        this.endpoints = {
+            status: '/api/cellular/status',
+            config: '/api/cellular/config', 
+            connect: '/api/cellular/connect',
+            disconnect: '/api/cellular/disconnect',
+            scan: '/api/cellular/scan',
+            events: '/api/cellular/events',
+            simUnlock: '/api/cellular/sim/unlock',
+            resetData: '/api/cellular/reset-data',
+            resetConfig: '/api/cellular/reset-config'
+        };
+
+        // State management
+        this.state = {
+            cellular_enabled: true,
+            is_connected: false,
+            connection_status: 'Disconnected',
+            has_signal: false,
+            signal_strength: 0,
+            signal_bars: 0,
+            signal_status: 'No Signal',
+            network_name: 'Not Connected',
+            technology: 'N/A',
+            band: 'N/A',
+            cell_id: 'Unknown',
+            apn: 'Not Set',
+            rsrp_dbm: 0,
+            rsrq_db: 0,
+            rssi_dbm: 0,
+            sinr_db: 0,
+            data_usage_mb: 0,
+            connection_time_seconds: 0,
+            scan_in_progress: false,
+            auto_connect: false,
+            data_roaming: false,
+            preferred_network_type: 'auto',
+            sim_status: 'Not Available',
+            imsi: 'Not Available',
+            iccid: 'Not Available',
+            sim_type: 'Unknown',
+            pin_status: 'Unknown',
+            imei: 'Not Available',
+            device_model: 'Unknown',
+            firmware_version: 'Unknown',
+            temperature: 'Unknown',
+            manufacturer: 'Unknown'
+        };
+
+        // Configuration state
+        this.configState = {
+            apn: '',
+            username: '',
+            password: '',
+            preferred_network_type: 'auto',
+            auto_connect: false,
+            data_roaming: false,
+            data_limit_mb: 0,
+            data_limit_enabled: false,
+            auth_type: 'none',
+            network_selection: 'automatic'
+        };
+
+        this.availableNetworks = [];
+        this.lastScanTime = null;
+        this.autoRefreshTimer = null;
+
+        this.log('CellularSection initialized');
+    }
+
+    log(message, data = '') {
+        console.log(`[CELLULAR] ${message}`, data);
+    }
+
+    logError(message, error = '') {
+        console.error(`[CELLULAR] ${message}`, error);
+    }
+
+    /**
+     * HTTP Request Management - inspired by wireless implementation
+     */
+    async makeRequest(method, endpoint, data = null) {
+        try {
+            this.log(`Making ${method} request to ${endpoint}`);
+
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            };
+
+            if (data && method !== 'GET') {
+                options.body = JSON.stringify(data);
+                this.log('Request data:', data);
+            }
+
+            const response = await fetch(endpoint, options);
+            const responseData = await response.json();
+
+            this.log('Response received:', responseData);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            return responseData;
+        } catch (error) {
+            this.logError(`Request failed for ${endpoint}:`, error);
+            throw error;
+        }
+    }
+
+    async sendEvent(category, elementId, data) {
+        try {
+            const eventData = {
+                category: category,
+                element_id: elementId,
+                timestamp: Date.now(),
+                ...data
+            };
+
+            await this.makeRequest('POST', this.endpoints.events, eventData);
+        } catch (error) {
+            this.logError('Failed to send event:', error);
+        }
+    }
+
+    /**
+     * State Management
+     */
+    updateState(newState) {
+        const oldState = { ...this.state };
+        this.state = { ...this.state, ...newState };
+
+        // Find changes and update UI
+        const changes = {};
+        for (const key in newState) {
+            if (oldState[key] !== newState[key]) {
+                changes[key] = { old: oldState[key], new: newState[key] };
+            }
+        }
+
+        if (Object.keys(changes).length > 0) {
+            this.log('State changed:', changes);
+            this.onStateChange(changes);
+        }
+    }
+
+    onStateChange(changes) {
+        // Update UI elements based on state changes
+        for (const fieldName of Object.keys(changes)) {
+            this.updateUIField(fieldName, changes[fieldName].new);
+        }
+
+        // Handle specific state transitions
+        if (changes.connection_status) {
+            this.handleConnectionStatusChange(changes.connection_status.new);
+        }
+
+        if (changes.signal_bars) {
+            this.updateSignalBars(changes.signal_bars.new);
+        }
+
+        this.updateLastUpdated();
+    }
+
+    updateUIField(fieldName, value) {
+        const fieldMappings = {
+            'connection_status': 'cellular-connection-status',
+            'network_name': 'cellular-network-name',
+            'technology': 'cellular-technology',
+            'band': 'cellular-band',
+            'cell_id': 'cellular-cell-id',
+            'apn': 'cellular-apn-display',
+            'signal_status': 'cellular-signal-status',
+            'data_usage_mb': 'cellular-data-usage',
+            'connection_time_seconds': 'cellular-connection-time',
+            'rssi_dbm': 'cellular-rssi',
+            'rsrp_dbm': 'cellular-rsrp',
+            'rsrq_db': 'cellular-rsrq',
+            'sinr_db': 'cellular-sinr',
+            'sim_status': 'cellular-sim-status',
+            'imsi': 'cellular-imsi',
+            'iccid': 'cellular-iccid',
+            'sim_type': 'cellular-sim-type',
+            'pin_status': 'cellular-pin-status',
+            'imei': 'cellular-imei',
+            'device_model': 'cellular-device-model',
+            'firmware_version': 'cellular-firmware-version',
+            'temperature': 'cellular-temperature',
+            'manufacturer': 'cellular-manufacturer'
+        };
+
+        const elementId = fieldMappings[fieldName];
+        if (elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                let displayValue = value;
+
+                // Format specific field types
+                if (fieldName === 'data_usage_mb') {
+                    displayValue = this.formatDataUsage(value);
+                } else if (fieldName === 'connection_time_seconds') {
+                    displayValue = this.formatConnectionTime(value);
+                } else if (fieldName.includes('_dbm')) {
+                    displayValue = `${value} dBm`;
+                } else if (fieldName.includes('_db')) {
+                    displayValue = `${value} dB`;
+                } else if (fieldName === 'temperature' && typeof value === 'number') {
+                    displayValue = `${value}°C`;
+                }
+
+                element.textContent = displayValue;
+            }
+        }
+    }
+
+    handleConnectionStatusChange(status) {
+        const indicator = document.getElementById('cellular-connection-indicator');
+        const detailedStatus = document.getElementById('cellular-detailed-status');
+
+        if (indicator) {
+            const isConnected = ['Connected', 'connected'].includes(status);
+            indicator.className = `w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`;
+        }
+
+        if (detailedStatus) {
+            detailedStatus.textContent = status;
+        }
+
+        this.updateButtonStates(status);
+    }
+
+    updateButtonStates(status) {
+        const connectBtn = document.getElementById('cellular-connect-btn');
+        const disconnectBtn = document.getElementById('cellular-disconnect-btn');
+
+        if (connectBtn && disconnectBtn) {
+            const isConnected = ['Connected', 'connected'].includes(status);
+            const isConnecting = ['Connecting', 'connecting'].includes(status);
+
+            connectBtn.disabled = isConnected || isConnecting;
+            disconnectBtn.disabled = (!isConnected && !isConnecting);
+        }
+    }
+
+    updateSignalBars(signalBars) {
+        const barsContainer = document.getElementById('cellular-signal-bars');
+        if (barsContainer) {
+            const bars = barsContainer.querySelectorAll('.signal-bar');
+            bars.forEach((bar, index) => {
+                if (index < signalBars) {
+                    bar.className = 'w-2 h-6 bg-green-500 rounded-sm signal-bar';
+                } else {
+                    bar.className = 'w-2 h-6 bg-neutral-300 rounded-sm signal-bar';
+                }
+            });
+        }
+
+        const strengthElement = document.getElementById('cellular-signal-strength');
+        if (strengthElement) {
+            strengthElement.textContent = `${signalBars}/5 bars`;
+        }
+    }
+
+    updateLastUpdated() {
+        const element = document.getElementById('cellular-last-updated');
+        if (element) {
+            element.textContent = new Date().toLocaleTimeString();
+        }
+    }
+
+    /**
+     * Event Handlers - inspired by wireless implementation
+     */
+    setupEventHandlers() {
+        this.log('Setting up cellular event handlers...');
+
+        // Toggle control
+        const cellularToggle = document.getElementById('cellular-toggle');
+        if (cellularToggle) {
+            cellularToggle.addEventListener('change', this.handleCellularToggle.bind(this));
+        }
+
+        // Connection controls
+        const connectBtn = document.getElementById('cellular-connect-btn');
+        const disconnectBtn = document.getElementById('cellular-disconnect-btn');
+        const refreshBtn = document.getElementById('cellular-refresh-status-btn');
+        const scanBtn = document.getElementById('cellular-scan-btn');
+
+        if (connectBtn) {
+            connectBtn.addEventListener('click', this.handleConnect.bind(this));
+        }
+        if (disconnectBtn) {
+            disconnectBtn.addEventListener('click', this.handleDisconnect.bind(this));
+        }
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', this.handleRefreshStatus.bind(this));
+        }
+        if (scanBtn) {
+            scanBtn.addEventListener('click', this.handleNetworkScan.bind(this));
+        }
+
+        // Configuration form
+        const configForm = document.getElementById('cellular-config-form');
+        const saveConfigBtn = document.getElementById('save-general-btn'); // Note: This ID is from original HTML, might need update
+        const resetConfigBtn = document.getElementById('reset-cellular-config-btn');
+
+        if (configForm) {
+            configForm.addEventListener('submit', this.handleConfigurationSave.bind(this));
+        }
+        if (saveConfigBtn) {
+            saveConfigBtn.addEventListener('click', this.handleConfigurationSave.bind(this));
+        }
+        if (resetConfigBtn) {
+            resetConfigBtn.addEventListener('click', this.handleConfigurationReset.bind(this));
+        }
+
+        // SIM PIN management
+        const unlockPinBtn = document.getElementById('unlock-pin-btn');
+        const changePinBtn = document.getElementById('change-pin-btn');
+        const pinLockToggle = document.getElementById('pin-lock-toggle');
+        const unlockPukBtn = document.getElementById('unlock-puk-btn');
+
+        if (unlockPinBtn) {
+            unlockPinBtn.addEventListener('click', this.handlePinUnlock.bind(this));
+        }
+        if (changePinBtn) {
+            changePinBtn.addEventListener('click', this.handlePinChange.bind(this));
+        }
+        if (pinLockToggle) {
+            pinLockToggle.addEventListener('click', this.handlePinLockToggle.bind(this));
+        }
+        if (unlockPukBtn) {
+            unlockPukBtn.addEventListener('click', this.handlePukUnlock.bind(this));
+        }
+
+        // Toggle controls with auto-save
+        this.setupToggleControls();
+
+        this.log('Cellular event handlers setup complete');
+    }
+
+    setupToggleControls() {
+        const toggleControls = [
+            { id: 'cellular-auto-connect', config: 'auto_connect' },
+            { id: 'cellular-data-roaming', config: 'data_roaming' },
+            { id: 'cellular-data-limit-enabled', config: 'data_limit_enabled' }
+        ];
+
+        toggleControls.forEach(({ id, config }) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('change', async (e) => {
+                    const enabled = e.target.checked;
+                    this.log(`${config} toggled:`, enabled);
+
+                    try {
+                        const updateData = { [config]: enabled };
+                        await this.makeRequest('POST', this.endpoints.config, updateData);
+
+                        this.configState[config] = enabled;
+                        this.showSuccessMessage(`${config.replace('_', ' ')} updated successfully`);
+
+                        await this.sendEvent('cellular_config_toggle', id, {
+                            action: `toggle_${config}`,
+                            enabled: enabled
+                        });
+                    } catch (error) {
+                        this.showErrorMessage(`Failed to update ${config.replace('_', ' ')}`);
+                        e.target.checked = !enabled; // Revert
+                    }
+                });
+            }
+        });
+    }
+
+    async handleCellularToggle(event) {
+        const enabled = event.target.checked;
+        this.log('Cellular interface toggled:', enabled);
+
+        try {
+            this.updateState({ cellular_enabled: enabled });
+            this.toggleCellularFunctionality(enabled);
+
+            await this.sendEvent('cellular_toggle', 'cellular-toggle', {
+                action: 'toggle_cellular',
+                enabled: enabled
+            });
+
+        } catch (error) {
+            this.logError('Cellular toggle failed:', error);
+            event.target.checked = !enabled; // Revert
+        }
+    }
+
+    async handleConnect(event) {
+        event.preventDefault();
+        this.log('Initiating cellular connection...');
+
+        try {
+            const configData = this.gatherConnectionConfig();
+            this.updateState({ connection_status: 'Connecting' });
+            this.disableButtons(['cellular-connect-btn']);
+
+            const response = await this.makeRequest('POST', this.endpoints.connect, {
+                ...configData,
+                action: 'connect'
+            });
+
+            if (response && response.success !== false) {
+                await this.sendEvent('cellular_connect', 'cellular-connect-btn', {
+                    action: 'connect',
+                    config: this.sanitizeConfigForLogging(configData)
+                });
+
+                this.showSuccessMessage('Connection initiated successfully');
+                setTimeout(() => this.fetchCellularStatus(), 2000);
+            } else {
+                this.showErrorMessage('Connection failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('Connection failed:', error);
+            this.showErrorMessage('Connection failed: ' + error.message);
+            this.updateState({ connection_status: 'Disconnected' });
+        } finally {
+            this.enableButtons(['cellular-connect-btn']);
+        }
+    }
+
+    async handleDisconnect(event) {
+        event.preventDefault();
+        this.log('Initiating cellular disconnection...');
+
+        try {
+            this.updateState({ connection_status: 'Disconnecting' });
+            this.disableButtons(['cellular-disconnect-btn']);
+
+            const response = await this.makeRequest('POST', this.endpoints.disconnect, {
+                action: 'disconnect'
+            });
+
+            if (response && response.success !== false) {
+                await this.sendEvent('cellular_disconnect', 'cellular-disconnect-btn', {
+                    action: 'disconnect'
+                });
+
+                this.showSuccessMessage('Disconnection initiated successfully');
+                setTimeout(() => this.fetchCellularStatus(), 1000);
+            } else {
+                this.showErrorMessage('Disconnection failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('Disconnection failed:', error);
+            this.showErrorMessage('Disconnection failed: ' + error.message);
+        } finally {
+            this.enableButtons(['cellular-disconnect-btn']);
+        }
+    }
+
+    async handleRefreshStatus(event) {
+        event.preventDefault();
+        this.log('Refreshing cellular status...');
+
+        const refreshBtn = document.getElementById('cellular-refresh-status-btn');
+        if (refreshBtn) {
+            const originalHTML = refreshBtn.innerHTML;
+            refreshBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
+            refreshBtn.disabled = true;
+
+            try {
+                await this.fetchCellularStatus();
+                await this.sendEvent('cellular_refresh', 'cellular-refresh-status-btn', {
+                    action: 'refresh_status'
+                });
+                this.showSuccessMessage('Status refreshed successfully');
+            } catch (error) {
+                this.showErrorMessage('Failed to refresh status: ' + error.message);
+            } finally {
+                refreshBtn.innerHTML = originalHTML;
+                refreshBtn.disabled = false;
+            }
+        }
+    }
+
+    async handleNetworkScan(event) {
+        event.preventDefault();
+        this.log('Starting network scan...');
+
+        try {
+            this.updateState({ scan_in_progress: true });
+            this.updateScanButtonUI(true);
+
+            const response = await this.makeRequest('POST', this.endpoints.scan, {
+                scan_type: 'available_networks'
+            });
+
+            if (response && response.success !== false) {
+                const networks = response.networks || response.available_networks || [];
+                this.availableNetworks = networks;
+                this.lastScanTime = Date.now();
+                this.renderAvailableNetworks();
+
+                await this.sendEvent('cellular_scan', 'cellular-scan-btn', {
+                    action: 'scan_networks',
+                    networks_found: networks.length
+                });
+
+                this.showSuccessMessage(`Found ${networks.length} networks`);
+            } else {
+                this.showErrorMessage('Network scan failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('Network scan failed:', error);
+            this.showErrorMessage('Network scan failed: ' + error.message);
+        } finally {
+            this.updateState({ scan_in_progress: false });
+            this.updateScanButtonUI(false);
+        }
+    }
+
+    async handleConfigurationSave(event) {
+        event.preventDefault();
+        this.log('Saving cellular configuration...');
+
+        try {
+            const configData = this.gatherFullConfiguration();
+
+            const response = await this.makeRequest('POST', this.endpoints.config, {
+                ...configData,
+                action: 'update_configuration'
+            });
+
+            if (response && response.success !== false) {
+                this.configState = { ...configData };
+
+                await this.sendEvent('cellular_config_save', 'cellular-config-form', {
+                    action: 'save_configuration',
+                    config: this.sanitizeConfigForLogging(configData)
+                });
+
+                this.showSuccessMessage('Configuration saved successfully');
+                setTimeout(() => this.fetchCellularStatus(), 1500);
+            } else {
+                this.showErrorMessage('Configuration save failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('Configuration save failed:', error);
+            this.showErrorMessage('Configuration save failed: ' + error.message);
+        }
+    }
+
+    async handleConfigurationReset(event) {
+        event.preventDefault();
+        this.log('Resetting cellular configuration...');
+
+        try {
+            const response = await this.makeRequest('POST', this.endpoints.resetConfig, {
+                action: 'reset_to_defaults'
+            });
+
+            if (response && response.success !== false) {
+                await this.fetchCellularConfig();
+                this.showSuccessMessage('Configuration reset to defaults');
+            } else {
+                this.showErrorMessage('Configuration reset failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('Configuration reset failed:', error);
+            this.showErrorMessage('Configuration reset failed: ' + error.message);
+        }
+    }
+
+    async handlePinUnlock(event) {
+        event.preventDefault();
+        const pinInput = document.getElementById('pin-input');
+        const pin = pinInput?.value?.trim();
+
+        if (!pin) {
+            this.showErrorMessage('Please enter PIN');
+            return;
+        }
+
+        if (pin.length < 4 || pin.length > 8 || !/^\d+$/.test(pin)) {
+            this.showErrorMessage('PIN must be 4-8 digits');
+            return;
+        }
+
+        try {
+            await this.sendEvent('cellular_pin_unlock', 'unlock-pin-btn', {
+                action: 'unlock_pin',
+                pin_length: pin.length,
+                timestamp: Date.now()
+            });
+
+            const response = await this.makeRequest('POST', this.endpoints.simUnlock, {
+                action: 'unlock_sim_pin',
+                pin: pin
+            });
+
+            if (response && response.success !== false) {
+                this.showSuccessMessage('PIN unlock successful');
+                pinInput.value = '';
+                await this.fetchCellularStatus();
+            } else {
+                this.showErrorMessage('PIN unlock failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('PIN unlock failed:', error);
+            this.showErrorMessage('PIN unlock failed: ' + error.message);
+        }
+    }
+
+    async handlePinChange(event) {
+        event.preventDefault();
+        const currentPinInput = document.getElementById('current-pin');
+        const newPinInput = document.getElementById('new-pin');
+        const confirmPinInput = document.getElementById('confirm-pin');
+
+        const currentPin = currentPinInput?.value?.trim();
+        const newPin = newPinInput?.value?.trim();
+        const confirmPin = confirmPinInput?.value?.trim();
+
+        if (!currentPin || !newPin || !confirmPin) {
+            this.showErrorMessage('Please fill all PIN fields');
+            return;
+        }
+
+        if (newPin !== confirmPin) {
+            this.showErrorMessage('New PIN and confirmation do not match');
+            return;
+        }
+
+        if (newPin.length < 4 || newPin.length > 8 || !/^\d+$/.test(newPin)) {
+            this.showErrorMessage('New PIN must be 4-8 digits');
+            return;
+        }
+
+        try {
+            await this.sendEvent('cellular_pin_change', 'change-pin-btn', {
+                action: 'change_pin',
+                current_pin_length: currentPin.length,
+                new_pin_length: newPin.length,
+                timestamp: Date.now()
+            });
+
+            const response = await this.makeRequest('POST', this.endpoints.simUnlock, {
+                action: 'change_sim_pin',
+                current_pin: currentPin,
+                new_pin: newPin
+            });
+
+            if (response && response.success !== false) {
+                this.showSuccessMessage('PIN changed successfully');
+                currentPinInput.value = '';
+                newPinInput.value = '';
+                confirmPinInput.value = '';
+                await this.fetchCellularStatus();
+            } else {
+                this.showErrorMessage('PIN change failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('PIN change failed:', error);
+            this.showErrorMessage('PIN change failed: ' + error.message);
+        }
+    }
+
+    async handlePinLockToggle(event) {
+        const isEnabled = event.target.classList.contains('pin-lock-enabled');
+        const newState = !isEnabled;
+
+        try {
+            await this.sendEvent('cellular_pin_lock_toggle', 'pin-lock-toggle', {
+                action: 'toggle_pin_lock',
+                enabled: newState,
+                timestamp: Date.now()
+            });
+
+            const response = await this.makeRequest('POST', this.endpoints.simUnlock, {
+                action: 'toggle_pin_lock',
+                enabled: newState
+            });
+
+            if (response && response.success !== false) {
+                if (newState) {
+                    event.target.classList.add('pin-lock-enabled');
+                    event.target.style.backgroundColor = '#000';
+                    event.target.querySelector('div').style.right = '1px';
+                } else {
+                    event.target.classList.remove('pin-lock-enabled');
+                    event.target.style.backgroundColor = '#d4d4d8';
+                    event.target.querySelector('div').style.right = 'auto';
+                    event.target.querySelector('div').style.left = '1px';
+                }
+                this.showSuccessMessage(`PIN lock ${newState ? 'enabled' : 'disabled'}`);
+                await this.fetchCellularStatus();
+            } else {
+                this.showErrorMessage('PIN lock toggle failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('PIN lock toggle failed:', error);
+            this.showErrorMessage('PIN lock toggle failed: ' + error.message);
+        }
+    }
+
+    async handlePukUnlock(event) {
+        event.preventDefault();
+        const pukCodeInput = document.getElementById('puk-code');
+        const pukNewPinInput = document.getElementById('puk-new-pin');
+
+        const pukCode = pukCodeInput?.value?.trim();
+        const newPin = pukNewPinInput?.value?.trim();
+
+        if (!pukCode || !newPin) {
+            this.showErrorMessage('Please enter both PUK code and new PIN');
+            return;
+        }
+
+        if (pukCode.length !== 8 || !/^\d+$/.test(pukCode)) {
+            this.showErrorMessage('PUK code must be exactly 8 digits');
+            return;
+        }
+
+        if (newPin.length < 4 || newPin.length > 8 || !/^\d+$/.test(newPin)) {
+            this.showErrorMessage('New PIN must be 4-8 digits');
+            return;
+        }
+
+        try {
+            await this.sendEvent('cellular_puk_unlock', 'unlock-puk-btn', {
+                action: 'unlock_puk',
+                puk_length: pukCode.length,
+                new_pin_length: newPin.length,
+                timestamp: Date.now()
+            });
+
+            const response = await this.makeRequest('POST', this.endpoints.simUnlock, {
+                action: 'unlock_sim_puk',
+                puk_code: pukCode,
+                new_pin: newPin
+            });
+
+            if (response && response.success !== false) {
+                this.showSuccessMessage('PUK unlock successful');
+                pukCodeInput.value = '';
+                pukNewPinInput.value = '';
+                await this.fetchCellularStatus();
+            } else {
+                this.showErrorMessage('PUK unlock failed: ' + (response?.message || 'Unknown error'));
+            }
+
+        } catch (error) {
+            this.logError('PUK unlock failed:', error);
+            this.showErrorMessage('PUK unlock failed: ' + error.message);
+        }
+    }
+
+    /**
+     * Data Management
+     */
+    async fetchCellularStatus() {
+        try {
+            this.log('Fetching cellular status...');
+
+            const response = await this.makeRequest('GET', this.endpoints.status);
+
+            if (response) {
+                const status = this.processStatusResponse(response);
+                this.updateState(status);
+                return status;
+            }
+        } catch (error) {
+            this.logError('Error fetching cellular status:', error);
+            this.showErrorMessage('Failed to fetch cellular status');
+            return null;
+        }
+    }
+
+    async fetchCellularConfig() {
+        try {
+            this.log('Fetching cellular configuration...');
+
+            const response = await this.makeRequest('GET', this.endpoints.config);
+
+            if (response) {
+                const config = this.processConfigResponse(response);
+                this.configState = { ...config };
+                this.populateConfigForm(config);
+                return config;
+            }
+        } catch (error) {
+            this.logError('Error fetching cellular config:', error);
+            this.showErrorMessage('Failed to load configuration');
+            return null;
+        }
+    }
+
+    processStatusResponse(response) {
+        const status = response.status || response.cellular_status || response;
+
+        return {
+            cellular_enabled: this.safeBooleanValue(status.cellular_enabled, true),
+            is_connected: this.safeBooleanValue(status.is_connected, false),
+            connection_status: this.safeStringValue(status.connection_status, 'Disconnected'),
+            has_signal: this.safeBooleanValue(status.has_signal, false),
+            signal_strength: this.safeNumericValue(status.signal_strength, 0),
+            signal_bars: this.safeNumericValue(status.signal_bars, 0),
+            signal_status: this.safeStringValue(status.signal_status, 'No Signal'),
+            network_name: this.safeStringValue(status.network_name, 'Not Connected'),
+            technology: this.safeStringValue(status.technology, 'N/A'),
+            band: this.safeStringValue(status.band, 'N/A'),
+            cell_id: this.safeStringValue(status.cell_id, 'Unknown'),
+            apn: this.safeStringValue(status.apn, 'Not Set'),
+            rsrp_dbm: this.safeNumericValue(status.rsrp_dbm, 0),
+            rsrq_db: this.safeNumericValue(status.rsrq_db, 0),
+            rssi_dbm: this.safeNumericValue(status.rssi_dbm, 0),
+            sinr_db: this.safeNumericValue(status.sinr_db, 0),
+            data_usage_mb: this.safeNumericValue(status.data_usage_mb, 0),
+            connection_time_seconds: this.safeNumericValue(status.connection_time_seconds, 0),
+            scan_in_progress: this.safeBooleanValue(status.scan_in_progress, false),
+            auto_connect: this.safeBooleanValue(status.auto_connect, false),
+            data_roaming: this.safeBooleanValue(status.data_roaming, false),
+            preferred_network_type: this.safeStringValue(status.preferred_network_type, 'auto'),
+            sim_status: this.safeStringValue(status.sim_status, 'Not Available'),
+            imsi: this.safeStringValue(status.imsi, 'Not Available'),
+            iccid: this.safeStringValue(status.iccid, 'Not Available'),
+            sim_type: this.safeStringValue(status.sim_type, 'Unknown'),
+            pin_status: this.safeStringValue(status.pin_status, 'Unknown'),
+            imei: this.safeStringValue(status.imei, 'Not Available'),
+            device_model: this.safeStringValue(status.device_model, 'Unknown'),
+            firmware_version: this.safeStringValue(status.firmware_version, 'Unknown'),
+            temperature: this.safeStringValue(status.temperature, 'Unknown'),
+            manufacturer: this.safeStringValue(status.manufacturer, 'Unknown')
+        };
+    }
+
+    processConfigResponse(response) {
+        const config = response.configuration || response.config || response;
+
+        return {
+            apn: this.safeStringValue(config.apn, ''),
+            username: this.safeStringValue(config.username, ''),
+            password: this.safeStringValue(config.password, ''),
+            preferred_network_type: this.safeStringValue(config.preferred_network_type, 'auto'),
+            auto_connect: this.safeBooleanValue(config.auto_connect, false),
+            data_roaming: this.safeBooleanValue(config.data_roaming, false),
+            data_limit_mb: this.safeNumericValue(config.data_limit_mb, 0),
+            data_limit_enabled: this.safeBooleanValue(config.data_limit_enabled, false),
+            auth_type: this.safeStringValue(config.auth_type, 'none'),
+            network_selection: this.safeStringValue(config.network_selection, 'automatic')
+        };
+    }
+
+    safeBooleanValue(value, defaultValue) {
+        return typeof value === 'boolean' ? value : defaultValue;
+    }
+
+    safeStringValue(value, defaultValue) {
+        return (typeof value === 'string' && value.trim()) ? value.trim() : defaultValue;
+    }
+
+    safeNumericValue(value, defaultValue) {
+        const num = Number(value);
+        return !isNaN(num) ? num : defaultValue;
+    }
+
+    /**
+     * UI Helper Methods
+     */
+    gatherConnectionConfig() {
+        return {
+            apn: document.getElementById('cellular-apn')?.value?.trim() || '',
+            username: document.getElementById('cellular-username')?.value?.trim() || '',
+            password: document.getElementById('cellular-password')?.value || '',
+            auth_type: document.getElementById('auth-type')?.value || 'none',
+            preferred_network_type: document.getElementById('cellular-network-type')?.value || 'auto',
+            auto_connect: document.getElementById('cellular-auto-connect')?.checked || false,
+            data_roaming: document.getElementById('cellular-data-roaming')?.checked || false
+        };
+    }
+
+    gatherFullConfiguration() {
+        return {
+            apn: document.getElementById('cellular-apn')?.value?.trim() || '',
+            username: document.getElementById('cellular-username')?.value?.trim() || '',
+            password: document.getElementById('cellular-password')?.value || '',
+            auth_type: document.getElementById('auth-type')?.value || 'none',
+            preferred_network_type: document.getElementById('cellular-network-type')?.value || 'auto',
+            auto_connect: document.getElementById('cellular-auto-connect')?.checked || false,
+            data_roaming: document.getElementById('cellular-data-roaming')?.checked || false,
+            data_limit_mb: parseInt(document.getElementById('cellular-data-limit')?.value) || 0,
+            data_limit_enabled: document.getElementById('cellular-data-limit-enabled')?.checked || false,
+            network_selection: document.getElementById('network-selection')?.value || 'automatic'
+        };
+    }
+
+    populateConfigForm(config) {
+        const formFields = [
+            { id: 'cellular-apn', value: config.apn },
+            { id: 'cellular-username', value: config.username },
+            { id: 'auth-type', value: config.auth_type },
+            { id: 'cellular-network-type', value: config.preferred_network_type },
+            { id: 'cellular-data-limit', value: config.data_limit_mb },
+            { id: 'network-selection', value: config.network_selection }
+        ];
+
+        formFields.forEach(field => {
+            const element = document.getElementById(field.id);
+            if (element && field.value !== undefined) {
+                element.value = field.value;
+            }
+        });
+
+        const checkboxFields = [
+            { id: 'cellular-auto-connect', checked: config.auto_connect },
+            { id: 'cellular-data-roaming', checked: config.data_roaming },
+            { id: 'cellular-data-limit-enabled', checked: config.data_limit_enabled }
+        ];
+
+        checkboxFields.forEach(field => {
+            const element = document.getElementById(field.id);
+            if (element) {
+                element.checked = field.checked;
+            }
+        });
+    }
+
+    toggleCellularFunctionality(enabled) {
+        const sections = ['connection-status-section', 'cellular-config-section', 'sim-device-section'];
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.opacity = enabled ? '1' : '0.5';
+                section.style.pointerEvents = enabled ? 'auto' : 'none';
+            }
+        });
+    }
+
+    updateScanButtonUI(scanning) {
+        const scanBtn = document.getElementById('cellular-scan-btn');
+        if (scanBtn) {
+            scanBtn.disabled = scanning;
+            const span = scanBtn.querySelector('span');
+            if (span) {
+                span.textContent = scanning ? 'Scanning...' : 'Scan Networks';
+            }
+        }
+    }
+
+    renderAvailableNetworks() {
+        this.log('Rendering available networks:', this.availableNetworks.length);
+
+        const container = document.getElementById('cellular-available-networks');
+        const loadingEl = document.getElementById('networks-loading');
+        const emptyEl = document.getElementById('networks-empty');
+        const errorEl = document.getElementById('networks-error');
+
+        if (!container) return;
+
+        // Hide all state elements
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'none';
+
+        if (this.availableNetworks.length === 0) {
+            if (emptyEl) emptyEl.style.display = 'flex';
+            return;
+        }
+
+        if (emptyEl) emptyEl.style.display = 'none';
+
+        const networksHTML = this.availableNetworks.map(network => `
+            <div class="network-item p-3 border border-neutral-200 rounded-md hover:bg-neutral-50 transition-all" 
+                 data-operator="${network.operator_name || 'Unknown'}"
+                 data-mcc="${network.mcc || '000'}"
+                 data-mnc="${network.mnc || '00'}"
+                 data-technology="${network.technology || 'N/A'}"
+                 data-signal="${network.signal_strength || 0}">
+                <div class="flex justify-between items-center">
+                    <div class="network-info">
+                        <div class="network-name text-neutral-900 font-medium">${network.operator_name || 'Unknown'}</div>
+                        <div class="network-details text-sm text-neutral-500">
+                            ${network.technology || 'N/A'} • MCC: ${network.mcc || '000'} • MNC: ${network.mnc || '00'}
+                        </div>
+                    </div>
+                    <div class="network-signal flex items-center space-x-3">
+                        <span class="signal-strength text-sm text-neutral-600">${network.signal_strength || 0} dBm</span>
+                        <button class="select-network-btn px-3 py-1 bg-neutral-600 text-white rounded-md hover:bg-neutral-700 text-sm" 
+                                data-operator="${network.operator_name || 'Unknown'}">
+                            Select
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        container.innerHTML = networksHTML;
+
+        // Add event listeners to select buttons
+        const selectBtns = container.querySelectorAll('.select-network-btn');
+        selectBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const networkData = {
+                    operator: btn.dataset.operator,
+                    mcc: e.target.closest('.network-item').dataset.mcc || 'unknown',
+                    mnc: e.target.closest('.network-item').dataset.mnc || 'unknown',
+                    technology: e.target.closest('.network-item').dataset.technology || 'unknown',
+                    signal_strength: e.target.closest('.network-item').dataset.signal || 0
+                };
+                this.selectNetwork(networkData);
+            });
+        });
+    }
+
+    async selectNetwork(networkData) {
+        this.log('Network selected:', networkData);
+
+        try {
+            await this.sendEvent('cellular_network_select', 'select-network-btn', {
+                action: 'select_network',
+                network_data: {
+                    operator: networkData.operator,
+                    mcc: networkData.mcc,
+                    mnc: networkData.mnc,
+                    technology: networkData.technology,
+                    signal_strength: parseInt(networkData.signal_strength) || 0,
+                    network_id: `${networkData.mcc}${networkData.mnc}`,
+                    timestamp: Date.now()
+                }
+            });
+
+            this.showSuccessMessage(`Selected network: ${networkData.operator}`);
+        } catch (error) {
+            this.logError('Network selection failed:', error);
+            this.showErrorMessage('Failed to select network');
+        }
+    }
+
+    disableButtons(buttonIds) {
+        buttonIds.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) button.disabled = true;
+        });
+    }
+
+    enableButtons(buttonIds) {
+        buttonIds.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) button.disabled = false;
+        });
+    }
+
+    formatDataUsage(usageMB) {
+        if (usageMB >= 1024) {
+            return `${(usageMB / 1024).toFixed(2)} GB`;
+        }
+        return `${usageMB} MB`;
+    }
+
+    formatConnectionTime(seconds) {
+        if (seconds < 60) {
+            return `${seconds} seconds`;
+        } else if (seconds < 3600) {
+            return `${Math.floor(seconds / 60)} minutes`;
+        } else {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            return `${hours}h ${minutes}m`;
+        }
+    }
+
+    sanitizeConfigForLogging(config) {
+        const sanitized = { ...config };
+        if (sanitized.password) {
+            sanitized.password = '[PROTECTED]';
+        }
+        return sanitized;
+    }
+
+    showErrorMessage(message) {
+        this.logError('Error:', message);
+        const errorElement = document.getElementById('cellular-error-message');
+        const errorText = document.getElementById('cellular-error-text');
+        if (errorElement && errorText) {
+            errorText.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 8000);
+        }
+    }
+
+    showSuccessMessage(message) {
+        this.log('Success:', message);
+        const successElement = document.getElementById('cellular-success-message');
+        const successText = document.getElementById('cellular-success-text');
+        if (successElement && successText) {
+            successText.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    /**
+     * Auto-refresh functionality
+     */
+    startAutoRefresh() {
+        if (this.config.enableAutoRefresh && !this.autoRefreshTimer) {
+            this.autoRefreshTimer = setInterval(() => {
+                this.performAutoRefresh();
+            }, this.config.autoRefreshInterval);
+            this.log('Auto-refresh started');
+        }
+    }
+
+    stopAutoRefresh() {
+        if (this.autoRefreshTimer) {
+            clearInterval(this.autoRefreshTimer);
+            this.autoRefreshTimer = null;
+            this.log('Auto-refresh stopped');
+        }
+    }
+
+    async performAutoRefresh() {
+        this.log('Auto-refreshing cellular status...');
+        await this.fetchCellularStatus();
+    }
+
+    /**
+     * Initialize the cellular section
+     */
+    async initialize() {
+        this.log('Initializing cellular section...');
+
+        try {
+            // Setup event handlers
+            this.setupEventHandlers();
+
+            // Load initial data
+            await this.fetchCellularStatus();
+            await this.fetchCellularConfig();
+
+            // Start auto-refresh
+            this.startAutoRefresh();
+
+            // Initialize UI based on current state
+            this.toggleCellularFunctionality(this.state.cellular_enabled);
+
+            // Send initialization event
+            await this.sendEvent('cellular_page_load', 'cellular-configuration-section', { 
+                url: window.location.href 
+            });
+
+            this.log('Cellular section initialized successfully');
+        } catch (error) {
+            this.logError('Failed to initialize cellular section:', error);
+        }
+    }
+
+    cleanup() {
+        this.stopAutoRefresh();
+        this.log('Cellular section cleanup complete');
+    }
+}
+
+// Global section toggle function
+window.toggleSection = function(contentId, chevronId) {
+    const content = document.getElementById(contentId);
+    const chevron = document.getElementById(chevronId);
+
+    if (content && chevron) {
+        const isHidden = content.classList.contains('hidden');
+
+        if (isHidden) {
+            content.classList.remove('hidden');
+            chevron.classList.remove('rotate-180');
+        } else {
+            content.classList.add('hidden');
+            chevron.classList.add('rotate-180');
+        }
+    }
+};
+
+// Initialize cellular section when DOM is ready
+let cellularSectionInstance = null;
+
+function initializeCellularSection() {
+    console.log('[CELLULAR-HTML] Initializing cellular configuration...');
+
+    if (cellularSectionInstance) {
+        console.log('[CELLULAR-HTML] Cellular section already initialized');
+        return;
+    }
+
+    setTimeout(function() {
+        cellularSectionInstance = new CellularSection();
+        cellularSectionInstance.initialize();
+    }, 100);
+}
+
+// Expose to global scope
+window.initializeCellularSection = initializeCellularSection;
+
+// Multiple initialization methods
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCellularSection);
+} else {
+    initializeCellularSection();
+}
+
+// Initialize when section becomes visible
+if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                const cellularToggle = document.getElementById('cellular-toggle');
+                if (cellularToggle && !cellularToggle.hasAttribute('data-initialized')) {
+                    cellularToggle.setAttribute('data-initialized', 'true');
+                    initializeCellularSection();
+                }
+            }
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (cellularSectionInstance) {
+        cellularSectionInstance.cleanup();
+    }
+});
+</script>
+
+<!-- Load required JavaScript files -->
+<script src="../assets/js/core/http-request-manager.js"></script>
+<script src="../assets/js/sections/CellularSection.js"></script>

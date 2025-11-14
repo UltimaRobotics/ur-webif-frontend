@@ -1,0 +1,3045 @@
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h2 class="text-2xl text-neutral-900 mb-2 flex items-center">
+            <i class="fa-solid fa-shield-halved text-neutral-700 mr-3"></i>
+            VPN Configuration Management
+        </h2>
+        <p class="text-neutral-600">Manage your VPN connections, monitor status, and configure routing rules</p>
+    </div>
+
+    <!-- VPN Profiles Table -->
+    <section id="vpn-profiles-table" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <h3 class="text-lg text-neutral-900">VPN Profiles</h3>
+                    <div id="vpn-profiles-count-indicator" class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-neutral-400 rounded-full"></div>
+                        <span id="vpn-profiles-count" class="text-sm text-neutral-600">0 profiles</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="vpn-refresh-profiles-btn" class="text-neutral-600 hover:text-neutral-900 p-2 rounded-lg hover:bg-neutral-100" title="Refresh Profiles">
+                        <i class="fa-solid fa-refresh text-sm"></i>
+                    </button>
+                    <button id="add-vpn-profile-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                        <i class="fa-solid fa-plus mr-2"></i>Add New Profile
+                    </button>
+                    <div class="relative">
+                        <input id="vpn-profiles-search-input" type="text" placeholder="Search profiles..." class="pl-10 pr-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 text-sm">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic profiles container -->
+        <div id="vpn-profiles-container" class="overflow-x-auto">
+            <table class="w-full" id="vpn-profiles-dynamic-table">
+                <thead class="bg-neutral-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Name</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Type</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Server Address</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Assigned IP</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Last Connected</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="vpn-profiles-tbody" class="bg-white divide-y divide-neutral-200">
+                    <!-- Dynamic VPN profile rows will be rendered here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty state display -->
+        <div id="vpn-no-profiles" class="p-8 text-center" style="display: none;">
+            <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-shield-halved text-neutral-400 text-xl"></i>
+            </div>
+            <h4 class="text-lg text-neutral-700 mb-2">No VPN Profiles Found</h4>
+            <p class="text-neutral-500 mb-4">Create your first VPN profile to get started with secure connections.</p>
+            <button id="vpn-add-first-profile-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                <i class="fa-solid fa-plus mr-2"></i>Create Your First Profile
+            </button>
+        </div>
+    </section>
+
+    <!-- Active VPN Status -->
+    <section id="active-vpn-status" class="space-y-6">
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg text-neutral-900">Active VPN Connections</h3>
+            <div class="flex items-center space-x-3">
+                <button id="vpn-refresh-active-btn" class="text-neutral-600 hover:text-neutral-900 p-2 rounded-lg hover:bg-neutral-100" title="Refresh Active Connections">
+                    <i class="fa-solid fa-refresh text-sm"></i>
+                </button>
+                <div id="vpn-active-count-indicator" class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-neutral-400 rounded-full"></div>
+                    <span id="vpn-active-count" class="text-sm text-neutral-600">0 active</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="vpn-active-connections-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Dynamic VPN connection cards will be rendered here -->
+        </div>
+
+        <!-- Empty state display -->
+        <div id="vpn-no-active-connections" class="bg-white rounded-lg border border-neutral-200 p-8 text-center" style="display: none;">
+            <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-shield-halved text-neutral-400 text-xl"></i>
+            </div>
+            <h4 class="text-lg text-neutral-700 mb-2">No Active VPN Connections</h4>
+            <p class="text-neutral-500 mb-4">Connect to a VPN profile to see real-time connection details and monitoring data here.</p>
+            <button id="vpn-connect-quick-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                <i class="fa-solid fa-plus mr-2"></i>Connect to VPN
+            </button>
+        </div>
+    </section>
+
+    <!-- Multi-VPN Routing Rules -->
+    <section id="multi-vpn-routing" class="bg-white rounded-lg border border-neutral-200">
+        <div class="px-6 py-4 border-b border-neutral-200">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div>
+                        <h3 class="text-lg text-neutral-900">Multi-VPN Routing Rules</h3>
+                        <p class="text-sm text-neutral-600 mt-1">Configure traffic routing across multiple VPN connections</p>
+                    </div>
+                    <div id="vpn-routing-rules-count-indicator" class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-neutral-400 rounded-full"></div>
+                        <span id="vpn-routing-rules-count" class="text-sm text-neutral-600">0 rules</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="vpn-refresh-routing-rules-btn" class="text-neutral-600 hover:text-neutral-900 p-2 rounded-lg hover:bg-neutral-100" title="Refresh Routing Rules">
+                        <i class="fa-solid fa-refresh text-sm"></i>
+                    </button>
+                    <button id="add-routing-rule-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                        <i class="fa-solid fa-plus mr-2"></i>Add Rule
+                    </button>
+                    <div class="relative">
+                        <input id="vpn-routing-rules-search-input" type="text" placeholder="Search rules..." class="pl-10 pr-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 text-sm">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic routing rules container -->
+        <div id="vpn-routing-rules-container" class="overflow-x-auto">
+            <table class="w-full" id="vpn-routing-rules-dynamic-table">
+                <thead class="bg-neutral-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Rule Name</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Destination</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Assigned VPN</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Priority</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs text-neutral-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="vpn-routing-rules-tbody" class="bg-white divide-y divide-neutral-200">
+                    <!-- Dynamic VPN routing rules will be rendered here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty state display -->
+        <div id="vpn-no-routing-rules" class="p-8 text-center" style="display: none;">
+            <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-route text-neutral-400 text-xl"></i>
+            </div>
+            <h4 class="text-lg text-neutral-700 mb-2">No Routing Rules Configured</h4>
+            <p class="text-neutral-500 mb-4">Create routing rules to automatically direct specific traffic through different VPN connections.</p>
+            <button id="vpn-add-first-routing-rule-btn" class="bg-neutral-600 hover:bg-neutral-700 text-white px-4 py-2 rounded-lg text-sm">
+                <i class="fa-solid fa-plus mr-2"></i>Create Your First Rule
+            </button>
+        </div>
+    </section>
+
+    <!-- Security Settings -->
+    <section id="security-settings" class="bg-white rounded-lg border border-neutral-200 p-6">
+        <h3 class="text-lg text-neutral-900 mb-6">Security & Advanced Settings</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">Kill Switch</h4>
+                        <p class="text-sm text-neutral-500">Block internet if VPN disconnects</p>
+                    </div>
+                    <div id="kill-switch-toggle" class="w-12 h-6 bg-black rounded-full relative cursor-pointer" data-setting="kill_switch">
+                        <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">Auto-Connect</h4>
+                        <p class="text-sm text-neutral-500">Connect to VPN on startup</p>
+                    </div>
+                    <div id="auto-connect-toggle" class="w-12 h-6 bg-neutral-300 rounded-full relative cursor-pointer" data-setting="auto_connect">
+                        <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">DNS Leak Protection</h4>
+                        <p class="text-sm text-neutral-500">Prevent DNS queries outside VPN</p>
+                    </div>
+                    <div id="dns-leak-toggle" class="w-12 h-6 bg-black rounded-full relative cursor-pointer" data-setting="dns_leak_protection">
+                        <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">IPv6 Leak Protection</h4>
+                        <p class="text-sm text-neutral-500">Block IPv6 traffic outside VPN</p>
+                    </div>
+                    <div id="ipv6-leak-toggle" class="w-12 h-6 bg-black rounded-full relative cursor-pointer" data-setting="ipv6_disable">
+                        <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">Split Tunneling</h4>
+                        <p class="text-sm text-neutral-500">Allow some apps to bypass VPN</p>
+                    </div>
+                    <div id="split-tunneling-toggle" class="w-12 h-6 bg-neutral-300 rounded-full relative cursor-pointer" data-setting="split_tunneling">
+                        <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm text-neutral-900">Multi-hop VPN</h4>
+                        <p class="text-sm text-neutral-500">Route traffic through multiple servers</p>
+                    </div>
+                    <div id="multi-hop-toggle" class="w-12 h-6 bg-black rounded-full relative cursor-pointer" data-setting="compression">
+                        <div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- VPN Create Popup Overlay -->
+<div id="vpn-create-popup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 12px; padding: 0; max-width: 1000px; width: 90%; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+
+        <!-- VPN Create Profile Popup Container -->
+        <div id="vpn-popup-container" class="bg-white w-full h-auto shadow-lg overflow-y-auto">
+
+            <!-- Header Section -->
+            <div id="vpn-popup-header" class="border-b border-neutral-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-neutral-600 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-shield-alt text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl text-neutral-900">Add New VPN Profile</h1>
+                            <p class="text-neutral-500 text-sm">Configure and import your VPN connection settings</p>
+                        </div>
+                    </div>
+                    <button id="vpn-popup-close" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-neutral-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content Section -->
+            <div id="vpn-main-content" class="p-6">
+
+                <!-- VPN Profile Form -->
+                <form id="vpn-profile-form" class="space-y-6">
+                    <!-- Profile Name Section -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-user text-white text-sm"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-blue-900">Profile Configuration</h3>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-blue-800 mb-2 font-medium">Profile Name *</label>
+                            <input type="text" id="profile-name" name="name" placeholder="Enter VPN profile name (e.g., My VPN Connection)" class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" required>
+                            <p class="text-xs text-blue-600 mt-1">This name will help you identify this VPN profile in your list</p>
+                        </div>
+                    </div>
+
+                    <!-- Configuration File Upload Section - Now First Priority -->
+                    <div class="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-cloud-upload text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-green-900">Configuration File Upload</h3>
+                                <p class="text-sm text-green-700">Upload your VPN configuration file to auto-fill connection details</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm text-green-800 mb-3 font-medium">VPN Configuration File</label>
+                            <div id="vpn-config-drop-zone" class="border-2 border-dashed border-green-300 rounded-lg p-8 text-center hover:border-green-400 hover:bg-green-25 transition-all cursor-pointer bg-white shadow-sm"></div_str>
+                                <input type="file" id="vpn-config-file-input" accept=".ovpn,.conf,.wg,.config,.txt" style="display: none;">
+                                
+                                <!-- Upload State -->
+                                <div id="vpn-upload-content" class="space-y-4">
+                                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-cloud-upload text-green-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold text-green-900">Drop your VPN config file here</h4>
+                                        <p class="text-green-700 text-sm mt-2">Or click to browse and select manually</p>
+                                        <p class="text-green-600 text-xs mt-2">The system will automatically detect the protocol and extract connection details</p>
+                                    </div>
+                                    <div class="flex justify-center">
+                                        <button type="button" id="vpn-browse-files-btn" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium shadow-sm">
+                                            <i class="fa-solid fa-folder-open mr-2"></i>
+                                            Browse Files
+                                        </button>
+                                    </div>
+                                    <div class="bg-green-100 rounded-lg p-3 mt-4">
+                                        <p class="text-xs text-green-700 font-medium mb-1">Supported Formats:</p>
+                                        <div class="flex justify-center space-x-4 text-xs text-green-600">
+                                            <span><i class="fa-solid fa-file mr-1"></i>.ovpn (OpenVPN)</span>
+                                            <span><i class="fa-solid fa-file mr-1"></i>.conf (IKEv2)</span>
+                                            <span><i class="fa-solid fa-file mr-1"></i>.wg (WireGuard)</span>
+                                        </div>
+                                        <p class="text-xs text-green-600 text-center mt-1">Maximum file size: 5MB</p>
+                                    </div>
+                                </div>
+
+                                <!-- File Loading State -->
+                                <div id="vpn-file-loading-content" class="space-y-4 hidden">
+                                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-spinner fa-spin text-blue-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-blue-900">Reading Configuration File...</h4>
+                                        <p class="text-blue-700 text-sm">Please wait while we load your VPN configuration</p>
+                                    </div>
+                                    <div class="w-full bg-blue-200 rounded-full h-3">
+                                        <div id="vpn-file-progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- File Selected State -->
+                                <div id="vpn-file-selected-content" class="space-y-4 hidden">
+                                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-file-check text-green-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="vpn-selected-file-name" class="text-lg font-semibold text-green-900">config.ovpn</h4>
+                                        <p id="vpn-selected-file-size" class="text-green-700 text-sm">2.4 KB</p>
+                                        <p class="text-green-600 text-xs mt-1">File ready for parsing</p>
+                                    </div>
+                                    <div class="flex justify-center space-x-3">
+                                        <button type="button" id="vpn-change-file-btn" class="text-green-600 hover:text-green-800 px-4 py-2 rounded-lg border border-green-300 hover:bg-green-50 font-medium">
+                                            <i class="fa-solid fa-exchange mr-1"></i>
+                                            Change File
+                                        </button>
+                                        <button type="button" id="vpn-clear-file-btn" class="text-red-600 hover:text-red-700 px-4 py-2 rounded-lg border border-red-300 hover:bg-red-50 font-medium">
+                                            <i class="fa-solid fa-trash mr-1"></i>
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Parsing State -->
+                                <div id="vpn-parsing-content" class="space-y-4 hidden">
+                                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-cogs fa-spin text-blue-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-blue-900">Parsing Configuration...</h4>
+                                        <p class="text-blue-700 text-sm">Analyzing your VPN configuration file and extracting connection details</p>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-center space-x-2">
+                                            <div class="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+                                            <span id="vpn-parsing-step" class="text-sm text-blue-700 font-medium">Detecting protocol...</span>
+                                        </div>
+                                        <div class="w-full bg-blue-200 rounded-full h-3">
+                                            <div id="vpn-parsing-progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Success State -->
+                                <div id="vpn-success-content" class="space-y-4 hidden">
+                                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-check-circle text-green-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-green-900">Configuration Parsed Successfully!</h4>
+                                        <p id="vpn-success-details" class="text-green-700 text-sm">All connection details have been extracted and the form fields below are now populated</p>
+                                    </div>
+                                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                        <h5 class="text-sm font-medium text-green-800 mb-3">Detected Configuration:</h5>
+                                        <div class="grid grid-cols-2 gap-3 text-sm">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-green-700">Protocol:</span>
+                                                <span id="vpn-detected-protocol" class="text-green-900 font-medium">OpenVPN</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-green-700">Server:</span>
+                                                <span id="vpn-detected-server" class="text-green-900 font-medium">vpn.example.com</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-green-700">Port:</span>
+                                                <span id="vpn-detected-port" class="text-green-900 font-medium">1194</span>
+                                            </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-green-700">Auth Method:</span>
+                                                <span id="vpn-detected-auth" class="text-green-900 font-medium">Certificate</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center">
+                                        <button type="button" id="vpn-reparse-file-btn" class="text-green-600 hover:text-green-800 px-4 py-2 rounded-lg border border-green-300 hover:bg-green-50 font-medium">
+                                            <i class="fa-solid fa-refresh mr-2"></i>
+                                            Parse Different File
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Error State -->
+                                <div id="vpn-error-content" class="space-y-4 hidden">
+                                    <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                                        <i class="fa-solid fa-exclamation-triangle text-red-600 text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-red-900">Configuration Parsing Failed</h4>
+                                        <p id="vpn-error-message" class="text-red-700 text-sm">Unable to parse the configuration file</p>
+                                    </div>
+                                    <div id="vpn-error-details" class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                        <div class="space-y-2">
+                                            <h5 class="text-sm font-medium text-red-900"><i class="fa-solid fa-list mr-2"></i>Issues Found:</h5>
+                                            <ul id="vpn-error-list" class="text-sm text-red-700 space-y-1 ml-4">
+                                                <li>• Unsupported file format</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center space-x-3">
+                                        <button type="button" id="vpn-try-again-btn" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 font-medium">
+                                            <i class="fa-solid fa-refresh mr-2"></i>
+                                            Try Different File
+                                        </button>
+                                        <button type="button" id="vpn-manual-config-btn" class="text-red-600 hover:text-red-800 px-6 py-2 rounded-lg border border-red-300 hover:bg-red-50 font-medium">
+                                            <i class="fa-solid fa-edit mr-2"></i>
+                                            Configure Manually
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connection Details Section - Dynamic based on detected protocol -->
+                    <div class="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-neutral-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-server text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-neutral-900">Connection Details</h3>
+                                <p class="text-sm text-neutral-600">These fields will be automatically populated when you upload a config file</p>
+                            </div>
+                        </div>
+
+                        <!-- Server Address -->
+                        <div class="mb-4">
+                            <label class="block text-sm text-neutral-700 mb-2 font-medium">Server Address *</label>
+                            <input type="text" id="server-address" name="server" placeholder="vpn.example.com or IP address" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-transparent bg-white" required>
+                            <p class="text-xs text-neutral-500 mt-1">The VPN server hostname or IP address</p>
+                        </div>
+
+                        <!-- Protocol and Port -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm text-neutral-700 mb-2 font-medium">Protocol *</label>
+                                <select id="protocol" name="protocol" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 bg-white">
+                                    <option value="">Select Protocol</option>
+                                    <option value="OpenVPN">OpenVPN</option>
+                                    <option value="IKEv2">IKEv2/IPSec</option>
+                                    <option value="WireGuard">WireGuard</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-neutral-700 mb-2 font-medium">Port</label>
+                                <input type="number" id="port" name="port" placeholder="1194" min="1" max="65535" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 bg-white">
+                                <p class="text-xs text-neutral-500 mt-1">Default ports: OpenVPN(1194), IKEv2(500), WireGuard(51820)</p>
+                            </div>
+                        </div>
+
+                        <!-- Authentication Section - Shows based on protocol -->
+                        <div id="auth-section">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm text-neutral-700 mb-2 font-medium">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="Username (if required)" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 bg-white">
+                                    <p class="text-xs text-neutral-500 mt-1">Leave empty if using certificate-based authentication</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-neutral-700 mb-2 font-medium">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Password (if required)" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 bg-white">
+                                    <p class="text-xs text-neutral-500 mt-1">Leave empty if using certificate-based authentication</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Protocol-Specific Details Section -->
+                        <div id="protocol-specific-details" class="hidden">
+                            <!-- OpenVPN Specific Details -->
+                            <div id="openvpn-details" class="hidden">
+                                <h4 class="text-md font-medium text-neutral-700 mb-3 border-t pt-4">OpenVPN Configuration Details</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Device Type:</span>
+                                        <span id="openvpn-device-type" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Auth Algorithm:</span>
+                                        <span id="openvpn-auth-algo" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">TLS Authentication:</span>
+                                        <span id="openvpn-tls-auth" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Certificates:</span>
+                                        <span id="openvpn-certificates" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- IKEv2 Specific Details -->
+                            <div id="ikev2-details" class="hidden">
+                                <h4 class="text-md font-medium text-neutral-700 mb-3 border-t pt-4">IKEv2 Configuration Details</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Connection Type:</span>
+                                        <span id="ikev2-conn-type" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Auto Setting:</span>
+                                        <span id="ikev2-auto" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">IKE Parameters:</span>
+                                        <span id="ikev2-ike-params" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">ESP Parameters:</span>
+                                        <span id="ikev2-esp-params" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Left Identity:</span>
+                                        <span id="ikev2-left-id" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Right Identity:</span>
+                                        <span id="ikev2-right-id" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- WireGuard Specific Details -->
+                            <div id="wireguard-details" class="hidden">
+                                <h4 class="text-md font-medium text-neutral-700 mb-3 border-t pt-4">WireGuard Configuration Details</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Interface Address:</span>
+                                        <span id="wireguard-interface-addr" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Listen Port:</span>
+                                        <span id="wireguard-listen-port" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Allowed IPs:</span>
+                                        <span id="wireguard-allowed-ips" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">DNS Servers:</span>
+                                        <span id="wireguard-dns" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Pre-shared Key:</span>
+                                        <span id="wireguard-psk" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <span class="text-neutral-600">Keepalive:</span>
+                                        <span id="wireguard-keepalive" class="font-medium text-neutral-900 ml-2">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Settings -->
+                    <div class="bg-neutral-50 border border-neutral-200 p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-8 h-8 bg-neutral-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa-solid fa-cog text-white text-sm"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Advanced Settings</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <input type="checkbox" id="auto-connect-profile" name="auto_connect" class="mt-1 w-4 h-4 text-neutral-600 focus:ring-neutral-500 border-neutral-300 rounded">
+                                <div>
+                                    <label for="auto-connect-profile" class="text-sm font-medium text-neutral-700">Auto-connect on startup</label>
+                                    <p class="text-xs text-neutral-500 mt-1">Automatically connect to this VPN when the system starts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Action Buttons Section -->
+            <div id="vpn-action-buttons" class="border-t border-neutral-200 px-6 py-4 bg-neutral-50">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button type="button" id="save-draft-btn" class="text-neutral-600 hover:text-neutral-800 font-medium">
+                            <i class="fa-solid fa-save mr-2"></i>
+                            Save as Draft
+                        </button>
+                        <div class="text-xs text-neutral-500">
+                            <i class="fa-solid fa-info-circle mr-1"></i>
+                            Profile will be stored in vpn-profiles.json
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button type="button" id="vpn-popup-cancel" class="border border-neutral-300 text-neutral-700 px-6 py-2 rounded-lg hover:bg-neutral-50 font-medium">
+                            <i class="fa-solid fa-times mr-2"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" id="create-vpn-profile-btn" class="bg-green-600 text-white px-8 py-2 rounded-lg hover:bg-green-700 font-medium shadow-sm" disabled>
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Create VPN Profile
+                        </button>
+                    </div>
+                </div>
+                <div class="text-xs text-neutral-500 mt-2 text-right">
+                    <i class="fa-solid fa-lightbulb mr-1"></i>
+                    Upload a configuration file above to auto-populate connection details
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- VPN Routing Rule Popup Overlay -->
+<div id="vpn-routing-popup" class="popup-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 12px; padding: 0; max-width: 1000px; width: 90%; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+
+        <!-- VPN Add Routing Rule Popup Container -->
+        <div id="routing-rule-popup-container" class="bg-white w-full h-auto shadow-lg overflow-y-auto">
+
+            <!-- Header Section -->
+            <div id="routing-rule-popup-header" class="border-b border-neutral-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-neutral-600 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-route text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl text-neutral-900">Add VPN Routing Rule</h1>
+                            <p class="text-neutral-500 text-sm">Configure traffic routing for VPN connections</p>
+                        </div>
+                    </div>
+                    <button id="routing-rule-popup-close" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-neutral-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content Section -->
+            <div id="routing-rule-main-content" class="p-6">
+
+                <!-- Rule Configuration Form -->
+                <form id="routing-rule-form" class="space-y-6">
+                    <!-- Rule Name -->
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Rule Name</label>
+                        <input type="text" id="rule-name" name="name" placeholder="Enter rule name" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500" required>
+                    </div>
+
+                    <!-- Source Type and Value -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Source Type</label>
+                            <select id="source-type" name="source_type" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                <option value="IP Address">IP Address</option>
+                                <option value="Domain">Domain</option>
+                                <option value="Application">Application</option>
+                                <option value="Port Range">Port Range</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Source Value</label>
+                            <input type="text" id="source-value" name="source_value" placeholder="e.g., 192.168.1.0/24" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500" required>
+                        </div>
+                    </div>
+
+                    <!-- VPN Instance and Priority -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">VPN Instance</label>
+                            <select id="vpn-instance" name="vpn_instance" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                <option value="US East Coast (OpenVPN)">US East Coast (OpenVPN)</option>
+                                <option value="EU Frankfurt (WireGuard)">EU Frankfurt (WireGuard)</option>
+                                <option value="Asia Singapore (IKEv2)">Asia Singapore (IKEv2)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-neutral-700 mb-2">Priority</label>
+                            <select id="priority" name="priority" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500">
+                                <option value="High (1)">High (1)</option>
+                                <option value="Medium (2)">Medium (2)</option>
+                                <option value="Low (3)">Low (3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Protocol Selection -->
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Protocol</label>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center">
+                                <input type="radio" name="protocol" value="tcp" class="mr-2 text-neutral-600 focus:ring-neutral-500">
+                                <span class="text-sm text-neutral-700">TCP</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="protocol" value="udp" class="mr-2 text-neutral-600 focus:ring-neutral-500">
+                                <span class="text-sm text-neutral-700">UDP</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="protocol" value="both" class="mr-2 text-neutral-600 focus:ring-neutral-500" checked>
+                                <span class="text-sm text-neutral-700">Both</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Rule Settings -->
+                    <div class="bg-neutral-50 p-4 rounded-lg">
+                        <h3 class="text-sm text-neutral-800 mb-3">Rule Settings</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="enable-rule" name="enabled" class="mr-3 text-neutral-600 focus:ring-neutral-500" checked>
+                                <label for="enable-rule" class="text-sm text-neutral-700">Enable this rule immediately</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="apply-to-existing" name="apply_to_existing" class="mr-3 text-neutral-600 focus:ring-neutral-500">
+                                <label for="apply-to-existing" class="text-sm text-neutral-700">Apply to existing connections</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="log-traffic" name="log_traffic" class="mr-3 text-neutral-600 focus:ring-neutral-500">
+                                <label for="log-traffic" class="text-sm text-neutral-700">Log matching traffic</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="block text-sm text-neutral-700 mb-2">Description (Optional)</label>
+                        <textarea id="description" name="description" placeholder="Add a description for this routing rule..." rows="3" class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-500 resize-none"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Action Buttons Section -->
+            <div id="routing-rule-action-buttons" class="border-t border-neutral-200 px-6 py-4 bg-neutral-50">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button type="button" id="save-rule-draft-btn" class="text-neutral-600 hover:text-neutral-800">
+                            <i class="fa-solid fa-save mr-2"></i>
+                            Save as Draft
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button type="button" id="routing-rule-popup-cancel" class="border border-neutral-300 text-neutral-700 px-6 py-2 rounded-lg hover:bg-neutral-50">
+                            Cancel
+                        </button>
+                        <button type="submit" id="create-routing-rule-btn" class="bg-neutral-600 text-white px-8 py-2 rounded-lg hover:bg-neutral-700">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Create Rule
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Popup Animation Styles */
+    .popup-overlay.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .popup-overlay.show .popup-content {
+        transform: scale(1) !important;
+    }
+
+    /* Focus Management */
+    .popup-content:focus {
+        outline: none;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .popup-content {
+            width: 95% !important;
+            max-height: 95vh !important;
+            margin: 10px !important;
+        }
+
+        #vpn-main-content {
+            padding: 1rem !important;
+        }
+
+        .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+    /* Loading States */
+    .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f3f4f6;
+        border-top: 2px solid #6b7280;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Improved Button Hover States */
+    .popup-content button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* File Upload Area Enhancement */
+    .border-dashed:hover {
+        border-color: #6b7280 !important;
+        background-color: #f9fafb !important;
+    }
+</style>
+
+<script>
+/**
+ * Enhanced VPN Section Manager - Complete Backend Integration
+ * 
+ * Handles VPN configuration, connection management, profiles, routing, and security settings
+ * Full integration with backend VPN Router endpoints
+ */
+class VpnSectionManager {
+    constructor() {
+        this.sectionName = 'vpn';
+        this.logPrefix = '[VPN]';
+
+        // VPN-specific API endpoints
+        this.endpoints = {
+            status: '/api/vpn/status',
+            connect: '/api/vpn/connect',
+            disconnect: '/api/vpn/disconnect',
+            profiles: '/api/vpn/profiles',
+            active: '/api/vpn/active',
+            routingRules: '/api/vpn/routing-rules',
+            securitySettings: '/api/vpn/sec-settings',
+            events: '/api/vpn/events',
+            logs: '/api/vpn/logs'
+        };
+
+        // VPN-specific state
+        this.state = {
+            is_connected: false,
+            connection_status: 'Disconnected',
+            current_profile: '',
+            server_location: 'N/A',
+            server_ip: 'N/A',
+            local_ip: 'N/A',
+            public_ip: 'N/A',
+            connection_time: 0,
+            bytes_sent: 0,
+            bytes_received: 0,
+            protocol: 'N/A',
+            encryption: 'N/A',
+            dns_servers: [],
+            last_connected: 'Never',
+            auto_connect: false,
+            kill_switch: false
+        };
+
+        // VPN data collections
+        this.vpnProfiles = [];
+        this.activeConnections = [];
+        this.routingRules = [];
+        this.securitySettings = {};
+
+        // Auto-refresh settings
+        this.autoRefreshInterval = 30000; // 30 seconds
+        this.enableAutoRefresh = true;
+        this.refreshTimer = null;
+        this.autoRefreshCounter = 0;
+
+        this.init();
+    }
+
+    log(message, data = null) {
+        const timestamp = new Date().toISOString();
+        console.log(this.logPrefix, message, data || '');
+    }
+
+    logError(message, error) {
+        console.error(this.logPrefix, message, error);
+    }
+
+    async init() {
+        this.log('Initializing Enhanced VPN Section Manager...');
+
+        try {
+            await this.setupEventHandlers();
+            
+            // Data loading disabled to prevent HTTP operations
+            this.log('Data loading disabled to prevent HTTP operations');
+            // await this.loadInitialData();
+            // await this.loadSecuritySettings();
+
+            if (this.enableAutoRefresh) {
+                // this.startAutoRefresh(); // Auto-refresh disabled
+                this.log('Auto-refresh disabled to prevent HTTP operations');
+            }
+
+            this.log('Enhanced VPN Section Manager initialized successfully');
+        } catch (error) {
+            this.logError('Failed to initialize VPN Section Manager:', error);
+        }
+    }
+
+    async setupEventHandlers() {
+        this.log('Setting up VPN event handlers...');
+
+        // Button event handlers
+        this.registerButtonHandlers();
+        this.registerToggleHandlers();
+        this.registerPopupHandlers();
+        this.registerSearchHandlers();
+        this.registerFormHandlers();
+        this.registerFileUploadHandlers();
+        this.initializeCreateButton();
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeVpnCreatePopup();
+                this.closeVpnRoutingPopup();
+            }
+        });
+
+        this.log('VPN event handlers setup complete');
+    }
+
+    registerButtonHandlers() {
+        // Add VPN Profile button
+        const addVpnBtn = document.getElementById('add-vpn-profile-btn');
+        if (addVpnBtn) {
+            addVpnBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showVpnCreatePopup();
+                this.sendEvent('button_click', 'add-vpn-profile-btn', { action: 'add_vpn_profile' });
+            });
+        }
+
+        // Add First Profile button
+        const addFirstProfileBtn = document.getElementById('vpn-add-first-profile-btn');
+        if (addFirstProfileBtn) {
+            addFirstProfileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showVpnCreatePopup();
+                this.sendEvent('button_click', 'vpn-add-first-profile-btn', { action: 'add_first_vpn_profile' });
+            });
+        }
+
+        // Add Routing Rule button
+        const addRuleBtn = document.getElementById('add-routing-rule-btn');
+        if (addRuleBtn) {
+            addRuleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showVpnRoutingPopup();
+                this.sendEvent('button_click', 'add-routing-rule-btn', { action: 'add_routing_rule' });
+            });
+        }
+
+        // Add First Routing Rule button
+        const addFirstRuleBtn = document.getElementById('vpn-add-first-routing-rule-btn');
+        if (addFirstRuleBtn) {
+            addFirstRuleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showVpnRoutingPopup();
+                this.sendEvent('button_click', 'vpn-add-first-routing-rule-btn', { action: 'add_first_routing_rule' });
+            });
+        }
+
+        // Refresh buttons
+        const refreshProfilesBtn = document.getElementById('vpn-refresh-profiles-btn');
+        if (refreshProfilesBtn) {
+            refreshProfilesBtn.addEventListener('click', async () => {
+                this.log('Manual refresh of VPN profiles requested');
+                refreshProfilesBtn.disabled = true;
+                refreshProfilesBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
+
+                try {
+                    await this.fetchVpnProfiles();
+                    await this.fetchVpnStatus();
+                    this.sendEvent('button_click', 'vpn-refresh-profiles-btn', { action: 'refresh_profiles' });
+                    this.log('VPN profiles refresh completed');
+                } catch (error) {
+                    this.logError('Failed to refresh VPN profiles:', error);
+                } finally {
+                    refreshProfilesBtn.disabled = false;
+                    refreshProfilesBtn.innerHTML = '<i class="fa-solid fa-refresh text-sm"></i>';
+                }
+            });
+        }
+
+        const refreshActiveBtn = document.getElementById('vpn-refresh-active-btn');
+        if (refreshActiveBtn) {
+            refreshActiveBtn.addEventListener('click', async () => {
+                this.log('Manual refresh of active VPN connections requested');
+                refreshActiveBtn.disabled = true;
+                refreshActiveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
+
+                try {
+                    await this.fetchActiveConnections();
+                    await this.fetchVpnStatus();
+                    this.sendEvent('button_click', 'vpn-refresh-active-btn', { action: 'refresh_active' });
+                    this.log('Active VPN connections refresh completed');
+                } catch (error) {
+                    this.logError('Failed to refresh active VPN connections:', error);
+                } finally {
+                    refreshActiveBtn.disabled = false;
+                    refreshActiveBtn.innerHTML = '<i class="fa-solid fa-refresh text-sm"></i>';
+                }
+            });
+        }
+
+        const refreshRulesBtn = document.getElementById('vpn-refresh-routing-rules-btn');
+        if (refreshRulesBtn) {
+            refreshRulesBtn.addEventListener('click', async () => {
+                this.log('Manual refresh of VPN routing rules requested');
+                refreshRulesBtn.disabled = true;
+                refreshRulesBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
+
+                try {
+                    await this.fetchRoutingRules();
+                    await this.fetchVpnStatus();
+                    this.sendEvent('button_click', 'vpn-refresh-routing-rules-btn', { action: 'refresh_rules' });
+                    this.log('VPN routing rules refresh completed');
+                } catch (error) {
+                    this.logError('Failed to refresh VPN routing rules:', error);
+                } finally {
+                    refreshRulesBtn.disabled = false;
+                    refreshRulesBtn.innerHTML = '<i class="fa-solid fa-refresh text-sm"></i>';
+                }
+            });
+        }
+
+        // Quick connect button
+        const quickConnectBtn = document.getElementById('vpn-connect-quick-btn');
+        if (quickConnectBtn) {
+            quickConnectBtn.addEventListener('click', () => {
+                this.showVpnCreatePopup();
+                this.sendEvent('button_click', 'vpn-connect-quick-btn', { action: 'quick_connect' });
+            });
+        }
+    }
+
+    registerToggleHandlers() {
+        const toggles = [
+            'kill-switch-toggle',
+            'auto-connect-toggle', 
+            'dns-leak-toggle',
+            'ipv6-leak-toggle',
+            'split-tunneling-toggle',
+            'multi-hop-toggle'
+        ];
+
+        toggles.forEach(toggleId => {
+            const toggle = document.getElementById(toggleId);
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    this.handleToggleChange(toggleId);
+                });
+            }
+        });
+    }
+
+    registerPopupHandlers() {
+        // Close popup buttons for VPN Create popup
+        const closeVpnPopupBtn = document.getElementById('vpn-popup-close');
+        if (closeVpnPopupBtn) {
+            closeVpnPopupBtn.addEventListener('click', () => {
+                this.closeVpnCreatePopup();
+                this.sendEvent('button_click', 'vpn-popup-close', { action: 'close_vpn_popup' });
+            });
+        }
+
+        const cancelVpnPopupBtn = document.getElementById('vpn-popup-cancel');
+        if (cancelVpnPopupBtn) {
+            cancelVpnPopupBtn.addEventListener('click', () => {
+                this.closeVpnCreatePopup();
+                this.sendEvent('button_click', 'vpn-popup-cancel', { action: 'cancel_vpn_creation' });
+            });
+        }
+
+        // Close popup buttons for VPN Routing popup
+        const closeVpnRoutingPopupBtn = document.getElementById('routing-rule-popup-close');
+        if (closeVpnRoutingPopupBtn) {
+            closeVpnRoutingPopupBtn.addEventListener('click', () => {
+                this.closeVpnRoutingPopup();
+                this.sendEvent('button_click', 'routing-rule-popup-close', { action: 'close_routing_popup' });
+            });
+        }
+
+        const cancelVpnRoutingPopupBtn = document.getElementById('routing-rule-popup-cancel');
+        if (cancelVpnRoutingPopupBtn) {
+            cancelVpnRoutingPopupBtn.addEventListener('click', () => {
+                this.closeVpnRoutingPopup();
+                this.sendEvent('button_click', 'routing-rule-popup-cancel', { action: 'cancel_routing_rule_creation' });
+            });
+        }
+
+        // Close popup on overlay click
+        const vpnPopup = document.getElementById('vpn-create-popup');
+        if (vpnPopup) {
+            vpnPopup.addEventListener('click', (e) => {
+                if (e.target === vpnPopup) {
+                    this.closeVpnCreatePopup();
+                    this.sendEvent('overlay_click', 'vpn-create-popup', { action: 'close_vpn_popup_overlay' });
+                }
+            });
+        }
+
+        const vpnRoutingPopup = document.getElementById('vpn-routing-popup');
+        if (vpnRoutingPopup) {
+            vpnRoutingPopup.addEventListener('click', (e) => {
+                if (e.target === vpnRoutingPopup) {
+                    this.closeVpnRoutingPopup();
+                    this.sendEvent('overlay_click', 'vpn-routing-popup', { action: 'close_routing_popup_overlay' });
+                }
+            });
+        }
+    }
+
+    registerSearchHandlers() {
+        const profilesSearchInput = document.getElementById('vpn-profiles-search-input');
+        if (profilesSearchInput) {
+            profilesSearchInput.addEventListener('input', (e) => {
+                this.filterProfiles(e.target.value);
+            });
+        }
+
+        const rulesSearchInput = document.getElementById('vpn-routing-rules-search-input');
+        if (rulesSearchInput) {
+            rulesSearchInput.addEventListener('input', (e) => {
+                this.filterRoutingRules(e.target.value);
+            });
+        }
+    }
+
+    registerFormHandlers() {
+        // VPN Profile Form
+        const vpnProfileForm = document.getElementById('vpn-profile-form');
+        if (vpnProfileForm) {
+            vpnProfileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleCreateVpnProfile();
+            });
+        }
+
+        // VPN Profile Create Button (direct handler)
+        const createVpnProfileBtn = document.getElementById('create-vpn-profile-btn');
+        if (createVpnProfileBtn) {
+            createVpnProfileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleCreateVpnProfile();
+            });
+        }
+
+        // Routing Rule Form
+        const routingRuleForm = document.getElementById('routing-rule-form');
+        if (routingRuleForm) {
+            routingRuleForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleCreateRoutingRule();
+            });
+        }
+
+        // Routing Rule Create Button (direct handler)
+        const createRoutingRuleBtn = document.getElementById('create-routing-rule-btn');
+        if (createRoutingRuleBtn) {
+            createRoutingRuleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleCreateRoutingRule();
+            });
+        }
+    }
+
+    registerFileUploadHandlers() {
+        const dropZone = document.getElementById('vpn-config-drop-zone');
+        const fileInput = document.getElementById('vpn-config-file-input');
+        const browseBtn = document.getElementById('vpn-browse-files-btn');
+
+        // State variables for file handling
+        this.currentConfigFile = null;
+        this.currentConfigContent = null;
+        this.parsedConfigData = null;
+
+        if (dropZone) {
+            dropZone.addEventListener('click', (e) => {
+                // Only trigger file selection if clicking on upload content or browse button
+                if (e.target.closest('#vpn-upload-content') || e.target.closest('#vpn-browse-files-btn')) {
+                    fileInput.click();
+                }
+            });
+
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.add('border-neutral-400', 'bg-neutral-50');
+            });
+
+            dropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('border-neutral-400', 'bg-neutral-50');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('border-neutral-400', 'bg-neutral-50');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    this.handleFileUpload(files[0]);
+                }
+            });
+        }
+
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    this.handleFileUpload(files[0]);
+                }
+            });
+        }
+
+        if (browseBtn) {
+            browseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileInput.click();
+            });
+        }
+
+        // Additional button handlers
+        this.setupAdditionalFileHandlers();
+    }
+
+    setupAdditionalFileHandlers() {
+        const changeFileBtn = document.getElementById('vpn-change-file-btn');
+        const clearFileBtn = document.getElementById('vpn-clear-file-btn');
+        const reparseFileBtn = document.getElementById('vpn-reparse-file-btn');
+        const tryAgainBtn = document.getElementById('vpn-try-again-btn');
+        const manualConfigBtn = document.getElementById('vpn-manual-config-btn');
+
+        if (changeFileBtn) {
+            changeFileBtn.addEventListener('click', () => {
+                document.getElementById('vpn-config-file-input').click();
+            });
+        }
+
+        if (clearFileBtn) {
+            clearFileBtn.addEventListener('click', () => {
+                this.resetToUploadState();
+            });
+        }
+
+        if (reparseFileBtn) {
+            reparseFileBtn.addEventListener('click', () => {
+                if (this.currentConfigContent) {
+                    this.startConfigParsing(this.currentConfigContent, this.currentConfigFile.name);
+                }
+            });
+        }
+
+        if (tryAgainBtn) {
+            tryAgainBtn.addEventListener('click', () => {
+                this.resetToUploadState();
+            });
+        }
+
+        if (manualConfigBtn) {
+            manualConfigBtn.addEventListener('click', () => {
+                this.resetToUploadState();
+                // Focus on the profile name input for manual configuration
+                const profileNameInput = document.getElementById('profile-name');
+                if (profileNameInput) {
+                    profileNameInput.focus();
+                }
+            });
+        }
+    }
+
+    async handleFileUpload(file) {
+        this.log('VPN config file selected:', file.name, file.size);
+
+        // Validate file first
+        if (!this.validateConfigFile(file)) {
+            return;
+        }
+
+        this.currentConfigFile = file;
+
+        // Show file loading state with progress
+        this.showFileLoadingState(file);
+
+        // Start file reading process
+        await this.readConfigFile(file);
+    }
+
+    validateConfigFile(file) {
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        const allowedExtensions = ['.ovpn', '.conf', '.wg', '.config', '.txt'];
+
+        if (file.size === 0) {
+            this.showErrorState('File is empty', ['Please select a valid VPN configuration file']);
+            return false;
+        }
+
+        if (file.size > maxSize) {
+            this.showErrorState('File too large', [
+                'Maximum file size is 5MB',
+                'Please use a smaller configuration file'
+            ]);
+            return false;
+        }
+
+        const extension = '.' + file.name.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(extension)) {
+            this.showErrorState('Unsupported file format', [
+                `File extension '${extension}' is not supported`,
+                'Please use .ovpn, .conf, .wg, .config, or .txt files'
+            ]);
+            return false;
+        }
+
+        return true;
+    }
+
+    showFileLoadingState(file) {
+        this.hideAllStates();
+        
+        const loadingContent = document.getElementById('vpn-file-loading-content');
+        if (loadingContent) {
+            loadingContent.classList.remove('hidden');
+        }
+
+        // Simulate progress for better UX
+        this.animateFileProgress();
+    }
+
+    animateFileProgress() {
+        const progressBar = document.getElementById('vpn-file-progress-bar');
+        if (!progressBar) return;
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 20;
+            if (progress > 90) progress = 90; // Cap at 90% until file is actually read
+            
+            progressBar.style.width = `${progress}%`;
+            
+            if (progress >= 90) {
+                clearInterval(interval);
+            }
+        }, 100);
+
+        this.fileProgressInterval = interval;
+    }
+
+    async readConfigFile(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                this.currentConfigContent = e.target.result;
+                
+                // Complete the progress bar
+                const progressBar = document.getElementById('vpn-file-progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = '100%';
+                }
+
+                if (this.fileProgressInterval) {
+                    clearInterval(this.fileProgressInterval);
+                }
+
+                this.log('File read successfully, content length:', this.currentConfigContent.length);
+                
+                // Start parsing after a brief delay for better UX
+                setTimeout(() => {
+                    this.startConfigParsing(this.currentConfigContent, file.name);
+                    resolve();
+                }, 500);
+            };
+
+            reader.onerror = (error) => {
+                this.logError('File read error:', error);
+                this.showErrorState('Failed to read file', [
+                    'Unable to read the selected file',
+                    'File may be corrupted or in use',
+                    'Please try selecting the file again'
+                ]);
+                reject(error);
+            };
+
+            reader.readAsText(file);
+        });
+    }
+
+    async startConfigParsing(content, filename) {
+        this.log('Starting VPN config parsing for:', filename);
+        
+        this.hideAllStates();
+        this.showParsingState();
+
+        // Send event for tracking
+        this.sendEvent('config_parsing_started', 'vpn-config-drop-zone', {
+            filename: filename,
+            content_length: content.length
+        });
+
+        try {
+            const parseResult = await this.parseVpnConfiguration(content, filename);
+            
+            if (parseResult.success) {
+                this.parsedConfigData = parseResult;
+                this.showSuccessState(parseResult);
+                this.populateFormWithParsedData(parseResult);
+                
+                // Enable the create button
+                const createBtn = document.getElementById('create-vpn-profile-btn');
+                if (createBtn) {
+                    createBtn.disabled = false;
+                }
+                
+                this.sendEvent('config_parsing_success', 'vpn-config-drop-zone', {
+                    filename: filename,
+                    protocol: parseResult.protocol_detected
+                });
+            } else {
+                this.showErrorState('Configuration parsing failed', parseResult.errors || [
+                    'Unable to parse the configuration file',
+                    'Please check the file format or configure manually'
+                ]);
+                
+                this.sendEvent('config_parsing_failed', 'vpn-config-drop-zone', {
+                    filename: filename,
+                    error: parseResult.error
+                });
+            }
+        } catch (error) {
+            this.logError('Parsing error:', error);
+            this.showErrorState('Parsing error occurred', [
+                error.message || 'Unknown error occurred during parsing',
+                'Please try a different file or configure manually'
+            ]);
+        }
+    }
+
+    async parseVpnConfiguration(content, filename) {
+        const parsers = [
+            { endpoint: '/api/vpn-parser/openvpn-parser', name: 'OpenVPN' },
+            { endpoint: '/api/vpn-parser/ikev2-parser', name: 'IKEv2' },
+            { endpoint: '/api/vpn-parser/wireguard-parser', name: 'WireGuard' }
+        ];
+
+        const stepElement = document.getElementById('vpn-parsing-step');
+        const progressBar = document.getElementById('vpn-parsing-progress-bar');
+        let progressValue = 0;
+
+        for (let i = 0; i < parsers.length; i++) {
+            const parser = parsers[i];
+            
+            try {
+                if (stepElement) {
+                    stepElement.textContent = `Testing ${parser.name} parser...`;
+                }
+                
+                progressValue = ((i + 1) / parsers.length) * 100;
+                if (progressBar) {
+                    progressBar.style.width = `${progressValue}%`;
+                }
+
+                const requestPayload = {
+                    config_content: content,
+                    filename: filename
+                };
+
+                this.log(`Sending request to ${parser.endpoint}`, { content_length: content.length });
+
+                const response = await this.makeRequest('POST', parser.endpoint, requestPayload);
+
+                this.log(`${parser.name} parser response:`, response);
+
+                if (response.success && response.profile_data) {
+                    if (stepElement) {
+                        stepElement.textContent = `Successfully parsed with ${parser.name}!`;
+                    }
+                    
+                    return {
+                        success: true,
+                        protocol_detected: parser.name,
+                        parser_used: parser.name,
+                        profile_data: response.profile_data,
+                        filename: filename
+                    };
+                }
+                
+                // Brief pause between parser attempts
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+            } catch (error) {
+                this.logError(`${parser.name} parser error:`, error);
+                continue;
+            }
+        }
+
+        // All parsers failed
+        if (stepElement) {
+            stepElement.textContent = 'All parsers failed';
+        }
+
+        return {
+            success: false,
+            error: 'Unable to parse configuration file with any available parser',
+            errors: [
+                'Configuration format not recognized',
+                'Supported formats: OpenVPN (.ovpn), IKEv2 (.conf), WireGuard (.wg)',
+                'Please check the file or configure manually'
+            ]
+        };
+    }
+
+    showParsingState() {
+        this.hideAllStates();
+        
+        const parsingContent = document.getElementById('vpn-parsing-content');
+        if (parsingContent) {
+            parsingContent.classList.remove('hidden');
+        }
+
+        // Reset progress bar
+        const progressBar = document.getElementById('vpn-parsing-progress-bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
+    }
+
+    showSuccessState(parseResult) {
+        this.hideAllStates();
+        
+        const successContent = document.getElementById('vpn-success-content');
+        const successDetails = document.getElementById('vpn-success-details');
+        
+        if (successContent) {
+            successContent.classList.remove('hidden');
+        }
+        
+        if (successDetails) {
+            successDetails.textContent = `${parseResult.protocol_detected} configuration parsed successfully. Form fields have been automatically populated.`;
+        }
+
+        // Update detected values display
+        this.updateDetectedValues(parseResult.profile_data);
+    }
+
+    updateDetectedValues(profileData) {
+        const mappings = {
+            'vpn-detected-protocol': profileData.protocol || 'Unknown',
+            'vpn-detected-server': profileData.server || 'Not specified',
+            'vpn-detected-port': profileData.port || 'Default',
+            'vpn-detected-auth': profileData.auth_method || 'Certificate'
+        };
+
+        Object.entries(mappings).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        });
+    }
+
+    populateFormWithParsedData(parseResult) {
+        const profileData = parseResult.profile_data;
+        
+        // Generate default name if not provided
+        if (!profileData.name) {
+            profileData.name = this.generateProfileName(parseResult.filename, parseResult.protocol_detected);
+        }
+
+        const fieldMappings = {
+            'profile-name': profileData.name,
+            'server-address': profileData.server,
+            'protocol': profileData.protocol || parseResult.protocol_detected,
+            'port': profileData.port,
+            'username': profileData.username,
+            'auto-connect-profile': profileData.auto_connect
+        };
+
+        Object.entries(fieldMappings).forEach(([fieldId, value]) => {
+            const field = document.getElementById(fieldId);
+            if (field && value !== undefined && value !== null) {
+                if (field.type === 'checkbox') {
+                    field.checked = Boolean(value);
+                } else {
+                    field.value = value;
+                }
+            }
+        });
+
+        this.log('Form populated with parsed data:', profileData);
+    }
+
+    generateProfileName(filename, protocol) {
+        const baseName = filename.replace(/\.(ovpn|conf|wg|config|txt)$/i, '');
+        return `${baseName} (${protocol})`;
+    }
+
+    showErrorState(title, errors = []) {
+        this.hideAllStates();
+        
+        const errorContent = document.getElementById('vpn-error-content');
+        const errorMessage = document.getElementById('vpn-error-message');
+        const errorList = document.getElementById('vpn-error-list');
+        
+        if (errorContent) {
+            errorContent.classList.remove('hidden');
+        }
+        
+        if (errorMessage) {
+            errorMessage.textContent = title;
+        }
+        
+        if (errorList) {
+            errorList.innerHTML = '';
+            errors.forEach(error => {
+                const li = document.createElement('li');
+                li.textContent = `• ${error}`;
+                errorList.appendChild(li);
+            });
+        }
+    }
+
+    hideAllStates() {
+        const stateIds = [
+            'vpn-upload-content',
+            'vpn-file-loading-content', 
+            'vpn-file-selected-content',
+            'vpn-parsing-content',
+            'vpn-success-content',
+            'vpn-error-content'
+        ];
+
+        stateIds.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.add('hidden');
+            }
+        });
+    }
+
+    resetToUploadState() {
+        this.hideAllStates();
+        
+        const uploadContent = document.getElementById('vpn-upload-content');
+        if (uploadContent) {
+            uploadContent.classList.remove('hidden');
+        }
+
+        // Clear file input and state
+        const fileInput = document.getElementById('vpn-config-file-input');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+
+        this.currentConfigFile = null;
+        this.currentConfigContent = null;
+        this.parsedConfigData = null;
+
+        // Disable create button
+        const createBtn = document.getElementById('create-vpn-profile-btn');
+        if (createBtn) {
+            createBtn.disabled = true;
+        }
+
+        // Clear any running intervals
+        if (this.fileProgressInterval) {
+            clearInterval(this.fileProgressInterval);
+        }
+    }
+
+
+    async handleToggleChange(toggleId) {
+        const toggle = document.getElementById(toggleId);
+        if (!toggle) return;
+
+        const setting = toggle.getAttribute('data-setting');
+        const slider = toggle.querySelector('div');
+        const isEnabled = slider.classList.contains('right-1');
+
+        // Toggle UI state
+        if (isEnabled) {
+            slider.classList.remove('right-1');
+            slider.classList.add('left-1');
+            toggle.classList.remove('bg-black');
+            toggle.classList.add('bg-neutral-300');
+        } else {
+            slider.classList.remove('left-1');
+            slider.classList.add('right-1');
+            toggle.classList.remove('bg-neutral-300');
+            toggle.classList.add('bg-black');
+        }
+
+        // Update security settings
+        const newValue = !isEnabled;
+        await this.updateSecuritySetting(setting, newValue);
+
+        this.sendEvent('toggle_change', toggleId, { 
+            enabled: newValue,
+            setting: setting
+        });
+    }
+
+    async updateSecuritySetting(setting, value) {
+        try {
+            // Update local settings
+            if (!this.securitySettings.global_settings) {
+                this.securitySettings.global_settings = {};
+            }
+            this.securitySettings.global_settings[setting] = value;
+
+            // Send to backend
+            const response = await this.makeRequest('PUT', this.endpoints.securitySettings, {
+                security_settings: this.securitySettings
+            });
+
+            if (response.success) {
+                this.log(`Security setting ${setting} updated to ${value}`);
+            } else {
+                this.logError('Failed to update security setting:', response.error);
+            }
+        } catch (error) {
+            this.logError('Error updating security setting:', error);
+        }
+    }
+
+    async loadInitialData() {
+        this.log('Loading initial VPN data...');
+
+        try {
+            await Promise.all([
+                this.fetchVpnStatus(),
+                this.fetchVpnProfiles(),
+                this.fetchActiveConnections(),
+                this.fetchRoutingRules()
+            ]);
+            this.log('Initial VPN data loaded successfully');
+        } catch (error) {
+            this.logError('Failed to load initial VPN data:', error);
+        }
+    }
+
+    async refreshAllVpnData() {
+        this.log('Refreshing all VPN section data...');
+
+        try {
+            await Promise.all([
+                this.fetchVpnStatus(),
+                this.fetchVpnProfiles(),
+                this.fetchActiveConnections(),
+                this.fetchRoutingRules(),
+                this.loadSecuritySettings()
+            ]);
+            this.log('All VPN data refreshed successfully');
+            this.sendEvent('data_refresh', 'vpn_section', { action: 'refresh_all_data' });
+        } catch (error) {
+            this.logError('Failed to refresh all VPN data:', error);
+            throw error;
+        }
+    }
+
+    async loadSecuritySettings() {
+        this.log('Loading VPN security settings...');
+
+        try {
+            const response = await this.makeRequest('GET', this.endpoints.securitySettings);
+
+            if (response.success && response.settings) {
+                this.securitySettings = response.settings;
+                this.updateSecuritySettingsUI();
+                this.log('VPN security settings loaded');
+            }
+        } catch (error) {
+            this.logError('Failed to load security settings:', error);
+        }
+    }
+
+    updateSecuritySettingsUI() {
+        const settings = this.securitySettings.global_settings || {};
+
+        const toggles = {
+            'kill-switch-toggle': 'kill_switch',
+            'auto-connect-toggle': 'auto_connect',
+            'dns-leak-toggle': 'dns_leak_protection',
+            'ipv6-leak-toggle': 'ipv6_disable',
+            'split-tunneling-toggle': 'split_tunneling',
+            'multi-hop-toggle': 'compression'
+        };
+
+        Object.entries(toggles).forEach(([toggleId, settingKey]) => {
+            const toggle = document.getElementById(toggleId);
+            if (toggle) {
+                const slider = toggle.querySelector('div');
+                const isEnabled = settings[settingKey] || false;
+
+                if (isEnabled) {
+                    slider.classList.remove('left-1');
+                    slider.classList.add('right-1');
+                    toggle.classList.remove('bg-neutral-300');
+                    toggle.classList.add('bg-black');
+                } else {
+                    slider.classList.remove('right-1');
+                    slider.classList.add('left-1');
+                    toggle.classList.remove('bg-black');
+                    toggle.classList.add('bg-neutral-300');
+                }
+            }
+        });
+    }
+
+    async fetchVpnStatus() {
+        this.log('Fetching VPN status...');
+
+        try {
+            this.log('Making GET request to /vpn/status');
+            const response = await this.makeRequest('GET', this.endpoints.status);
+            this.log('Response received:', response);
+
+            if (response.success && response.vpn) {
+                this.updateState(response.vpn);
+                this.log('VPN status received:', response.vpn);
+                return response.vpn;
+            } else {
+                throw new Error('Invalid VPN status response');
+            }
+        } catch (error) {
+            this.logError('Failed to fetch VPN status:', error);
+            throw error;
+        }
+    }
+
+    async fetchVpnProfiles() {
+        this.log('Fetching VPN profiles...');
+
+        try {
+            const response = await this.makeRequest('GET', this.endpoints.profiles);
+
+            if (response.success) {
+                // Handle different response formats
+                const profiles = response.profiles || response.vpn_profiles || [];
+                this.vpnProfiles = Array.isArray(profiles) ? profiles : [];
+                this.renderVpnProfiles();
+                this.updateProfilesCount();
+                this.log('VPN profiles received:', this.vpnProfiles.length);
+                return this.vpnProfiles;
+            } else {
+                throw new Error('Invalid VPN profiles response');
+            }
+        } catch (error) {
+            this.logError('Failed to fetch VPN profiles:', error);
+            this.renderEmptyProfiles();
+            throw error;
+        }
+    }
+
+    async fetchActiveConnections() {
+        this.log('Fetching active VPN connections...');
+
+        try {
+            const response = await this.makeRequest('GET', this.endpoints.active);
+
+            if (response.success) {
+                const connections = response.active_connections || response.connections || [];
+                this.activeConnections = Array.isArray(connections) ? connections : [];
+                this.renderActiveConnections();
+                this.updateActiveCount();
+                this.log('Active VPN connections received:', this.activeConnections.length);
+                return this.activeConnections;
+            } else {
+                throw new Error('Invalid active connections response');
+            }
+        } catch (error) {
+            this.logError('Failed to fetch active VPN connections:', error);
+            this.renderEmptyActiveConnections();
+            throw error;
+        }
+    }
+
+    async fetchRoutingRules() {
+        this.log('Fetching VPN routing rules...');
+
+        try {
+            const response = await this.makeRequest('GET', this.endpoints.routingRules);
+
+            if (response.success) {
+                const rules = response.routing_rules || response.rules || [];
+                this.routingRules = Array.isArray(rules) ? rules : [];
+                this.renderRoutingRules();
+                this.updateRoutingRulesCount();
+                this.log('VPN routing rules received:', this.routingRules.length);
+                return this.routingRules;
+            } else {
+                throw new Error('Invalid routing rules response');
+            }
+        } catch (error) {
+            this.logError('Failed to fetch VPN routing rules:', error);
+            this.renderEmptyRoutingRules();
+            throw error;
+        }
+    }
+
+    async handleCreateVpnProfile() {
+        const popup = document.getElementById('vpn-create-popup');
+        const isEditMode = popup && popup.dataset.editMode === 'true';
+        const editId = popup ? popup.dataset.editId : null;
+        
+        this.log(isEditMode ? 'Updating VPN profile...' : 'Creating new VPN profile...');
+
+        try {
+            const form = document.getElementById('vpn-profile-form');
+            if (!form) {
+                this.logError('VPN profile form not found');
+                return;
+            }
+
+            // Get form data using element IDs
+            const profileData = {
+                name: document.getElementById('profile-name')?.value || '',
+                server: document.getElementById('server-address')?.value || '',
+                protocol: document.getElementById('protocol')?.value || 'OpenVPN',
+                port: parseInt(document.getElementById('port')?.value) || 1194,
+                username: document.getElementById('username')?.value || '',
+                password: document.getElementById('password')?.value || '',
+                auto_connect: document.getElementById('auto-connect-profile')?.checked || false,
+                encryption: 'AES-256',
+                auth_method: 'Certificate'
+            };
+
+            // Include parsed configuration data if available
+            if (this.parsedConfigData) {
+                profileData.parsed_config = {
+                    filename: this.parsedConfigData.filename,
+                    protocol_detected: this.parsedConfigData.protocol_detected,
+                    parser_used: this.parsedConfigData.parser_used,
+                    original_content: this.currentConfigContent ? this.currentConfigContent.substring(0, 1000) : null // Truncate for storage
+                };
+                
+                // Override with parsed data where available
+                if (this.parsedConfigData.profile_data) {
+                    const parsedData = this.parsedConfigData.profile_data;
+                    if (parsedData.auth_method) profileData.auth_method = parsedData.auth_method;
+                    if (parsedData.encryption) profileData.encryption = parsedData.encryption;
+                    if (parsedData.additional_config) profileData.additional_config = parsedData.additional_config;
+                }
+            }
+
+            // Include raw config file data if available
+            if (this.currentConfigFile && this.currentConfigContent) {
+                profileData.config_file = {
+                    filename: this.currentConfigFile.name,
+                    content: this.currentConfigContent,
+                    size: this.currentConfigFile.size,
+                    type: this.currentConfigFile.type || 'text/plain',
+                    upload_timestamp: Date.now()
+                };
+            }
+
+            // Add ID for edit mode or generate for new profile
+            if (isEditMode && editId) {
+                profileData.id = editId;
+            } else {
+                profileData.id = 'profile_' + Date.now();
+                profileData.created_date = new Date().toISOString().split('T')[0];
+                profileData.last_used = 'Never';
+                profileData.status = 'Ready';
+            }
+
+            // Validate required fields
+            if (!profileData.name || !profileData.server) {
+                this.logError('Profile name and server address are required');
+                this.showValidationError('Profile name and server address are required');
+                return;
+            }
+
+            // Validate port
+            if (profileData.port <= 0 || profileData.port > 65535) {
+                this.logError('Invalid port number');
+                this.showValidationError('Port must be between 1 and 65535');
+                return;
+            }
+
+            this.log('Sending VPN profile data:', {
+                ...profileData,
+                config_file: profileData.config_file ? { ...profileData.config_file, content: `[${profileData.config_file.content.length} characters]` } : null
+            });
+
+            // Show loading state on create button
+            const createBtn = document.getElementById('create-vpn-profile-btn');
+            const originalText = createBtn ? createBtn.textContent : '';
+            if (createBtn) {
+                createBtn.disabled = true;
+                createBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Creating...';
+            }
+
+            const method = isEditMode ? 'PUT' : 'POST';
+            const response = await this.makeRequest(method, this.endpoints.profiles, profileData);
+
+            this.log('VPN profile response received:', response);
+
+            if (response.success) {
+                this.log(isEditMode ? 'VPN profile updated successfully' : 'VPN profile created successfully');
+                this.closeVpnCreatePopup();
+                await this.fetchVpnProfiles();
+                this.sendEvent(isEditMode ? 'vpn_profile_update' : 'vpn_profile_create', 'profile', { 
+                    profile_id: profileData.id,
+                    has_config_file: !!this.currentConfigFile,
+                    protocol: profileData.protocol
+                });
+                this.resetToUploadState();
+                this.showSuccessNotification(isEditMode ? 'VPN profile updated successfully!' : 'VPN profile created successfully!');
+            } else {
+                const errorMsg = response.error || 'Unknown error';
+                this.logError(isEditMode ? 'Failed to update VPN profile:' : 'Failed to create VPN profile:', errorMsg);
+                this.showValidationError(isEditMode ? `Failed to update VPN profile: ${errorMsg}` : `Failed to create VPN profile: ${errorMsg}`);
+            }
+        } catch (error) {
+            this.logError(isEditMode ? 'Error updating VPN profile:' : 'Error creating VPN profile:', error);
+            this.showValidationError(isEditMode ? `Error updating VPN profile: ${error.message}` : `Error creating VPN profile: ${error.message}`);
+        } finally {
+            // Reset create button
+            const createBtn = document.getElementById('create-vpn-profile-btn');
+            if (createBtn) {
+                createBtn.disabled = false;
+                createBtn.textContent = isEditMode ? 'Update Profile' : 'Create VPN Profile';
+            }
+        }
+    }
+
+    showValidationError(message) {
+        // Create temporary error notification
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-lg z-50 max-w-md';
+        errorDiv.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <span class="text-sm">${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-red-600 hover:text-red-800">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(errorDiv);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 5000);
+    }
+
+    showSuccessNotification(message) {
+        // Create temporary success notification
+        const successDiv = document.createElement('div');
+        successDiv.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-lg z-50 max-w-md';
+        successDiv.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-check-circle"></i>
+                <span class="text-sm">${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-green-600 hover:text-green-800">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(successDiv);
+
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (successDiv.parentNode) {
+                successDiv.remove();
+            }
+        }, 3000);
+    }
+
+    async handleCreateRoutingRule() {
+        const popup = document.getElementById('vpn-routing-popup');
+        const isEditMode = popup && popup.dataset.editMode === 'true';
+        const editId = popup ? popup.dataset.editId : null;
+        
+        this.log(isEditMode ? 'Updating VPN routing rule...' : 'Creating new VPN routing rule...');
+
+        try {
+            const form = document.getElementById('routing-rule-form');
+            if (!form) {
+                this.logError('Routing rule form not found');
+                return;
+            }
+
+            // Get protocol value from radio buttons
+            const protocolRadio = document.querySelector('input[name="protocol"]:checked');
+            const protocolValue = protocolRadio ? protocolRadio.value : 'both';
+
+            // Get form data using element IDs
+            const ruleData = {
+                name: document.getElementById('rule-name')?.value || '',
+                source_type: document.getElementById('source-type')?.value || 'IP Address',
+                source_value: document.getElementById('source-value')?.value || '',
+                destination: document.getElementById('source-value')?.value || '', // For compatibility with existing data
+                vpn_instance: document.getElementById('vpn-instance')?.value || '',
+                vpn_profile: document.getElementById('vpn-instance')?.value || '', // For compatibility
+                gateway: document.getElementById('vpn-instance')?.value === 'Local' ? 'Local' : 'VPN Server',
+                priority: parseInt(document.getElementById('priority')?.value?.replace(/[^\d]/g, '')) || 1,
+                type: document.getElementById('source-type')?.value === 'IP Address' ? 'tunnel_all' : 'bypass',
+                protocol: protocolValue,
+                description: document.getElementById('description')?.value || '',
+                enabled: document.getElementById('enable-rule')?.checked || false,
+                apply_to_existing: document.getElementById('apply-to-existing')?.checked || false,
+                log_traffic: document.getElementById('log-traffic')?.checked || false,
+                last_modified: new Date().toISOString().split('T')[0]
+            };
+
+            // Add ID for edit mode or generate for new rule
+            if (isEditMode && editId) {
+                ruleData.id = editId;
+            } else {
+                ruleData.id = 'rule_' + Date.now();
+                ruleData.created_date = new Date().toISOString().split('T')[0];
+            }
+
+            // Validate required fields
+            if (!ruleData.name || !ruleData.source_value) {
+                this.logError('Rule name and source value are required');
+                alert('Rule name and source value are required');
+                return;
+            }
+
+            this.log('Sending routing rule data:', ruleData);
+
+            const method = isEditMode ? 'PUT' : 'POST';
+            const response = await this.makeRequest(method, this.endpoints.routingRules, ruleData);
+
+            this.log('Routing rule response received:', response);
+
+            if (response.success) {
+                this.log(isEditMode ? 'VPN routing rule updated successfully' : 'VPN routing rule created successfully');
+                this.closeVpnRoutingPopup();
+                await this.fetchRoutingRules();
+                this.sendEvent(isEditMode ? 'vpn_rule_update' : 'vpn_rule_create', 'routing_rule', { rule_data: ruleData });
+                alert(isEditMode ? 'VPN routing rule updated successfully!' : 'VPN routing rule created successfully!');
+            } else {
+                const errorMsg = response.error || 'Unknown error';
+                this.logError(isEditMode ? 'Failed to update VPN routing rule:' : 'Failed to create VPN routing rule:', errorMsg);
+                alert(isEditMode ? `Failed to update VPN routing rule: ${errorMsg}` : `Failed to create VPN routing rule: ${errorMsg}`);
+            }
+        } catch (error) {
+            this.logError(isEditMode ? 'Error updating VPN routing rule:' : 'Error creating VPN routing rule:', error);
+            alert(isEditMode ? `Error updating VPN routing rule: ${error.message}` : `Error creating VPN routing rule: ${error.message}`);
+        }
+    }
+
+    async makeRequest(method, endpoint, data = null) {
+        const url = endpoint.startsWith('/api') ? endpoint : `/api${endpoint}`;
+
+        this.log(`Making ${method} request to ${url}`);
+        if (data) {
+            this.log('Request data:', data);
+        }
+
+        const options = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        if (data && method !== 'GET') {
+            // If uploading a file, content type should be different
+            if (data instanceof FormData) {
+                delete options.headers['Content-Type']; // Let the browser set it
+                options.body = data;
+            } else {
+                options.body = JSON.stringify(data);
+            }
+        }
+
+        try {
+            const response = await fetch(url, options);
+            this.log(`Response status: ${response.status} ${response.statusText}`);
+
+            // Try to parse JSON, but handle non-JSON responses gracefully
+            try {
+                const jsonResponse = await response.json();
+                this.log('Response received:', jsonResponse);
+                return jsonResponse;
+            } catch (e) {
+                this.logError('Failed to parse JSON response from:', url);
+                return { success: response.ok, error: `HTTP error ${response.status}: ${response.statusText}` };
+            }
+        } catch (error) {
+            this.logError('Network error making request to:', url, error);
+            return { success: false, error: `Network error: ${error.message}` };
+        }
+    }
+
+    updateState(newState) {
+        const oldState = { ...this.state };
+        Object.assign(this.state, newState);
+
+        // Log state changes
+        const changes = {};
+        for (const key in newState) {
+            if (oldState[key] !== newState[key]) {
+                changes[key] = { old: oldState[key], new: newState[key] };
+            }
+        }
+
+        if (Object.keys(changes).length > 0) {
+            this.log('State changed:', changes);
+        }
+    }
+
+    renderVpnProfiles() {
+        const tbody = document.getElementById('vpn-profiles-tbody');
+        const noProfilesDiv = document.getElementById('vpn-no-profiles');
+
+        if (!tbody) return;
+
+        if (this.vpnProfiles.length === 0) {
+            this.renderEmptyProfiles();
+            return;
+        }
+
+        tbody.innerHTML = '';
+        noProfilesDiv.style.display = 'none';
+
+        this.vpnProfiles.forEach(profile => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-900">${profile.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${profile.protocol || profile.type || 'N/A'}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${this.getStatusBadgeClass(profile.status)}">
+                        ${profile.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${profile.server}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${profile.assigned_ip || 'N/A'}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${profile.last_used || profile.last_connected || 'Never'}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <div class="flex items-center space-x-2">
+                        ${profile.status === 'Connected' ? 
+                            `<button class="text-red-600 hover:text-red-900" onclick="vpnManager.disconnectProfile('${profile.id}')">Disconnect</button>` :
+                            `<button class="text-green-600 hover:text-green-900" onclick="vpnManager.connectProfile('${profile.id}')">Connect</button>`
+                        }
+                        <button class="text-neutral-600 hover:text-neutral-900" onclick="vpnManager.editProfile('${profile.id}')">
+                            <i class="fa-solid fa-edit"></i>
+                        </button>
+                        <button class="text-red-600 hover:text-red-900" onclick="vpnManager.deleteProfile('${profile.id}')">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    renderEmptyProfiles() {
+        const tbody = document.getElementById('vpn-profiles-tbody');
+        const noProfilesDiv = document.getElementById('vpn-no-profiles');
+
+        if (tbody) tbody.innerHTML = '';
+        if (noProfilesDiv) noProfilesDiv.style.display = 'block';
+    }
+
+    renderActiveConnections() {
+        const container = document.getElementById('vpn-active-connections-container');
+        const noConnectionsDiv = document.getElementById('vpn-no-active-connections');
+
+        if (!container) return;
+
+        if (this.activeConnections.length === 0) {
+            this.renderEmptyActiveConnections();
+            return;
+        }
+
+        container.innerHTML = '';
+        noConnectionsDiv.style.display = 'none';
+
+        this.activeConnections.forEach(connection => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg border border-neutral-200 p-6';
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-lg text-neutral-900">${connection.profile_name}</h4>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                        Connected
+                    </span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-sm text-neutral-600">Server:</span>
+                        <span class="text-sm text-neutral-900">${connection.server || connection.server_location}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-sm text-neutral-600">Protocol:</span>
+                        <span class="text-sm text-neutral-900">${connection.protocol}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-sm text-neutral-600">Assigned IP:</span>
+                        <span class="text-sm text-neutral-900">${connection.local_ip}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-sm text-neutral-600">Connection Time:</span>
+                        <span class="text-sm text-neutral-900">${this.formatConnectionTime(connection.connection_time)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-sm text-neutral-600">Data Transfer:</span>
+                        <span class="text-sm text-neutral-900">
+                            ↑${this.formatBytes(connection.bytes_sent)} ↓${this.formatBytes(connection.bytes_received)}
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-neutral-200">
+                    <button onclick="vpnManager.disconnectProfile('${connection.profile_id || connection.id}')" 
+                            class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
+                        Disconnect
+                    </button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    renderEmptyActiveConnections() {
+        const container = document.getElementById('vpn-active-connections-container');
+        const noConnectionsDiv = document.getElementById('vpn-no-active-connections');
+
+        if (container) container.innerHTML = '';
+        if (noConnectionsDiv) noConnectionsDiv.style.display = 'block';
+    }
+
+    renderRoutingRules() {
+        const tbody = document.getElementById('vpn-routing-rules-tbody');
+        const noRulesDiv = document.getElementById('vpn-no-routing-rules');
+
+        if (!tbody) return;
+
+        if (this.routingRules.length === 0) {
+            this.renderEmptyRoutingRules();
+            return;
+        }
+
+        tbody.innerHTML = '';
+        noRulesDiv.style.display = 'none';
+
+        this.routingRules.forEach(rule => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-900">${rule.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${rule.destination || rule.source_value}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${rule.vpn_instance || rule.assigned_vpn || rule.vpn_profile}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">${rule.priority}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${this.getStatusBadgeClass(rule.enabled ? 'active' : 'inactive')}">
+                        ${rule.enabled ? 'Active' : 'Inactive'}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <div class="flex items-center space-x-2">
+                        <button class="text-neutral-600 hover:text-neutral-900" onclick="vpnManager.editRule('${rule.id}')">
+                            <i class="fa-solid fa-edit"></i>
+                        </button>
+                        <button class="text-red-600 hover:text-red-900" onclick="vpnManager.deleteRule('${rule.id}')">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    renderEmptyRoutingRules() {
+        const tbody = document.getElementById('vpn-routing-rules-tbody');
+        const noRulesDiv = document.getElementById('vpn-no-routing-rules');
+
+        if (tbody) tbody.innerHTML = '';
+        if (noRulesDiv) noRulesDiv.style.display = 'block';
+    }
+
+    getStatusBadgeClass(status) {
+        switch (status?.toLowerCase()) {
+            case 'connected':
+            case 'ready':
+                return 'bg-green-100 text-green-800';
+            case 'connecting':
+                return 'bg-yellow-100 text-yellow-800';
+            case 'disconnected':
+                return 'bg-gray-100 text-gray-800';
+            case 'error':
+                return 'bg-red-100 text-red-800';
+            case 'active':
+                return 'bg-green-100 text-green-800';
+            case 'inactive':
+                return 'bg-gray-100 text-gray-800';
+            default:
+                return 'bg-gray-100 text-gray-800';
+        }
+    }
+
+    updateProfilesCount() {
+        const countElement = document.getElementById('vpn-profiles-count');
+        if (countElement) {
+            const count = this.vpnProfiles.length;
+            countElement.textContent = `${count} profile${count !== 1 ? 's' : ''}`;
+        }
+    }
+
+    updateActiveCount() {
+        const countElement = document.getElementById('vpn-active-count');
+        if (countElement) {
+            const count = this.activeConnections.length;
+            countElement.textContent = `${count} active`;
+        }
+    }
+
+    updateRoutingRulesCount() {
+        const countElement = document.getElementById('vpn-routing-rules-count');
+        if (countElement) {
+            const count = this.routingRules.length;
+            countElement.textContent = `${count} rule${count !== 1 ? 's' : ''}`;
+        }
+    }
+
+    filterProfiles(searchTerm) {
+        const tbody = document.getElementById('vpn-profiles-tbody');
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll('tr');
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const matches = text.includes(searchTerm.toLowerCase());
+            row.style.display = matches ? '' : 'none';
+        });
+    }
+
+    filterRoutingRules(searchTerm) {
+        const tbody = document.getElementById('vpn-routing-rules-tbody');
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll('tr');
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const matches = text.includes(searchTerm.toLowerCase());
+            row.style.display = matches ? '' : 'none';
+        });
+    }
+
+    async connectProfile(profileId) {
+        this.log('Connecting to VPN profile:', profileId);
+
+        try {
+            const response = await this.makeRequest('POST', this.endpoints.connect, { profile_id: profileId });
+
+            if (response.success) {
+                this.log('VPN connection initiated successfully');
+                await this.fetchVpnStatus();
+                await this.fetchActiveConnections();
+                this.sendEvent('vpn_connect', 'profile', { profile_id: profileId });
+            } else {
+                this.logError('Failed to connect VPN:', response.error);
+            }
+        } catch (error) {
+            this.logError('Error connecting VPN:', error);
+        }
+    }
+
+    async disconnectProfile(profileId) {
+        this.log('Disconnecting VPN profile:', profileId);
+
+        try {
+            const response = await this.makeRequest('POST', this.endpoints.disconnect, { profile_id: profileId });
+
+            if (response.success) {
+                this.log('VPN disconnection initiated successfully');
+                await this.fetchVpnStatus();
+                await this.fetchActiveConnections();
+                this.sendEvent('vpn_disconnect', 'profile', { profile_id: profileId });
+            } else {
+                this.logError('Failed to disconnect VPN:', response.error);
+            }
+        } catch (error) {
+            this.logError('Error disconnecting VPN:', error);
+        }
+    }
+
+    async deleteProfile(profileId) {
+        if (!confirm('Are you sure you want to delete this VPN profile?')) {
+            return;
+        }
+
+        this.log('Deleting VPN profile:', profileId);
+
+        try {
+            const response = await this.makeRequest('DELETE', this.endpoints.profiles, { profile_id: profileId });
+
+            if (response.success) {
+                this.log('VPN profile deleted successfully');
+                await this.fetchVpnProfiles();
+                this.sendEvent('vpn_profile_delete', 'profile', { profile_id: profileId });
+            } else {
+                this.logError('Failed to delete VPN profile:', response.error);
+            }
+        } catch (error) {
+            this.logError('Error deleting VPN profile:', error);
+        }
+    }
+
+    editProfile(profileId) {
+        this.log('Editing VPN profile:', profileId);
+        
+        // Find the profile to edit
+        const profile = this.vpnProfiles.find(p => p.id === profileId);
+        if (!profile) {
+            this.logError('Profile not found for editing:', profileId);
+            return;
+        }
+        
+        // Show edit profile popup
+        this.showEditProfilePopup(profile);
+        this.sendEvent('vpn_profile_edit', 'profile', { profile_id: profileId });
+    }
+
+    editRule(ruleId) {
+        this.log('Editing routing rule:', ruleId);
+        
+        // Find the rule to edit
+        const rule = this.routingRules.find(r => r.id === ruleId);
+        if (!rule) {
+            this.logError('Rule not found for editing:', ruleId);
+            return;
+        }
+        
+        // Show edit rule popup
+        this.showEditRoutingRulePopup(rule);
+        this.sendEvent('vpn_rule_edit', 'rule', { rule_id: ruleId });
+    }
+
+    async deleteRule(ruleId) {
+        if (!confirm('Are you sure you want to delete this routing rule?')) {
+            return;
+        }
+
+        this.log('Deleting routing rule:', ruleId);
+
+        try {
+            // Use DELETE method with rule_id in body instead of URL path
+            const response = await this.makeRequest('DELETE', this.endpoints.routingRules, { rule_id: ruleId });
+
+            if (response.success) {
+                this.log('Routing rule deleted successfully');
+                await this.fetchRoutingRules();
+                this.sendEvent('vpn_rule_delete', 'rule', { rule_id: ruleId });
+            } else {
+                this.logError('Failed to delete routing rule:', response.error);
+            }
+        } catch (error) {
+            this.logError('Error deleting routing rule:', error);
+        }
+    }
+
+    showVpnCreatePopup() {
+        this.log('showVpnCreatePopup called');
+        const popup = document.getElementById('vpn-create-popup');
+        if (popup) {
+            this.log('Found popup, showing with animation');
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Focus management
+            this.focusFirstElement(popup);
+        } else {
+            this.log('Popup not found - ID: vpn-create-popup');
+        }
+    }
+
+    closeVpnCreatePopup() {
+        this.log('closeVpnCreatePopup called');
+        const popup = document.getElementById('vpn-create-popup');
+        if (popup) {
+            this.log('Found popup, hiding with animation');
+            popup.style.opacity = '0';
+            popup.style.visibility = 'hidden';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(0.9)';
+            }
+
+            // Restore body scroll
+            document.body.style.overflow = '';
+
+            setTimeout(() => {
+                popup.style.display = 'none';
+                // Reset form
+                const form = document.getElementById('vpn-profile-form');
+                if (form) form.reset();
+                this.clearFileSelection();
+                this.clearEditMode(popup); // Clear edit mode
+            }, 300);
+        } else {
+            this.log('Popup not found for closing');
+        }
+    }
+
+    showVpnRoutingPopup() {
+        this.log('showVpnRoutingPopup called');
+        const popup = document.getElementById('vpn-routing-popup');
+        if (popup) {
+            this.log('Found routing popup, showing with animation');
+            
+            // Clear any edit mode
+            this.clearEditMode(popup);
+            
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Focus management
+            this.focusFirstElement(popup);
+        } else {
+            this.log('Routing popup not found - ID: vpn-routing-popup');
+        }
+    }
+
+    showEditProfilePopup(profile) {
+        this.log('showEditProfilePopup called for profile:', profile.id);
+        const popup = document.getElementById('vpn-create-popup');
+        if (popup) {
+            this.log('Found popup, showing with edit mode');
+            
+            // Set edit mode
+            this.setEditMode(popup, 'profile', profile);
+            
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Focus management
+            this.focusFirstElement(popup);
+        } else {
+            this.log('Profile edit popup not found');
+        }
+    }
+
+    showEditRoutingRulePopup(rule) {
+        this.log('showEditRoutingRulePopup called for rule:', rule.id);
+        const popup = document.getElementById('vpn-routing-popup');
+        if (popup) {
+            this.log('Found routing popup, showing with edit mode');
+            
+            // Set edit mode
+            this.setEditMode(popup, 'rule', rule);
+            
+            popup.style.display = 'flex';
+            // Force reflow for animation
+            popup.offsetHeight;
+            popup.style.opacity = '1';
+            popup.style.visibility = 'visible';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(1)';
+            }
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Focus management
+            this.focusFirstElement(popup);
+        } else {
+            this.log('Rule edit popup not found');
+        }
+    }
+
+    setEditMode(popup, type, data) {
+        // Mark popup as in edit mode
+        popup.dataset.editMode = 'true';
+        popup.dataset.editType = type;
+        popup.dataset.editId = data.id;
+        
+        if (type === 'profile') {
+            // Update header
+            const header = popup.querySelector('h1');
+            if (header) header.textContent = 'Edit VPN Profile';
+            
+            // Update button text
+            const createBtn = popup.querySelector('#create-vpn-profile-btn');
+            if (createBtn) createBtn.textContent = 'Update Profile';
+            
+            // Populate form fields
+            this.populateProfileEditForm(data);
+        } else if (type === 'rule') {
+            // Update header
+            const header = popup.querySelector('h1');
+            if (header) header.textContent = 'Edit VPN Routing Rule';
+            
+            // Update button text
+            const createBtn = popup.querySelector('#create-routing-rule-btn');
+            if (createBtn) createBtn.textContent = 'Update Rule';
+            
+            // Populate form fields
+            this.populateRuleEditForm(data);
+        }
+    }
+
+    clearEditMode(popup) {
+        // Clear edit mode
+        delete popup.dataset.editMode;
+        delete popup.dataset.editType;
+        delete popup.dataset.editId;
+        
+        // Reset headers and buttons
+        const vpnHeader = document.querySelector('#vpn-create-popup h1');
+        if (vpnHeader) vpnHeader.textContent = 'Add New VPN Profile';
+        
+        const ruleHeader = document.querySelector('#vpn-routing-popup h1');
+        if (ruleHeader) ruleHeader.textContent = 'Add VPN Routing Rule';
+        
+        const createVpnBtn = document.querySelector('#create-vpn-profile-btn');
+        if (createVpnBtn) createVpnBtn.textContent = 'Create VPN Profile';
+        
+        const createRuleBtn = document.querySelector('#create-routing-rule-btn');
+        if (createRuleBtn) createRuleBtn.textContent = 'Create Rule';
+    }
+
+    populateProfileEditForm(profile) {
+        // Populate VPN profile form with existing data
+        const fields = {
+            'profile-name': profile.name,
+            'server-address': profile.server,
+            'protocol': profile.protocol,
+            'port': profile.port,
+            'username': profile.username,
+            // Don't populate password for security
+            'auto-connect-profile': profile.auto_connect
+        };
+        
+        Object.entries(fields).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                if (element.type === 'checkbox') {
+                    element.checked = Boolean(value);
+                } else {
+                    element.value = value || '';
+                }
+            }
+        });
+    }
+
+    populateRuleEditForm(rule) {
+        // Populate routing rule form with existing data
+        const fields = {
+            'rule-name': rule.name,
+            'source-type': rule.source_type,
+            'source-value': rule.source_value,
+            'vpn-instance': rule.vpn_instance,
+            'priority': rule.priority,
+            'description': rule.description,
+            'enable-rule': rule.enabled,
+            'apply-to-existing': rule.apply_to_existing,
+            'log-traffic': rule.log_traffic
+        };
+        
+        Object.entries(fields).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                if (element.type === 'checkbox') {
+                    element.checked = Boolean(value);
+                } else {
+                    element.value = value || '';
+                }
+            }
+        });
+        
+        // Handle protocol radio buttons
+        if (rule.protocol) {
+            const protocolRadio = document.querySelector(`input[name="protocol"][value="${rule.protocol}"]`);
+            if (protocolRadio) protocolRadio.checked = true;
+        }
+    }
+
+    closeVpnRoutingPopup() {
+        this.log('closeVpnRoutingPopup called');
+        const popup = document.getElementById('vpn-routing-popup');
+        if (popup) {
+            this.log('Found routing popup, hiding with animation');
+            popup.style.opacity = '0';
+            popup.style.visibility = 'hidden';
+
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                content.style.transform = 'scale(0.9)';
+            }
+
+            // Restore body scroll
+            document.body.style.overflow = '';
+
+            setTimeout(() => {
+                popup.style.display = 'none';
+                // Reset form
+                const form = document.getElementById('routing-rule-form');
+                if (form) form.reset();
+                this.clearEditMode(popup); // Clear edit mode
+            }, 300);
+        } else {
+            this.log('Routing popup not found for closing');
+        }
+    }
+
+    focusFirstElement(popup) {
+        const focusableElements = popup.querySelectorAll(
+            'button:not([disabled]):not([style*="display: none;"]), input:not([disabled]):not([style*="display: none;"]), select:not([disabled]):not([style*="display: none;"]), textarea:not([disabled]):not([style*="display: none;"]), [tabindex]:not([tabindex="-1"]):not([style*="display: none;"])'
+        );
+
+        if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+        }
+    }
+
+    startAutoRefresh() {
+        if (this.refreshTimer) {
+            clearInterval(this.refreshTimer);
+        }
+
+        this.refreshTimer = setInterval(async () => {
+            this.log('Auto-refreshing VPN status...');
+            try {
+                await this.fetchVpnStatus();
+                await this.fetchActiveConnections();
+                // Only refresh profiles and rules every 3rd auto-refresh cycle to reduce load
+                if (this.autoRefreshCounter % 3 === 0) {
+                    await this.fetchVpnProfiles();
+                    await this.fetchRoutingRules();
+                }
+                this.autoRefreshCounter++;
+            } catch (error) {
+                this.logError('Auto-refresh failed:', error);
+            }
+        }, this.autoRefreshInterval);
+
+        this.autoRefreshCounter = 0;
+        this.log(`Auto-refresh started with ${this.autoRefreshInterval}ms interval`);
+    }
+
+    stopAutoRefresh() {
+        if (this.refreshTimer) {
+            clearInterval(this.refreshTimer);
+            this.refreshTimer = null;
+            this.log('Auto-refresh stopped');
+        }
+    }
+
+    formatConnectionTime(seconds) {
+        if (!seconds || seconds === 0) return '00:00:00';
+
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Initialize create button state
+    initializeCreateButton() {
+        const createBtn = document.getElementById('create-vpn-profile-btn');
+        if (createBtn) {
+            // Disable by default until valid data is provided
+            createBtn.disabled = true;
+            
+            // Monitor form changes to enable/disable button
+            const form = document.getElementById('vpn-profile-form');
+            if (form) {
+                form.addEventListener('input', () => {
+                    this.validateFormAndUpdateButton();
+                });
+            }
+        }
+    }
+
+    validateFormAndUpdateButton() {
+        const createBtn = document.getElementById('create-vpn-profile-btn');
+        if (!createBtn) return;
+
+        const profileName = document.getElementById('profile-name')?.value?.trim();
+        const serverAddress = document.getElementById('server-address')?.value?.trim();
+        
+        // Enable button if required fields are filled or if we have parsed data
+        const hasRequiredFields = profileName && serverAddress;
+        const hasParsedData = this.parsedConfigData && this.parsedConfigData.success;
+        
+        createBtn.disabled = !(hasRequiredFields || hasParsedData);
+    }
+
+    sendEvent(eventType, elementId, data = {}) {
+        const eventData = {
+            type: eventType,
+            element: elementId,
+            timestamp: Date.now(),
+            section: this.sectionName,
+            ...data
+        };
+
+        this.log('Event sent:', eventData);
+
+        // Send to parent window if in iframe context
+        if (window.parent !== window) {
+            window.parent.postMessage({
+                type: 'vpn_event',
+                data: eventData
+            }, '*');
+        }
+    }
+
+    destroy() {
+        this.stopAutoRefresh();
+        this.log('Enhanced VPN Section Manager destroyed');
+    }
+
+    // Public method for external refresh triggers
+    async triggerGlobalRefresh() {
+        this.log('Global VPN data refresh triggered externally');
+        try {
+            await this.refreshAllVpnData();
+            return { success: true, message: 'VPN data refreshed successfully' };
+        } catch (error) {
+            this.logError('Global VPN refresh failed:', error);
+            return { success: false, error: error.message };
+        }
+    }
+}
+
+// Global VPN manager instance
+let vpnManager;
+
+// Initialize VPN Section Manager immediately when script runs
+(function initializeVpnSection() {
+    // Ensure the DOM is ready before initializing
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            vpnManager = new VpnSectionManager();
+        });
+    } else {
+        vpnManager = new VpnSectionManager();
+    }
+})();
+
+// Expose manager to global scope for debugging
+window.vpnManager = vpnManager;
+
+// Handle page unload
+window.addEventListener('beforeunload', () => {
+    if (vpnManager) {
+        vpnManager.destroy();
+    }
+});
+</script>
