@@ -22,14 +22,14 @@ function(check_file_hash has_hash hash_is_good)
   set("${has_hash}" TRUE PARENT_SCOPE)
 
   message(STATUS "verifying file...
-       file='/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'")
+       file='/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'")
 
-  file("MD5" "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" actual_value)
+  file("MD5" "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" actual_value)
 
   if(NOT "${actual_value}" STREQUAL "e155202b2a589137f6804724bd182f12")
     set("${hash_is_good}" FALSE PARENT_SCOPE)
     message(STATUS "MD5 hash of
-    /home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz
+    /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz
   does not match expected value
     expected: 'e155202b2a589137f6804724bd182f12'
       actual: '${actual_value}'")
@@ -71,7 +71,7 @@ function(sleep_before_download attempt)
   execute_process(COMMAND "${CMAKE_COMMAND}" -E sleep "${sleep_seconds}")
 endfunction()
 
-if("/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" STREQUAL "")
+if("/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" STREQUAL "")
   message(FATAL_ERROR "LOCAL can't be empty")
 endif()
 
@@ -79,32 +79,32 @@ if("https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz" STRE
   message(FATAL_ERROR "REMOTE can't be empty")
 endif()
 
-if(EXISTS "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
+if(EXISTS "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
   check_file_hash(has_hash hash_is_good)
   if(has_hash)
     if(hash_is_good)
       message(STATUS "File already exists and hash match (skip download):
-  file='/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
+  file='/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
   MD5='e155202b2a589137f6804724bd182f12'"
       )
       return()
     else()
       message(STATUS "File already exists but hash mismatch. Removing...")
-      file(REMOVE "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
+      file(REMOVE "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
     endif()
   else()
     message(STATUS "File already exists but no hash specified (use URL_HASH):
-  file='/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
+  file='/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
 Old file will be removed and new file downloaded from URL."
     )
-    file(REMOVE "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
+    file(REMOVE "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
   endif()
 endif()
 
 set(retry_number 5)
 
 message(STATUS "Downloading...
-   dst='/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
+   dst='/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz'
    timeout='none'
    inactivity timeout='none'"
 )
@@ -126,7 +126,7 @@ foreach(i RANGE ${retry_number})
 
       file(
         DOWNLOAD
-        "${url}" "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz"
+        "${url}" "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz"
         SHOW_PROGRESS
         # no TIMEOUT
         # no INACTIVITY_TIMEOUT
@@ -143,7 +143,7 @@ foreach(i RANGE ${retry_number})
         check_file_hash(has_hash hash_is_good)
         if(has_hash AND NOT hash_is_good)
           message(STATUS "Hash mismatch, removing...")
-          file(REMOVE "/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
+          file(REMOVE "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz")
         else()
           message(STATUS "Downloading... done")
           return()

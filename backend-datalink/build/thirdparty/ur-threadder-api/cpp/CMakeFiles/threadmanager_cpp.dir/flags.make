@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -D_POSIX_C_SOURCE=200809L
 
-CXX_INCLUDES = -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src
+CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src
 
 CXX_FLAGS = -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic -std=gnu++17
 

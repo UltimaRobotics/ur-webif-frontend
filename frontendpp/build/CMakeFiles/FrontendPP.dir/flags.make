@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DHAVE_MICROHTTPD -DHAVE_OPENSSL -DHAVE_SQLITE3
 
-CXX_INCLUDES = -I/home/fyou/Desktop/ur-webif-frontend/frontendpp/build -I/home/fyou/Desktop/ur-webif-frontend/frontendpp/include -I/home/fyou/Desktop/ur-webif-frontend/frontendpp/thirdparty -I/usr/include/p11-kit-1 -I/home/fyou/Desktop/ur-webif-frontend/frontendpp/thirdparty/jwtpp/include
+CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/include -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty -I/usr/include/p11-kit-1 -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include
 
 CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++17
 

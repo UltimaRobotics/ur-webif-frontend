@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
 
 # Include any dependencies generated for this target.
 include thirdparty/system-data/CMakeFiles/system_data.dir/depend.make
@@ -72,16 +72,16 @@ include thirdparty/system-data/CMakeFiles/system_data.dir/flags.make
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o: thirdparty/system-data/CMakeFiles/system_data.dir/flags.make
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o: ../thirdparty/system-data/src/SystemDataCollector.cpp
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o: thirdparty/system-data/CMakeFiles/system_data.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o"
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o -MF CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o.d -o CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o"
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o -MF CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o.d -o CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp
 
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.i"
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp > CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.i
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp > CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.i
 
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.s"
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp -o CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.s
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp -o CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.s
 
 # Object files for target system_data
 system_data_OBJECTS = \
@@ -93,19 +93,19 @@ system_data_EXTERNAL_OBJECTS =
 thirdparty/system-data/libsystem_data.a: thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o
 thirdparty/system-data/libsystem_data.a: thirdparty/system-data/CMakeFiles/system_data.dir/build.make
 thirdparty/system-data/libsystem_data.a: thirdparty/system-data/CMakeFiles/system_data.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libsystem_data.a"
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -P CMakeFiles/system_data.dir/cmake_clean_target.cmake
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/system_data.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libsystem_data.a"
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -P CMakeFiles/system_data.dir/cmake_clean_target.cmake
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/system_data.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 thirdparty/system-data/CMakeFiles/system_data.dir/build: thirdparty/system-data/libsystem_data.a
 .PHONY : thirdparty/system-data/CMakeFiles/system_data.dir/build
 
 thirdparty/system-data/CMakeFiles/system_data.dir/clean:
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -P CMakeFiles/system_data.dir/cmake_clean.cmake
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data && $(CMAKE_COMMAND) -P CMakeFiles/system_data.dir/cmake_clean.cmake
 .PHONY : thirdparty/system-data/CMakeFiles/system_data.dir/clean
 
 thirdparty/system-data/CMakeFiles/system_data.dir/depend:
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Desktop/ur-webif-frontend/backend-datalink /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/system_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/backend-datalink /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/system_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/system-data/CMakeFiles/system_data.dir/depend
 

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -135,14 +135,14 @@ CMakeFiles/backend-datalink.dir/all: thirdparty/ur-threadder-api/cpp/CMakeFiles/
 CMakeFiles/backend-datalink.dir/all: thirdparty/system-data/CMakeFiles/system_data.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target backend-datalink"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target backend-datalink"
 .PHONY : CMakeFiles/backend-datalink.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/backend-datalink.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/backend-datalink.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : CMakeFiles/backend-datalink.dir/rule
 
 # Convenience name for target.
@@ -161,14 +161,14 @@ CMakeFiles/backend-datalink.dir/clean:
 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=9,10,11,12,13 "Built target threadmanager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=9,10,11,12,13 "Built target threadmanager"
 .PHONY : thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule
 
 # Convenience name for target.
@@ -187,14 +187,14 @@ thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/clean:
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/all: thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build.make thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build.make thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=14,15 "Built target threadmanager_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=14,15 "Built target threadmanager_cpp"
 .PHONY : thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/rule
 
 # Convenience name for target.
@@ -213,14 +213,14 @@ thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/clean:
 thirdparty/system-data/CMakeFiles/system_data.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/system-data/CMakeFiles/system_data.dir/build.make thirdparty/system-data/CMakeFiles/system_data.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/system-data/CMakeFiles/system_data.dir/build.make thirdparty/system-data/CMakeFiles/system_data.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=7,8 "Built target system_data"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=7,8 "Built target system_data"
 .PHONY : thirdparty/system-data/CMakeFiles/system_data.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/system-data/CMakeFiles/system_data.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/system-data/CMakeFiles/system_data.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : thirdparty/system-data/CMakeFiles/system_data.dir/rule
 
 # Convenience name for target.

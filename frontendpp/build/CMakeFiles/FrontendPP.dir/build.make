@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyou/Desktop/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyou/Desktop/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/FrontendPP.dir/depend.make
@@ -72,100 +72,100 @@ include CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/main.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/FrontendPP.dir/src/main.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FrontendPP.dir/src/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/main.cpp.o -MF CMakeFiles/FrontendPP.dir/src/main.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/main.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FrontendPP.dir/src/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/main.cpp.o -MF CMakeFiles/FrontendPP.dir/src/main.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/main.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/main.cpp
 
 CMakeFiles/FrontendPP.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/main.cpp > CMakeFiles/FrontendPP.dir/src/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/main.cpp > CMakeFiles/FrontendPP.dir/src/main.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/main.cpp -o CMakeFiles/FrontendPP.dir/src/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/main.cpp -o CMakeFiles/FrontendPP.dir/src/main.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/http_server.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/http_server.cpp.o: ../src/http_server.cpp
 CMakeFiles/FrontendPP.dir/src/http_server.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FrontendPP.dir/src/http_server.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/http_server.cpp.o -MF CMakeFiles/FrontendPP.dir/src/http_server.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/http_server.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/http_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FrontendPP.dir/src/http_server.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/http_server.cpp.o -MF CMakeFiles/FrontendPP.dir/src/http_server.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/http_server.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/http_server.cpp
 
 CMakeFiles/FrontendPP.dir/src/http_server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/http_server.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/http_server.cpp > CMakeFiles/FrontendPP.dir/src/http_server.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/http_server.cpp > CMakeFiles/FrontendPP.dir/src/http_server.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/http_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/http_server.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/http_server.cpp -o CMakeFiles/FrontendPP.dir/src/http_server.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/http_server.cpp -o CMakeFiles/FrontendPP.dir/src/http_server.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o: ../src/auth_handler.cpp
 CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o -MF CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/auth_handler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o -MF CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/auth_handler.cpp
 
 CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/auth_handler.cpp > CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/auth_handler.cpp > CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/auth_handler.cpp -o CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/auth_handler.cpp -o CMakeFiles/FrontendPP.dir/src/auth_handler.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o: ../src/config_manager.cpp
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o -MF CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/config_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o -MF CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/config_manager.cpp
 
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/config_manager.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/config_manager.cpp > CMakeFiles/FrontendPP.dir/src/config_manager.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/config_manager.cpp > CMakeFiles/FrontendPP.dir/src/config_manager.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/config_manager.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/config_manager.cpp -o CMakeFiles/FrontendPP.dir/src/config_manager.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/config_manager.cpp -o CMakeFiles/FrontendPP.dir/src/config_manager.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o: ../src/jwt_manager.cpp
 CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o -MF CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/jwt_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o -MF CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/jwt_manager.cpp
 
 CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/jwt_manager.cpp > CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/jwt_manager.cpp > CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/jwt_manager.cpp -o CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/jwt_manager.cpp -o CMakeFiles/FrontendPP.dir/src/jwt_manager.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o: ../src/file_handler.cpp
 CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o -MF CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/file_handler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o -MF CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/file_handler.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/file_handler.cpp
 
 CMakeFiles/FrontendPP.dir/src/file_handler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/file_handler.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/file_handler.cpp > CMakeFiles/FrontendPP.dir/src/file_handler.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/file_handler.cpp > CMakeFiles/FrontendPP.dir/src/file_handler.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/file_handler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/file_handler.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/file_handler.cpp -o CMakeFiles/FrontendPP.dir/src/file_handler.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/file_handler.cpp -o CMakeFiles/FrontendPP.dir/src/file_handler.cpp.s
 
 CMakeFiles/FrontendPP.dir/src/logger.cpp.o: CMakeFiles/FrontendPP.dir/flags.make
 CMakeFiles/FrontendPP.dir/src/logger.cpp.o: ../src/logger.cpp
 CMakeFiles/FrontendPP.dir/src/logger.cpp.o: CMakeFiles/FrontendPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FrontendPP.dir/src/logger.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/logger.cpp.o -MF CMakeFiles/FrontendPP.dir/src/logger.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/logger.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/logger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FrontendPP.dir/src/logger.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FrontendPP.dir/src/logger.cpp.o -MF CMakeFiles/FrontendPP.dir/src/logger.cpp.o.d -o CMakeFiles/FrontendPP.dir/src/logger.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/logger.cpp
 
 CMakeFiles/FrontendPP.dir/src/logger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FrontendPP.dir/src/logger.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/logger.cpp > CMakeFiles/FrontendPP.dir/src/logger.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/logger.cpp > CMakeFiles/FrontendPP.dir/src/logger.cpp.i
 
 CMakeFiles/FrontendPP.dir/src/logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FrontendPP.dir/src/logger.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/frontendpp/src/logger.cpp -o CMakeFiles/FrontendPP.dir/src/logger.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/logger.cpp -o CMakeFiles/FrontendPP.dir/src/logger.cpp.s
 
 # Object files for target FrontendPP
 FrontendPP_OBJECTS = \
@@ -191,7 +191,7 @@ FrontendPP: CMakeFiles/FrontendPP.dir/build.make
 FrontendPP: /usr/lib/x86_64-linux-gnu/libssl.so
 FrontendPP: /usr/lib/x86_64-linux-gnu/libcrypto.so
 FrontendPP: CMakeFiles/FrontendPP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable FrontendPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable FrontendPP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FrontendPP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -203,6 +203,6 @@ CMakeFiles/FrontendPP.dir/clean:
 .PHONY : CMakeFiles/FrontendPP.dir/clean
 
 CMakeFiles/FrontendPP.dir/depend:
-	cd /home/fyou/Desktop/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Desktop/ur-webif-frontend/frontendpp /home/fyou/Desktop/ur-webif-frontend/frontendpp /home/fyou/Desktop/ur-webif-frontend/frontendpp/build /home/fyou/Desktop/ur-webif-frontend/frontendpp/build /home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles/FrontendPP.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/frontendpp /home/fyousfi/Documents/ur-webif-frontend/frontendpp /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles/FrontendPP.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/FrontendPP.dir/depend
 

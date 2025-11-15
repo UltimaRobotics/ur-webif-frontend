@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyou/Desktop/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyou/Desktop/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles /home/fyou/Desktop/ur-webif-frontend/frontendpp/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Desktop/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -184,7 +184,7 @@ print-claims: cmake_check_build_system
 
 # fast build rule for target.
 print-claims/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/print-claims.dir/build.make thirdparty/jwtpp/example/CMakeFiles/print-claims.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/build
 .PHONY : print-claims/fast
 
 #=============================================================================
@@ -197,7 +197,7 @@ print-claims-run: cmake_check_build_system
 
 # fast build rule for target.
 print-claims-run/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/print-claims-run.dir/build.make thirdparty/jwtpp/example/CMakeFiles/print-claims-run.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build
 .PHONY : print-claims-run/fast
 
 #=============================================================================
@@ -210,7 +210,7 @@ private-claims: cmake_check_build_system
 
 # fast build rule for target.
 private-claims/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/private-claims.dir/build.make thirdparty/jwtpp/example/CMakeFiles/private-claims.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/build
 .PHONY : private-claims/fast
 
 #=============================================================================
@@ -223,7 +223,7 @@ private-claims-run: cmake_check_build_system
 
 # fast build rule for target.
 private-claims-run/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/private-claims-run.dir/build.make thirdparty/jwtpp/example/CMakeFiles/private-claims-run.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/build
 .PHONY : private-claims-run/fast
 
 #=============================================================================
@@ -236,7 +236,7 @@ rsa-create: cmake_check_build_system
 
 # fast build rule for target.
 rsa-create/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/rsa-create.dir/build.make thirdparty/jwtpp/example/CMakeFiles/rsa-create.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/build
 .PHONY : rsa-create/fast
 
 #=============================================================================
@@ -249,7 +249,7 @@ rsa-create-run: cmake_check_build_system
 
 # fast build rule for target.
 rsa-create-run/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/rsa-create-run.dir/build.make thirdparty/jwtpp/example/CMakeFiles/rsa-create-run.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/build
 .PHONY : rsa-create-run/fast
 
 #=============================================================================
@@ -262,7 +262,7 @@ rsa-verify: cmake_check_build_system
 
 # fast build rule for target.
 rsa-verify/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/rsa-verify.dir/build.make thirdparty/jwtpp/example/CMakeFiles/rsa-verify.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/build
 .PHONY : rsa-verify/fast
 
 #=============================================================================
@@ -275,7 +275,7 @@ rsa-verify-run: cmake_check_build_system
 
 # fast build rule for target.
 rsa-verify-run/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/rsa-verify-run.dir/build.make thirdparty/jwtpp/example/CMakeFiles/rsa-verify-run.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build
 .PHONY : rsa-verify-run/fast
 
 #=============================================================================
@@ -288,7 +288,7 @@ jwks-verify: cmake_check_build_system
 
 # fast build rule for target.
 jwks-verify/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/jwks-verify.dir/build.make thirdparty/jwtpp/example/CMakeFiles/jwks-verify.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/build
 .PHONY : jwks-verify/fast
 
 #=============================================================================
@@ -301,7 +301,7 @@ jwks-verify-run: cmake_check_build_system
 
 # fast build rule for target.
 jwks-verify-run/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/jwks-verify-run.dir/build.make thirdparty/jwtpp/example/CMakeFiles/jwks-verify-run.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/build
 .PHONY : jwks-verify-run/fast
 
 #=============================================================================
@@ -314,7 +314,7 @@ es256k: cmake_check_build_system
 
 # fast build rule for target.
 es256k/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/es256k.dir/build.make thirdparty/jwtpp/example/CMakeFiles/es256k.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/build
 .PHONY : es256k/fast
 
 #=============================================================================
@@ -327,7 +327,7 @@ partial-claim-verifier: cmake_check_build_system
 
 # fast build rule for target.
 partial-claim-verifier/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/CMakeFiles/partial-claim-verifier.dir/build.make thirdparty/jwtpp/example/CMakeFiles/partial-claim-verifier.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/build
 .PHONY : partial-claim-verifier/fast
 
 #=============================================================================
@@ -340,7 +340,7 @@ nlohmann-json: cmake_check_build_system
 
 # fast build rule for target.
 nlohmann-json/fast:
-	$(MAKE) $(MAKESILENT) -f thirdparty/jwtpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwtpp/example/traits/CMakeFiles/nlohmann-json.dir/build
+	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build
 .PHONY : nlohmann-json/fast
 
 src/auth_handler.o: src/auth_handler.cpp.o

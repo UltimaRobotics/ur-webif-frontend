@@ -91,8 +91,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty)
 
 # Add jwt-cpp library
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/jwtpp/CMakeLists.txt")
-    add_subdirectory(thirdparty/jwtpp)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/jwt-cpp/CMakeLists.txt")
+    add_subdirectory(thirdparty/jwt-cpp)
     message(STATUS "Added jwt-cpp library")
 else()
     message(FATAL_ERROR "jwt-cpp submodule not found. Please run: git submodule update --init --recursive")
@@ -146,7 +146,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -O2)
 target_compile_definitions(${PROJECT_NAME} PRIVATE HAVE_OPENSSL HAVE_SQLITE3 HAVE_MICROHTTPD)
 
 # Copy config file to build directory
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config/server.json ${CMAKE_BINARY_DIR}/config/server.json COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config/config.json ${CMAKE_BINARY_DIR}/config/config.json COPYONLY)
 
 # Print summary
 message(STATUS "")

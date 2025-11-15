@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DASIO_STANDALONE -DHAVE_NLOHMANN_JSON -DHAVE_OPENSSL -DHAVE_WEBSOCKETPP
 
-CXX_INCLUDES = -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build
+CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
 
 CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++17
 

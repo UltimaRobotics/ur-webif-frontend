@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DHAVE_NLOHMANN_JSON
 
-CXX_INCLUDES = -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/include
+CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/include
 
 CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++17
 

@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -D_POSIX_C_SOURCE=200809L
 
-C_INCLUDES = -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty
+C_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty
 
 C_FLAGS = -Wall -Wextra -Wpedantic -std=c11
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/fyou/Desktop/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src
+# Install script for directory: /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

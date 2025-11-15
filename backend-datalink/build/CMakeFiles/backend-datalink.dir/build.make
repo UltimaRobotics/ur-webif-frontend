@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/backend-datalink.dir/depend.make
@@ -72,72 +72,72 @@ include CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/main.cpp.o: CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/backend-datalink.dir/src/main.cpp.o: CMakeFiles/backend-datalink.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/backend-datalink.dir/src/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/main.cpp.o -MF CMakeFiles/backend-datalink.dir/src/main.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/main.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/backend-datalink.dir/src/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/main.cpp.o -MF CMakeFiles/backend-datalink.dir/src/main.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/main.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/main.cpp
 
 CMakeFiles/backend-datalink.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/backend-datalink.dir/src/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/main.cpp > CMakeFiles/backend-datalink.dir/src/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/main.cpp > CMakeFiles/backend-datalink.dir/src/main.cpp.i
 
 CMakeFiles/backend-datalink.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/backend-datalink.dir/src/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/main.cpp -o CMakeFiles/backend-datalink.dir/src/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/main.cpp -o CMakeFiles/backend-datalink.dir/src/main.cpp.s
 
 CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o: CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o: ../src/websocket_server.cpp
 CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o: CMakeFiles/backend-datalink.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o -MF CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/websocket_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o -MF CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/websocket_server.cpp
 
 CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/websocket_server.cpp > CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/websocket_server.cpp > CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.i
 
 CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/websocket_server.cpp -o CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/websocket_server.cpp -o CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.s
 
 CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o: CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o: ../src/managed_websocket_server.cpp
 CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o: CMakeFiles/backend-datalink.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o -MF CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o -MF CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp
 
 CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp > CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp > CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.i
 
 CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp -o CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/managed_websocket_server.cpp -o CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.s
 
 CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o: CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o: ../src/config_loader.cpp
 CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o: CMakeFiles/backend-datalink.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o -MF CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/config_loader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o -MF CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/config_loader.cpp
 
 CMakeFiles/backend-datalink.dir/src/config_loader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/backend-datalink.dir/src/config_loader.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/config_loader.cpp > CMakeFiles/backend-datalink.dir/src/config_loader.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/config_loader.cpp > CMakeFiles/backend-datalink.dir/src/config_loader.cpp.i
 
 CMakeFiles/backend-datalink.dir/src/config_loader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/backend-datalink.dir/src/config_loader.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/config_loader.cpp -o CMakeFiles/backend-datalink.dir/src/config_loader.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/config_loader.cpp -o CMakeFiles/backend-datalink.dir/src/config_loader.cpp.s
 
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o: CMakeFiles/backend-datalink.dir/flags.make
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o: ../src/database_manager.cpp
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o: CMakeFiles/backend-datalink.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o -MF CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o -c /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/database_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o -MF CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o.d -o CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/database_manager.cpp
 
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/backend-datalink.dir/src/database_manager.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/database_manager.cpp > CMakeFiles/backend-datalink.dir/src/database_manager.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/database_manager.cpp > CMakeFiles/backend-datalink.dir/src/database_manager.cpp.i
 
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/backend-datalink.dir/src/database_manager.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Desktop/ur-webif-frontend/backend-datalink/src/database_manager.cpp -o CMakeFiles/backend-datalink.dir/src/database_manager.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/database_manager.cpp -o CMakeFiles/backend-datalink.dir/src/database_manager.cpp.s
 
 # Object files for target backend-datalink
 backend__datalink_OBJECTS = \
@@ -161,7 +161,7 @@ backend-datalink: thirdparty/ur-threadder-api/libthreadmanager.a
 backend-datalink: thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a
 backend-datalink: thirdparty/ur-threadder-api/libthreadmanager.a
 backend-datalink: CMakeFiles/backend-datalink.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable backend-datalink"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable backend-datalink"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/backend-datalink.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -173,6 +173,6 @@ CMakeFiles/backend-datalink.dir/clean:
 .PHONY : CMakeFiles/backend-datalink.dir/clean
 
 CMakeFiles/backend-datalink.dir/depend:
-	cd /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Desktop/ur-webif-frontend/backend-datalink /home/fyou/Desktop/ur-webif-frontend/backend-datalink /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build /home/fyou/Desktop/ur-webif-frontend/backend-datalink/build/CMakeFiles/backend-datalink.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/backend-datalink /home/fyousfi/Documents/ur-webif-frontend/backend-datalink /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles/backend-datalink.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/backend-datalink.dir/depend
 

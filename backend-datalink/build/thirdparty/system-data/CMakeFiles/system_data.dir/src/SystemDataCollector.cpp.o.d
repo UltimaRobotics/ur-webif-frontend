@@ -1,7 +1,7 @@
 thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o: \
- /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp \
+ /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp \
  /usr/include/stdc-predef.h \
- /home/fyou/Desktop/ur-webif-frontend/backend-datalink/thirdparty/system-data/include/SystemDataCollector.h \
+ /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/include/SystemDataCollector.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
