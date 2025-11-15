@@ -26,3 +26,10 @@
 /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/install.dir
 /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/install/local.dir
 /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/install/strip.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/network_priority.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/edit_cache.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/rebuild_cache.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/list_install_components.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/install.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/install/local.dir
+/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/install/strip.dir

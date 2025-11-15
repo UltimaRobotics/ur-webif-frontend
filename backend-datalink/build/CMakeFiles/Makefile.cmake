@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "../config/config.json"
+  "../thirdparty/network-priority/CMakeLists.txt"
   "../thirdparty/system-data/CMakeLists.txt"
   "../thirdparty/ur-threadder-api/CMakeLists.txt"
   "../thirdparty/ur-threadder-api/cmake/FindcJSON.cmake"
@@ -61,6 +62,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "thirdparty/ur-threadder-api/CMakeFiles/CMakeDirectoryInformation.cmake"
   "thirdparty/ur-threadder-api/cpp/CMakeFiles/CMakeDirectoryInformation.cmake"
   "thirdparty/system-data/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "thirdparty/network-priority/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -69,4 +71,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/DependInfo.cmake"
   "thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/DependInfo.cmake"
   "thirdparty/system-data/CMakeFiles/system_data.dir/DependInfo.cmake"
+  "thirdparty/network-priority/CMakeFiles/network_priority.dir/DependInfo.cmake"
   )

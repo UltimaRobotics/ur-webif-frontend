@@ -213,6 +213,19 @@ system_data/fast:
 	$(MAKE) $(MAKESILENT) -f thirdparty/system-data/CMakeFiles/system_data.dir/build.make thirdparty/system-data/CMakeFiles/system_data.dir/build
 .PHONY : system_data/fast
 
+#=============================================================================
+# Target rules for targets named network_priority
+
+# Build rule for target.
+network_priority: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 network_priority
+.PHONY : network_priority
+
+# fast build rule for target.
+network_priority/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/network-priority/CMakeFiles/network_priority.dir/build.make thirdparty/network-priority/CMakeFiles/network_priority.dir/build
+.PHONY : network_priority/fast
+
 src/config_loader.o: src/config_loader.cpp.o
 .PHONY : src/config_loader.o
 
@@ -346,6 +359,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... backend-datalink"
+	@echo "... network_priority"
 	@echo "... system_data"
 	@echo "... threadmanager"
 	@echo "... threadmanager_cpp"

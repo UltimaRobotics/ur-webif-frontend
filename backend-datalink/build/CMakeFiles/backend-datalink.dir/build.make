@@ -157,6 +157,7 @@ backend-datalink: CMakeFiles/backend-datalink.dir/src/config_loader.cpp.o
 backend-datalink: CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o
 backend-datalink: CMakeFiles/backend-datalink.dir/build.make
 backend-datalink: thirdparty/system-data/libsystem_data.a
+backend-datalink: thirdparty/network-priority/libnetwork_priority.a
 backend-datalink: thirdparty/ur-threadder-api/libthreadmanager.a
 backend-datalink: thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a
 backend-datalink: thirdparty/ur-threadder-api/libthreadmanager.a

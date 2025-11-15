@@ -10,6 +10,9 @@ add_subdirectory(thirdparty/ur-threadder-api)
 # Add system-data as subdirectory
 add_subdirectory(thirdparty/system-data)
 
+# Add network-priority as subdirectory
+add_subdirectory(thirdparty/network-priority)
+
 # Find SQLite3
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SQLITE3 QUIET sqlite3)
@@ -121,6 +124,7 @@ target_link_libraries(backend-datalink
     ${OPENSSL_LIBRARIES}
     ${SQLITE3_LIBRARIES}
     system_data
+    network_priority
     threadmanager
     threadmanager_cpp
     pthread
@@ -135,6 +139,7 @@ target_include_directories(backend-datalink PRIVATE
     ${ASIO_INCLUDE_DIRS}
     ${THREADDER_INCLUDE_DIRS}
     ${SYSTEM_DATA_INCLUDE_DIRS}
+    ${NETWORK_PRIORITY_INCLUDE_DIRS}
 )
 
 # Compiler flags

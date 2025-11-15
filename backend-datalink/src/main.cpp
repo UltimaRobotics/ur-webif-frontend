@@ -8,6 +8,7 @@
 #include "managed_websocket_server.h"
 #include "database_manager.h"
 #include "SystemDataCollector.h"
+#include "NetworkPriorityManager.h"
 #include "config_loader.h"
 
 using json = nlohmann::json;
@@ -15,6 +16,7 @@ using json = nlohmann::json;
 std::unique_ptr<ManagedWebSocketServer> g_server;
 std::unique_ptr<DatabaseManager> g_database;
 std::unique_ptr<SystemDataCollector> g_system_collector;
+std::unique_ptr<NetworkPriorityManager> g_network_priority_manager;
 std::atomic<bool> g_running(true);
 
 // Function declarations
@@ -23,8 +25,126 @@ void onConnectionOpen(const std::string& connection_id);
 void onConnectionClose(const std::string& connection_id);
 void handleDashboardDataRequest(const std::string& connection_id, const json& message);
 void handleSubscribeUpdates(const std::string& connection_id, const json& message);
+void handleNetworkPriorityRequest(const std::string& connection_id, const json& message);
 void broadcastDashboardUpdate(const std::string& category, const json& data);
 void updateSystemDataInDatabase();
+
+void handleNetworkPriorityRequest(const std::string& connection_id, const json& message) {
+    if (!g_network_priority_manager) {
+        json error_response = {
+            {"type", "error"},
+            {"message", "Network priority manager not available"},
+            {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()}
+        };
+        
+        if (g_server) {
+            g_server->sendToClient(connection_id, error_response);
+        }
+        return;
+    }
+    
+    try {
+        std::string action = message.value("action", "");
+        json response_data;
+        
+        if (action == "get_data") {
+            // Return all network priority data
+            response_data = g_network_priority_manager->getAllDataAsJson();
+        } else if (action == "set_interface_priority") {
+            // Set interface priority
+            std::string interface_name = message.value("interface_name", "");
+            int priority = message.value("priority", 0);
+            
+            bool success = g_network_priority_manager->setInterfacePriority(interface_name, priority);
+            response_data = {
+                {"success", success},
+                {"message", success ? "Interface priority updated" : "Failed to update interface priority"}
+            };
+        } else if (action == "add_routing_rule") {
+            // Add routing rule
+            RoutingRule rule;
+            rule.destination = message.value("destination", "");
+            rule.gateway = message.value("gateway", "");
+            rule.interface = message.value("interface", "");
+            rule.metric = message.value("metric", 100);
+            rule.priority = message.value("priority", 1);
+            
+            bool success = g_network_priority_manager->addRoutingRule(rule);
+            response_data = {
+                {"success", success},
+                {"message", success ? "Routing rule added" : "Failed to add routing rule"}
+            };
+        } else if (action == "update_routing_rule") {
+            // Update routing rule
+            std::string rule_id = message.value("rule_id", "");
+            RoutingRule rule;
+            rule.destination = message.value("destination", "");
+            rule.gateway = message.value("gateway", "");
+            rule.interface = message.value("interface", "");
+            rule.metric = message.value("metric", 100);
+            rule.priority = message.value("priority", 1);
+            
+            bool success = g_network_priority_manager->updateRoutingRule(rule_id, rule);
+            response_data = {
+                {"success", success},
+                {"message", success ? "Routing rule updated" : "Failed to update routing rule"}
+            };
+        } else if (action == "delete_routing_rule") {
+            // Delete routing rule
+            std::string rule_id = message.value("rule_id", "");
+            bool success = g_network_priority_manager->deleteRoutingRule(rule_id);
+            response_data = {
+                {"success", success},
+                {"message", success ? "Routing rule deleted" : "Failed to delete routing rule"}
+            };
+        } else if (action == "apply_configuration") {
+            // Apply all configuration changes
+            bool success = g_network_priority_manager->applyRoutingConfiguration();
+            response_data = {
+                {"success", success},
+                {"message", success ? "Configuration applied" : "Failed to apply configuration"}
+            };
+        } else if (action == "reset_to_defaults") {
+            // Reset to default configuration
+            bool success = g_network_priority_manager->resetToDefaults();
+            response_data = {
+                {"success", success},
+                {"message", success ? "Reset to defaults" : "Failed to reset to defaults"}
+            };
+        } else {
+            response_data = {
+                {"error", "Unknown action: " + action}
+            };
+        }
+        
+        json response = {
+            {"type", "network_priority_response"},
+            {"action", action},
+            {"data", response_data},
+            {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()}
+        };
+        
+        if (g_server) {
+            g_server->sendToClient(connection_id, response);
+        }
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error handling network priority request: " << e.what() << std::endl;
+        
+        json error_response = {
+            {"type", "error"},
+            {"message", "Failed to process network priority request"},
+            {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()}
+        };
+        
+        if (g_server) {
+            g_server->sendToClient(connection_id, error_response);
+        }
+    }
+}
 
 void signalHandler(int signal) {
     std::cout << "\nReceived signal " << signal << ", shutting down gracefully..." << std::endl;
@@ -32,6 +152,10 @@ void signalHandler(int signal) {
     
     if (g_server) {
         g_server->stop();
+    }
+    
+    if (g_network_priority_manager) {
+        g_network_priority_manager->stop();
     }
     
     exit(0);
@@ -60,6 +184,9 @@ void onMessage(const std::string& connection_id, const json& message) {
         } else if (message_type == "subscribe_updates") {
             // Handle subscription to real-time updates
             handleSubscribeUpdates(connection_id, message);
+        } else if (message_type == "network_priority") {
+            // Handle network priority requests
+            handleNetworkPriorityRequest(connection_id, message);
         } else {
             // Default echo response for unknown message types
             json response = {
@@ -337,6 +464,28 @@ int main(int argc, char* argv[]) {
             std::cout << "System data collector disabled in configuration" << std::endl;
         }
         
+        // Initialize network priority manager
+        g_network_priority_manager = std::make_unique<NetworkPriorityManager>(g_database.get());
+        
+        // Set up data update handler to broadcast via WebSocket
+        g_network_priority_manager->setDataUpdateHandler([](const nlohmann::json& data) {
+            broadcastDashboardUpdate("network_priority", data);
+        });
+        
+        // Initialize database tables for network priority
+        if (!g_network_priority_manager->initializeDatabaseTables()) {
+            std::cerr << "Failed to initialize network priority database tables" << std::endl;
+            return 1;
+        }
+        
+        // Start network priority manager
+        if (!g_network_priority_manager->start(5)) { // 5 second poll interval
+            std::cerr << "Failed to start network priority manager" << std::endl;
+            return 1;
+        }
+        
+        std::cout << "Network priority manager started successfully" << std::endl;
+        
         // Start database update thread for system data
         std::thread db_update_thread([system_config]() {
             int update_count = 0;
@@ -378,7 +527,12 @@ int main(int argc, char* argv[]) {
             g_system_collector->stop();
         }
         
-        // Wait for database update thread to finish
+        // Stop network priority manager
+        if (g_network_priority_manager) {
+            g_network_priority_manager->stop();
+        }
+        
+        // Wait for database update threads to finish
         if (db_update_thread.joinable()) {
             db_update_thread.join();
         }

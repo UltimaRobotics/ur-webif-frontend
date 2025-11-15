@@ -462,9 +462,11 @@ class DashboardWebSocket {
                 try {
                     const message = JSON.parse(event.data);
                     console.log('[DASHBOARD-WS] Message received:', message.type);
+                    console.log('[DASHBOARD-WS] Full message data:', JSON.stringify(message, null, 2));
                     this.handleMessage(message);
                 } catch (error) {
                     console.error('[DASHBOARD-WS] Error parsing message:', error);
+                    console.error('[DASHBOARD-WS] Raw message data:', event.data);
                 }
             };
 
@@ -481,9 +483,24 @@ class DashboardWebSocket {
 
             this.ws.onerror = (error) => {
                 console.error('[DASHBOARD-WS] WebSocket error:', error);
+                this.connected = false;
+                
+                // Provide more detailed error information
+                let errorMessage = 'WebSocket connection error';
+                if (error instanceof Error) {
+                    errorMessage += ': ' + error.message;
+                } else {
+                    errorMessage += ': Server may be unavailable on port 9002';
+                }
+                
+                console.error('[DASHBOARD-WS] Connection details:', {
+                    url: this.url,
+                    readyState: this.ws ? this.ws.readyState : 'null',
+                    timestamp: new Date().toISOString()
+                });
                 
                 if (this.onError) {
-                    this.onError(error);
+                    this.onError(new Error(errorMessage));
                 }
             };
 
@@ -536,6 +553,8 @@ class DashboardWebSocket {
     handleMessage(message) {
         const { type, data, category, timestamp } = message;
 
+        console.log('[DASHBOARD-WS] Processing message:', { type, category, hasData: !!data, timestamp });
+
         switch (type) {
             case 'welcome':
                 console.log('[DASHBOARD-WS] Welcome message received:', message.message);
@@ -543,7 +562,30 @@ class DashboardWebSocket {
 
             case 'dashboard_data':
                 console.log('[DASHBOARD-WS] Initial dashboard data received');
-                this.dashboardData = { ...this.dashboardData, ...data };
+                console.log('[DASHBOARD-WS] Data structure:', JSON.stringify(data, null, 2));
+                
+                // Handle the nested backend data structure
+                if (data) {
+                    // If data is already in expected nested format (cpu, ram, etc.)
+                    if (data.cpu || data.ram || data.swap || data.network || data.ultima_server || data.signal) {
+                        console.log('[DASHBOARD-WS] Data is in nested backend format, applying mapping');
+                        this.dashboardData = this.mapDataStructure(data);
+                    } 
+                    // If data is already in expected flat structure (system, ram, etc.)
+                    else if (data.system || data.ram || data.swap || data.network || data.ultima_server || data.signal) {
+                        console.log('[DASHBOARD-WS] Data is already in expected flat format');
+                        this.dashboardData = { ...this.dashboardData, ...data };
+                    }
+                    // Otherwise try to map it using the mapping function
+                    else {
+                        console.log('[DASHBOARD-WS] Attempting to map unknown data structure');
+                        this.dashboardData = this.mapDataStructure(data);
+                    }
+                } else {
+                    console.warn('[DASHBOARD-WS] No data received in dashboard_data message');
+                }
+                
+                console.log('[DASHBOARD-WS] Final dashboard data:', JSON.stringify(this.dashboardData, null, 2));
                 
                 if (this.onDataReceived) {
                     this.onDataReceived(this.dashboardData, timestamp);
@@ -552,12 +594,44 @@ class DashboardWebSocket {
 
             case 'dashboard_update':
                 console.log('[DASHBOARD-WS] Real-time update received for category:', category);
+                console.log('[DASHBOARD-WS] Update data:', JSON.stringify(data, null, 2));
+                
                 if (category && data) {
-                    this.dashboardData[category] = data;
-                    
-                    if (this.onUpdateReceived) {
-                        this.onUpdateReceived(category, data, timestamp);
+                    // For updates, we need to handle the nested structure as well
+                    if (category === 'cpu') {
+                        // Map cpu update to system category
+                        const mappedSystemData = this.mapDataStructure({ cpu: data });
+                        this.dashboardData.system = mappedSystemData.system;
+                        
+                        if (this.onUpdateReceived) {
+                            this.onUpdateReceived('system', mappedSystemData.system, timestamp);
+                        }
+                    } else if (category === 'network') {
+                        // Handle nested network updates
+                        const mappedNetworkData = this.mapDataStructure({ network: data });
+                        this.dashboardData.network = mappedNetworkData.network;
+                        
+                        if (this.onUpdateReceived) {
+                            this.onUpdateReceived('network', mappedNetworkData.network, timestamp);
+                        }
+                    } else if (category === 'signal') {
+                        // Handle nested signal updates
+                        const mappedSignalData = this.mapDataStructure({ signal: data });
+                        this.dashboardData.signal = mappedSignalData.signal;
+                        
+                        if (this.onUpdateReceived) {
+                            this.onUpdateReceived('signal', mappedSignalData.signal, timestamp);
+                        }
+                    } else {
+                        // Direct update for other categories
+                        this.dashboardData[category] = data;
+                        
+                        if (this.onUpdateReceived) {
+                            this.onUpdateReceived(category, data, timestamp);
+                        }
                     }
+                } else {
+                    console.warn('[DASHBOARD-WS] Invalid update message:', { category, hasData: !!data });
                 }
                 break;
 
@@ -595,6 +669,106 @@ class DashboardWebSocket {
         }
     }
 
+    mapDataStructure(data) {
+        console.log('[DASHBOARD-WS] Mapping data structure:', Object.keys(data));
+        
+        // Try to map nested backend data structure to expected flat structure
+        const mappedData = {
+            system: {},
+            ram: {},
+            swap: {},
+            network: {},
+            ultima_server: {},
+            signal: {}
+        };
+        
+        // Map CPU fields -> system
+        if (data.cpu) {
+            mappedData.system.usage_percent = data.cpu.usage_percent;
+            mappedData.system.cores = data.cpu.cores;
+            mappedData.system.temperature = data.cpu.temperature_celsius;
+            mappedData.system.base_clock = data.cpu.frequency_ghz;
+            mappedData.system.boost_clock = data.cpu.frequency_ghz; // Use same value for both if no separate boost clock
+        }
+        
+        // Map RAM fields
+        if (data.ram) {
+            mappedData.ram.usage_percent = data.ram.usage_percent;
+            mappedData.ram.used_gb = data.ram.used_gb;
+            mappedData.ram.total_gb = data.ram.total_gb;
+            mappedData.ram.available_gb = (data.ram.total_gb || 0) - (data.ram.used_gb || 0);
+            mappedData.ram.type = 'DDR4'; // Default value
+        }
+        
+        // Map Swap fields
+        if (data.swap) {
+            mappedData.swap.usage_percent = data.swap.usage_percent;
+            mappedData.swap.used_mb = data.swap.used_mb;
+            mappedData.swap.total_gb = data.swap.total_gb;
+            mappedData.swap.available_gb = (data.swap.total_gb || 0) - (data.swap.used_mb || 0) / 1024;
+            mappedData.swap.priority = data.swap.status || 'Normal';
+        }
+        
+        // Map Network fields (extract from nested internet and connection)
+        if (data.network) {
+            // Internet sub-structure
+            if (data.network.internet) {
+                mappedData.network.status = data.network.internet.status;
+                mappedData.network.external_ip = data.network.internet.external_ip;
+                mappedData.network.dns_primary = data.network.internet.dns_primary;
+                mappedData.network.dns_secondary = data.network.internet.dns_secondary;
+                mappedData.network.latency_ms = data.network.internet.latency_ms;
+                mappedData.network.bandwidth = data.network.internet.bandwidth;
+            }
+            
+            // Connection sub-structure - map to connection type fields
+            if (data.network.connection) {
+                mappedData.network.connection_status = data.network.connection.status;
+                mappedData.network.interface = data.network.connection.interface_name;
+                mappedData.network.mac_address = data.network.connection.mac_address;
+                mappedData.network.local_ip = data.network.connection.local_ip;
+                mappedData.network.gateway = data.network.connection.gateway;
+                mappedData.network.speed = data.network.connection.speed;
+            }
+        }
+        
+        // Map Ultima Server fields
+        if (data.ultima_server) {
+            mappedData.ultima_server.status = data.ultima_server.status;
+            mappedData.ultima_server.hostname = data.ultima_server.server;
+            mappedData.ultima_server.port = data.ultima_server.port;
+            mappedData.ultima_server.protocol = data.ultima_server.protocol;
+            mappedData.ultima_server.ping_ms = data.ultima_server.last_ping_ms;
+            mappedData.ultima_server.session_duration = data.ultima_server.session;
+        }
+        
+        // Map Signal fields (extract from nested strength and connection)
+        if (data.signal) {
+            // Signal strength sub-structure
+            if (data.signal.strength) {
+                mappedData.signal.rssi = data.signal.strength.rssi_dbm;
+                mappedData.signal.rsrp = data.signal.strength.rsrp_dbm;
+                mappedData.signal.rsrq = data.signal.strength.rsrq_db;
+                mappedData.signal.sinr = data.signal.strength.sinr_db;
+                mappedData.signal.cell_id = data.signal.strength.cell_id;
+                mappedData.signal.status = data.signal.strength.status;
+            }
+            
+            // Signal connection sub-structure
+            if (data.signal.connection) {
+                mappedData.signal.operator = data.signal.connection.network;
+                mappedData.signal.technology = data.signal.connection.technology;
+                mappedData.signal.band = data.signal.connection.band;
+                mappedData.signal.apn = data.signal.connection.apn;
+                mappedData.signal.data_usage_mb = data.signal.connection.data_usage_mb;
+                mappedData.signal.connection_status = data.signal.connection.status;
+            }
+        }
+        
+        console.log('[DASHBOARD-WS] Mapped data structure:', JSON.stringify(mappedData, null, 2));
+        return mappedData;
+    }
+
     getDashboardData() {
         return this.dashboardData;
     }
@@ -604,12 +778,6 @@ class DashboardWebSocket {
     }
 }
 
-/**
- * Main Dashboard Integration
- * Connects WebSocket client to landing-section.html UI elements
- */
-
-console.log('[MAIN.JS] Module loading...');
 
 class DashboardManager {
     constructor() {
@@ -643,6 +811,7 @@ class DashboardManager {
         this.wsClient.onError = (error) => {
             console.error('[DASHBOARD] WebSocket error:', error);
             this.showNotification('Connection error: ' + error.message, 'error');
+            this.enableFallbackMode();
         };
 
         // Data events
@@ -749,6 +918,8 @@ class DashboardManager {
     }
 
     updateSystemUI(data) {
+        console.log('[DASHBOARD] Updating system UI with data:', JSON.stringify(data, null, 2));
+        
         this.updateMetric('cpu-usage', data.usage_percent, '%');
         this.updateProgressBar('cpu-progress', data.usage_percent);
         this.updateElement('cpu-cores', `${data.cores || 0} Cores`);
@@ -776,18 +947,33 @@ class DashboardManager {
     }
 
     updateNetworkUI(data) {
+        console.log('[DASHBOARD] Updating network UI with data:', JSON.stringify(data, null, 2));
+        
         // Internet status
         const internetConnected = data.status === 'connected';
+        console.log('[DASHBOARD] Internet connected status:', internetConnected, 'from data.status:', data.status);
         this.updateConnectionIndicator('internet-indicator', 'internet-status', internetConnected);
         this.updateElement('external-ip', data.external_ip || 'N/A');
         this.updateElement('dns-primary', data.dns_primary || 'N/A');
         this.updateElement('dns-secondary', data.dns_secondary || 'N/A');
         this.updateElement('latency', `${data.latency_ms || 0} ms`);
         this.updateElement('bandwidth', data.bandwidth || 'N/A');
+        
+        // Connection type fields
+        const connectionConnected = data.connection_status === 'connected';
+        this.updateElement('connection-type', data.connection_status || 'Unknown');
+        this.updateElement('interface-name', data.interface || 'N/A');
+        this.updateElement('mac-address', data.mac_address || 'N/A');
+        this.updateElement('local-ip', data.local_ip || 'N/A');
+        this.updateElement('gateway-ip', data.gateway || 'N/A');
+        this.updateElement('connection-speed', data.speed || 'N/A');
     }
 
     updateUltimaServerUI(data) {
+        console.log('[DASHBOARD] Updating Ultima server UI with data:', JSON.stringify(data, null, 2));
+        
         const serverConnected = data.status === 'connected';
+        console.log('[DASHBOARD] Server connected status:', serverConnected, 'from data.status:', data.status);
         this.updateConnectionIndicator('server-indicator', 'server-status', serverConnected);
         this.updateElement('server-hostname', data.hostname || 'N/A');
         this.updateElement('server-port', data.port || 0);
@@ -805,8 +991,8 @@ class DashboardManager {
         this.updateElement('sinr', `${data.sinr || 0} dB`);
         this.updateElement('cell-id', data.cell_id || 'N/A');
         
-        // Connection status
-        const cellularConnected = data.status === 'connected';
+        // Connection status - use connection_status for cellular connection
+        const cellularConnected = data.connection_status === 'connected';
         this.updateConnectionIndicator('cellular-indicator', 'cellular-status', cellularConnected);
         this.updateElement('network-name', data.operator || 'N/A');
         this.updateElement('technology', data.technology || 'N/A');
@@ -948,7 +1134,162 @@ class DashboardManager {
 
     showNotification(message, level = 'info') {
         console.log(`[DASHBOARD] ${level}: ${message}`);
-        // Could implement a toast notification here if needed
+        
+        // Create toast notification for better user feedback
+        this.createToastNotification(message, level);
+    }
+
+    createToastNotification(message, level = 'info') {
+        // Remove existing toast if any
+        const existingToast = document.getElementById('dashboard-toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.id = 'dashboard-toast';
+        toast.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transition-all duration-300 transform translate-x-full`;
+        
+        // Style based on level
+        const styles = {
+            info: 'bg-blue-500 text-white',
+            error: 'bg-red-500 text-white',
+            warning: 'bg-yellow-500 text-black',
+            success: 'bg-green-500 text-white'
+        };
+        
+        toast.className += ' ' + (styles[level] || styles.info);
+        toast.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-${level === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-4 hover:opacity-75">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        `;
+        
+        // Add to page
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => {
+            toast.classList.remove('translate-x-full');
+            toast.classList.add('translate-x-0');
+        }, 100);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
+            }
+        }, 5000);
+    }
+
+    enableFallbackMode() {
+        console.log('[DASHBOARD] Enabling fallback mode due to connection issues');
+        
+        // Show fallback status in UI
+        this.updateConnectionStatus(false);
+        this.showNotification('WebSocket server unavailable. Running in offline mode.', 'warning');
+        
+        // Load mock data or cached data if available
+        this.loadFallbackData();
+        
+        // Disable real-time features
+        this.disableRealTimeFeatures();
+    }
+
+    loadFallbackData() {
+        console.log('[DASHBOARD] Loading fallback data');
+        
+        // Mock data for demonstration when WebSocket is unavailable
+        const fallbackData = {
+            system: {
+                usage_percent: 45,
+                cores: 8,
+                temperature: 65,
+                base_clock: 2.4,
+                boost_clock: 4.2
+            },
+            ram: {
+                usage_percent: 60,
+                used_gb: 8.2,
+                total_gb: 16.0,
+                available_gb: 7.8,
+                type: 'DDR4'
+            },
+            swap: {
+                usage_percent: 15,
+                used_mb: 512,
+                total_gb: 8.0,
+                available_gb: 7.5,
+                priority: 'Normal'
+            },
+            network: {
+                status: 'disconnected',
+                external_ip: 'N/A',
+                dns_primary: '8.8.8.8',
+                dns_secondary: '8.8.4.4',
+                latency_ms: 0,
+                bandwidth: 'N/A'
+            },
+            ultima_server: {
+                status: 'disconnected',
+                hostname: 'N/A',
+                port: 0,
+                protocol: 'N/A',
+                ping_ms: 0,
+                session_duration: 'N/A'
+            },
+            signal: {
+                rssi: -85,
+                rsrp: -110,
+                rsrq: -12,
+                sinr: -5,
+                cell_id: 'N/A',
+                status: 'disconnected',
+                operator: 'N/A',
+                technology: 'N/A',
+                band: 'N/A',
+                apn: 'N/A',
+                data_usage_mb: 0
+            }
+        };
+        
+        // Update UI with fallback data
+        this.updateAllUI(fallbackData);
+        
+        // Update last update time to show this is fallback data
+        this.lastUpdate = new Date();
+        this.updateLastUpdateTime();
+        
+        // Add visual indicator that this is fallback data
+        const statusDot = document.getElementById('status-dot');
+        if (statusDot) {
+            statusDot.className = 'w-2 h-2 bg-yellow-500 rounded-full animate-pulse';
+        }
+    }
+
+    disableRealTimeFeatures() {
+        console.log('[DASHBOARD] Disabling real-time features');
+        
+        // Disable refresh button
+        const refreshBtn = document.getElementById('refresh-data-btn');
+        if (refreshBtn) {
+            refreshBtn.disabled = true;
+            refreshBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            refreshBtn.title = 'Unavailable - WebSocket server not connected';
+        }
+        
+        // Disable auto-refresh toggle
+        const autoRefreshToggle = document.getElementById('auto-refresh-toggle');
+        if (autoRefreshToggle) {
+            autoRefreshToggle.disabled = true;
+            autoRefreshToggle.classList.add('opacity-50', 'cursor-not-allowed');
+            autoRefreshToggle.title = 'Unavailable - WebSocket server not connected';
+        }
     }
 
     destroy() {
@@ -957,12 +1298,74 @@ class DashboardManager {
     }
 }
 
-// Initialize dashboard immediately when script is executed
-console.log('[DASHBOARD] Script loaded, initializing dashboard');
+// Initialize dashboard when DOM is ready
+console.log('[DASHBOARD] Script loaded, waiting for DOM readiness');
 
-const dashboard = new DashboardManager();
-dashboard.initialize();
+function initializeDashboard() {
+    console.log('[DASHBOARD] DOM ready, initializing dashboard');
+    console.log('[DASHBOARD] Initialization context:', {
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        url: window.location.href,
+        readyState: document.readyState
+    });
+    
+    try {
+        // Check if required DOM elements exist
+        const requiredElements = [
+            'refresh-data-btn',
+            'auto-refresh-toggle',
+            'status-dot'
+        ];
+        
+        const missingElements = requiredElements.filter(id => !document.getElementById(id));
+        if (missingElements.length > 0) {
+            console.warn('[DASHBOARD] Missing DOM elements:', missingElements);
+            console.log('[DASHBOARD] Available elements:', Array.from(document.querySelectorAll('[id]')).map(el => el.id).slice(0, 10));
+        } else {
+            console.log('[DASHBOARD] All required DOM elements found');
+        }
+        
+        console.log('[DASHBOARD] Creating DashboardManager instance');
+        const dashboard = new DashboardManager();
+        
+        console.log('[DASHBOARD] Starting WebSocket connection');
+        dashboard.initialize();
+        
+        // Make dashboard available globally for debugging
+        window.dashboardManager = dashboard;
+        
+        console.log('[DASHBOARD] Dashboard initialized successfully');
+        console.log('[DASHBOARD] Dashboard manager available as window.dashboardManager');
+    } catch (error) {
+        console.error('[DASHBOARD] Failed to initialize dashboard:', error);
+        console.error('[DASHBOARD] Error stack:', error.stack);
+        
+        // Show user-friendly error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'fixed top-4 left-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50 max-w-md';
+        errorDiv.innerHTML = `
+            <div class="flex items-start space-x-2">
+                <i class="fa-solid fa-exclamation-triangle mt-1"></i>
+                <div>
+                    <h4 class="font-bold">Dashboard Initialization Failed</h4>
+                    <p class="text-sm mt-1">Unable to initialize the dashboard. Please refresh the page or contact support.</p>
+                    <p class="text-xs mt-2 opacity-75">Error: ${error.message}</p>
+                </div>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 hover:opacity-75">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(errorDiv);
+    }
+}
 
-// Make dashboard available globally for debugging
-window.dashboardManager = dashboard;
+// Handle different DOM ready scenarios
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDashboard);
+} else {
+    // DOM is already ready
+    initializeDashboard();
+}
 </script>

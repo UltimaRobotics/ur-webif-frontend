@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnetwork_priority.a CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o
+/usr/bin/ranlib libnetwork_priority.a

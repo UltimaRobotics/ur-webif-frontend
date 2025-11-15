@@ -796,4 +796,5 @@ CMakeFiles/backend-datalink.dir/src/main.cpp.o: \
  /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/include/database_manager.h \
  /usr/include/sqlite3.h \
  /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/include/SystemDataCollector.h \
+ /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/include/NetworkPriorityManager.h \
  /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/include/config_loader.h

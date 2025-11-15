@@ -272,6 +272,15 @@ cJSON_INCLUDE_DIR:PATH=cJSON_INCLUDE_DIR-NOTFOUND
 //Path to a library.
 cJSON_LIBRARY:FILEPATH=cJSON_LIBRARY-NOTFOUND
 
+//Value Computed by CMake
+network-priority_BINARY_DIR:STATIC=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority
+
+//Value Computed by CMake
+network-priority_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+network-priority_SOURCE_DIR:STATIC=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority
+
 //The directory containing a CMake configuration file for nlohmann_json.
 nlohmann_json_DIR:PATH=/usr/lib/cmake/nlohmann_json
 
@@ -405,7 +414,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

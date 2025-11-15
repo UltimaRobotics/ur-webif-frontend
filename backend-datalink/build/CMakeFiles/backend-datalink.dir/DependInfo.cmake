@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/system-data/CMakeFiles/system_data.dir/DependInfo.cmake"
+  "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/network_priority.dir/DependInfo.cmake"
   "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/DependInfo.cmake"
   "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/DependInfo.cmake"
   )
