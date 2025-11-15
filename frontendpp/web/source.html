@@ -1,0 +1,3131 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard - UR Web Launcher</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+
+        <style>
+            * {
+                font-family: "Inter", sans-serif;
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="h-full text-base-content">
+
+        <header
+            id="header"
+            class="fixed top-0 w-full bg-white border-b border-neutral-200 z-50"
+        >
+            <div class="flex items-center justify-between px-6 py-3">
+                <div class="flex items-center">
+                    <button
+                        id="sidebar-toggle"
+                        class="mr-4 bg-neutral-600 hover:bg-neutral-700 text-white p-2 rounded-lg transition-all duration-300"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="mr-4">
+                        <span
+                            class="text-black text-lg flex items-center cursor-pointer"
+                        >
+                            Ultima Robotics Link Management Platform
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button
+                        id="settings-btn"
+                        class="text-neutral-600 hover:text-neutral-900"
+                    >
+                        <i class="fa-solid fa-cog"></i>
+                    </button>
+                    <button
+                        id="logout-btn"
+                        class="text-neutral-600 hover:text-red-600 transition-colors"
+                        title="Logout"
+                    >
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex h-[800px] pt-16">
+            <!-- Sidebar -->
+            <div
+                id="sidebar"
+                class="w-64 bg-white border-r border-neutral-200 fixed h-full overflow-y-auto transition-transform duration-300 transform -translate-x-full"
+            >
+                <div class="p-4">
+                    <nav class="space-y-1">
+                        <div class="relative">
+                            <span
+                                id="nav-system-dashboard"
+                                class="block px-3 py-2 text-sm text-neutral-600 bg-neutral-50 border-l-2 border-neutral-600 rounded-r cursor-pointer hover:bg-neutral-100"
+                                data-section="system-dashboard"
+                            >
+                                System Dashboard
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <div
+                                id="nav-network-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Network Management</span>
+                                </div>
+
+                                <button
+                                    id="nav-network-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="nav-network-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-wired-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="wired-config"
+                                >
+                                    Wired Configuration
+                                </span>
+                                <span
+                                    id="nav-wireless-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="wireless-config"
+                                >
+                                    Wireless Configuration
+                                </span>
+                                <span
+                                    id="nav-cellular-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="cellular-config"
+                                >
+                                    Cellular Configuration
+                                </span>
+                                <span
+                                    id="nav-vpn-config"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="vpn-config"
+                                >
+                                    VPN Configuration
+                                </span>
+                                <span
+                                    id="nav-advanced-network"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="advanced-network"
+                                >
+                                    Advanced Network Options
+                                </span>
+                                <span
+                                    id="nav-network-benchmark"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="network-benchmark"
+                                >
+                                    Network Benchmark
+                                </span>
+                                <span
+                                    id="nav-network-priority"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="network-priority"
+                                >
+                                    Network Priority
+                                </span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div
+                                id="nav-devices-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Devices Management</span>
+                                </div>
+
+                                <button
+                                    id="devices-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="devices-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-mavlink-overview"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="mavlink-overview"
+                                >
+                                    Mavlink System Overview
+                                </span>
+                                <span
+                                    id="nav-attached-ip-devices"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="attached-ip-devices"
+                                >
+                                    Attached IP Devices
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div
+                                id="nav-features-header"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg cursor-pointer hover:bg-neutral-50"
+                            >
+                                <div class="flex items-center">
+                                    <span>Features</span>
+                                </div>
+
+                                <button
+                                    id="features-toggle"
+                                    type="button"
+                                    class="text-xs text-neutral-400 p-1 rounded hover:bg-neutral-100 focus:outline-none"
+                                >
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div
+                                id="features-list"
+                                class="ml-6 mt-1 space-y-1 hidden"
+                            >
+                                <span
+                                    id="nav-mavlink-extension"
+                                    class="block px-3 py-2 text-sm text-neutral-500 hover:bg-neutral-100 rounded cursor-pointer"
+                                    data-section="mavlink-extension"
+                                >
+                                    Mavlink Extension System
+                                </span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-firmware-upgrade"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="firmware-upgrade"
+                            >
+                                <div class="flex items-center">
+                                    <span>Firmware Upgrade</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-license-management"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="license-management"
+                            >
+                                <div class="flex items-center">
+                                    <span>License Management</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-backup-restore"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="backup-restore"
+                            >
+                                <div class="flex items-center">
+                                    <span>Backup and Restore</span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <span
+                                id="nav-about-us"
+                                class="flex items-center justify-between px-3 py-2 text-neutral-700 rounded-lg hover:bg-neutral-100 cursor-pointer"
+                                data-section="about-us"
+                            >
+                                <div class="flex items-center">
+                                    <span>About Us</span>
+                                </div>
+                            </span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main
+                id="main-content"
+                class="flex-1 ml-0 bg-neutral-50 p-8 transition-all duration-300"
+            >
+                <!-- Content will be loaded here -->
+            </main>
+        </div>
+
+        <!-- Settings Modal -->
+        <div
+            id="settings-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+        >
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-neutral-800">
+                        Settings
+                    </h2>
+                    <button
+                        id="close-settings-modal"
+                        class="text-neutral-400 hover:text-neutral-600"
+                    >
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-neutral-200 rounded-lg">
+                        <button
+                            id="user-settings-toggle"
+                            class="w-full flex items-center justify-between p-4 text-left hover:bg-neutral-50 transition-colors"
+                        >
+                            <div class="flex items-center space-x-3">
+                                <i
+                                    class="fa-solid fa-user text-neutral-600"
+                                ></i>
+                                <span class="text-neutral-800 font-medium"
+                                    >User Settings</span
+                                >
+                            </div>
+                            <i
+                                class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform"
+                                id="user-settings-chevron"
+                            ></i>
+                        </button>
+
+                        <div
+                            id="user-settings-content"
+                            class="hidden border-t border-neutral-200"
+                        >
+                            <div class="p-4 space-y-3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-neutral-200 rounded-lg">
+                        <button
+                            class="w-full flex items-center justify-between p-4 text-left hover:bg-neutral-50 transition-colors"
+                        >
+                            <div class="flex items-center space-x-3">
+                                <i
+                                    class="fa-solid fa-cloud text-neutral-600"
+                                ></i>
+                                <span class="text-neutral-800 font-medium"
+                                    >Cloud Connect</span
+                                >
+                            </div>
+                            <i
+                                class="fa-solid fa-chevron-down text-neutral-400 transform transition-transform"
+                            ></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Notification Modal -->
+        <div
+            id="system-notification-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-70 hidden"
+        >
+            <div class="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <div id="notification-icon" class="mr-3">
+                            <i class="fa-solid fa-cog text-3xl text-blue-600"></i>
+                        </div>
+                        <h2
+                            id="notification-title"
+                            class="text-xl font-semibold text-neutral-800"
+                        >
+                            System Settings
+                        </h2>
+                    </div>
+                    <button
+                        id="close-notification-modal"
+                        class="text-neutral-400 hover:text-neutral-600 transition-colors"
+                    >
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="border-b border-gray-200 mb-6">
+                    <nav class="flex space-x-8">
+                        <button class="tab-btn active px-1 py-2 border-b-2 border-blue-500 text-blue-600 font-medium" data-tab="password">
+                            <i class="fa-solid fa-key mr-2"></i>Password
+                        </button>
+                        <button class="tab-btn px-1 py-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="auth-keys">
+                            <i class="fa-solid fa-shield-alt mr-2"></i>Auth Keys
+                        </button>
+                        <button class="tab-btn px-1 py-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="file-transfer">
+                            <i class="fa-solid fa-file-upload mr-2"></i>File Transfer
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <!-- Password Management Tab -->
+                    <div id="password-tab" class="tab-panel">
+                        <div class="space-y-6">
+                            <!-- Change Password Section -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                    <i class="fa-solid fa-lock mr-2"></i>Change Password
+                                </h3>
+                                <form id="change-password-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                        <div class="relative">
+                                            <input type="password" id="current-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10" required>
+                                            <button type="button" class="toggle-password absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                        <div class="relative">
+                                            <input type="password" id="new-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10" required>
+                                            <button type="button" class="toggle-password absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="flex items-center justify-between text-sm">
+                                                <span class="text-gray-600">Password Strength:</span>
+                                                <span id="password-strength-text" class="font-medium">Weak</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                                                <div id="password-strength-bar" class="bg-red-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                        <div class="relative">
+                                            <input type="password" id="confirm-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10" required>
+                                            <button type="button" class="toggle-password absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end space-x-3">
+                                        <button type="button" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                            <i class="fa-solid fa-save mr-2"></i>Update Password
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Password Requirements -->
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="text-sm font-medium text-blue-900 mb-2">Password Requirements:</h4>
+                                <ul class="text-sm text-blue-700 space-y-1">
+                                    <li><i class="fa-solid fa-check-circle mr-1"></i>At least 8 characters long</li>
+                                    <li><i class="fa-solid fa-check-circle mr-1"></i>Contains uppercase and lowercase letters</li>
+                                    <li><i class="fa-solid fa-check-circle mr-1"></i>Contains at least one number</li>
+                                    <li><i class="fa-solid fa-check-circle mr-1"></i>Contains at least one special character</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Keys Management Tab -->
+                    <div id="auth-keys-tab" class="tab-panel hidden">
+                        <div class="space-y-6">
+                            <!-- Generate New Key -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                    <i class="fa-solid fa-plus-circle mr-2"></i>Generate Authentication Key
+                                </h3>
+                                <form id="generate-key-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Key Name</label>
+                                        <input type="text" id="key-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g., Mobile Device, Work Laptop" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Expiry</label>
+                                        <select id="key-expiry" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                            <option value="7">7 days</option>
+                                            <option value="30" selected>30 days</option>
+                                            <option value="90">90 days</option>
+                                            <option value="365">1 year</option>
+                                            <option value="0">Never</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex justify-end space-x-3">
+                                        <button type="button" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" id="generate-key-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                                            <i class="fa-solid fa-key mr-2"></i>Generate Key
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Generated Key Display -->
+                            <div id="generated-key-section" class="hidden bg-green-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-green-900 mb-4">
+                                    <i class="fa-solid fa-check-circle mr-2"></i>Authentication Key Generated
+                                </h3>
+                                <div class="bg-white p-3 rounded border border-green-200">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-700" id="generated-key-name">Key Name</span>
+                                        <span class="text-xs text-gray-500" id="generated-key-date">Generated: Today</span>
+                                    </div>
+                                    <div class="font-mono text-sm text-gray-900 bg-gray-100 p-2 rounded break-all" id="generated-key-value">
+                                        <!-- Key will be displayed here -->
+                                    </div>
+                                    <div class="mt-3 flex space-x-2">
+                                        <button id="download-key-btn" class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                                            <i class="fa-solid fa-download mr-1"></i>Download .uacc
+                                        </button>
+                                        <button id="copy-key-btn" class="px-3 py-1 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 transition-colors">
+                                            <i class="fa-solid fa-copy mr-1"></i>Copy
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-sm text-green-700">
+                                    <i class="fa-solid fa-info-circle mr-1"></i>
+                                    Save this key securely. It will not be shown again.
+                                </div>
+                            </div>
+
+                            <!-- Existing Keys -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                    <i class="fa-solid fa-list mr-2"></i>Existing Authentication Keys
+                                </h3>
+                                <div id="existing-keys-list" class="space-y-2">
+                                    <!-- Keys will be populated here -->
+                                    <div class="text-gray-500 text-center py-4">
+                                        <i class="fa-solid fa-key text-2xl mb-2"></i>
+                                        <p>No authentication keys found</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Transfer Tab -->
+                    <div id="file-transfer-tab" class="tab-panel hidden">
+                        <div class="space-y-6">
+                            <!-- Bulk File Upload -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>Bulk Encrypted File Transfer
+                                </h3>
+                                
+                                <!-- Upload Area -->
+                                <div id="bulk-upload-area" class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer">
+                                    <i class="fa-solid fa-file-upload text-4xl text-gray-400 mb-3"></i>
+                                    <p class="text-gray-700 font-medium mb-1">Drop files here or click to browse</p>
+                                    <p class="text-sm text-gray-500">Supports multiple files • Max 100MB per file • Encrypted transfer</p>
+                                    <input type="file" id="bulk-file-input" class="hidden" multiple accept=".uacc,.json,.enc,.txt">
+                                </div>
+
+                                <!-- File List -->
+                                <div id="file-list" class="mt-4 space-y-2">
+                                    <!-- Files will be listed here -->
+                                </div>
+
+                                <!-- Upload Progress -->
+                                <div id="upload-progress" class="hidden mt-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-700">Upload Progress</span>
+                                        <span id="upload-percentage" class="text-sm font-medium text-blue-600">0%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="upload-progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex justify-between items-center mt-4">
+                                    <button id="clear-files-btn" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50" disabled>
+                                        <i class="fa-solid fa-trash mr-2"></i>Clear All
+                                    </button>
+                                    <button id="upload-files-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50" disabled>
+                                        <i class="fa-solid fa-upload mr-2"></i>Upload Files
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Transfer History -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                    <i class="fa-solid fa-history mr-2"></i>Transfer History
+                                </h3>
+                                <div id="transfer-history" class="space-y-2">
+                                    <div class="text-gray-500 text-center py-4">
+                                        <i class="fa-solid fa-exchange-alt text-2xl mb-2"></i>
+                                        <p>No transfer history</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex justify-end mt-6 pt-4 border-t border-gray-200">
+                    <button
+                        id="close-modal-btn"
+                        class="px-6 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 transition-colors"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consolidated JavaScript functionality -->
+        
+        <!-- Dashboard Script - Standalone Demo Mode with Content Loading -->
+        <script>
+/**
+ * Dashboard Script - Standalone Demo Mode with Content Loading
+ * Loads section HTML files dynamically into main content area
+ */
+
+class DashboardManager {
+    constructor() {
+        this.sidebar = document.getElementById('sidebar');
+        this.sidebarToggle = document.getElementById('sidebar-toggle');
+        this.mainContent = document.getElementById('main-content');
+        this.logoutBtn = document.getElementById('logout-btn');
+        this.notificationModal = document.getElementById('system-notification-modal');
+        this.closeNotificationBtn = document.getElementById('close-notification-modal');
+        
+        this.currentSection = null;
+        this.isSidebarOpen = false;
+        
+        // Section to HTML file mapping
+        this.sectionMap = {
+            'system-dashboard': 'landing-section.html',
+            'wired-config': 'wired-config-section.html',
+            'wireless-config': 'wireless-config-section.html',
+            'cellular-config': 'cellular-config-section.html',
+            'vpn-config': 'vpn-configuration-section.html',
+            'advanced-network': 'advance-network-section.html',
+            'network-benchmark': 'network-utility-section.html',
+            'network-priority': 'network-priority-section.html',
+            'mavlink-overview': 'mavlink-system-overview-section.html',
+            'attached-ip-devices': 'attached-ip-cameras-section.html',
+            'mavlink-extension': 'mavlink-extension-section.html',
+            'firmware-upgrade': 'firmware-upgrade-section.html',
+            'license-management': 'license-section.html',
+            'backup-restore': 'backup-restore-section.html',
+            'about-us': 'about-us-section.html'
+        };
+        
+        this.init();
+    }
+
+    init() {
+        console.log('[DASHBOARD] Initializing dashboard (Demo Mode)');
+        
+        // Check if user is logged in (demo mode - allow access)
+        const session = localStorage.getItem('session');
+        if (!session) {
+            console.log('[DASHBOARD] No session found, but allowing demo mode access');
+            // In demo mode, create a temporary session to prevent redirect loops
+            localStorage.setItem('session', 'demo-session');
+        }
+        
+        // Check if we should restore a saved section before initializing
+        const trackingData = this.getTrackingData();
+        const shouldRestoreSection = trackingData && trackingData.section;
+        
+        if (shouldRestoreSection) {
+            console.log('[DASHBOARD] Found saved section, will restore:', trackingData.section);
+            // Set current section to saved one to prevent landing section flash
+            this.currentSection = trackingData.section;
+            
+            // Hide main content initially to prevent flash
+            if (this.mainContent) {
+                this.mainContent.style.opacity = '0';
+                this.mainContent.style.transition = 'opacity 0.3s ease-in-out';
+            }
+        }
+        
+        // Bind event listeners
+        this.sidebarToggle.addEventListener('click', () => this.toggleSidebar());
+        this.logoutBtn.addEventListener('click', () => this.logout());
+        this.closeNotificationBtn.addEventListener('click', () => this.closeNotification());
+        
+        // Setup navigation
+        this.setupNavigation();
+        
+        // Setup sidebar toggles
+        this.setupSidebarToggles();
+        
+        // Load initial content
+        if (shouldRestoreSection) {
+            // Restore sidebar state first
+            if (trackingData.sidebarOpen) {
+                // Open sidebar before loading section
+                this.sidebar.classList.remove('-translate-x-full');
+                this.mainContent.classList.add('ml-64');
+                this.isSidebarOpen = true;
+                
+                // Notify page tracker of sidebar state
+                if (window.pageTracker) {
+                    window.pageTracker.saveSidebarState(true);
+                }
+            }
+            
+            // Load the saved section directly
+            this.loadSection(trackingData.section);
+            
+            // Show content with fade-in effect
+            setTimeout(() => {
+                if (this.mainContent) {
+                    this.mainContent.style.opacity = '1';
+                }
+            }, 300);
+        } else {
+            // Load default landing section
+            this.loadSection('system-dashboard');
+        }
+    }
+
+    getTrackingData() {
+        try {
+            const data = localStorage.getItem('dashboard-current-section');
+            if (data) {
+                return JSON.parse(data);
+            }
+        } catch (error) {
+            console.error('[DASHBOARD] Failed to get tracking data:', error);
+        }
+        return null;
+    }
+
+    setupSidebarToggles() {
+        // Network toggle
+        const networkToggle = document.getElementById('nav-network-toggle');
+        const networkList = document.getElementById('nav-network-list');
+        const networkHeader = document.getElementById('nav-network-header');
+        
+        networkHeader.addEventListener('click', (e) => {
+            if (e.target === networkToggle || networkToggle.contains(e.target)) return;
+            networkList.classList.toggle('hidden');
+            networkToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            networkToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+        
+        networkToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            networkList.classList.toggle('hidden');
+            networkToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            networkToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+        
+        // Devices toggle
+        const devicesToggle = document.getElementById('devices-toggle');
+        const devicesList = document.getElementById('devices-list');
+        const devicesHeader = document.getElementById('nav-devices-header');
+        
+        devicesHeader.addEventListener('click', (e) => {
+            if (e.target === devicesToggle || devicesToggle.contains(e.target)) return;
+            devicesList.classList.toggle('hidden');
+            devicesToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            devicesToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+        
+        devicesToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            devicesList.classList.toggle('hidden');
+            devicesToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            devicesToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+        
+        // Features toggle
+        const featuresToggle = document.getElementById('features-toggle');
+        const featuresList = document.getElementById('features-list');
+        const featuresHeader = document.getElementById('nav-features-header');
+        
+        featuresHeader.addEventListener('click', (e) => {
+            if (e.target === featuresToggle || featuresToggle.contains(e.target)) return;
+            featuresList.classList.toggle('hidden');
+            featuresToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            featuresToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+        
+        featuresToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            featuresList.classList.toggle('hidden');
+            featuresToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            featuresToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+    }
+
+    setupNavigation() {
+        const navItems = document.querySelectorAll('[data-section]');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.getAttribute('data-section');
+                this.loadSection(section);
+            });
+        });
+    }
+
+    toggleSidebar() {
+        this.isSidebarOpen = !this.isSidebarOpen;
+        if (this.isSidebarOpen) {
+            this.sidebar.classList.remove('-translate-x-full');
+            this.mainContent.classList.add('ml-64');
+        } else {
+            this.sidebar.classList.add('-translate-x-full');
+            this.mainContent.classList.remove('ml-64');
+        }
+        
+        // Notify page tracker of sidebar state change
+        if (window.pageTracker) {
+            window.pageTracker.saveSidebarState(this.isSidebarOpen);
+        }
+    }
+
+    async loadSection(sectionId) {
+        console.log('[DASHBOARD] Loading section:', sectionId);
+        this.currentSection = sectionId;
+        
+        // Notify page tracker of section change
+        if (window.pageTracker) {
+            window.pageTracker.setCurrentSection(sectionId);
+        }
+        
+        // Update active state for navigation
+        this.updateNavigationState(sectionId);
+        
+        const htmlFile = this.sectionMap[sectionId];
+        if (!htmlFile) {
+            console.error('[DASHBOARD] Unknown section:', sectionId);
+            this.mainContent.innerHTML = `
+                <div class="text-center p-8">
+                    <p class="text-neutral-600">Section not found: ${sectionId}</p>
+                </div>
+            `;
+            return;
+        }
+        
+        try {
+            // Show loading
+            this.mainContent.innerHTML = `
+                <div class="flex items-center justify-center p-12">
+                    <div class="text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-600 mx-auto mb-4"></div>
+                        <p class="text-neutral-600">Loading ${htmlFile}...</p>
+                    </div>
+                </div>
+            `;
+            
+            // Fetch section HTML
+            const response = await fetch(`components/${htmlFile}`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const html = await response.text();
+            console.log('[DASHBOARD] Content loaded successfully, length:', html.length);
+            
+            // Inject HTML
+            this.mainContent.innerHTML = html;
+            
+            // Execute any inline scripts
+            this.executeInlineScripts(this.mainContent);
+            
+            console.log('[DASHBOARD] Section loaded successfully');
+        } catch (error) {
+            console.error('[DASHBOARD] Error loading section:', error);
+            this.mainContent.innerHTML = `
+                <div class="text-center p-8">
+                    <p class="text-neutral-600 mb-4">Error loading content: ${error.message}</p>
+                    <p class="text-sm text-neutral-500">File: components/${htmlFile}</p>
+                    <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        Retry
+                    </button>
+                </div>
+            `;
+        }
+    }
+
+    updateNavigationState(sectionId) {
+        // Remove active state from all navigation items
+        const navItems = document.querySelectorAll('[data-section]');
+        navItems.forEach(nav => {
+            nav.classList.remove('bg-neutral-50', 'border-l-2', 'border-neutral-600');
+        });
+        
+        // Add active state to current section
+        const currentNavItem = document.querySelector(`[data-section="${sectionId}"]`);
+        if (currentNavItem) {
+            currentNavItem.classList.add('bg-neutral-50', 'border-l-2', 'border-neutral-600');
+            
+            // Ensure parent sections are expanded
+            this.expandParentSections(currentNavItem);
+        }
+    }
+
+    expandParentSections(navItem) {
+        console.log('[DASHBOARD] Expanding parent sections for:', navItem.getAttribute('data-section'));
+        
+        // Find parent sections and expand them
+        let parent = navItem.parentElement;
+        
+        while (parent) {
+            // Check if this is a sub-section list
+            if (parent.id && parent.id.endsWith('-list')) {
+                // Find the header and toggle button
+                const headerId = parent.id.replace('-list', '-header');
+                const toggleId = parent.id.replace('-list', '-toggle');
+                const header = document.getElementById(headerId);
+                const toggle = document.getElementById(toggleId);
+                
+                if (header && toggle && parent.classList.contains('hidden')) {
+                    console.log(`[DASHBOARD] Expanding parent section: ${headerId}`);
+                    
+                    // Expand the section
+                    parent.classList.remove('hidden');
+                    
+                    // Update chevron icon
+                    const icon = toggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+            
+            parent = parent.parentElement;
+        }
+        
+        // Also ensure the main sidebar is open if we're expanding sections
+        if (!this.isSidebarOpen) {
+            console.log('[DASHBOARD] Opening sidebar to show expanded sections');
+            this.sidebar.classList.remove('-translate-x-full');
+            this.mainContent.classList.add('ml-64');
+            this.isSidebarOpen = true;
+            
+            // Notify page tracker of sidebar state change
+            if (window.pageTracker) {
+                window.pageTracker.saveSidebarState(true);
+            }
+        }
+    }
+
+    executeInlineScripts(container) {
+        const scripts = container.querySelectorAll('script');
+        scripts.forEach(script => {
+            try {
+                const scriptContent = script.textContent.trim();
+                if (scriptContent) {
+                    eval(scriptContent);
+                }
+            } catch (error) {
+                console.error('[DASHBOARD] Script execution error:', error);
+            }
+        });
+    }
+
+    showNotification(title, message, type = 'info') {
+        const iconMap = {
+            'info': 'fa-info-circle text-blue-600',
+            'success': 'fa-check-circle text-green-600',
+            'warning': 'fa-exclamation-triangle text-yellow-600',
+            'error': 'fa-times-circle text-red-600'
+        };
+        
+        document.getElementById('notification-title').textContent = title;
+        document.getElementById('notification-message').textContent = message;
+        document.getElementById('notification-icon').innerHTML = `<i class="fa-solid ${iconMap[type]} text-3xl"></i>`;
+        this.notificationModal.classList.remove('hidden');
+    }
+
+    closeNotification() {
+        this.notificationModal.classList.add('hidden');
+    }
+
+    logout() {
+        console.log('[DASHBOARD] Logging out');
+        localStorage.removeItem('session');
+        localStorage.removeItem('demo_mode');
+        window.location.href = 'login-page.html';
+    }
+}
+
+// Initialize dashboard on DOM ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new DashboardManager();
+    });
+} else {
+    new DashboardManager();
+}
+
+console.log('[DASHBOARD] Dashboard script loaded (Demo Mode)');
+        </script>
+        
+        <!-- JWT Token Management System -->
+        <script>
+/**
+ * JWT Token Management System for Frontend
+ * Handles token storage, validation, and automatic refresh
+ */
+
+class JWTTokenManager {
+    constructor(options = {}) {
+        this.storageKey = options.storageKey || 'ur_webif_token';
+        this.refreshKey = options.refreshKey || 'ur_webif_refresh_token';
+        this.userKey = options.userKey || 'ur_webif_user';
+        this.apiBaseUrl = options.apiBaseUrl || `${window.location.origin}/api/auth`;
+        this.autoRefreshEnabled = options.autoRefresh !== false;
+        this.refreshThreshold = options.refreshThreshold || 15 * 60 * 1000; // 15 minutes
+        this.refreshTimer = null;
+        
+        // Enhanced refresh management
+        this.refreshState = 'IDLE'; // IDLE, REFRESHING, BACKING_OFF, CIRCUIT_OPEN
+        this.refreshPromise = null; // For request deduplication
+        this.isLeaderTab = false;
+        this.tabId = 'tab_' + Math.random().toString(36).substr(2, 9);
+        this.leaderCheckInterval = null;
+        this.backoffTimer = null;
+        this.circuitOpenUntil = null;
+        this.consecutiveFailures = 0;
+        this.maxConsecutiveFailures = 3;
+        this.baseBackoffDelay = 5000; // 5 seconds
+        this.maxBackoffDelay = 5 * 60 * 1000; // 5 minutes
+        this.circuitOpenDuration = 30 * 60 * 1000; // 30 minutes
+        this.adaptiveThresholdRatio = 0.75; // Refresh at 75% of token lifetime
+        this.lastTokenRefreshTime = null;
+        this.minimumRefreshInterval = 30 * 1000; // Minimum 30 seconds between refreshes
+        this.heartbeatInterval = null;
+        
+        this.callbacks = {
+            onTokenRefresh: options.onTokenRefresh || (() => {}),
+            onTokenExpired: options.onTokenExpired || (() => {}),
+            onLogout: options.onLogout || (() => {}),
+            onAuthError: options.onAuthError || (() => {})
+        };
+        
+        this.init();
+    }
+    
+    /**
+     * Initialize the token manager
+     */
+    init() {
+        // Check for existing token on page load first
+        const hasValidToken = this.validateStoredToken();
+        
+        // Initialize tab coordination
+        this.initializeTabCoordination();
+        
+        // Only set up auto-refresh if we have a valid token and it's enabled
+        if (this.autoRefreshEnabled && hasValidToken) {
+            this.setupAutoRefresh();
+        }
+    }
+    
+    /**
+     * Store authentication data
+     */
+    storeAuthData(token, refreshToken, user) {
+        try {
+            localStorage.setItem(this.storageKey, token);
+            if (refreshToken) {
+                localStorage.setItem(this.refreshKey, refreshToken);
+            }
+            if (user) {
+                localStorage.setItem(this.userKey, JSON.stringify(user));
+            }
+            
+            // Setup auto-refresh after storing tokens
+            this.setupAutoRefresh();
+        } catch (error) {
+            // localStorage failed, continue with in-memory storage
+            // Token refresh will work but won't persist across page reloads
+            this.setupAutoRefresh();
+        }
+    }
+    
+    /**
+     * Get stored access token
+     */
+    getAccessToken() {
+        try {
+            return localStorage.getItem(this.storageKey);
+        } catch (error) {
+            console.error('Error getting access token:', error);
+            return null;
+        }
+    }
+    
+    /**
+     * Get stored refresh token
+     */
+    getRefreshToken() {
+        try {
+            return localStorage.getItem(this.refreshKey);
+        } catch (error) {
+            console.error('Error getting refresh token:', error);
+            return null;
+        }
+    }
+    
+    /**
+     * Get stored user data
+     */
+    getUserData() {
+        try {
+            const userData = localStorage.getItem(this.userKey);
+            return userData ? JSON.parse(userData) : null;
+        } catch (error) {
+            console.error('Error getting user data:', error);
+            return null;
+        }
+    }
+    
+    /**
+     * Clear all stored authentication data
+     */
+    clearAuthData() {
+        try {
+            localStorage.removeItem(this.storageKey);
+            localStorage.removeItem(this.refreshKey);
+            localStorage.removeItem(this.userKey);
+            
+            if (this.refreshTimer) {
+                clearTimeout(this.refreshTimer);
+                this.refreshTimer = null;
+            }
+            
+            console.log('Authentication data cleared');
+            this.callbacks.onLogout();
+            
+        } catch (error) {
+            console.error('Error clearing auth data:', error);
+        }
+    }
+    
+    /**
+     * Parse JWT token payload
+     */
+    parseToken(token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(
+                atob(base64)
+                    .split('')
+                    .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                    .join('')
+            );
+            return JSON.parse(jsonPayload);
+        } catch (error) {
+            console.error('Error parsing token:', error);
+            return null;
+        }
+    }
+    
+    /**
+     * Check if token is expired
+     */
+    isTokenExpired(token) {
+        try {
+            const payload = this.parseToken(token);
+            if (!payload || !payload.exp) {
+                return true; // Invalid token
+            }
+            
+            const currentTime = Math.floor(Date.now() / 1000);
+            return payload.exp < currentTime;
+        } catch (error) {
+            console.error('Error checking token expiration:', error);
+            return true;
+        }
+    }
+    
+    /**
+     * Check if token will expire soon
+     */
+    isTokenExpiringSoon(token, thresholdMs = this.refreshThreshold) {
+        try {
+            const payload = this.parseToken(token);
+            if (!payload || !payload.exp) {
+                return true;
+            }
+            
+            const expirationTime = payload.exp * 1000;
+            const currentTime = Date.now();
+            const timeUntilExpiration = expirationTime - currentTime;
+            
+            return timeUntilExpiration < thresholdMs;
+        } catch (error) {
+            console.error('Error checking token expiration:', error);
+            return true;
+        }
+    }
+    
+    /**
+     * Validate stored token
+     */
+    validateStoredToken() {
+        const token = this.getAccessToken();
+        if (!token) {
+            return false;
+        }
+        
+        if (this.isTokenExpired(token)) {
+            console.log('Stored token is expired');
+            this.clearAuthData();
+            this.callbacks.onTokenExpired();
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Setup automatic token refresh
+     */
+    setupAutoRefresh() {
+        // Clear existing timers
+        if (this.refreshTimer) {
+            clearTimeout(this.refreshTimer);
+        }
+        if (this.backoffTimer) {
+            clearTimeout(this.backoffTimer);
+        }
+        
+        if (!this.autoRefreshEnabled || this.refreshState === 'CIRCUIT_OPEN') {
+            return;
+        }
+        
+        const token = this.getAccessToken();
+        const refreshToken = this.getRefreshToken();
+        
+        if (!token || !refreshToken) {
+            return;
+        }
+        
+        const payload = this.parseToken(token);
+        if (!payload || !payload.exp) {
+            return;
+        }
+        
+        // Calculate adaptive refresh threshold with fallback
+        let tokenLifetime;
+        if (payload.iat && payload.exp) {
+            tokenLifetime = (payload.exp * 1000) - (payload.iat * 1000);
+        } else {
+            // Fallback to default threshold if iat is missing
+            tokenLifetime = this.refreshThreshold;
+        }
+        
+        const adaptiveThreshold = Math.min(
+            tokenLifetime * this.adaptiveThresholdRatio,
+            this.refreshThreshold
+        );
+        
+        // Ensure minimum threshold to prevent immediate refresh loops
+        const minimumThreshold = Math.max(adaptiveThreshold, tokenLifetime * 0.1); // At least 10% of lifetime
+        
+        const expirationTime = payload.exp * 1000;
+        const currentTime = Date.now();
+        const refreshTime = expirationTime - minimumThreshold;
+        
+        // Add clock skew buffer (30 seconds)
+        const adjustedRefreshTime = refreshTime - 30000;
+        
+        // Enforce minimum refresh interval
+        if (this.lastTokenRefreshTime) {
+            const timeSinceLastRefresh = currentTime - this.lastTokenRefreshTime;
+            if (timeSinceLastRefresh < this.minimumRefreshInterval) {
+                const delayUntilNextRefresh = this.minimumRefreshInterval - timeSinceLastRefresh;
+                this.refreshTimer = setTimeout(() => {
+                    this.setupAutoRefresh();
+                }, delayUntilNextRefresh);
+                return;
+            }
+        }
+        
+        if (adjustedRefreshTime <= currentTime) {
+            // Token is expiring soon, refresh now
+            this.scheduleRefresh();
+        } else {
+            // Schedule refresh
+            const delay = adjustedRefreshTime - currentTime;
+            this.refreshTimer = setTimeout(() => {
+                this.scheduleRefresh();
+            }, delay);
+        }
+    }
+    
+    /**
+     * Refresh the access token
+     */
+    async refreshToken() {
+        // Request deduplication - return existing promise if refresh is in progress
+        if (this.refreshPromise) {
+            return this.refreshPromise;
+        }
+        
+        // Only leader tab should initiate refresh
+        if (!this.isLeaderTab) {
+            return false; // Wait for leader tab to refresh and localStorage event
+        }
+        
+        // Check circuit breaker
+        if (this.refreshState === 'CIRCUIT_OPEN') {
+            if (Date.now() < this.circuitOpenUntil) {
+                return false; // Circuit still open
+            } else {
+                // Try to close circuit
+                this.refreshState = 'IDLE';
+                this.consecutiveFailures = 0;
+            }
+        }
+        
+        this.refreshState = 'REFRESHING';
+        this.refreshPromise = this.performRefresh();
+        
+        try {
+            const result = await this.refreshPromise;
+            return result;
+        } finally {
+            this.refreshPromise = null;
+        }
+    }
+    
+    async performRefresh() {
+        try {
+            const refreshToken = this.getRefreshToken();
+            if (!refreshToken) {
+                console.error('[JWT] No refresh token available');
+                this.clearAuthData();
+                return false;
+            }
+            
+            console.log('[JWT] Attempting token refresh to:', this.apiBaseUrl + '/refresh');
+            
+            const response = await fetch(`${this.apiBaseUrl}/refresh`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    refresh_token: refreshToken
+                })
+            });
+            
+            // Check response status before parsing JSON
+            if (!response.ok) {
+                if (response.status === 401) {
+                    console.error('[JWT] Refresh token expired or invalid (401)');
+                    throw new Error('REFRESH_TOKEN_EXPIRED');
+                } else if (response.status === 400) {
+                    console.error('[JWT] Bad request to refresh endpoint (400)');
+                    throw new Error('REFRESH_REQUEST_INVALID');
+                } else {
+                    console.error('[JWT] Server error during refresh:', response.status, response.statusText);
+                    throw new Error(`REFRESH_SERVER_ERROR: ${response.status}`);
+                }
+            }
+            
+            const data = await response.json();
+            console.log('[JWT] Refresh response received:', data);
+            
+            if (data.success) {
+                // Validate the new token before storing
+                const newToken = data.access_token;
+                const newPayload = this.parseToken(newToken);
+                
+                if (!newPayload || !newPayload.exp) {
+                    console.error('[JWT] Invalid token received from refresh');
+                    throw new Error('Invalid token received from refresh');
+                }
+                
+                // Update stored tokens
+                localStorage.setItem(this.storageKey, data.access_token);
+                if (data.refresh_token) {
+                    localStorage.setItem(this.refreshKey, data.refresh_token);
+                }
+                
+                this.lastTokenRefreshTime = Date.now();
+                this.refreshState = 'IDLE';
+                this.consecutiveFailures = 0;
+                
+                // Setup next refresh
+                this.setupAutoRefresh();
+                
+                this.callbacks.onTokenRefresh(data.access_token);
+                console.log('[JWT] Token refresh successful');
+                return true;
+            } else {
+                console.error('[JWT] Refresh failed:', data.message || 'Unknown error');
+                throw new Error(data.message || 'Token refresh failed');
+            }
+            
+        } catch (error) {
+            this.consecutiveFailures++;
+            console.error('[JWT] Refresh failed with error:', error.message);
+            
+            // Handle specific error types
+            if (error.message === 'REFRESH_TOKEN_EXPIRED') {
+                console.log('[JWT] Refresh token permanently expired - clearing session');
+                this.clearAuthData();
+                this.callbacks.onTokenExpired();
+                return false;
+            } else if (error.message === 'REFRESH_REQUEST_INVALID') {
+                console.log('[JWT] Invalid refresh request - clearing session');
+                this.clearAuthData();
+                this.callbacks.onTokenExpired();
+                return false;
+            } else if (error.message.includes('REFRESH_SERVER_ERROR')) {
+                // Server errors - use backoff retry logic
+                console.log('[JWT] Server error during refresh - using backoff retry');
+            } else if (error.message.includes('Failed to fetch') || error.message.includes('ERR_BLOCKED_BY_CLIENT')) {
+                // Network errors - use backoff retry logic
+                console.log('[JWT] Network error during refresh - using backoff retry');
+            } else {
+                // Other errors - clear session as precaution
+                console.log('[JWT] Unknown error during refresh - clearing session');
+                this.clearAuthData();
+                this.callbacks.onTokenExpired();
+                return false;
+            }
+            
+            // Apply circuit breaker and backoff logic for retryable errors
+            if (this.consecutiveFailures >= this.maxConsecutiveFailures) {
+                // Open circuit breaker
+                this.refreshState = 'CIRCUIT_OPEN';
+                this.circuitOpenUntil = Date.now() + this.circuitOpenDuration;
+                console.log('[JWT] Circuit breaker opened after', this.consecutiveFailures, 'failures');
+            } else {
+                // Start exponential backoff
+                this.refreshState = 'BACKING_OFF';
+                const backoffDelay = Math.min(
+                    this.baseBackoffDelay * Math.pow(2, this.consecutiveFailures - 1),
+                    this.maxBackoffDelay
+                );
+                
+                console.log('[JWT] Starting backoff retry in', backoffDelay, 'ms');
+                this.backoffTimer = setTimeout(() => {
+                    this.refreshState = 'IDLE';
+                    this.setupAutoRefresh();
+                }, backoffDelay);
+            }
+            
+            return false;
+        }
+    }
+    
+    /**
+     * Initialize tab coordination using localStorage
+     */
+    initializeTabCoordination() {
+        try {
+            // Listen for storage events from other tabs
+            window.addEventListener('storage', (event) => {
+                if (event.key === this.storageKey && event.newValue) {
+                    // Token was refreshed by another tab
+                    if (this.refreshState === 'REFRESHING') {
+                        this.refreshState = 'IDLE';
+                        this.consecutiveFailures = 0;
+                    }
+                    this.setupAutoRefresh();
+                } else if (event.key === this.refreshKey && event.newValue) {
+                    // Refresh token was updated by another tab
+                    this.setupAutoRefresh();
+                }
+            });
+            
+            // Leader tab election
+            this.electLeaderTab();
+            
+            // Periodic leader check
+            this.leaderCheckInterval = setInterval(() => {
+                this.checkLeaderStatus();
+            }, 10000); // Check every 10 seconds
+        } catch (error) {
+            // localStorage failed, operate independently
+            this.isLeaderTab = true;
+        }
+    }
+    
+    /**
+     * Elect this tab as leader if no other leader exists
+     */
+    electLeaderTab() {
+        try {
+            const leaderKey = 'jwt_leader_tab';
+            const currentLeader = localStorage.getItem(leaderKey);
+            const currentTimestamp = Date.now().toString();
+            
+            if (!currentLeader || (Date.now() - parseInt(currentLeader)) > 15000) {
+                // No leader or leader is stale, try to become leader
+                localStorage.setItem(leaderKey, currentTimestamp);
+                // Verify we actually became leader by reading back
+                const verifyLeader = localStorage.getItem(leaderKey);
+                if (verifyLeader === currentTimestamp) {
+                    this.isLeaderTab = true;
+                    this.startHeartbeat();
+                } else {
+                    this.isLeaderTab = false;
+                }
+            } else {
+                // Another tab is leader
+                this.isLeaderTab = false;
+            }
+        } catch (error) {
+            // localStorage failed, operate independently
+            this.isLeaderTab = true;
+        }
+    }
+    
+    /**
+     * Start heartbeat to maintain leadership
+     */
+    startHeartbeat() {
+        if (this.heartbeatInterval) {
+            clearInterval(this.heartbeatInterval);
+        }
+        
+        this.heartbeatInterval = setInterval(() => {
+            try {
+                localStorage.setItem('jwt_leader_tab', Date.now().toString());
+            } catch (error) {
+                // localStorage failed, stop heartbeat
+                clearInterval(this.heartbeatInterval);
+            }
+        }, 5000); // Update every 5 seconds
+    }
+    
+    /**
+     * Check if this tab is still the leader
+     */
+    checkLeaderStatus() {
+        try {
+            const leaderKey = 'jwt_leader_tab';
+            const currentLeader = localStorage.getItem(leaderKey);
+            
+            if (!currentLeader || (Date.now() - parseInt(currentLeader)) > 15000) {
+                // Leader is stale, try to become leader
+                this.electLeaderTab();
+            } else {
+                // Check if we are the current leader by comparing with our heartbeat
+                if (this.isLeaderTab && this.heartbeatInterval) {
+                    // We think we're leader, verify our timestamp is current
+                    // If not, demote ourselves
+                    const timeSinceLeader = Date.now() - parseInt(currentLeader);
+                    if (timeSinceLeader > 10000) { // 10 seconds grace period
+                        this.isLeaderTab = false;
+                        if (this.heartbeatInterval) {
+                            clearInterval(this.heartbeatInterval);
+                            this.heartbeatInterval = null;
+                        }
+                    }
+                } else {
+                    // We're not the leader tab
+                    this.isLeaderTab = false;
+                }
+            }
+        } catch (error) {
+            // localStorage failed, operate independently
+            this.isLeaderTab = true;
+        }
+    }
+    
+    /**
+     * Schedule a refresh with proper state management
+     */
+    scheduleRefresh() {
+        if (this.refreshState === 'REFRESHING') {
+            return; // Already refreshing
+        }
+        
+        if (this.isLeaderTab) {
+            this.refreshToken();
+        }
+        // Non-leader tabs wait for localStorage events
+    }
+    
+    /**
+     * Cleanup resources
+     */
+    destroy() {
+        // Clear all timers
+        if (this.refreshTimer) {
+            clearTimeout(this.refreshTimer);
+        }
+        if (this.backoffTimer) {
+            clearTimeout(this.backoffTimer);
+        }
+        if (this.leaderCheckInterval) {
+            clearInterval(this.leaderCheckInterval);
+        }
+        if (this.heartbeatInterval) {
+            clearInterval(this.heartbeatInterval);
+        }
+        
+        // Remove event listeners
+        window.removeEventListener('storage', this.handleStorageEvent);
+    }
+    async verifyToken(token = null) {
+        try {
+            const tokenToVerify = token || this.getAccessToken();
+            if (!tokenToVerify) {
+                return { valid: false, message: 'No token provided' };
+            }
+            
+            const response = await fetch(`${this.apiBaseUrl}/verify`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    token: tokenToVerify
+                })
+            });
+            
+            const data = await response.json();
+            return data;
+            
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            return { valid: false, message: error.message };
+        }
+    }
+    
+    /**
+     * Get authorization header
+     */
+    getAuthHeader() {
+        const token = this.getAccessToken();
+        return token ? `Bearer ${token}` : null;
+    }
+    
+    /**
+     * Make authenticated API request
+     */
+    async authenticatedFetch(url, options = {}) {
+        const token = this.getAccessToken();
+        if (!token) {
+            throw new Error('No authentication token available');
+        }
+        
+        // Check if token is expired
+        if (this.isTokenExpired(token)) {
+            // Try to refresh token
+            const refreshed = await this.refreshToken();
+            if (!refreshed) {
+                throw new Error('Token expired and refresh failed');
+            }
+        }
+        
+        const authOptions = {
+            ...options,
+            headers: {
+                ...options.headers,
+                'Authorization': this.getAuthHeader()
+            }
+        };
+        
+        try {
+            const response = await fetch(url, authOptions);
+            
+            // Handle 401 Unauthorized (token might be expired)
+            if (response.status === 401) {
+                // Try to refresh token and retry once
+                const refreshed = await this.refreshToken();
+                if (refreshed) {
+                    authOptions.headers['Authorization'] = this.getAuthHeader();
+                    return await fetch(url, authOptions);
+                }
+            }
+            
+            return response;
+            
+        } catch (error) {
+            console.error('Authenticated fetch error:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Logout user
+     */
+    async logout() {
+        try {
+            const token = this.getAccessToken();
+            if (token) {
+                // Notify server about logout
+                await fetch(`${this.apiBaseUrl}/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': this.getAuthHeader()
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+        } finally {
+            // Always clear local data
+            this.clearAuthData();
+        }
+    }
+    
+    /**
+     * Get current authentication status
+     */
+    getAuthStatus() {
+        const token = this.getAccessToken();
+        const user = this.getUserData();
+        
+        if (!token) {
+            return {
+                authenticated: false,
+                user: null,
+                tokenValid: false
+            };
+        }
+        
+        const tokenValid = !this.isTokenExpired(token);
+        const tokenExpiringSoon = this.isTokenExpiringSoon(token);
+        
+        return {
+            authenticated: tokenValid,
+            user: user,
+            tokenValid: tokenValid,
+            tokenExpiringSoon: tokenExpiringSoon,
+            hasRefreshToken: !!this.getRefreshToken()
+        };
+    }
+    
+    /**
+     * Register event callback
+     */
+    on(event, callback) {
+        if (this.callbacks.hasOwnProperty(event)) {
+            this.callbacks[event] = callback;
+        }
+    }
+    
+    /**
+     * Unregister event callback
+     */
+    off(event) {
+        if (this.callbacks.hasOwnProperty(event)) {
+            this.callbacks[event] = () => {};
+        }
+    }
+    
+    /**
+     * Destroy the token manager
+     */
+    destroy() {
+        if (this.refreshTimer) {
+            clearTimeout(this.refreshTimer);
+            this.refreshTimer = null;
+        }
+        
+        console.log('JWT Token Manager destroyed');
+    }
+}
+
+// Export for use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = JWTTokenManager;
+} else if (typeof window !== 'undefined') {
+    window.JWTTokenManager = JWTTokenManager;
+}
+        </script>
+        
+        <!-- Embedded System Settings Modal -->
+        <script>
+/**
+ * System Settings Modal Manager
+ * Handles password management, authentication key generation, and file transfer functionality
+ */
+
+class SystemSettingsModal {
+    constructor() {
+        this.modal = null;
+        this.currentTab = 'password';
+        this.uploadedFiles = [];
+        this.generatedKey = null;
+        this.authKeys = [];
+        
+        this.init();
+    }
+
+    init() {
+        this.modal = document.getElementById('system-notification-modal');
+        if (!this.modal) {
+            console.error('[SYSTEM_SETTINGS] Modal not found');
+            return;
+        }
+
+        this.setupEventListeners();
+        this.loadAuthKeys();
+        this.loadTransferHistory();
+    }
+
+    setupEventListeners() {
+        // Modal open/close
+        const settingsBtn = document.getElementById('settings-btn');
+        const closeBtns = [
+            document.getElementById('close-notification-modal'),
+            document.getElementById('close-modal-btn')
+        ];
+
+        if (settingsBtn) {
+            settingsBtn.addEventListener('click', () => this.openModal());
+        }
+
+        closeBtns.forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', () => this.closeModal());
+            }
+        });
+
+        // Close on backdrop click
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.closeModal();
+            }
+        });
+
+        // Tab navigation
+        const tabBtns = this.modal.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.switchTab(btn.dataset.tab);
+            });
+        });
+
+        // Password management
+        this.setupPasswordManagement();
+        
+        // Auth key management
+        this.setupAuthKeyManagement();
+        
+        // File transfer
+        this.setupFileTransfer();
+    }
+
+    setupPasswordManagement() {
+        const form = document.getElementById('change-password-form');
+        const newPasswordInput = document.getElementById('new-password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+
+        // Password strength checker
+        if (newPasswordInput) {
+            newPasswordInput.addEventListener('input', () => {
+                this.checkPasswordStrength(newPasswordInput.value);
+            });
+        }
+
+        // Password confirmation
+        if (confirmPasswordInput) {
+            confirmPasswordInput.addEventListener('input', () => {
+                this.validatePasswordConfirmation();
+            });
+        }
+
+        // Toggle password visibility
+        const toggleBtns = form.querySelectorAll('.toggle-password');
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = btn.previousElementSibling;
+                const icon = btn.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+
+        // Form submission
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleChangePassword();
+            });
+        }
+    }
+
+    setupAuthKeyManagement() {
+        const form = document.getElementById('generate-key-form');
+        
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.generateAuthKey();
+            });
+        }
+
+        // Download key button
+        const downloadBtn = document.getElementById('download-key-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                this.downloadAuthKey();
+            });
+        }
+
+        // Copy key button
+        const copyBtn = document.getElementById('copy-key-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                this.copyAuthKey();
+            });
+        }
+    }
+
+    setupFileTransfer() {
+        const uploadArea = document.getElementById('bulk-upload-area');
+        const fileInput = document.getElementById('bulk-file-input');
+        const clearBtn = document.getElementById('clear-files-btn');
+        const uploadBtn = document.getElementById('upload-files-btn');
+
+        // Click to upload
+        if (uploadArea) {
+            uploadArea.addEventListener('click', () => {
+                fileInput?.click();
+            });
+        }
+
+        // File input change
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                this.handleFileSelection(e.target.files);
+            });
+        }
+
+        // Drag and drop
+        if (uploadArea) {
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('border-blue-400', 'bg-blue-50');
+            });
+
+            uploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('border-blue-400', 'bg-blue-50');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('border-blue-400', 'bg-blue-50');
+                this.handleFileSelection(e.dataTransfer.files);
+            });
+        }
+
+        // Clear files
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                this.clearFiles();
+            });
+        }
+
+        // Upload files
+        if (uploadBtn) {
+            uploadBtn.addEventListener('click', () => {
+                this.uploadFiles();
+            });
+        }
+    }
+
+    openModal() {
+        this.modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    switchTab(tabName) {
+        // Update tab buttons
+        const tabBtns = this.modal.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            if (btn.dataset.tab === tabName) {
+                btn.classList.add('border-blue-500', 'text-blue-600');
+                btn.classList.remove('border-transparent', 'text-gray-500');
+            } else {
+                btn.classList.remove('border-blue-500', 'text-blue-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            }
+        });
+
+        // Update tab panels
+        const panels = this.modal.querySelectorAll('.tab-panel');
+        panels.forEach(panel => {
+            panel.classList.add('hidden');
+        });
+
+        const activePanel = document.getElementById(`${tabName}-tab`);
+        if (activePanel) {
+            activePanel.classList.remove('hidden');
+        }
+
+        this.currentTab = tabName;
+    }
+
+    checkPasswordStrength(password) {
+        const strengthBar = document.getElementById('password-strength-bar');
+        const strengthText = document.getElementById('password-strength-text');
+        
+        if (!strengthBar || !strengthText) return;
+
+        let strength = 0;
+        const checks = {
+            length: password.length >= 8,
+            uppercase: /[A-Z]/.test(password),
+            lowercase: /[a-z]/.test(password),
+            numbers: /\d/.test(password),
+            special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+        };
+
+        strength = Object.values(checks).filter(Boolean).length;
+
+        // Update UI
+        const strengthLevels = [
+            { width: '0%', color: 'bg-red-500', text: 'Very Weak' },
+            { width: '20%', color: 'bg-red-500', text: 'Weak' },
+            { width: '40%', color: 'bg-orange-500', text: 'Fair' },
+            { width: '60%', color: 'bg-yellow-500', text: 'Good' },
+            { width: '80%', color: 'bg-blue-500', text: 'Strong' },
+            { width: '100%', color: 'bg-green-500', text: 'Very Strong' }
+        ];
+
+        const level = strengthLevels[Math.min(strength, 5)];
+        strengthBar.style.width = level.width;
+        strengthBar.className = `${level.color} h-2 rounded-full transition-all duration-300`;
+        strengthText.textContent = level.text;
+        strengthText.className = `font-medium ${level.color.replace('bg-', 'text-')}`;
+    }
+
+    validatePasswordConfirmation() {
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const confirmInput = document.getElementById('confirm-password');
+
+        if (confirmPassword && newPassword !== confirmPassword) {
+            confirmInput.classList.add('border-red-500');
+            confirmInput.classList.remove('border-gray-300');
+        } else {
+            confirmInput.classList.remove('border-red-500');
+            confirmInput.classList.add('border-gray-300');
+        }
+    }
+
+    async handleChangePassword() {
+        const currentPassword = document.getElementById('current-password').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Validation
+        if (!currentPassword || !newPassword || !confirmPassword) {
+            this.showNotification('Please fill in all password fields', 'error');
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            this.showNotification('New passwords do not match', 'error');
+            return;
+        }
+
+        if (newPassword.length < 8) {
+            this.showNotification('Password must be at least 8 characters long', 'error');
+            return;
+        }
+
+        try {
+            // Get current user token
+            const tokenManager = window.jwtTokenManager;
+            if (!tokenManager || !tokenManager.getAuthStatus().authenticated) {
+                this.showNotification('You must be logged in to change password', 'error');
+                return;
+            }
+
+            const token = tokenManager.getAccessToken();
+
+            // Call password change API
+            const response = await fetch('/api/auth/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.showNotification('Password changed successfully', 'success');
+                document.getElementById('change-password-form').reset();
+                this.checkPasswordStrength('');
+            } else {
+                this.showNotification(result.message || 'Failed to change password', 'error');
+            }
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Password change error:', error);
+            this.showNotification('Network error. Please try again.', 'error');
+        }
+    }
+
+    async generateAuthKey() {
+        const keyName = document.getElementById('key-name').value;
+        const expiryDays = document.getElementById('key-expiry').value;
+
+        if (!keyName) {
+            this.showNotification('Please enter a key name', 'error');
+            return;
+        }
+
+        const generateBtn = document.getElementById('generate-key-btn');
+        if (generateBtn) {
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Generating...';
+        }
+
+        try {
+            console.log('[SYSTEM_SETTINGS] Starting auth key generation...');
+            
+            const tokenManager = window.jwtTokenManager;
+            if (!tokenManager || !tokenManager.getAuthStatus().authenticated) {
+                console.error('[SYSTEM_SETTINGS] User not authenticated');
+                this.showNotification('You must be logged in to generate auth keys', 'error');
+                return;
+            }
+
+            const token = tokenManager.getAccessToken();
+            console.log('[SYSTEM_SETTINGS] Making API request to generate key...');
+
+            const requestBody = {
+                name: keyName,
+                expiry_days: parseInt(expiryDays)
+            };
+            
+            console.log('[SYSTEM_SETTINGS] Request body:', requestBody);
+
+            // Generate key
+            const response = await fetch('/api/auth/generate-key', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            console.log('[SYSTEM_SETTINGS] Response status:', response.status);
+            console.log('[SYSTEM_SETTINGS] Response headers:', Object.fromEntries(response.headers.entries()));
+
+            const result = await response.json();
+            console.log('[SYSTEM_SETTINGS] Response data:', result);
+
+            if (result.success) {
+                this.generatedKey = result.data;
+                this.uaccFile = result.uacc_file; // Store the UACC file content
+                this.displayGeneratedKey();
+                this.loadAuthKeys(); // Refresh the keys list
+                document.getElementById('generate-key-form').reset();
+                this.showNotification('Authentication key generated successfully', 'success');
+            } else {
+                console.error('[SYSTEM_SETTINGS] Auth key generation failed:', result);
+                this.showNotification(result.message || 'Failed to generate auth key', 'error');
+            }
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Error generating auth key:', error);
+            this.showNotification('Network error. Please check the console for details.', 'error');
+        } finally {
+            if (generateBtn) {
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fas fa-key mr-2"></i>Generate Key';
+            }
+        }
+    }
+
+    generateClientSideKey(keyName, expiry) {
+        // Generate a mock key for demonstration
+        const mockKey = {
+            id: 'key_' + Date.now(),
+            name: keyName,
+            key: this.generateSecureKey(),
+            expiry_days: parseInt(expiry),
+            created_at: new Date().toISOString(),
+            expires_at: expiry === '0' ? null : new Date(Date.now() + parseInt(expiry) * 24 * 60 * 60 * 1000).toISOString()
+        };
+
+        this.generatedKey = mockKey;
+        this.displayGeneratedKey();
+        this.loadAuthKeys();
+        document.getElementById('generate-key-form').reset();
+        this.showNotification('Authentication key generated successfully', 'success');
+    }
+
+    generateSecureKey() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+        let key = 'UACC-';
+        for (let i = 0; i < 32; i++) {
+            key += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        // Add checksum for integrity validation
+        const checksum = this.generateChecksum(key);
+        key += '-' + checksum;
+        
+        return key;
+    }
+
+    generateChecksum(key) {
+        // Simple checksum for integrity validation
+        let hash = 0;
+        for (let i = 0; i < key.length; i++) {
+            const char = key.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32-bit integer
+        }
+        
+        // Convert to hex and take first 4 characters
+        return Math.abs(hash).toString(16).toUpperCase().padStart(4, '0').substring(0, 4);
+    }
+
+    displayGeneratedKey() {
+        if (!this.generatedKey) return;
+
+        const section = document.getElementById('generated-key-section');
+        const nameElement = document.getElementById('generated-key-name');
+        const dateElement = document.getElementById('generated-key-date');
+        const valueElement = document.getElementById('generated-key-value');
+
+        nameElement.textContent = this.generatedKey.name;
+        dateElement.textContent = `Generated: ${new Date(this.generatedKey.created_at).toLocaleDateString()}`;
+        valueElement.textContent = this.generatedKey.key;
+
+        section.classList.remove('hidden');
+    }
+
+    downloadAuthKey() {
+        if (!this.generatedKey) return;
+
+        try {
+            // Use the UACC file content from backend if available, otherwise create it
+            const uaccContent = this.uaccFile || {
+                ...this.generatedKey,
+                format: 'UACC',
+                version: '1.0',
+                generated_by: 'UR WebIF Frontend++',
+                checksum: this.generatedKey.checksum || this.generateChecksum(this.generatedKey.key)
+            };
+
+            const jsonString = JSON.stringify(uaccContent, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${this.generatedKey.name.replace(/\s+/g, '_')}.uacc`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            this.showNotification('Authentication key downloaded as UACC file', 'success');
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Error downloading auth key:', error);
+            this.showNotification('Failed to download authentication key', 'error');
+        }
+    }
+
+    copyAuthKey() {
+        if (!this.generatedKey) return;
+
+        navigator.clipboard.writeText(this.generatedKey.key).then(() => {
+            this.showNotification('Authentication key copied to clipboard', 'success');
+        }).catch(() => {
+            this.showNotification('Failed to copy key', 'error');
+        });
+    }
+
+    async loadAuthKeys() {
+        try {
+            const tokenManager = window.jwtTokenManager;
+            if (!tokenManager || !tokenManager.getAuthStatus().authenticated) {
+                return;
+            }
+
+            const token = tokenManager.getAccessToken();
+            const response = await fetch('/api/auth/list-keys', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                this.authKeys = result.data;
+            } else {
+                this.authKeys = [];
+            }
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Error loading auth keys:', error);
+            this.authKeys = [];
+        }
+
+        this.displayAuthKeys();
+    }
+
+    displayAuthKeys() {
+        const container = document.getElementById('existing-keys-list');
+        
+        if (this.authKeys.length === 0) {
+            container.innerHTML = `
+                <div class="text-gray-500 text-center py-4">
+                    <i class="fa-solid fa-key text-2xl mb-2"></i>
+                    <p>No authentication keys found</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = this.authKeys.map(key => `
+            <div class="bg-white p-3 rounded border border-gray-200 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-key text-blue-500"></i>
+                    <div>
+                        <div class="font-medium text-gray-900">${key.name}</div>
+                        <div class="text-sm text-gray-500">
+                            Created: ${new Date(key.created_at).toLocaleDateString()}
+                            ${key.expires_at ? `• Expires: ${new Date(key.expires_at).toLocaleDateString()}` : '• Never expires'}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="systemSettings.revokeKey('${key.id}')" class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors">
+                        <i class="fa-solid fa-trash mr-1"></i>Revoke
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    async revokeKey(keyId) {
+        if (!confirm('Are you sure you want to revoke this authentication key?')) {
+            return;
+        }
+
+        try {
+            const tokenManager = window.jwtTokenManager;
+            const token = tokenManager.getAccessToken();
+
+            const response = await fetch('/api/auth/revoke-key', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ key_id: keyId })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                this.showNotification('Authentication key revoked', 'success');
+                this.loadAuthKeys();
+            } else {
+                this.showNotification(result.message || 'Failed to revoke key', 'error');
+            }
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Error revoking key:', error);
+            this.showNotification('Network error. Please try again.', 'error');
+        }
+    }
+
+    handleFileSelection(files) {
+        const validFiles = Array.from(files).filter(file => {
+            const validExtensions = ['.uacc', '.json', '.enc', '.txt'];
+            const fileName = file.name.toLowerCase();
+            const isValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+            const isValidSize = file.size <= 100 * 1024 * 1024; // 100MB
+
+            if (!isValidExtension) {
+                this.showNotification(`Invalid file type: ${file.name}`, 'error');
+                return false;
+            }
+
+            if (!isValidSize) {
+                this.showNotification(`File too large: ${file.name} (max 100MB)`, 'error');
+                return false;
+            }
+
+            return true;
+        });
+
+        this.uploadedFiles = [...this.uploadedFiles, ...validFiles];
+        this.updateFileList();
+    }
+
+    updateFileList() {
+        const container = document.getElementById('file-list');
+        const clearBtn = document.getElementById('clear-files-btn');
+        const uploadBtn = document.getElementById('upload-files-btn');
+
+        if (this.uploadedFiles.length === 0) {
+            container.innerHTML = '';
+            clearBtn.disabled = true;
+            uploadBtn.disabled = true;
+            return;
+        }
+
+        clearBtn.disabled = false;
+        uploadBtn.disabled = false;
+
+        container.innerHTML = this.uploadedFiles.map((file, index) => `
+            <div class="bg-white p-3 rounded border border-gray-200 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-file text-blue-500"></i>
+                    <div>
+                        <div class="font-medium text-gray-900">${file.name}</div>
+                        <div class="text-sm text-gray-500">${this.formatFileSize(file.size)}</div>
+                    </div>
+                </div>
+                <button onclick="systemSettings.removeFile(${index})" class="text-red-500 hover:text-red-700 transition-colors">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    removeFile(index) {
+        this.uploadedFiles.splice(index, 1);
+        this.updateFileList();
+    }
+
+    clearFiles() {
+        this.uploadedFiles = [];
+        this.updateFileList();
+        document.getElementById('bulk-file-input').value = '';
+    }
+
+    async uploadFiles() {
+        if (this.uploadedFiles.length === 0) {
+            this.showNotification('No files to upload', 'error');
+            return;
+        }
+
+        const uploadBtn = document.getElementById('upload-files-btn');
+        const progressContainer = document.getElementById('upload-progress');
+        const progressBar = document.getElementById('upload-progress-bar');
+        const progressText = document.getElementById('upload-percentage');
+
+        uploadBtn.disabled = true;
+        progressContainer.classList.remove('hidden');
+
+        try {
+            const tokenManager = window.jwtTokenManager;
+            if (!tokenManager || !tokenManager.getAuthStatus().authenticated) {
+                this.showNotification('You must be logged in to upload files', 'error');
+                return;
+            }
+
+            const token = tokenManager.getAccessToken();
+            const formData = new FormData();
+
+            this.uploadedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            // Create XMLHttpRequest for progress tracking
+            const xhr = new XMLHttpRequest();
+            
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    const percentComplete = (e.loaded / e.total) * 100;
+                    progressBar.style.width = percentComplete + '%';
+                    progressText.textContent = Math.round(percentComplete) + '%';
+                }
+            });
+
+            return new Promise((resolve, reject) => {
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const result = JSON.parse(xhr.responseText);
+                        if (result.success) {
+                            this.showNotification(`Successfully uploaded ${this.uploadedFiles.length} files`, 'success');
+                            this.clearFiles();
+                            this.loadTransferHistory();
+                        } else {
+                            this.showNotification(result.message || 'Upload failed', 'error');
+                        }
+                    } else {
+                        this.showNotification('Upload failed', 'error');
+                    }
+                    
+                    progressContainer.classList.add('hidden');
+                    uploadBtn.disabled = false;
+                    resolve();
+                };
+
+                xhr.onerror = () => {
+                    this.showNotification('Network error during upload', 'error');
+                    progressContainer.classList.add('hidden');
+                    uploadBtn.disabled = false;
+                    reject();
+                };
+
+                xhr.open('POST', '/api/auth/upload-files');
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+                xhr.send(formData);
+            });
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Upload error:', error);
+            this.showNotification('Upload failed', 'error');
+            progressContainer.classList.add('hidden');
+            uploadBtn.disabled = false;
+        }
+    }
+
+    async loadTransferHistory() {
+        try {
+            const tokenManager = window.jwtTokenManager;
+            if (!tokenManager || !tokenManager.getAuthStatus().authenticated) {
+                return;
+            }
+
+            const token = tokenManager.getAccessToken();
+            const response = await fetch('/api/auth/transfer-history', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const result = await response.json();
+            const history = result.success ? result.data : [];
+            this.displayTransferHistory(history);
+        } catch (error) {
+            console.error('[SYSTEM_SETTINGS] Error loading transfer history:', error);
+            this.displayTransferHistory([]);
+        }
+    }
+
+    displayTransferHistory(history) {
+        const container = document.getElementById('transfer-history');
+
+        if (history.length === 0) {
+            container.innerHTML = `
+                <div class="text-gray-500 text-center py-4">
+                    <i class="fa-solid fa-exchange-alt text-2xl mb-2"></i>
+                    <p>No transfer history</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = history.map(transfer => `
+            <div class="bg-white p-3 rounded border border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-${transfer.status === 'completed' ? 'check-circle text-green-500' : 'clock text-yellow-500'}"></i>
+                        <div>
+                            <div class="font-medium text-gray-900">${transfer.file_count} files</div>
+                            <div class="text-sm text-gray-500">
+                                ${new Date(transfer.created_at).toLocaleDateString()} • ${this.formatFileSize(transfer.total_size)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-sm font-medium ${transfer.status === 'completed' ? 'text-green-600' : 'text-yellow-600'}">
+                        ${transfer.status === 'completed' ? 'Completed' : 'Processing'}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    showNotification(message, type = 'info') {
+        // Use existing notification system if available
+        if (window.showNotification) {
+            window.showNotification(message, type);
+        } else {
+            // Fallback to alert
+            alert(message);
+        }
+    }
+}
+
+// Initialize the system settings modal
+let systemSettings;
+
+document.addEventListener('DOMContentLoaded', () => {
+    systemSettings = new SystemSettingsModal();
+});
+
+// Make it globally accessible
+window.systemSettings = systemSettings;
+        </script>
+        
+        <!-- Page Tracking Utility -->
+        <script>
+/**
+ * Page Tracking Utility
+ * Tracks and restores the current opened section in the dashboard
+ */
+
+class PageTracker {
+    constructor() {
+        this.storageKey = 'dashboard-current-section';
+        this.defaultSection = 'system-dashboard';
+        this.init();
+    }
+
+    init() {
+        console.log('[PAGE TRACKER] Initializing page tracking utility');
+        
+        // Track page navigation events
+        this.setupNavigationTracking();
+        
+        // Track page reload/visibility changes
+        this.setupPageVisibilityTracking();
+        
+        // Track beforeunload to save current state
+        this.setupBeforeUnloadTracking();
+    }
+
+    /**
+     * Setup tracking for navigation clicks
+     */
+    setupNavigationTracking() {
+        // Track navigation item clicks
+        document.addEventListener('click', (e) => {
+            const navItem = e.target.closest('[data-section]');
+            if (navItem) {
+                const section = navItem.getAttribute('data-section');
+                if (section) {
+                    // Check if this is a main dashboard section or sub-section
+                    const isMainSection = this.isMainDashboardSection(section);
+                    
+                    if (isMainSection) {
+                        // Only track main dashboard sections
+                        this.setCurrentSection(section);
+                        console.log(`[PAGE TRACKER] Navigation to main section: ${section}`);
+                    } else {
+                        // For sub-sections, track the parent main section
+                        const parentSection = this.getParentMainSection();
+                        if (parentSection) {
+                            this.setCurrentSection(parentSection);
+                            console.log(`[PAGE TRACKER] Navigation to sub-section: ${section}, tracking parent: ${parentSection}`);
+                        }
+                    }
+                }
+            }
+        });
+
+        // Track sidebar toggle clicks
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', () => {
+                this.saveSidebarState(true);
+            });
+        }
+    }
+
+    isMainDashboardSection(section) {
+        // Check if the section is a main dashboard section
+        const mainSections = [
+            'system-dashboard', 'wired-config', 'wireless-config', 'cellular-config',
+            'vpn-config', 'advanced-network', 'network-benchmark', 'network-priority',
+            'mavlink-overview', 'attached-ip-devices', 'mavlink-extension',
+            'firmware-upgrade', 'license-management', 'backup-restore', 'about-us'
+        ];
+        return mainSections.includes(section);
+    }
+
+    getParentMainSection() {
+        // Find the current main section based on the active navigation item
+        const activeMainNavItem = document.querySelector('[data-section].bg-neutral-50, [data-section].border-l-2');
+        if (activeMainNavItem) {
+            const section = activeMainNavItem.getAttribute('data-section');
+            if (this.isMainDashboardSection(section)) {
+                return section;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Setup tracking for page visibility changes
+     */
+    setupPageVisibilityTracking() {
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                // Page became visible again, check if we need to restore section
+                this.restoreSectionIfNeeded();
+            }
+        });
+
+        // Track page focus
+        window.addEventListener('focus', () => {
+            this.restoreSectionIfNeeded();
+        });
+    }
+
+    /**
+     * Setup tracking for beforeunload event
+     */
+    setupBeforeUnloadTracking() {
+        window.addEventListener('beforeunload', () => {
+            // Save current section before page unloads
+            const currentSection = this.getCurrentSection();
+            if (currentSection) {
+                this.setCurrentSection(currentSection);
+                console.log(`[PAGE TRACKER] Saved section before unload: ${currentSection}`);
+            }
+        });
+    }
+
+    /**
+     * Set the current section in localStorage
+     */
+    setCurrentSection(section) {
+        try {
+            const trackingData = {
+                section: section,
+                timestamp: Date.now(),
+                url: window.location.pathname
+            };
+            localStorage.setItem(this.storageKey, JSON.stringify(trackingData));
+            console.log(`[PAGE TRACKER] Saved current section: ${section}`);
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to save section:', error);
+        }
+    }
+
+    /**
+     * Get the current section from localStorage
+     */
+    getCurrentSection() {
+        try {
+            const data = localStorage.getItem(this.storageKey);
+            if (data) {
+                const trackingData = JSON.parse(data);
+                return trackingData.section;
+            }
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to get current section:', error);
+        }
+        return null;
+    }
+
+    /**
+     * Get the full tracking data
+     */
+    getTrackingData() {
+        try {
+            const data = localStorage.getItem(this.storageKey);
+            if (data) {
+                return JSON.parse(data);
+            }
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to get tracking data:', error);
+        }
+        return null;
+    }
+
+    /**
+     * Clear the tracking data
+     */
+    clearTrackingData() {
+        try {
+            localStorage.removeItem(this.storageKey);
+            console.log('[PAGE TRACKER] Cleared tracking data');
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to clear tracking data:', error);
+        }
+    }
+
+    /**
+     * Restore section if needed (called on page load/visibility)
+     */
+    restoreSectionIfNeeded() {
+        const trackingData = this.getTrackingData();
+        if (trackingData && trackingData.section) {
+            const currentSection = this.getCurrentSectionFromDOM();
+            
+            // Only restore if different from current section
+            if (currentSection !== trackingData.section) {
+                console.log(`[PAGE TRACKER] Restoring section: ${trackingData.section}`);
+                this.navigateToSection(trackingData.section);
+            }
+        }
+    }
+
+    /**
+     * Get current section from DOM
+     */
+    getCurrentSectionFromDOM() {
+        // Check for active navigation item
+        const activeNavItem = document.querySelector('[data-section].bg-neutral-50, [data-section].border-l-2');
+        if (activeNavItem) {
+            return activeNavItem.getAttribute('data-section');
+        }
+        return null;
+    }
+
+    /**
+     * Navigate to a specific section
+     */
+    navigateToSection(section) {
+        // Check if this is a main dashboard section
+        if (this.isMainDashboardSection(section)) {
+            // Find the navigation item for this main section
+            const navItem = document.querySelector(`[data-section="${section}"]`);
+            if (navItem) {
+                // Simulate click on the navigation item
+                navItem.click();
+                console.log(`[PAGE TRACKER] Navigated to main section: ${section}`);
+            } else {
+                console.warn(`[PAGE TRACKER] Main navigation item not found for section: ${section}`);
+            }
+        } else {
+            // This is a sub-section, find the parent main section first
+            console.warn(`[PAGE TRACKER] Cannot navigate directly to sub-section: ${section}. Please navigate to parent main section first.`);
+            
+            // Try to find and navigate to the advanced-network section if it's a network sub-section
+            if (section === 'vlans' || section === 'nat-rules' || section === 'firewall-rules' || 
+                section === 'static-routes' || section === 'bridges') {
+                const advancedNetworkNav = document.querySelector('[data-section="advanced-network"]');
+                if (advancedNetworkNav) {
+                    advancedNetworkNav.click();
+                    console.log(`[PAGE TRACKER] Navigated to advanced-network section for sub-section: ${section}`);
+                    
+                    // After a delay, try to click on the sub-section within the advanced network
+                    setTimeout(() => {
+                        const subNavItem = document.querySelector(`[data-section="${section}"]`);
+                        if (subNavItem) {
+                            subNavItem.click();
+                            console.log(`[PAGE TRACKER] Navigated to sub-section: ${section}`);
+                        }
+                    }, 500);
+                }
+            }
+        }
+    }
+
+    /**
+     * Save sidebar state
+     */
+    saveSidebarState(isOpen) {
+        try {
+            const trackingData = this.getTrackingData() || {};
+            trackingData.sidebarOpen = isOpen;
+            localStorage.setItem(this.storageKey, JSON.stringify(trackingData));
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to save sidebar state:', error);
+        }
+    }
+
+    /**
+     * Get sidebar state
+     */
+    getSidebarState() {
+        try {
+            const trackingData = this.getTrackingData();
+            return trackingData ? trackingData.sidebarOpen : false;
+        } catch (error) {
+            console.error('[PAGE TRACKER] Failed to get sidebar state:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Restore sidebar state
+     */
+    restoreSidebarState() {
+        const sidebarOpen = this.getSidebarState();
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        
+        if (sidebar && sidebarToggle && sidebarOpen) {
+            // Open sidebar if it was previously open
+            if (!sidebar.classList.contains('-translate-x-full')) {
+                sidebarToggle.click();
+            }
+        }
+    }
+
+    /**
+     * Initialize page restoration on load
+     */
+    initializePageRestore() {
+        // Wait a bit for dashboard to fully load
+        setTimeout(() => {
+            const trackingData = this.getTrackingData();
+            
+            if (trackingData && trackingData.section) {
+                console.log(`[PAGE TRACKER] Restoring saved section: ${trackingData.section}`);
+                
+                // Restore section
+                this.navigateToSection(trackingData.section);
+                
+                // Restore sidebar state
+                this.restoreSidebarState();
+                
+                // Clear old data (optional - comment out if you want to persist)
+                // this.clearTrackingData();
+            } else {
+                console.log('[PAGE TRACKER] No saved section found, using default');
+            }
+        }, 500);
+    }
+}
+
+// Initialize the page tracker when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.pageTracker = new PageTracker();
+    
+    // Initialize page restore after dashboard loads
+    if (window.dashboardManager) {
+        // If dashboard manager exists, wait for it to initialize
+        setTimeout(() => {
+            window.pageTracker.initializePageRestore();
+        }, 1000);
+    } else {
+        // Otherwise initialize after a short delay
+        setTimeout(() => {
+            window.pageTracker.initializePageRestore();
+        }, 1000);
+    }
+});
+
+// Export for use in other scripts
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = PageTracker;
+}
+        </script>
+        
+        
+        <!-- Authentication Check Script -->
+        <script>
+            // Check authentication status on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('[SOURCE] Checking authentication status...');
+                console.log('[SOURCE] Current localStorage:', {
+                    session: localStorage.getItem('session'),
+                    hasAccessToken: !!localStorage.getItem('access_token'),
+                    hasRefreshToken: !!localStorage.getItem('refresh_token'),
+                    hasUserInfo: !!localStorage.getItem('user_info')
+                });
+                
+                const session = localStorage.getItem('session');
+                const accessToken = localStorage.getItem('access_token');
+                const refreshToken = localStorage.getItem('refresh_token');
+                const userInfo = localStorage.getItem('user_info');
+                
+                // Comprehensive authentication check
+                const isAuthenticated = session === 'authenticated' && 
+                                     accessToken && 
+                                     accessToken.length > 0 &&
+                                     refreshToken && 
+                                     refreshToken.length > 0 &&
+                                     userInfo;
+                
+                // If not authenticated, redirect to login page
+                if (!isAuthenticated) {
+                    console.log('[SOURCE] No valid authentication session found', {
+                        session: session,
+                        hasAccessToken: !!accessToken,
+                        hasRefreshToken: !!refreshToken,
+                        hasUserInfo: !!userInfo
+                    });
+                    console.log('[SOURCE] Redirecting to login page');
+                    
+                    // Clear any partial/invalid session data
+                    localStorage.removeItem('session');
+                    localStorage.removeItem('access_token');
+                    localStorage.removeItem('refresh_token');
+                    localStorage.removeItem('user_info');
+                    
+                    // Redirect to login page
+                    window.location.replace('login-page.html');
+                    return;
+                }
+                
+                console.log('[SOURCE] Valid authentication session found, loading dashboard');
+                console.log('[SOURCE] Current origin:', window.location.origin);
+                
+                // Initialize JWT Token Manager for system settings modal
+                if (typeof JWTTokenManager !== 'undefined') {
+                    // Function to get dynamic API base URL
+                    function getApiBaseUrl() {
+                        const currentHost = window.location.hostname;
+                        const currentPort = window.location.port || '9090';
+                        return `http://${currentHost}:${currentPort}/api/auth`;
+                    }
+                    
+                    window.jwtTokenManager = new JWTTokenManager({
+                        apiBaseUrl: getApiBaseUrl(),
+                        storageKey: 'access_token',
+                        refreshKey: 'refresh_token',
+                        userKey: 'user_info'
+                    });
+                    console.log('[SOURCE] JWT Token Manager initialized');
+                    console.log('[SOURCE] Auth status:', window.jwtTokenManager.getAuthStatus());
+                } else {
+                    console.error('[SOURCE] JWTTokenManager class not available');
+                }
+                
+                // Add logout functionality
+                const logoutBtn = document.getElementById('logout-btn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        console.log('[SOURCE] Logout button clicked, clearing session');
+                        
+                        // Clear all authentication data
+                        localStorage.removeItem('session');
+                        localStorage.removeItem('access_token');
+                        localStorage.removeItem('refresh_token');
+                        localStorage.removeItem('user_info');
+                        localStorage.removeItem('login_attempts');
+                        localStorage.removeItem('session_ban');
+                        
+                        console.log('[SOURCE] User logged out, clearing session and redirecting to login');
+                        
+                        // Redirect to login page
+                        window.location.replace('login-page.html');
+                    });
+                } else {
+                    console.warn('[SOURCE] Logout button not found');
+                }
+                
+                // Optional: Validate token with backend (if needed)
+                // Make validation non-blocking and graceful
+                setTimeout(() => {
+                    validateToken();
+                }, 1500); // Increased delay to allow localStorage to be fully written
+            });
+            
+            // Function to validate token with backend
+            async function validateToken() {
+                try {
+                    const accessToken = localStorage.getItem('access_token');
+                    if (!accessToken) {
+                        console.warn('[SOURCE] No access token found during validation');
+                        return;
+                    }
+                    
+                    console.log('[SOURCE] Validating token with backend...');
+                    
+                    // Use dynamic host detection
+                    const currentHost = window.location.hostname;
+                    const currentPort = window.location.port || '9090';
+                    const validateUrl = `http://${currentHost}:${currentPort}/api/auth/validate`;
+                    
+                    const response = await fetch(validateUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        console.warn('[SOURCE] Token validation failed with status:', response.status);
+                        // Don't immediately redirect - this could be a temporary server issue
+                        // Only redirect if it's a clear authentication failure (401)
+                        if (response.status === 401) {
+                            console.log('[SOURCE] Token is invalid (401), clearing session');
+                            localStorage.removeItem('session');
+                            localStorage.removeItem('access_token');
+                            localStorage.removeItem('refresh_token');
+                            localStorage.removeItem('user_info');
+                            window.location.replace('login-page.html');
+                            return;
+                        } else {
+                            // For other errors (500, network issues, etc.), just log and continue
+                            console.warn('[SOURCE] Validation service unavailable, continuing with existing session');
+                            return;
+                        }
+                    }
+                    
+                    const result = await response.json();
+                    console.log('[SOURCE] Token validation successful:', result);
+                    
+                } catch (error) {
+                    console.warn('[SOURCE] Token validation error:', error);
+                    // Handle different types of errors appropriately
+                    if (error.message.includes('Failed to fetch') || error.message.includes('ERR_BLOCKED_BY_CLIENT')) {
+                        if (error.message.includes('CORS') || error.message.includes('Access-Control-Allow-Origin')) {
+                            console.warn('[SOURCE] CORS error during token validation - this may indicate a configuration issue');
+                            console.warn('[SOURCE] Continuing with existing session');
+                        } else {
+                            console.warn('[SOURCE] Network error during token validation, continuing with existing session');
+                        }
+                    } else {
+                        console.warn('[SOURCE] Validation failed due to error, continuing with session');
+                    }
+                }
+            }
+            
+            // Periodic token validation (optional - every 5 minutes)
+            setInterval(() => {
+                validateToken();
+            }, 5 * 60 * 1000);
+        </script>
+    </body>
+</html>
+

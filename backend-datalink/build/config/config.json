@@ -1,0 +1,24 @@
+{
+  "websocket": {
+    "host": "0.0.0.0",
+    "port": 9002,
+    "max_connections": 100,
+    "timeout_ms": 5000,
+    "enable_logging": true
+  },
+  "database": {
+    "path": "data/runtime-data.db",
+    "enabled": true,
+    "log_connections": true,
+    "log_messages": false
+  },
+  "system_data": {
+    "enabled": true,
+    "poll_interval_seconds": 1,
+    "database_update_interval_seconds": 1,
+    "log_collection_progress": true,
+    "log_database_updates": true,
+    "collection_progress_log_interval": 30,
+    "database_update_log_interval": 1
+  }
+}

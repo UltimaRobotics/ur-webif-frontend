@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsystem_data.a CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o
+/usr/bin/ranlib libsystem_data.a

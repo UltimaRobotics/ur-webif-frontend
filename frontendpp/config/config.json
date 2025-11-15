@@ -1,0 +1,58 @@
+{
+    "auth": {
+        "audience": "frontendpp-users",
+        "enable_sliding_expiration": true,
+        "issuer": "frontendpp-auth",
+        "jwt_secret": "57e7158bc128c712135b72cc750444315475d4d7a563a7cc1ca3b2a97355be5e",
+        "refresh_token_expiry_minutes": 1,
+        "token_expiry_minutes": 6,
+        "token_refresh_threshold_minutes": 1
+    },
+    "database": {
+        "path": "data/auth.db",
+        "type": "sqlite"
+    },
+    "logging": {
+        "console": true,
+        "file": "logs/frontendpp.log",
+        "level": "info"
+    },
+    "paths": {
+        "frontend_root": "web",
+        "static_files": "web/assets",
+        "templates": "web/templates"
+    },
+    "security": {
+        "allowed_headers": [
+            "Content-Type",
+            "Authorization"
+        ],
+        "allowed_methods": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "OPTIONS"
+        ],
+        "allowed_origins": [
+            "http://localhost:9090",
+            "http://ultima-link.local:9090",
+            "https://ultima-link.local:9090"
+        ],
+        "content_security_policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+        "enable_cors": true,
+        "enable_security_headers": true,
+        "max_file_size_mb": 100,
+        "rate_limit_requests_per_minute": 60
+    },
+    "server": {
+        "domain_names": [
+            "localhost",
+            "ultima-link.local"
+        ],
+        "host": "0.0.0.0",
+        "max_connections": 1000,
+        "port": 9090,
+        "thread_pool_size": 4
+    }
+}
