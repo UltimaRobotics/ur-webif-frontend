@@ -195,8 +195,210 @@
 
 <script>
 /**
- * Network Priority Section Manager
- * Manages all network priority configuration functionality
+ * Network Priority WebSocket Client
+ * Handles WebSocket communication for network priority operations
+ */
+
+class NetworkPriorityWebSocket {
+    constructor() {
+        this.ws = null;
+        this.connected = false;
+        this.reconnectAttempts = 0;
+        this.maxReconnectAttempts = 10;
+        this.reconnectDelay = 5000;
+        
+        // Dynamic host detection for WebSocket URL
+        const currentHost = window.location.hostname;
+        this.url = `ws://${currentHost}:9002`; // Backend-datalink WebSocket server
+        
+        // Event callbacks
+        this.onConnected = null;
+        this.onDisconnected = null;
+        this.onError = null;
+        this.onNetworkPriorityData = null;
+        this.onNetworkPriorityResponse = null;
+    }
+
+    connect() {
+        try {
+            console.log('[NETWORK-PRIORITY-WS] Connecting to:', this.url);
+            this.ws = new WebSocket(this.url);
+            
+            this.ws.onopen = () => {
+                console.log('[NETWORK-PRIORITY-WS] Connected to backend-datalink server');
+                this.connected = true;
+                this.reconnectAttempts = 0;
+                
+                if (this.onConnected) {
+                    this.onConnected();
+                }
+            };
+
+            this.ws.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    this.handleMessage(message);
+                } catch (error) {
+                    console.error('[NETWORK-PRIORITY-WS] Failed to parse message:', error);
+                }
+            };
+
+            this.ws.onclose = () => {
+                console.log('[NETWORK-PRIORITY-WS] Disconnected from server');
+                this.connected = false;
+                
+                if (this.onDisconnected) {
+                    this.onDisconnected();
+                }
+                
+                this.attemptReconnect();
+            };
+
+            this.ws.onerror = (error) => {
+                console.error('[NETWORK-PRIORITY-WS] WebSocket error:', error);
+                this.connected = false;
+                
+                let errorMessage = 'WebSocket connection error';
+                if (error instanceof Error) {
+                    errorMessage += ': ' + error.message;
+                }
+                
+                if (this.onError) {
+                    this.onError(new Error(errorMessage));
+                }
+            };
+
+        } catch (error) {
+            console.error('[NETWORK-PRIORITY-WS] Failed to create WebSocket connection:', error);
+            if (this.onError) {
+                this.onError(error);
+            }
+        }
+    }
+
+    disconnect() {
+        if (this.ws) {
+            this.reconnectAttempts = this.maxReconnectAttempts; // Prevent reconnection
+            this.ws.close();
+            this.ws = null;
+        }
+        
+        this.connected = false;
+    }
+
+    sendMessage(message) {
+        if (this.connected && this.ws.readyState === WebSocket.OPEN) {
+            this.ws.send(JSON.stringify(message));
+            console.log('[NETWORK-PRIORITY-WS] Sent message:', message);
+        } else {
+            console.error('[NETWORK-PRIORITY-WS] Cannot send message - WebSocket not connected');
+        }
+    }
+
+    handleMessage(message) {
+        
+        switch (message.type) {
+            case 'network_priority_data':
+                if (this.onNetworkPriorityData) {
+                    this.onNetworkPriorityData(message.data);
+                }
+                break;
+                
+            case 'network_priority_response':
+                if (this.onNetworkPriorityResponse) {
+                    this.onNetworkPriorityResponse(message.data);
+                }
+                break;
+                
+            default:
+                break;
+        }
+    }
+
+    // Network priority specific methods
+    requestNetworkPriorityData() {
+        this.sendMessage({
+            type: 'request_network_priority_data',
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    setInterfacePriority(interfaceName, priority) {
+        this.sendMessage({
+            type: 'set_interface_priority',
+            data: {
+                interface: interfaceName,
+                priority: priority
+            },
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    addRoutingRule(rule) {
+        this.sendMessage({
+            type: 'add_routing_rule',
+            data: rule,
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    updateRoutingRule(ruleId, rule) {
+        this.sendMessage({
+            type: 'update_routing_rule',
+            data: {
+                id: ruleId,
+                ...rule
+            },
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    deleteRoutingRule(ruleId) {
+        this.sendMessage({
+            type: 'delete_routing_rule',
+            data: {
+                id: ruleId
+            },
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    applyConfiguration() {
+        this.sendMessage({
+            type: 'apply_configuration',
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    resetToDefaults() {
+        this.sendMessage({
+            type: 'reset_to_defaults',
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    attemptReconnect() {
+        if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+            console.error('[NETWORK-PRIORITY-WS] Max reconnect attempts reached');
+            
+            if (this.onError) {
+                this.onError(new Error('Failed to reconnect to WebSocket server'));
+            }
+            return;
+        }
+        
+        this.reconnectAttempts++;
+        console.log(`[NETWORK-PRIORITY-WS] Reconnection attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts}`);
+        
+        setTimeout(() => {
+            this.connect();
+        }, this.reconnectDelay);
+    }
+}
+
+/**
+ * Network Priority Section
+ * Manages network priority settings and routing rules
  */
 class NetworkPrioritySection {
     constructor() {
@@ -216,6 +418,11 @@ class NetworkPrioritySection {
         this.popupOpen = false;
         this.currentPopup = null;
         this.initialized = false;
+        
+        // Initialize WebSocket client
+        this.wsClient = new NetworkPriorityWebSocket();
+        this.setupWebSocketCallbacks();
+        
         this.init();
     }
 
@@ -493,6 +700,16 @@ class NetworkPrioritySection {
                 }
             }, true);
             
+            // Refresh button handler
+            const refreshBtn = document.getElementById('refresh-priority-btn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.requestInitialData();
+                }, true);
+            }
+            
             console.log('[NETWORK-PRIORITY] Event handlers setup completed');
         } catch (error) {
             console.error('[NETWORK-PRIORITY] Error setting up event handlers:', error);
@@ -654,17 +871,17 @@ class NetworkPrioritySection {
     }
 
     // Table action methods
-    moveRuleUp(btn) {
+    moveRuleUp() {
         console.log('[NETWORK-PRIORITY] Moving rule up');
         this.showNotification('Rule moved up', 'info');
     }
 
-    moveRuleDown(btn) {
+    moveRuleDown() {
         console.log('[NETWORK-PRIORITY] Moving rule down');
         this.showNotification('Rule moved down', 'info');
     }
 
-    deleteRule(btn) {
+    deleteRule() {
         console.log('[NETWORK-PRIORITY] Deleting rule');
         this.showNotification('Rule deleted', 'success');
     }
@@ -754,6 +971,268 @@ class NetworkPrioritySection {
         console.log('[NETWORK-PRIORITY] loadInitialData called but disabled to prevent conflicts');
         return;
     }
+
+    // Initialize WebSocket connection
+    initialize() {
+        console.log('[NETWORK-PRIORITY] Initializing WebSocket connection...');
+        if (this.wsClient) {
+            this.wsClient.connect();
+        } else {
+            console.error('[NETWORK-PRIORITY] WebSocket client not initialized');
+            this.enableFallbackMode();
+        }
+    }
+
+    // WebSocket integration methods
+    setupWebSocketCallbacks() {
+        // WebSocket connection events
+        this.wsClient.onConnected = () => {
+            console.log('[NETWORK-PRIORITY] WebSocket connected');
+            this.updateConnectionStatus(true);
+            this.requestInitialData();
+        };
+
+        this.wsClient.onDisconnected = () => {
+            console.log('[NETWORK-PRIORITY] WebSocket disconnected');
+            this.updateConnectionStatus(false);
+        };
+
+        this.wsClient.onError = (error) => {
+            console.error('[NETWORK-PRIORITY] WebSocket error:', error);
+            this.showNotification('Connection error: ' + error.message, 'error');
+            this.enableFallbackMode();
+        };
+
+        // Network priority data events
+        this.wsClient.onNetworkPriorityData = (data) => {
+            console.log('[NETWORK-PRIORITY] Network priority data received:', data);
+            this.updateNetworkPriorityData(data);
+        };
+
+        this.wsClient.onNetworkPriorityResponse = (response) => {
+            console.log('[NETWORK-PRIORITY] Network priority response received:', response);
+            this.handleNetworkPriorityResponse(response);
+        };
+    }
+
+    requestInitialData() {
+        console.log('[NETWORK-PRIORITY] Requesting initial network priority data');
+        this.showLoadingState();
+        this.wsClient.requestNetworkPriorityData();
+    }
+
+    updateNetworkPriorityData(data) {
+        console.log('[NETWORK-PRIORITY] Updating network priority data:', data);
+        
+        // Update internal state with WebSocket data
+        this.state.data.networkInterfaces = data.networkInterfaces || [];
+        this.state.data.routingRules = data.routingRules || [];
+        this.state.data.statistics = data.statistics || {
+            total: 0,
+            online: 0,
+            offline: 0,
+            activeRules: 0,
+            lastUpdated: new Date().toLocaleString()
+        };
+        
+        // Update UI components
+        this.updateInterfacesList();
+        this.updateRoutingRulesTable();
+        this.updateStatisticsDisplay();
+        
+        this.hideLoadingState();
+        
+        // Show success notification
+        this.showNotification('Network priority data updated successfully', 'success');
+    }
+
+    handleNetworkPriorityResponse(response) {
+        console.log('[NETWORK-PRIORITY] Handling network priority response:', response);
+        
+        const { action, success, message } = response;
+        
+        if (success) {
+            this.showNotification(message || 'Operation completed successfully', 'success');
+            
+            // Refresh data after successful operations
+            if (['add_routing_rule', 'update_routing_rule', 'delete_routing_rule', 
+                 'set_interface_priority', 'apply_configuration', 'reset_configuration'].includes(action)) {
+                setTimeout(() => {
+                    this.requestInitialData();
+                }, 1000);
+            }
+        } else {
+            this.showNotification(message || 'Operation failed', 'error');
+        }
+    }
+
+    updateInterfacesList() {
+        const container = document.getElementById('interfaces-container');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        const interfaces = this.state.data.networkInterfaces || [];
+        interfaces.forEach((iface, index) => {
+            const interfaceEl = document.createElement('div');
+            interfaceEl.className = 'flex items-center justify-between p-4 bg-white rounded-lg border border-neutral-200';
+            interfaceEl.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <div class="w-4 h-4 rounded-full ${iface.status === 'online' ? 'bg-green-500' : 'bg-gray-400'}"></div>
+                    <div>
+                        <div class="font-medium text-neutral-900">${iface.name}</div>
+                        <div class="text-sm text-neutral-500">${iface.ipAddress} • ${iface.type}</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-neutral-500">Priority: ${iface.priority}</span>
+                    <button class="interface-up-btn text-blue-600 hover:text-blue-900 ${index === 0 ? 'opacity-50 cursor-not-allowed' : ''}">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="interface-down-btn text-blue-600 hover:text-blue-900 ${index === interfaces.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                </div>
+            `;
+            
+            // Add event listeners for interface priority changes
+            const upBtn = interfaceEl.querySelector('.interface-up-btn');
+            const downBtn = interfaceEl.querySelector('.interface-down-btn');
+            
+            if (upBtn && index > 0) {
+                upBtn.addEventListener('click', () => {
+                    this.moveInterfaceUp(index);
+                });
+            }
+            
+            if (downBtn && index < interfaces.length - 1) {
+                downBtn.addEventListener('click', () => {
+                    this.moveInterfaceDown(index);
+                });
+            }
+            
+            container.appendChild(interfaceEl);
+        });
+    }
+
+    updateStatisticsDisplay() {
+        const stats = this.state.data.statistics || {};
+        const totalEl = document.querySelector('[data-stat="total"]');
+        const onlineEl = document.querySelector('[data-stat="online"]');
+        const offlineEl = document.querySelector('[data-stat="offline"]');
+        
+        if (totalEl) totalEl.textContent = stats.total || this.state.data.networkInterfaces.length;
+        if (onlineEl) onlineEl.textContent = stats.online || this.state.data.networkInterfaces.filter(i => i.status === 'online').length;
+        if (offlineEl) offlineEl.textContent = stats.offline || this.state.data.networkInterfaces.filter(i => i.status === 'offline').length;
+    }
+
+    moveInterfaceUp(index) {
+        const interfaces = this.state.data.networkInterfaces;
+        if (index <= 0 || !interfaces.length) return;
+        
+        // Swap interfaces in array
+        [interfaces[index - 1], interfaces[index]] = [interfaces[index], interfaces[index - 1]];
+        
+        // Update priorities
+        interfaces.forEach((iface, i) => {
+            iface.priority = i + 1;
+        });
+        
+        // Update UI
+        this.updateInterfacesList();
+        
+        // Send to backend via WebSocket
+        this.wsClient.setInterfacePriority(interfaces[index].name, interfaces[index].priority);
+    }
+
+    moveInterfaceDown(index) {
+        const interfaces = this.state.data.networkInterfaces;
+        if (index >= interfaces.length - 1 || !interfaces.length) return;
+        
+        // Swap interfaces in array
+        [interfaces[index], interfaces[index + 1]] = [interfaces[index + 1], interfaces[index]];
+        
+        // Update priorities
+        interfaces.forEach((iface, i) => {
+            iface.priority = i + 1;
+        });
+        
+        // Update UI
+        this.updateInterfacesList();
+        
+        // Send to backend via WebSocket
+        this.wsClient.setInterfacePriority(interfaces[index].name, interfaces[index].priority);
+    }
+
+    updateConnectionStatus(connected) {
+        const statusDot = document.getElementById('priority-status-dot');
+        const statusText = document.getElementById('priority-connection-text');
+        const refreshBtn = document.getElementById('refresh-priority-btn');
+        
+        if (connected) {
+            statusDot.classList.remove('bg-red-500');
+            statusDot.classList.add('bg-green-500');
+            statusText.textContent = 'Connected';
+            
+            if (refreshBtn) {
+                refreshBtn.disabled = false;
+                refreshBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                refreshBtn.title = 'Refresh network priority data';
+            }
+        } else {
+            statusDot.classList.remove('bg-green-500');
+            statusDot.classList.add('bg-red-500');
+            statusText.textContent = 'Disconnected';
+            
+            if (refreshBtn) {
+                refreshBtn.disabled = true;
+                refreshBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                refreshBtn.title = 'Reconnecting...';
+            }
+        }
+    }
+
+    showLoadingState() {
+        // Show loading indicators in the UI
+        const refreshIcon = document.getElementById('priority-refresh-icon');
+        if (refreshIcon) {
+            refreshIcon.classList.add('fa-spin');
+        }
+    }
+
+    hideLoadingState() {
+        // Hide loading indicators
+        const refreshIcon = document.getElementById('priority-refresh-icon');
+        if (refreshIcon) {
+            refreshIcon.classList.remove('fa-spin');
+        }
+    }
+
+    enableFallbackMode() {
+        console.log('[NETWORK-PRIORITY] Enabling fallback mode with mock data');
+        
+        // Use mock data when WebSocket is not available
+        const mockData = {
+            networkInterfaces: [
+                { id: '1', name: 'eth0', ipAddress: '192.168.1.100', status: 'online', type: 'wired', priority: 1, metric: 100 },
+                { id: '2', name: 'wlan0', ipAddress: '192.168.1.101', status: 'online', type: 'wireless', priority: 2, metric: 200 },
+                { id: '3', name: 'lo', ipAddress: '127.0.0.1', status: 'online', type: 'loopback', priority: 3, metric: 300 }
+            ],
+            routingRules: [
+                { id: '1', destination: '0.0.0.0/0', gateway: '192.168.1.1', interface: 'eth0', metric: 100, priority: 1, status: 'Active' },
+                { id: '2', destination: '192.168.1.0/24', gateway: '0.0.0.0', interface: 'eth0', metric: 100, priority: 1, status: 'Active' }
+            ],
+            statistics: {
+                total: 3,
+                online: 3,
+                offline: 0,
+                activeRules: 2,
+                lastUpdated: new Date().toLocaleString()
+            }
+        };
+        
+        this.updateNetworkPriorityData(mockData);
+    }
 }
 
 // Initialize the network priority section
@@ -761,6 +1240,10 @@ function initializeNetworkPrioritySection() {
     console.log('[NETWORK-PRIORITY] Starting initialization...');
     if (!window.networkPrioritySection) {
         window.networkPrioritySection = new NetworkPrioritySection();
+        
+        // Initialize WebSocket connection
+        window.networkPrioritySection.initialize();
+        
         console.log('[NETWORK-PRIORITY] Network Priority Section initialized successfully');
     } else {
         console.log('[NETWORK-PRIORITY] Network Priority Section already initialized');
@@ -795,744 +1278,4 @@ window.testNetworkPriorityPopups = function() {
         console.error('[NETWORK-PRIORITY] Network Priority Section instance not found!');
     }
 };
-
-<!-- Network Priority JavaScript -->
-    <script>
-    /** @jsx false */
-    /** @preserve */
-    /**
-     * Network Priority WebSocket Client
-     * Extends DashboardWebSocket for network priority specific operations
-     */
-
-    class NetworkPriorityWebSocket {
-        constructor() {
-            this.ws = null;
-            this.connected = false;
-            this.reconnectAttempts = 0;
-            this.maxReconnectAttempts = 10;
-            this.reconnectDelay = 5000;
-            
-            // Dynamic host detection for WebSocket URL
-            const currentHost = window.location.hostname;
-            this.url = `ws://${currentHost}:9002`; // Backend-datalink WebSocket server
-            
-            // Event callbacks
-            this.onConnected = null;
-            this.onDisconnected = null;
-            this.onError = null;
-            this.onNetworkPriorityData = null;
-            this.onNetworkPriorityResponse = null;
-        }
-
-        connect() {
-            try {
-                console.log('[NETWORK-PRIORITY-WS] Connecting to:', this.url);
-                this.ws = new WebSocket(this.url);
-                
-                this.ws.onopen = () => {
-                    console.log('[NETWORK-PRIORITY-WS] Connected to backend-datalink server');
-                    this.connected = true;
-                    this.reconnectAttempts = 0;
-                    
-                    if (this.onConnected) {
-                        this.onConnected();
-                    }
-                };
-
-                this.ws.onmessage = (event) => {
-                    try {
-                        const message = JSON.parse(event.data);
-                        this.handleMessage(message);
-                    } catch (error) {
-                        console.error('[NETWORK-PRIORITY-WS] Failed to parse message:', error);
-                    }
-                };
-
-                this.ws.onclose = () => {
-                    console.log('[NETWORK-PRIORITY-WS] Disconnected from server');
-                    this.connected = false;
-                    
-                    if (this.onDisconnected) {
-                        this.onDisconnected();
-                    }
-                    
-                    this.attemptReconnect();
-                };
-
-                this.ws.onerror = (error) => {
-                    console.error('[NETWORK-PRIORITY-WS] WebSocket error:', error);
-                    this.connected = false;
-                    
-                    let errorMessage = 'WebSocket connection error';
-                    if (error instanceof Error) {
-                        errorMessage += ': ' + error.message;
-                    }
-                    
-                    if (this.onError) {
-                        this.onError(new Error(errorMessage));
-                    }
-                };
-
-            } catch (error) {
-                console.error('[NETWORK-PRIORITY-WS] Failed to create WebSocket connection:', error);
-                if (this.onError) {
-                    this.onError(error);
-                }
-            }
-        }
-
-        disconnect() {
-            if (this.ws) {
-                this.reconnectAttempts = this.maxReconnectAttempts; // Prevent reconnection
-                this.ws.close();
-                this.ws = null;
-            }
-            
-            this.connected = false;
-        }
-
-        sendMessage(message) {
-            if (this.connected && this.ws.readyState === WebSocket.OPEN) {
-                this.ws.send(JSON.stringify(message));
-                console.log('[NETWORK-PRIORITY-WS] Message sent:', message.type);
-            } else {
-                console.warn('[NETWORK-PRIORITY-WS] Cannot send message - not connected');
-            }
-        }
-
-        requestNetworkPriorityData() {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'get_data'
-            });
-        }
-
-        setInterfacePriority(interfaceName, priority) {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'set_interface_priority',
-                interface_name: interfaceName,
-                priority: priority
-            });
-        }
-
-        addRoutingRule(rule) {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'add_routing_rule',
-                destination: rule.destination,
-                gateway: rule.gateway,
-                interface: rule.interface,
-                metric: rule.metric || 100,
-                priority: rule.priority || 1
-            });
-        }
-
-        updateRoutingRule(ruleId, rule) {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'update_routing_rule',
-                rule_id: ruleId,
-                destination: rule.destination,
-                gateway: rule.gateway,
-                interface: rule.interface,
-                metric: rule.metric || 100,
-                priority: rule.priority || 1
-            });
-        }
-
-        deleteRoutingRule(ruleId) {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'delete_routing_rule',
-                rule_id: ruleId
-            });
-        }
-
-        applyConfiguration() {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'apply_configuration'
-            });
-        }
-
-        resetToDefaults() {
-            this.sendMessage({
-                type: 'network_priority',
-                action: 'reset_to_defaults'
-            });
-        }
-
-        handleMessage(message) {
-            console.log('[NETWORK-PRIORITY-WS] Message received:', message.type);
-            
-            switch (message.type) {
-                case 'dashboard_update':
-                    if (message.category === 'network_priority') {
-                        console.log('[NETWORK-PRIORITY-WS] Network priority update received');
-                        if (this.onNetworkPriorityData) {
-                            this.onNetworkPriorityData(message.data);
-                        }
-                    }
-                    break;
-                    
-                case 'network_priority_response':
-                    console.log('[NETWORK-PRIORITY-WS] Network priority response received');
-                    if (this.onNetworkPriorityResponse) {
-                        this.onNetworkPriorityResponse(message);
-                    }
-                    break;
-                    
-                case 'welcome':
-                    console.log('[NETWORK-PRIORITY-WS] Welcome message received');
-                    break;
-                    
-                default:
-                    console.log('[NETWORK-PRIORITY-WS] Unhandled message type:', message.type);
-            }
-        }
-
-        attemptReconnect() {
-            if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-                console.error('[NETWORK-PRIORITY-WS] Max reconnect attempts reached');
-                
-                if (this.onError) {
-                    this.onError(new Error('Failed to reconnect to WebSocket server'));
-                }
-                return;
-            }
-            
-            this.reconnectAttempts++;
-            console.log(`[NETWORK-PRIORITY-WS] Reconnection attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts}`);
-            
-            setTimeout(() => {
-                this.connect();
-            }, this.reconnectDelay);
-        }
-    }
-
-    class NetworkPriorityManager {
-        constructor() {
-            this.wsClient = new NetworkPriorityWebSocket();
-            this.networkInterfaces = [];
-            this.routingRules = [];
-            this.statistics = {};
-            
-            this.setupWebSocketCallbacks();
-            this.setupUIEventHandlers();
-            this.updateConnectionStatus(false);
-        }
-
-        initialize() {
-            console.log('[NETWORK-PRIORITY] Creating NetworkPriorityManager instance');
-            this.wsClient.connect();
-        }
-
-        setupWebSocketCallbacks() {
-            // WebSocket connection events
-            this.wsClient.onConnected = () => {
-                console.log('[NETWORK-PRIORITY] WebSocket connected');
-                this.updateConnectionStatus(true);
-                this.requestInitialData();
-            };
-
-            this.wsClient.onDisconnected = () => {
-                console.log('[NETWORK-PRIORITY] WebSocket disconnected');
-                this.updateConnectionStatus(false);
-            };
-
-            this.wsClient.onError = (error) => {
-                console.error('[NETWORK-PRIORITY] WebSocket error:', error);
-                this.showNotification('Connection error: ' + error.message, 'error');
-                this.enableFallbackMode();
-            };
-
-            // Network priority data events
-            this.wsClient.onNetworkPriorityData = (data) => {
-                console.log('[NETWORK-PRIORITY] Network priority data received:', data);
-                this.updateNetworkPriorityData(data);
-            };
-
-            this.wsClient.onNetworkPriorityResponse = (response) => {
-                console.log('[NETWORK-PRIORITY] Network priority response received:', response);
-                this.handleNetworkPriorityResponse(response);
-            };
-        }
-
-        setupUIEventHandlers() {
-            // Refresh button
-            const refreshBtn = document.getElementById('refresh-priority-btn');
-            if (refreshBtn) {
-                refreshBtn.addEventListener('click', () => {
-                    this.requestFreshData();
-                });
-            }
-
-            // Add rule button
-            const addRuleBtn = document.getElementById('add-rule-btn');
-            if (addRuleBtn) {
-                addRuleBtn.addEventListener('click', () => {
-                    this.showAddRuleDialog();
-                });
-            }
-
-            // Reset defaults button
-            const resetBtn = document.getElementById('reset-defaults-btn');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', () => {
-                    this.resetToDefaults();
-                });
-            }
-
-            // Export rules button
-            const exportBtn = document.getElementById('export-rules-btn');
-            if (exportBtn) {
-                exportBtn.addEventListener('click', () => {
-                    this.exportRules();
-                });
-            }
-        }
-
-        updateConnectionStatus(connected) {
-            const statusDot = document.getElementById('priority-status-dot');
-            const statusText = document.getElementById('priority-connection-text');
-            const refreshBtn = document.getElementById('refresh-priority-btn');
-            
-            if (connected) {
-                statusDot.classList.remove('bg-red-500');
-                statusDot.classList.add('bg-green-500');
-                statusText.textContent = 'Connected';
-                
-                if (refreshBtn) {
-                    refreshBtn.disabled = false;
-                    refreshBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    refreshBtn.title = 'Refresh network priority data';
-                }
-            } else {
-                statusDot.classList.remove('bg-green-500');
-                statusDot.classList.add('bg-red-500');
-                statusText.textContent = 'Disconnected';
-                
-                if (refreshBtn) {
-                    refreshBtn.disabled = true;
-                    refreshBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    refreshBtn.title = 'Unavailable - WebSocket server not connected';
-                }
-            }
-        }
-
-        requestInitialData() {
-            console.log('[NETWORK-PRIORITY] Requesting initial network priority data');
-            this.wsClient.requestNetworkPriorityData();
-        }
-
-        requestFreshData() {
-            console.log('[NETWORK-PRIORITY] Requesting fresh network priority data');
-            this.wsClient.requestNetworkPriorityData();
-            
-            // Show loading state
-            this.showLoadingState();
-        }
-
-        updateNetworkPriorityData(data) {
-            console.log('[NETWORK-PRIORITY] Updating network priority data');
-            
-            if (data.networkInterfaces) {
-                this.networkInterfaces = data.networkInterfaces;
-                this.updateInterfacesDisplay();
-            }
-            
-            if (data.routingRules) {
-                this.routingRules = data.routingRules;
-                this.updateRoutingRulesDisplay();
-            }
-            
-            if (data.statistics) {
-                this.statistics = data.statistics;
-                this.updateStatisticsDisplay();
-            }
-            
-            this.hideLoadingState();
-        }
-
-        updateInterfacesDisplay() {
-            const container = document.getElementById('interfaces-container');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            // Sort interfaces by priority
-            const sortedInterfaces = [...this.networkInterfaces].sort((a, b) => a.priority - b.priority);
-            
-            sortedInterfaces.forEach((interface, index) => {
-                const interfaceElement = this.createInterfaceElement(interface, index);
-                container.appendChild(interfaceElement);
-            });
-        }
-
-        createInterfaceElement(interface, index) {
-            const div = document.createElement('div');
-            div.className = 'bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-between hover:shadow-sm transition-shadow';
-            div.dataset.interfaceId = interface.id;
-            
-            const statusColor = interface.status === 'online' ? 'text-green-600' : 'text-red-600';
-            const statusBg = interface.status === 'online' ? 'bg-green-100' : 'bg-red-100';
-            const typeIcon = this.getInterfaceTypeIcon(interface.type);
-            
-            div.innerHTML = `
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-3">
-                        <i class="${typeIcon} text-neutral-600"></i>
-                        <div>
-                            <div class="font-medium text-neutral-800">${interface.name}</div>
-                            <div class="text-sm text-neutral-500">${interface.ipAddress || 'No IP'}</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="px-2 py-1 text-xs font-medium rounded-full ${statusBg} ${statusColor}">
-                            ${interface.status}
-                        </span>
-                        ${interface.isDefault ? '<span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-600">Default</span>' : ''}
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <div class="text-right">
-                        <div class="text-sm text-neutral-500">Priority</div>
-                        <div class="font-medium text-neutral-800">${interface.priority}</div>
-                    </div>
-                    <div class="flex items-center space-x-1">
-                        <button onclick="networkPriority.moveInterfaceUp('${interface.id}')" class="p-1 text-neutral-400 hover:text-neutral-600" title="Move up">
-                            <i class="fa-solid fa-chevron-up"></i>
-                        </button>
-                        <button onclick="networkPriority.moveInterfaceDown('${interface.id}')" class="p-1 text-neutral-400 hover:text-neutral-600" title="Move down">
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            return div;
-        }
-
-        getInterfaceTypeIcon(type) {
-            switch (type) {
-                case 'wired': return 'fa-solid fa-ethernet';
-                case 'wireless': return 'fa-solid fa-wifi';
-                case 'vpn': return 'fa-solid fa-lock';
-                default: return 'fa-solid fa-network-wired';
-            }
-        }
-
-        updateRoutingRulesDisplay() {
-            const tbody = document.getElementById('routing-rules-tbody');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            // Sort rules by priority
-            const sortedRules = [...this.routingRules].sort((a, b) => a.priority - b.priority);
-            
-            sortedRules.forEach((rule, index) => {
-                const ruleElement = this.createRoutingRuleElement(rule, index);
-                tbody.appendChild(ruleElement);
-            });
-        }
-
-        createRoutingRuleElement(rule, index) {
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-neutral-50';
-            tr.dataset.ruleId = rule.id;
-            
-            const statusColor = rule.status === 'Active' ? 'text-green-600' : 'text-red-600';
-            const statusBg = rule.status === 'Active' ? 'bg-green-100' : 'bg-red-100';
-            
-            tr.innerHTML = `
-                <td class="px-4 py-3">
-                    <input type="checkbox" class="rounded border-neutral-300" data-rule-checkbox="${rule.id}">
-                </td>
-                <td class="px-4 py-3 text-sm font-medium text-neutral-900">${rule.priority}</td>
-                <td class="px-4 py-3 text-sm text-neutral-900">${rule.destination}</td>
-                <td class="px-4 py-3 text-sm text-neutral-900">${rule.gateway}</td>
-                <td class="px-4 py-3 text-sm text-neutral-900">${rule.interface}</td>
-                <td class="px-4 py-3 text-sm text-neutral-900">${rule.metric}</td>
-                <td class="px-4 py-3">
-                    <span class="px-2 py-1 text-xs font-medium rounded-full ${statusBg} ${statusColor}">
-                        ${rule.status}
-                    </span>
-                </td>
-                <td class="px-4 py-3">
-                    <div class="flex items-center space-x-2">
-                        <button onclick="networkPriority.editRule('${rule.id}')" class="text-blue-600 hover:text-blue-800 text-sm">
-                            <i class="fa-solid fa-edit"></i>
-                        </button>
-                        <button onclick="networkPriority.deleteRule('${rule.id}')" class="text-red-600 hover:text-red-800 text-sm">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </td>
-            `;
-            
-            return tr;
-        }
-
-        updateStatisticsDisplay() {
-            const totalElement = document.querySelector('[data-stat="total"]');
-            const onlineElement = document.querySelector('[data-stat="online"]');
-            const offlineElement = document.querySelector('[data-stat="offline"]');
-            
-            if (totalElement) totalElement.textContent = this.statistics.total || 0;
-            if (onlineElement) onlineElement.textContent = this.statistics.online || 0;
-            if (offlineElement) offlineElement.textContent = this.statistics.offline || 0;
-        }
-
-        handleNetworkPriorityResponse(response) {
-            if (response.data && response.data.success !== undefined) {
-                if (response.data.success) {
-                    this.showNotification(response.data.message || 'Operation completed successfully', 'success');
-                    // Request fresh data after successful operation
-                    this.requestFreshData();
-                } else {
-                    this.showNotification(response.data.message || 'Operation failed', 'error');
-                }
-            }
-        }
-
-        moveInterfaceUp(interfaceId) {
-            const interface = this.networkInterfaces.find(i => i.id === interfaceId);
-            if (!interface) return;
-            
-            // Find the interface with higher priority
-            const higherPriorityInterface = this.networkInterfaces
-                .filter(i => i.priority < interface.priority)
-                .sort((a, b) => b.priority - a.priority)[0];
-            
-            if (higherPriorityInterface) {
-                // Swap priorities
-                const tempPriority = interface.priority;
-                this.wsClient.setInterfacePriority(interface.name, higherPriorityInterface.priority);
-                this.wsClient.setInterfacePriority(higherPriorityInterface.name, tempPriority);
-            }
-        }
-
-        moveInterfaceDown(interfaceId) {
-            const interface = this.networkInterfaces.find(i => i.id === interfaceId);
-            if (!interface) return;
-            
-            // Find the interface with lower priority
-            const lowerPriorityInterface = this.networkInterfaces
-                .filter(i => i.priority > interface.priority)
-                .sort((a, b) => a.priority - b.priority)[0];
-            
-            if (lowerPriorityInterface) {
-                // Swap priorities
-                const tempPriority = interface.priority;
-                this.wsClient.setInterfacePriority(interface.name, lowerPriorityInterface.priority);
-                this.wsClient.setInterfacePriority(lowerPriorityInterface.name, tempPriority);
-            }
-        }
-
-        showAddRuleDialog() {
-            // This would show a modal/dialog for adding a new routing rule
-            // For now, we'll show a simple prompt
-            const destination = prompt('Enter destination (e.g., 192.168.1.0/24):');
-            if (!destination) return;
-            
-            const gateway = prompt('Enter gateway (e.g., 192.168.1.1):');
-            if (!gateway) return;
-            
-            const interface = prompt('Enter interface name (e.g., eth0):');
-            if (!interface) return;
-            
-            const rule = {
-                destination: destination,
-                gateway: gateway,
-                interface: interface,
-                metric: 100,
-                priority: this.routingRules.length + 1
-            };
-            
-            this.wsClient.addRoutingRule(rule);
-        }
-
-        editRule(ruleId) {
-            const rule = this.routingRules.find(r => r.id === ruleId);
-            if (!rule) return;
-            
-            // This would show a modal/dialog for editing the routing rule
-            // For now, we'll show simple prompts
-            const destination = prompt('Enter destination:', rule.destination);
-            if (destination === null) return;
-            
-            const gateway = prompt('Enter gateway:', rule.gateway);
-            if (gateway === null) return;
-            
-            const interface = prompt('Enter interface:', rule.interface);
-            if (interface === null) return;
-            
-            const metric = prompt('Enter metric:', rule.metric);
-            if (metric === null) return;
-            
-            const updatedRule = {
-                destination: destination,
-                gateway: gateway,
-                interface: interface,
-                metric: parseInt(metric) || 100,
-                priority: rule.priority
-            };
-            
-            this.wsClient.updateRoutingRule(ruleId, updatedRule);
-        }
-
-        deleteRule(ruleId) {
-            if (confirm('Are you sure you want to delete this routing rule?')) {
-                this.wsClient.deleteRoutingRule(ruleId);
-            }
-        }
-
-        resetToDefaults() {
-            if (confirm('Are you sure you want to reset all network priority settings to defaults?')) {
-                this.wsClient.resetToDefaults();
-            }
-        }
-
-        exportRules() {
-            const data = {
-                networkInterfaces: this.networkInterfaces,
-                routingRules: this.routingRules,
-                statistics: this.statistics,
-                exportDate: new Date().toISOString()
-            };
-            
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `network-priority-config-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        showLoadingState() {
-            // Show loading indicators in the UI
-            const refreshIcon = document.getElementById('priority-refresh-icon');
-            if (refreshIcon) {
-                refreshIcon.classList.add('fa-spin');
-            }
-        }
-
-        hideLoadingState() {
-            // Hide loading indicators
-            const refreshIcon = document.getElementById('priority-refresh-icon');
-            if (refreshIcon) {
-                refreshIcon.classList.remove('fa-spin');
-            }
-        }
-
-        showNotification(message, type = 'info') {
-            // Simple notification implementation
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
-                type === 'success' ? 'bg-green-500 text-white' :
-                type === 'error' ? 'bg-red-500 text-white' :
-                'bg-blue-500 text-white'
-            }`;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 3000);
-        }
-
-        enableFallbackMode() {
-            console.log('[NETWORK-PRIORITY] Enabling fallback mode');
-            
-            // Show fallback status in UI
-            this.updateConnectionStatus(false);
-            this.showNotification('WebSocket server unavailable. Running in offline mode.', 'warning');
-            
-            // Load mock data for demonstration
-            this.loadFallbackData();
-        }
-
-        loadFallbackData() {
-            console.log('[NETWORK-PRIORITY] Loading fallback data');
-            
-            // Mock data for demonstration when WebSocket is unavailable
-            const fallbackData = {
-                networkInterfaces: [
-                    {
-                        id: 'fallback-1',
-                        name: 'eth0',
-                        ipAddress: '192.168.1.100',
-                        gateway: '192.168.1.1',
-                        status: 'online',
-                        metric: 100,
-                        priority: 1,
-                        type: 'wired',
-                        speed: 1000,
-                        isDefault: true
-                    },
-                    {
-                        id: 'fallback-2',
-                        name: 'wlan0',
-                        ipAddress: '192.168.1.101',
-                        gateway: '192.168.1.1',
-                        status: 'offline',
-                        metric: 200,
-                        priority: 2,
-                        type: 'wireless',
-                        speed: 300,
-                        isDefault: false
-                    }
-                ],
-                routingRules: [
-                    {
-                        id: 'fallback-rule-1',
-                        destination: '0.0.0.0/0',
-                        gateway: '192.168.1.1',
-                        interface: 'eth0',
-                        metric: 100,
-                        priority: 1,
-                        status: 'Active',
-                        type: 'dynamic',
-                        table: 'main'
-                    }
-                ],
-                statistics: {
-                    total: 2,
-                    online: 1,
-                    offline: 1,
-                    activeRules: 1,
-                    lastUpdated: new Date().toLocaleString()
-                }
-            };
-            
-            this.updateNetworkPriorityData(fallbackData);
-        }
-    }
-
-    // Initialize Network Priority Manager when DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('[NETWORK-PRIORITY] Creating NetworkPriorityManager instance');
-        const networkPriority = new NetworkPriorityManager();
-        
-        console.log('[NETWORK-PRIORITY] Starting WebSocket connection');
-        networkPriority.initialize();
-        
-        // Make networkPriority available globally for debugging
-        window.networkPriority = networkPriority;
-        
-        // Hide loading state after initialization
-        setTimeout(() => {
-            networkPriority.hideLoadingState();
-        }, 1000);
-    });
-    </script>
-</div>
+</script>

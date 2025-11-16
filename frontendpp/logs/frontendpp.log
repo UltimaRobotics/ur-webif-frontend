@@ -1441,3 +1441,92 @@
 [2025-11-16 00:41:38] [INFO] File served: components/landing-section.html
 [2025-11-16 00:43:24] [INFO] File served: components/network-utility-section.html
 [2025-11-16 00:43:24] [WARN] File not found: api/network-utility/servers/status
+[2025-11-16 01:03:03] [INFO] FrontendPP v2.0.0 () built on 2025-11-15 19:46:32 UTC
+[2025-11-16 01:03:03] [INFO] Verbose logging mode enabled
+[2025-11-16 01:03:03] [INFO] Log file: logs/frontendpp.log
+[2025-11-16 01:03:03] [INFO] ✅ Initializing AuthHandler
+[2025-11-16 01:03:03] [INFO] ✅ Checking database existence
+[2025-11-16 01:03:03] [INFO] Database file exists: data/auth.db
+[2025-11-16 01:03:03] [INFO] ✅ Validating database integrity
+[2025-11-16 01:03:03] [INFO] ✅ Database integrity validation passed
+[2025-11-16 01:03:03] [INFO] ✅ AuthHandler initialization completed
+[2025-11-16 01:03:03] [INFO] ✅ Validating database integrity
+[2025-11-16 01:03:03] [INFO] ✅ Database integrity validation passed
+[2025-11-16 01:03:08] [INFO] File served: source.html
+[2025-11-16 01:04:08] [WARN] File not found: api/network-utility/servers/status
+[2025-11-16 01:04:17] [INFO] File served: source.html
+[2025-11-16 01:05:25] [INFO] File served: components/vpn-configuration-section.html
+[2025-11-16 01:07:13] [INFO] File served: source.html
+[2025-11-16 01:07:46] [INFO] File served: login-page.html
+[2025-11-16 01:07:46] [INFO] File served: components/popup.js
+[2025-11-16 01:07:46] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:07:47] [WARN] File not found: favicon.ico
+[2025-11-16 01:08:04] [INFO] File served: source.html
+[2025-11-16 01:08:04] [INFO] File served: components/landing-section.html
+[2025-11-16 01:08:38] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:08:41] [INFO] File served: source.html
+[2025-11-16 01:08:41] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:08:43] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:17:20] [INFO] File served: source.html
+[2025-11-16 01:18:47] [INFO] File served: source.html
+[2025-11-16 01:19:10] [INFO] File served: source.html
+[2025-11-16 01:19:10] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:19:10] [INFO] File served: login-page.html
+[2025-11-16 01:19:10] [INFO] File served: components/popup.js
+[2025-11-16 01:19:10] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:19:15] [INFO] File served: source.html
+[2025-11-16 01:19:16] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:19:17] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:20:17] [INFO] File served: source.html
+[2025-11-16 01:20:30] [INFO] File served: source.html
+[2025-11-16 01:20:30] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:20:30] [INFO] File served: login-page.html
+[2025-11-16 01:20:30] [INFO] File served: components/popup.js
+[2025-11-16 01:20:30] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:20:36] [INFO] File served: source.html
+[2025-11-16 01:20:36] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:20:37] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:20:48] [INFO] File served: source.html
+[2025-11-16 01:20:48] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:20:50] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:21:01] [INFO] File served: source.html
+[2025-11-16 01:21:01] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:21:03] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:26:40] [INFO] File served: source.html
+[2025-11-16 01:26:40] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:26:41] [INFO] File served: login-page.html
+[2025-11-16 01:26:41] [INFO] File served: components/popup.js
+[2025-11-16 01:26:41] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:26:45] [INFO] File served: source.html
+[2025-11-16 01:26:45] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:26:47] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:28:50] [INFO] File served: source.html
+[2025-11-16 01:28:50] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:28:50] [INFO] File served: login-page.html
+[2025-11-16 01:28:50] [INFO] File served: components/popup.js
+[2025-11-16 01:28:50] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:28:55] [INFO] File served: source.html
+[2025-11-16 01:28:55] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:28:57] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:29:41] [INFO] File served: components/landing-section.html
+[2025-11-16 01:30:04] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:30:19] [INFO] File served: source.html
+[2025-11-16 01:30:19] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:30:19] [INFO] File served: login-page.html
+[2025-11-16 01:30:19] [INFO] File served: components/popup.js
+[2025-11-16 01:30:19] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:30:24] [INFO] File served: source.html
+[2025-11-16 01:30:25] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:30:26] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:34:11] [INFO] File served: source.html
+[2025-11-16 01:34:11] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:34:11] [INFO] File served: login-page.html
+[2025-11-16 01:34:11] [INFO] File served: components/popup.js
+[2025-11-16 01:34:11] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:34:16] [INFO] File served: source.html
+[2025-11-16 01:34:16] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:34:17] [INFO] File served: components/network-priority-section.html
+[2025-11-16 01:38:39] [INFO] File served: login-page.html
+[2025-11-16 01:38:39] [INFO] File served: components/popup.js
+[2025-11-16 01:38:39] [INFO] File served: assets/js/jwt-token-manager.js
+[2025-11-16 01:38:50] [INFO] File served: login-page.html
