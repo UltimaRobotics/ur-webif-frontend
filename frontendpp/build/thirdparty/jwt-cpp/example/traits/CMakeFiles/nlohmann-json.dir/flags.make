@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/include -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src/include -I/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include
+CXX_INCLUDES = -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include
 
 CXX_FLAGS = -std=gnu++17
 

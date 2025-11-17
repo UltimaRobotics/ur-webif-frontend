@@ -1,7 +1,7 @@
 CMakeFiles/FrontendPP.dir/src/logger.cpp.o: \
- /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/logger.cpp \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/src/logger.cpp \
  /usr/include/stdc-predef.h \
- /home/fyousfi/Documents/ur-webif-frontend/frontendpp/include/logger.h \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/include/logger.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

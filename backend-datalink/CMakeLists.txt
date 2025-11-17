@@ -13,6 +13,9 @@ add_subdirectory(thirdparty/system-data)
 # Add network-priority as subdirectory
 add_subdirectory(thirdparty/network-priority)
 
+# Add ur-rpc-template as subdirectory
+add_subdirectory(thirdparty/ur-rpc-template)
+
 # Find SQLite3
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SQLITE3 QUIET sqlite3)
@@ -106,6 +109,7 @@ set(SOURCES
     src/managed_websocket_server.cpp
     src/config_loader.cpp
     src/database_manager.cpp
+    src/rpc_client.cpp
 )
 
 # Header files
@@ -114,6 +118,7 @@ set(HEADERS
     include/websocket_server.h
     include/config_loader.h
     include/database_manager.h
+    include/rpc_client.h
 )
 
 # Create executable
@@ -127,6 +132,8 @@ target_link_libraries(backend-datalink
     network_priority
     threadmanager
     threadmanager_cpp
+    ur-rpc-template
+    ur-rpc-cpp
     pthread
 )
 
@@ -140,6 +147,13 @@ target_include_directories(backend-datalink PRIVATE
     ${THREADDER_INCLUDE_DIRS}
     ${SYSTEM_DATA_INCLUDE_DIRS}
     ${NETWORK_PRIORITY_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template/extensions
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template/deps/cJSON
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template/deps/mqtt-client/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template/deps/ur-logger-api
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-rpc-template/pkg_src/api/wrappers/cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/ur-threadder-api/cpp/include
 )
 
 # Compiler flags
@@ -148,8 +162,9 @@ target_compile_options(backend-datalink PRIVATE -Wall -Wextra -O2)
 # Add definitions for found packages
 target_compile_definitions(backend-datalink PRIVATE HAVE_OPENSSL HAVE_NLOHMANN_JSON HAVE_WEBSOCKETPP ASIO_STANDALONE)
 
-# Copy config file to build directory
+# Copy config files to build directory
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config/config.json ${CMAKE_BINARY_DIR}/config/config.json COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config/rpc_config.json ${CMAKE_BINARY_DIR}/config/rpc_config.json COPYONLY)
 
 # Print summary
 message(STATUS "")

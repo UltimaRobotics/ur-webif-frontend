@@ -14,8 +14,8 @@ project(nlohmann_json-populate NONE)
 include(ExternalProject)
 ExternalProject_Add(nlohmann_json-populate
                      "UPDATE_DISCONNECTED" "False" "URL" "https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz" "URL_MD5" "e155202b2a589137f6804724bd182f12"
-                    SOURCE_DIR          "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src"
-                    BINARY_DIR          "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-build"
+                    SOURCE_DIR          "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src"
+                    BINARY_DIR          "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

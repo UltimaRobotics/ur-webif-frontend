@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/backend-datalink.dir/src/main.cpp.o.d"
   "CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o"
   "CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.o.d"
+  "CMakeFiles/backend-datalink.dir/src/rpc_client.cpp.o"
+  "CMakeFiles/backend-datalink.dir/src/rpc_client.cpp.o.d"
   "CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o"
   "CMakeFiles/backend-datalink.dir/src/websocket_server.cpp.o.d"
   "backend-datalink"

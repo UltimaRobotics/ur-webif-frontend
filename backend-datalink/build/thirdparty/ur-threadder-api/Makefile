@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api//CMakeFiles/progress.marks
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api//CMakeFiles/progress.marks
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/clean
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/preinstall
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/preinstall
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -P /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule
 .PHONY : thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule
 
 # Convenience name for target.
@@ -172,7 +173,7 @@ threadmanager: thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/rule
 
 # fast build rule for target.
 threadmanager/fast:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build
 .PHONY : threadmanager/fast
 
 src/json_config.o: src/json_config.c.o
@@ -180,7 +181,7 @@ src/json_config.o: src/json_config.c.o
 
 # target to build an object file
 src/json_config.c.o:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.o
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.o
 .PHONY : src/json_config.c.o
 
 src/json_config.i: src/json_config.c.i
@@ -188,7 +189,7 @@ src/json_config.i: src/json_config.c.i
 
 # target to preprocess a source file
 src/json_config.c.i:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.i
 .PHONY : src/json_config.c.i
 
 src/json_config.s: src/json_config.c.s
@@ -196,7 +197,7 @@ src/json_config.s: src/json_config.c.s
 
 # target to generate assembly for a file
 src/json_config.c.s:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/json_config.c.s
 .PHONY : src/json_config.c.s
 
 src/thread_manager.o: src/thread_manager.c.o
@@ -204,7 +205,7 @@ src/thread_manager.o: src/thread_manager.c.o
 
 # target to build an object file
 src/thread_manager.c.o:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.o
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.o
 .PHONY : src/thread_manager.c.o
 
 src/thread_manager.i: src/thread_manager.c.i
@@ -212,7 +213,7 @@ src/thread_manager.i: src/thread_manager.c.i
 
 # target to preprocess a source file
 src/thread_manager.c.i:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.i
 .PHONY : src/thread_manager.c.i
 
 src/thread_manager.s: src/thread_manager.c.s
@@ -220,7 +221,7 @@ src/thread_manager.s: src/thread_manager.c.s
 
 # target to generate assembly for a file
 src/thread_manager.c.s:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/thread_manager.c.s
 .PHONY : src/thread_manager.c.s
 
 src/utils.o: src/utils.c.o
@@ -228,7 +229,7 @@ src/utils.o: src/utils.c.o
 
 # target to build an object file
 src/utils.c.o:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.o
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.o
 .PHONY : src/utils.c.o
 
 src/utils.i: src/utils.c.i
@@ -236,7 +237,7 @@ src/utils.i: src/utils.c.i
 
 # target to preprocess a source file
 src/utils.c.i:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.i
 .PHONY : src/utils.c.i
 
 src/utils.s: src/utils.c.s
@@ -244,7 +245,7 @@ src/utils.s: src/utils.c.s
 
 # target to generate assembly for a file
 src/utils.c.s:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/src/utils.c.s
 .PHONY : src/utils.c.s
 
 thirdparty/cJSON.o: thirdparty/cJSON.c.o
@@ -252,7 +253,7 @@ thirdparty/cJSON.o: thirdparty/cJSON.c.o
 
 # target to build an object file
 thirdparty/cJSON.c.o:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.o
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.o
 .PHONY : thirdparty/cJSON.c.o
 
 thirdparty/cJSON.i: thirdparty/cJSON.c.i
@@ -260,7 +261,7 @@ thirdparty/cJSON.i: thirdparty/cJSON.c.i
 
 # target to preprocess a source file
 thirdparty/cJSON.c.i:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.i
 .PHONY : thirdparty/cJSON.c.i
 
 thirdparty/cJSON.s: thirdparty/cJSON.c.s
@@ -268,7 +269,7 @@ thirdparty/cJSON.s: thirdparty/cJSON.c.s
 
 # target to generate assembly for a file
 thirdparty/cJSON.c.s:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(MAKE) $(MAKESILENT) -f thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/build.make thirdparty/ur-threadder-api/CMakeFiles/threadmanager.dir/thirdparty/cJSON.c.s
 .PHONY : thirdparty/cJSON.c.s
 
 # Help Target
@@ -307,6 +308,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -P /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

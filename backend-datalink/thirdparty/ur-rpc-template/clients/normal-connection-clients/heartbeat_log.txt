@@ -1,0 +1,4622 @@
+
+================================================================================
+[2025-11-04 00:39:54.276] Monitor started
+[2025-11-04 00:39:54.276] Subscribed to: clients/ur-mavrouter/heartbeat
+================================================================================
+
+[2025-11-04 00:39:56.055] Monitor stopped by user
+================================================================================
+
+
+[2025-11-04 00:39:56.056] Disconnected (rc=0)
+
+================================================================================
+[2025-11-04 00:41:22.793] Monitor started
+[2025-11-04 00:41:22.793] Subscribed to: clients/ur-mavrouter/heartbeat
+================================================================================
+
+================================================================================
+[2025-11-04 00:51:35.132] Monitor started
+[2025-11-04 00:51:35.132] Subscribed to: clients/ur-mavrouter/heartbeat
+================================================================================
+
+[RECEPTION TIME] 2025-11-04 00:51:38.131
+[MESSAGE TIMESTAMP] 1762217498131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217498131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:38.131
+[MESSAGE TIMESTAMP] 1762217498131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217498131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:40.131
+[MESSAGE TIMESTAMP] 1762217500131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217500131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:40.131
+[MESSAGE TIMESTAMP] 1762217500131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217500131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:42.132
+[MESSAGE TIMESTAMP] 1762217502131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217502131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:42.132
+[MESSAGE TIMESTAMP] 1762217502131
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217502131"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:44.132
+[MESSAGE TIMESTAMP] 1762217504132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217504132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:44.132
+[MESSAGE TIMESTAMP] 1762217504132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217504132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:46.132
+[MESSAGE TIMESTAMP] 1762217506132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217506132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:46.132
+[MESSAGE TIMESTAMP] 1762217506132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217506132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:48.132
+[MESSAGE TIMESTAMP] 1762217508132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217508132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:48.132
+[MESSAGE TIMESTAMP] 1762217508132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217508132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:50.132
+[MESSAGE TIMESTAMP] 1762217510132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217510132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:50.132
+[MESSAGE TIMESTAMP] 1762217510132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217510132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:52.132
+[MESSAGE TIMESTAMP] 1762217512132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217512132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:52.132
+[MESSAGE TIMESTAMP] 1762217512132
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217512132"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:54.133
+[MESSAGE TIMESTAMP] 1762217514133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217514133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:54.133
+[MESSAGE TIMESTAMP] 1762217514133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217514133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:56.133
+[MESSAGE TIMESTAMP] 1762217516133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217516133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:56.133
+[MESSAGE TIMESTAMP] 1762217516133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217516133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:58.133
+[MESSAGE TIMESTAMP] 1762217518133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217518133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:51:58.133
+[MESSAGE TIMESTAMP] 1762217518133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217518133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:00.133
+[MESSAGE TIMESTAMP] 1762217520133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217520133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:00.133
+[MESSAGE TIMESTAMP] 1762217520133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217520133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:02.134
+[MESSAGE TIMESTAMP] 1762217522133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217522133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:02.134
+[MESSAGE TIMESTAMP] 1762217522133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217522133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:04.134
+[MESSAGE TIMESTAMP] 1762217524133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217524133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:04.134
+[MESSAGE TIMESTAMP] 1762217524133
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217524133"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:06.134
+[MESSAGE TIMESTAMP] 1762217526134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217526134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:06.134
+[MESSAGE TIMESTAMP] 1762217526134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217526134"
+}
+--------------------------------------------------------------------------------
+
+================================================================================
+[2025-11-04 00:52:08.097] Monitor started
+[2025-11-04 00:52:08.097] Subscribed to: clients/ur-mavrouter/heartbeat
+================================================================================
+
+[RECEPTION TIME] 2025-11-04 00:52:08.134
+[MESSAGE TIMESTAMP] 1762217528134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217528134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:08.134
+[MESSAGE TIMESTAMP] 1762217528134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217528134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:10.134
+[MESSAGE TIMESTAMP] 1762217530134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217530134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:10.134
+[MESSAGE TIMESTAMP] 1762217530134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217530134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:12.134
+[MESSAGE TIMESTAMP] 1762217532134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217532134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:12.134
+[MESSAGE TIMESTAMP] 1762217532134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217532134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:14.134
+[MESSAGE TIMESTAMP] 1762217534134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217534134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:14.134
+[MESSAGE TIMESTAMP] 1762217534134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217534134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:16.135
+[MESSAGE TIMESTAMP] 1762217536134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217536134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:16.135
+[MESSAGE TIMESTAMP] 1762217536134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217536134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:18.135
+[MESSAGE TIMESTAMP] 1762217538134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217538134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:18.135
+[MESSAGE TIMESTAMP] 1762217538134
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217538134"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:20.135
+[MESSAGE TIMESTAMP] 1762217540135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217540135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:20.135
+[MESSAGE TIMESTAMP] 1762217540135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217540135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:22.135
+[MESSAGE TIMESTAMP] 1762217542135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217542135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:22.135
+[MESSAGE TIMESTAMP] 1762217542135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217542135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:24.135
+[MESSAGE TIMESTAMP] 1762217544135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217544135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:24.135
+[MESSAGE TIMESTAMP] 1762217544135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217544135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:26.135
+[MESSAGE TIMESTAMP] 1762217546135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217546135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:26.135
+[MESSAGE TIMESTAMP] 1762217546135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217546135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:28.136
+[MESSAGE TIMESTAMP] 1762217548135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217548135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:28.136
+[MESSAGE TIMESTAMP] 1762217548135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217548135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:30.136
+[MESSAGE TIMESTAMP] 1762217550135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217550135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:30.136
+[MESSAGE TIMESTAMP] 1762217550135
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217550135"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:32.136
+[MESSAGE TIMESTAMP] 1762217552136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217552136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:32.136
+[MESSAGE TIMESTAMP] 1762217552136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217552136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:34.136
+[MESSAGE TIMESTAMP] 1762217554136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217554136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:34.136
+[MESSAGE TIMESTAMP] 1762217554136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217554136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:36.136
+[MESSAGE TIMESTAMP] 1762217556136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217556136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:36.136
+[MESSAGE TIMESTAMP] 1762217556136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217556136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:38.136
+[MESSAGE TIMESTAMP] 1762217558136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217558136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:38.136
+[MESSAGE TIMESTAMP] 1762217558136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217558136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:40.137
+[MESSAGE TIMESTAMP] 1762217560136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217560136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:40.137
+[MESSAGE TIMESTAMP] 1762217560136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217560136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:42.137
+[MESSAGE TIMESTAMP] 1762217562136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217562136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:42.137
+[MESSAGE TIMESTAMP] 1762217562136
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217562136"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:44.137
+[MESSAGE TIMESTAMP] 1762217564137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217564137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:44.137
+[MESSAGE TIMESTAMP] 1762217564137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217564137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:46.137
+[MESSAGE TIMESTAMP] 1762217566137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217566137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:46.137
+[MESSAGE TIMESTAMP] 1762217566137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217566137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:48.137
+[MESSAGE TIMESTAMP] 1762217568137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217568137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:48.137
+[MESSAGE TIMESTAMP] 1762217568137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217568137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:50.137
+[MESSAGE TIMESTAMP] 1762217570137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217570137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:50.137
+[MESSAGE TIMESTAMP] 1762217570137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217570137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:52.137
+[MESSAGE TIMESTAMP] 1762217572137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217572137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:52.137
+[MESSAGE TIMESTAMP] 1762217572137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217572137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:54.138
+[MESSAGE TIMESTAMP] 1762217574137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217574137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:54.138
+[MESSAGE TIMESTAMP] 1762217574137
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217574137"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:56.138
+[MESSAGE TIMESTAMP] 1762217576138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217576138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:56.138
+[MESSAGE TIMESTAMP] 1762217576138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217576138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:58.138
+[MESSAGE TIMESTAMP] 1762217578138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217578138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:52:58.138
+[MESSAGE TIMESTAMP] 1762217578138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217578138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:00.138
+[MESSAGE TIMESTAMP] 1762217580138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217580138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:00.138
+[MESSAGE TIMESTAMP] 1762217580138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217580138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:02.138
+[MESSAGE TIMESTAMP] 1762217582138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217582138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:02.138
+[MESSAGE TIMESTAMP] 1762217582138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217582138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:04.138
+[MESSAGE TIMESTAMP] 1762217584138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217584138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:04.138
+[MESSAGE TIMESTAMP] 1762217584138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217584138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:06.139
+[MESSAGE TIMESTAMP] 1762217586138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217586138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:06.139
+[MESSAGE TIMESTAMP] 1762217586138
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217586138"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:08.139
+[MESSAGE TIMESTAMP] 1762217588139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217588139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:08.139
+[MESSAGE TIMESTAMP] 1762217588139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217588139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:10.139
+[MESSAGE TIMESTAMP] 1762217590139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217590139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:10.139
+[MESSAGE TIMESTAMP] 1762217590139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217590139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:12.139
+[MESSAGE TIMESTAMP] 1762217592139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217592139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:12.139
+[MESSAGE TIMESTAMP] 1762217592139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217592139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:14.139
+[MESSAGE TIMESTAMP] 1762217594139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217594139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:14.139
+[MESSAGE TIMESTAMP] 1762217594139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217594139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:16.139
+[MESSAGE TIMESTAMP] 1762217596139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217596139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:16.139
+[MESSAGE TIMESTAMP] 1762217596139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217596139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:18.140
+[MESSAGE TIMESTAMP] 1762217598139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217598139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:18.140
+[MESSAGE TIMESTAMP] 1762217598139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217598139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:20.140
+[MESSAGE TIMESTAMP] 1762217600139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217600139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:20.140
+[MESSAGE TIMESTAMP] 1762217600139
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217600139"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:22.140
+[MESSAGE TIMESTAMP] 1762217602140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217602140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:22.140
+[MESSAGE TIMESTAMP] 1762217602140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217602140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:24.140
+[MESSAGE TIMESTAMP] 1762217604140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217604140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:24.140
+[MESSAGE TIMESTAMP] 1762217604140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217604140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:26.140
+[MESSAGE TIMESTAMP] 1762217606140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217606140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:26.140
+[MESSAGE TIMESTAMP] 1762217606140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217606140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:28.140
+[MESSAGE TIMESTAMP] 1762217608140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217608140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:28.140
+[MESSAGE TIMESTAMP] 1762217608140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217608140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:30.141
+[MESSAGE TIMESTAMP] 1762217610140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217610140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:30.141
+[MESSAGE TIMESTAMP] 1762217610140
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217610140"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:32.141
+[MESSAGE TIMESTAMP] 1762217612141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217612141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:32.141
+[MESSAGE TIMESTAMP] 1762217612141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217612141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:34.141
+[MESSAGE TIMESTAMP] 1762217614141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217614141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:34.141
+[MESSAGE TIMESTAMP] 1762217614141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217614141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:36.141
+[MESSAGE TIMESTAMP] 1762217616141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217616141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:36.141
+[MESSAGE TIMESTAMP] 1762217616141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217616141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:38.141
+[MESSAGE TIMESTAMP] 1762217618141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217618141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:38.141
+[MESSAGE TIMESTAMP] 1762217618141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217618141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:40.141
+[MESSAGE TIMESTAMP] 1762217620141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217620141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:40.141
+[MESSAGE TIMESTAMP] 1762217620141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217620141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:42.142
+[MESSAGE TIMESTAMP] 1762217622141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217622141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:42.142
+[MESSAGE TIMESTAMP] 1762217622141
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217622141"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:44.160
+[MESSAGE TIMESTAMP] 1762217624142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217624142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:44.159
+[MESSAGE TIMESTAMP] 1762217624142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217624142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:46.142
+[MESSAGE TIMESTAMP] 1762217626142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217626142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:46.142
+[MESSAGE TIMESTAMP] 1762217626142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217626142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:48.142
+[MESSAGE TIMESTAMP] 1762217628142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217628142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:48.142
+[MESSAGE TIMESTAMP] 1762217628142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217628142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:50.142
+[MESSAGE TIMESTAMP] 1762217630142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217630142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:50.142
+[MESSAGE TIMESTAMP] 1762217630142
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217630142"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:52.148
+[MESSAGE TIMESTAMP] 1762217632148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217632148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:52.148
+[MESSAGE TIMESTAMP] 1762217632148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217632148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:54.148
+[MESSAGE TIMESTAMP] 1762217634148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217634148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:54.148
+[MESSAGE TIMESTAMP] 1762217634148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217634148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:56.148
+[MESSAGE TIMESTAMP] 1762217636148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217636148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:56.148
+[MESSAGE TIMESTAMP] 1762217636148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217636148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:58.149
+[MESSAGE TIMESTAMP] 1762217638148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217638148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:53:58.149
+[MESSAGE TIMESTAMP] 1762217638148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217638148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:00.150
+[MESSAGE TIMESTAMP] 1762217640148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217640148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:00.150
+[MESSAGE TIMESTAMP] 1762217640148
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217640148"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:02.150
+[MESSAGE TIMESTAMP] 1762217642150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217642150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:02.150
+[MESSAGE TIMESTAMP] 1762217642150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217642150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:04.150
+[MESSAGE TIMESTAMP] 1762217644150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217644150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:04.150
+[MESSAGE TIMESTAMP] 1762217644150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217644150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:06.150
+[MESSAGE TIMESTAMP] 1762217646150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217646150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:06.150
+[MESSAGE TIMESTAMP] 1762217646150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217646150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:08.151
+[MESSAGE TIMESTAMP] 1762217648150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217648150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:08.151
+[MESSAGE TIMESTAMP] 1762217648150
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217648150"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:10.151
+[MESSAGE TIMESTAMP] 1762217650151
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217650151"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:10.151
+[MESSAGE TIMESTAMP] 1762217650151
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217650151"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:12.152
+[MESSAGE TIMESTAMP] 1762217652151
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217652151"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:12.152
+[MESSAGE TIMESTAMP] 1762217652151
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217652151"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:14.154
+[MESSAGE TIMESTAMP] 1762217654152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217654152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:14.154
+[MESSAGE TIMESTAMP] 1762217654152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217654152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:16.190
+[MESSAGE TIMESTAMP] 1762217656152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217656152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:16.153
+[MESSAGE TIMESTAMP] 1762217656152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217656152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:18.153
+[MESSAGE TIMESTAMP] 1762217658152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217658152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:18.153
+[MESSAGE TIMESTAMP] 1762217658152
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217658152"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:20.153
+[MESSAGE TIMESTAMP] 1762217660153
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217660153"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:20.153
+[MESSAGE TIMESTAMP] 1762217660153
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217660153"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:22.154
+[MESSAGE TIMESTAMP] 1762217662153
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217662153"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:22.154
+[MESSAGE TIMESTAMP] 1762217662153
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217662153"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:24.158
+[MESSAGE TIMESTAMP] 1762217664158
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217664158"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:24.159
+[MESSAGE TIMESTAMP] 1762217664158
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217664158"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:26.177
+[MESSAGE TIMESTAMP] 1762217666174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217666174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:26.178
+[MESSAGE TIMESTAMP] 1762217666174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217666174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:28.175
+[MESSAGE TIMESTAMP] 1762217668174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217668174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:28.175
+[MESSAGE TIMESTAMP] 1762217668174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217668174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:30.175
+[MESSAGE TIMESTAMP] 1762217670174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217670174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:30.175
+[MESSAGE TIMESTAMP] 1762217670174
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217670174"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:32.175
+[MESSAGE TIMESTAMP] 1762217672175
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217672175"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:32.176
+[MESSAGE TIMESTAMP] 1762217672175
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217672175"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:34.176
+[MESSAGE TIMESTAMP] 1762217674176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217674176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:34.176
+[MESSAGE TIMESTAMP] 1762217674176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217674176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:36.176
+[MESSAGE TIMESTAMP] 1762217676176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217676176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:36.176
+[MESSAGE TIMESTAMP] 1762217676176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217676176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:38.177
+[MESSAGE TIMESTAMP] 1762217678176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217678176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:38.177
+[MESSAGE TIMESTAMP] 1762217678176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217678176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:40.177
+[MESSAGE TIMESTAMP] 1762217680176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217680176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:40.177
+[MESSAGE TIMESTAMP] 1762217680176
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217680176"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:42.177
+[MESSAGE TIMESTAMP] 1762217682177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217682177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:42.177
+[MESSAGE TIMESTAMP] 1762217682177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217682177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:44.177
+[MESSAGE TIMESTAMP] 1762217684177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217684177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:44.177
+[MESSAGE TIMESTAMP] 1762217684177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217684177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:46.177
+[MESSAGE TIMESTAMP] 1762217686177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217686177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:46.177
+[MESSAGE TIMESTAMP] 1762217686177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217686177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:48.177
+[MESSAGE TIMESTAMP] 1762217688177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217688177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:50.058
+[MESSAGE TIMESTAMP] 1762217690058
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217690058"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:50.178
+[MESSAGE TIMESTAMP] 1762217690177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217690177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:52.058
+[MESSAGE TIMESTAMP] 1762217692058
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217692058"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:52.178
+[MESSAGE TIMESTAMP] 1762217692177
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217692177"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:54.058
+[MESSAGE TIMESTAMP] 1762217694058
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217694058"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:54.178
+[MESSAGE TIMESTAMP] 1762217694178
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217694178"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:56.059
+[MESSAGE TIMESTAMP] 1762217696058
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217696058"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:56.178
+[MESSAGE TIMESTAMP] 1762217696178
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217696178"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:58.059
+[MESSAGE TIMESTAMP] 1762217698059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217698059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:54:58.178
+[MESSAGE TIMESTAMP] 1762217698178
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217698178"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:00.059
+[MESSAGE TIMESTAMP] 1762217700059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217700059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:00.178
+[MESSAGE TIMESTAMP] 1762217700178
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217700178"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:02.059
+[MESSAGE TIMESTAMP] 1762217702059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217702059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:02.178
+[MESSAGE TIMESTAMP] 1762217702178
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217702178"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:04.059
+[MESSAGE TIMESTAMP] 1762217704059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217704059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:04.179
+[MESSAGE TIMESTAMP] 1762217704179
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217704179"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:06.060
+[MESSAGE TIMESTAMP] 1762217706059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217706059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:06.179
+[MESSAGE TIMESTAMP] 1762217706179
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217706179"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:08.060
+[MESSAGE TIMESTAMP] 1762217708059
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217708059"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:08.179
+[MESSAGE TIMESTAMP] 1762217708179
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217708179"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:10.060
+[MESSAGE TIMESTAMP] 1762217710060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217710060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:10.180
+[MESSAGE TIMESTAMP] 1762217710179
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217710179"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:12.060
+[MESSAGE TIMESTAMP] 1762217712060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217712060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:12.180
+[MESSAGE TIMESTAMP] 1762217712179
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217712179"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:14.060
+[MESSAGE TIMESTAMP] 1762217714060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217714060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:14.180
+[MESSAGE TIMESTAMP] 1762217714180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217714180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:16.060
+[MESSAGE TIMESTAMP] 1762217716060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217716060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:16.180
+[MESSAGE TIMESTAMP] 1762217716180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217716180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:18.060
+[MESSAGE TIMESTAMP] 1762217718060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217718060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:18.180
+[MESSAGE TIMESTAMP] 1762217718180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217718180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:20.061
+[MESSAGE TIMESTAMP] 1762217720060
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217720060"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:20.180
+[MESSAGE TIMESTAMP] 1762217720180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217720180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:22.061
+[MESSAGE TIMESTAMP] 1762217722061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217722061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:22.180
+[MESSAGE TIMESTAMP] 1762217722180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217722180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:24.061
+[MESSAGE TIMESTAMP] 1762217724061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217724061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:24.181
+[MESSAGE TIMESTAMP] 1762217724180
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217724180"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:26.061
+[MESSAGE TIMESTAMP] 1762217726061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217726061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:26.181
+[MESSAGE TIMESTAMP] 1762217726181
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217726181"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:28.061
+[MESSAGE TIMESTAMP] 1762217728061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217728061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:28.181
+[MESSAGE TIMESTAMP] 1762217728181
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217728181"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:30.061
+[MESSAGE TIMESTAMP] 1762217730061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217730061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:30.182
+[MESSAGE TIMESTAMP] 1762217730181
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217730181"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:32.062
+[MESSAGE TIMESTAMP] 1762217732061
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217732061"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:32.182
+[MESSAGE TIMESTAMP] 1762217732181
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217732181"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:34.062
+[MESSAGE TIMESTAMP] 1762217734062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217734062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:34.182
+[MESSAGE TIMESTAMP] 1762217734182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217734182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:36.062
+[MESSAGE TIMESTAMP] 1762217736062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217736062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:36.182
+[MESSAGE TIMESTAMP] 1762217736182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217736182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:38.062
+[MESSAGE TIMESTAMP] 1762217738062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217738062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:38.182
+[MESSAGE TIMESTAMP] 1762217738182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217738182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:40.062
+[MESSAGE TIMESTAMP] 1762217740062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217740062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:40.182
+[MESSAGE TIMESTAMP] 1762217740182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217740182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:42.062
+[MESSAGE TIMESTAMP] 1762217742062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217742062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:42.182
+[MESSAGE TIMESTAMP] 1762217742182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217742182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:44.063
+[MESSAGE TIMESTAMP] 1762217744062
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217744062"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:44.183
+[MESSAGE TIMESTAMP] 1762217744182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217744182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:46.063
+[MESSAGE TIMESTAMP] 1762217746063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217746063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:46.183
+[MESSAGE TIMESTAMP] 1762217746182
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217746182"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:48.063
+[MESSAGE TIMESTAMP] 1762217748063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217748063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:48.183
+[MESSAGE TIMESTAMP] 1762217748183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217748183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:50.063
+[MESSAGE TIMESTAMP] 1762217750063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217750063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:50.183
+[MESSAGE TIMESTAMP] 1762217750183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217750183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:52.063
+[MESSAGE TIMESTAMP] 1762217752063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217752063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:52.183
+[MESSAGE TIMESTAMP] 1762217752183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217752183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:54.063
+[MESSAGE TIMESTAMP] 1762217754063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217754063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:54.183
+[MESSAGE TIMESTAMP] 1762217754183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217754183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:56.064
+[MESSAGE TIMESTAMP] 1762217756063
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217756063"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:56.184
+[MESSAGE TIMESTAMP] 1762217756183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217756183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:58.064
+[MESSAGE TIMESTAMP] 1762217758064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217758064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:55:58.184
+[MESSAGE TIMESTAMP] 1762217758183
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217758183"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:00.064
+[MESSAGE TIMESTAMP] 1762217760064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217760064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:00.184
+[MESSAGE TIMESTAMP] 1762217760184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217760184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:02.064
+[MESSAGE TIMESTAMP] 1762217762064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217762064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:02.184
+[MESSAGE TIMESTAMP] 1762217762184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217762184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:04.064
+[MESSAGE TIMESTAMP] 1762217764064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217764064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:04.184
+[MESSAGE TIMESTAMP] 1762217764184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217764184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:06.065
+[MESSAGE TIMESTAMP] 1762217766064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217766064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:06.184
+[MESSAGE TIMESTAMP] 1762217766184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217766184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:08.065
+[MESSAGE TIMESTAMP] 1762217768064
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217768064"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:08.184
+[MESSAGE TIMESTAMP] 1762217768184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217768184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:10.065
+[MESSAGE TIMESTAMP] 1762217770065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217770065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:10.185
+[MESSAGE TIMESTAMP] 1762217770184
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217770184"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:12.065
+[MESSAGE TIMESTAMP] 1762217772065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217772065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:12.185
+[MESSAGE TIMESTAMP] 1762217772185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217772185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:14.065
+[MESSAGE TIMESTAMP] 1762217774065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217774065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:14.185
+[MESSAGE TIMESTAMP] 1762217774185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217774185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:16.065
+[MESSAGE TIMESTAMP] 1762217776065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217776065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:16.185
+[MESSAGE TIMESTAMP] 1762217776185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217776185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:18.065
+[MESSAGE TIMESTAMP] 1762217778065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217778065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:18.185
+[MESSAGE TIMESTAMP] 1762217778185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217778185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:20.066
+[MESSAGE TIMESTAMP] 1762217780065
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217780065"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:20.185
+[MESSAGE TIMESTAMP] 1762217780185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217780185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:22.066
+[MESSAGE TIMESTAMP] 1762217782066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217782066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:22.186
+[MESSAGE TIMESTAMP] 1762217782185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217782185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:24.066
+[MESSAGE TIMESTAMP] 1762217784066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217784066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:24.186
+[MESSAGE TIMESTAMP] 1762217784185
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217784185"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:26.066
+[MESSAGE TIMESTAMP] 1762217786066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217786066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:26.187
+[MESSAGE TIMESTAMP] 1762217786187
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217786187"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:28.066
+[MESSAGE TIMESTAMP] 1762217788066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217788066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:28.187
+[MESSAGE TIMESTAMP] 1762217788187
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217788187"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:30.066
+[MESSAGE TIMESTAMP] 1762217790066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217790066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:30.187
+[MESSAGE TIMESTAMP] 1762217790187
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217790187"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:32.067
+[MESSAGE TIMESTAMP] 1762217792066
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217792066"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:32.188
+[MESSAGE TIMESTAMP] 1762217792187
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217792187"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:34.067
+[MESSAGE TIMESTAMP] 1762217794067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217794067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:34.189
+[MESSAGE TIMESTAMP] 1762217794189
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217794189"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:36.067
+[MESSAGE TIMESTAMP] 1762217796067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217796067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:36.189
+[MESSAGE TIMESTAMP] 1762217796189
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217796189"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:38.067
+[MESSAGE TIMESTAMP] 1762217798067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217798067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:38.189
+[MESSAGE TIMESTAMP] 1762217798189
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217798189"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:40.067
+[MESSAGE TIMESTAMP] 1762217800067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217800067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:40.190
+[MESSAGE TIMESTAMP] 1762217800189
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217800189"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:42.068
+[MESSAGE TIMESTAMP] 1762217802067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217802067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:42.190
+[MESSAGE TIMESTAMP] 1762217802189
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217802189"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:44.068
+[MESSAGE TIMESTAMP] 1762217804067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217804067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:44.190
+[MESSAGE TIMESTAMP] 1762217804190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217804190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:46.068
+[MESSAGE TIMESTAMP] 1762217806067
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217806067"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:46.190
+[MESSAGE TIMESTAMP] 1762217806190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217806190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:48.068
+[MESSAGE TIMESTAMP] 1762217808068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217808068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:48.190
+[MESSAGE TIMESTAMP] 1762217808190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217808190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:50.068
+[MESSAGE TIMESTAMP] 1762217810068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217810068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:50.190
+[MESSAGE TIMESTAMP] 1762217810190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217810190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:52.068
+[MESSAGE TIMESTAMP] 1762217812068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217812068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:52.190
+[MESSAGE TIMESTAMP] 1762217812190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217812190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:54.068
+[MESSAGE TIMESTAMP] 1762217814068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217814068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:54.191
+[MESSAGE TIMESTAMP] 1762217814190
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217814190"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:56.068
+[MESSAGE TIMESTAMP] 1762217816068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217816068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:56.191
+[MESSAGE TIMESTAMP] 1762217816191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217816191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:58.069
+[MESSAGE TIMESTAMP] 1762217818068
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217818068"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:56:58.191
+[MESSAGE TIMESTAMP] 1762217818191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217818191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:00.069
+[MESSAGE TIMESTAMP] 1762217820069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217820069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:00.191
+[MESSAGE TIMESTAMP] 1762217820191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217820191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:02.069
+[MESSAGE TIMESTAMP] 1762217822069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217822069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:02.191
+[MESSAGE TIMESTAMP] 1762217822191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217822191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:04.069
+[MESSAGE TIMESTAMP] 1762217824069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217824069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:04.191
+[MESSAGE TIMESTAMP] 1762217824191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217824191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:06.069
+[MESSAGE TIMESTAMP] 1762217826069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217826069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:06.192
+[MESSAGE TIMESTAMP] 1762217826191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217826191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:08.069
+[MESSAGE TIMESTAMP] 1762217828069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217828069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:08.192
+[MESSAGE TIMESTAMP] 1762217828191
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217828191"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:10.070
+[MESSAGE TIMESTAMP] 1762217830069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217830069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:10.192
+[MESSAGE TIMESTAMP] 1762217830192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217830192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:12.070
+[MESSAGE TIMESTAMP] 1762217832069
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217832069"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:12.192
+[MESSAGE TIMESTAMP] 1762217832192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217832192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:14.070
+[MESSAGE TIMESTAMP] 1762217834070
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217834070"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:14.192
+[MESSAGE TIMESTAMP] 1762217834192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217834192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:16.070
+[MESSAGE TIMESTAMP] 1762217836070
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217836070"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:16.192
+[MESSAGE TIMESTAMP] 1762217836192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217836192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:18.070
+[MESSAGE TIMESTAMP] 1762217838070
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217838070"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:18.193
+[MESSAGE TIMESTAMP] 1762217838192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217838192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:20.071
+[MESSAGE TIMESTAMP] 1762217840070
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217840070"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:20.193
+[MESSAGE TIMESTAMP] 1762217840192
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217840192"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:22.071
+[MESSAGE TIMESTAMP] 1762217842070
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217842070"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:22.193
+[MESSAGE TIMESTAMP] 1762217842193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217842193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:24.071
+[MESSAGE TIMESTAMP] 1762217844071
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217844071"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:24.193
+[MESSAGE TIMESTAMP] 1762217844193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217844193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:26.071
+[MESSAGE TIMESTAMP] 1762217846071
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217846071"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:26.193
+[MESSAGE TIMESTAMP] 1762217846193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217846193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:28.072
+[MESSAGE TIMESTAMP] 1762217848071
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217848071"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:28.193
+[MESSAGE TIMESTAMP] 1762217848193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217848193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:30.072
+[MESSAGE TIMESTAMP] 1762217850071
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217850071"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:30.193
+[MESSAGE TIMESTAMP] 1762217850193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217850193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:32.072
+[MESSAGE TIMESTAMP] 1762217852072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217852072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:32.194
+[MESSAGE TIMESTAMP] 1762217852193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217852193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:34.072
+[MESSAGE TIMESTAMP] 1762217854072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217854072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:34.194
+[MESSAGE TIMESTAMP] 1762217854193
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217854193"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:36.072
+[MESSAGE TIMESTAMP] 1762217856072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217856072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:36.195
+[MESSAGE TIMESTAMP] 1762217856194
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217856194"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:38.072
+[MESSAGE TIMESTAMP] 1762217858072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217858072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:38.194
+[MESSAGE TIMESTAMP] 1762217858194
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217858194"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:40.072
+[MESSAGE TIMESTAMP] 1762217860072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217860072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:40.195
+[MESSAGE TIMESTAMP] 1762217860194
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217860194"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:42.073
+[MESSAGE TIMESTAMP] 1762217862072
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217862072"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:42.195
+[MESSAGE TIMESTAMP] 1762217862194
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217862194"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:44.073
+[MESSAGE TIMESTAMP] 1762217864073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217864073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:44.195
+[MESSAGE TIMESTAMP] 1762217864195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217864195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:46.073
+[MESSAGE TIMESTAMP] 1762217866073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217866073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:46.195
+[MESSAGE TIMESTAMP] 1762217866195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217866195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:48.073
+[MESSAGE TIMESTAMP] 1762217868073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217868073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:48.195
+[MESSAGE TIMESTAMP] 1762217868195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217868195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:50.073
+[MESSAGE TIMESTAMP] 1762217870073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217870073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:50.195
+[MESSAGE TIMESTAMP] 1762217870195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217870195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:52.073
+[MESSAGE TIMESTAMP] 1762217872073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217872073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:52.195
+[MESSAGE TIMESTAMP] 1762217872195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217872195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:54.074
+[MESSAGE TIMESTAMP] 1762217874073
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217874073"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:54.196
+[MESSAGE TIMESTAMP] 1762217874195
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217874195"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:56.074
+[MESSAGE TIMESTAMP] 1762217876074
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217876074"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:56.196
+[MESSAGE TIMESTAMP] 1762217876196
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217876196"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:58.074
+[MESSAGE TIMESTAMP] 1762217878074
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217878074"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:57:58.196
+[MESSAGE TIMESTAMP] 1762217878196
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217878196"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:58:00.074
+[MESSAGE TIMESTAMP] 1762217880074
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217880074"
+}
+--------------------------------------------------------------------------------
+
+[RECEPTION TIME] 2025-11-04 00:58:00.196
+[MESSAGE TIMESTAMP] 1762217880196
+[TOPIC] clients/ur-mavrouter/heartbeat
+[PAYLOAD] {
+  "type": "heartbeat",
+  "client": "ur-mavrouter",
+  "status": "alive",
+  "ssl": false,
+  "timestamp": "1762217880196"
+}
+--------------------------------------------------------------------------------

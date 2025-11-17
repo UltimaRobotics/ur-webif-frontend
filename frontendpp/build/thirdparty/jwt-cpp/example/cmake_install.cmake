@@ -1,4 +1,4 @@
-# Install script for directory: /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example
+# Install script for directory: /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,6 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits/cmake_install.cmake")
+  include("/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits/cmake_install.cmake")
 endif()
 

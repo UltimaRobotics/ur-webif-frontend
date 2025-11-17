@@ -1,7 +1,7 @@
 CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o: \
- /home/fyousfi/Documents/ur-webif-frontend/frontendpp/src/config_manager.cpp \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/src/config_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/fyousfi/Documents/ur-webif-frontend/frontendpp/include/config_manager.h \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/include/config_manager.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -157,7 +157,7 @@ CMakeFiles/FrontendPP.dir/src/config_manager.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/nlohmann/json.hpp \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/nlohmann/json.hpp \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \

@@ -1,4 +1,4 @@
-# Install script for directory: /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api
+# Install script for directory: /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "")
+    set(CMAKE_INSTALL_CONFIG_NAME "Release")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -43,20 +43,20 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/libthreadmanager.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/libthreadmanager.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/threadmanager" TYPE FILE FILES
-    "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/thread_manager.h"
-    "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/json_config.h"
-    "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/utils.h"
+    "/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/thread_manager.h"
+    "/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/json_config.h"
+    "/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/include/utils.h"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp/cmake_install.cmake")
+  include("/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp/cmake_install.cmake")
 
 endif()
 

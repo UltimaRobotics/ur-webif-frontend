@@ -1,0 +1,27 @@
+{
+  "client_id": "backend-datalink",
+  "broker_host": "127.0.0.1",
+  "broker_port": 1899,
+  "keepalive": 60,
+  "qos": 1,
+  "auto_reconnect": true,
+  "reconnect_delay_min": 1,
+  "reconnect_delay_max": 60,
+  "use_tls": false,
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 5,
+    "topic": "clients/backend-datalink/heartbeat",
+    "payload": "{\"client\":\"backend-datalink\",\"status\":\"alive\"}"
+  },
+  "json_added_pubs": {
+    "topics": [
+      "direct_messaging/backend-datalink/responses"
+    ]
+  },
+  "json_added_subs": {
+    "topics": [
+      "direct_messaging/backend-datalink/requests"
+    ]
+  }
+}

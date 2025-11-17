@@ -1,4 +1,4 @@
-# Install script for directory: /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp
+# Install script for directory: /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,14 +44,14 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-build/cmake_install.cmake")
+  include("/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-build/cmake_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/cmake/jwt-cpp-targets.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/cmake/jwt-cpp-targets.cmake"
-         "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/CMakeFiles/Export/cmake/jwt-cpp-targets.cmake")
+         "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/CMakeFiles/Export/cmake/jwt-cpp-targets.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/cmake/jwt-cpp-targets-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -60,26 +60,26 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/cmake" TYPE FILE FILES "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/CMakeFiles/Export/cmake/jwt-cpp-targets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/cmake" TYPE FILE FILES "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/CMakeFiles/Export/cmake/jwt-cpp-targets.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include/jwt-cpp")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include/jwt-cpp")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/picojson" TYPE FILE FILES "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include/picojson/picojson.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/picojson" TYPE FILE FILES "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/include/picojson/picojson.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/cmake" TYPE FILE FILES
-    "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/jwt-cpp-config.cmake"
-    "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/jwt-cpp-config-version.cmake"
+    "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/jwt-cpp-config.cmake"
+    "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/jwt-cpp-config-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/cmake_install.cmake")
+  include("/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/cmake_install.cmake")
 endif()
 

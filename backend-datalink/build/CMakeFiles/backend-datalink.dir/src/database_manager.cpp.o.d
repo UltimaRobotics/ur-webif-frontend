@@ -1,7 +1,7 @@
 CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o: \
- /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/src/database_manager.cpp \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/src/database_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/include/database_manager.h \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/include/database_manager.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -164,7 +164,7 @@ CMakeFiles/backend-datalink.dir/src/database_manager.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/include/config_loader.h \
+ /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/include/config_loader.h \
  /usr/include/nlohmann/json.hpp /usr/include/c++/11/algorithm \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \

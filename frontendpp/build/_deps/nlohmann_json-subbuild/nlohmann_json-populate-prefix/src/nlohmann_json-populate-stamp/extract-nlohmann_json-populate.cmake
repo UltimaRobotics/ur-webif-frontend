@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" ABSOLUTE)
-get_filename_component(directory "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src" ABSOLUTE)
+get_filename_component(filename "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/json.tar.xz" ABSOLUTE)
+get_filename_component(directory "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/_deps/nlohmann_json-src" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

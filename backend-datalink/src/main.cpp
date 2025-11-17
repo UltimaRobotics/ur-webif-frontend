@@ -4,20 +4,42 @@
 #include <cstring>
 #include <chrono>
 #include <thread>
+#include <atomic>
+#include <memory>
 #include <nlohmann/json.hpp>
 #include "managed_websocket_server.h"
 #include "database_manager.h"
 #include "SystemDataCollector.h"
 #include "NetworkPriorityManager.h"
 #include "config_loader.h"
+#include "rpc_client.h"
 
 using json = nlohmann::json;
+
+namespace BackendDatalink {
 
 std::unique_ptr<ManagedWebSocketServer> g_server;
 std::unique_ptr<DatabaseManager> g_database;
 std::unique_ptr<SystemDataCollector> g_system_collector;
 std::unique_ptr<NetworkPriorityManager> g_network_priority_manager;
+std::unique_ptr<BackendDatalink::RpcClient> g_rpcClient;
+std::unique_ptr<BackendDatalink::RpcOperationProcessor> g_operationProcessor;
 std::atomic<bool> g_running(true);
+
+} // namespace BackendDatalink
+
+// Use the namespace-qualified globals
+using BackendDatalink::g_server;
+using BackendDatalink::g_database;
+using BackendDatalink::g_system_collector;
+using BackendDatalink::g_network_priority_manager;
+using BackendDatalink::g_rpcClient;
+using BackendDatalink::g_operationProcessor;
+using BackendDatalink::g_running;
+
+// Use RPC types for convenience
+using RpcClient = BackendDatalink::RpcClient;
+using RpcOperationProcessor = BackendDatalink::RpcOperationProcessor;
 
 // Function declarations
 void onMessage(const std::string& connection_id, const json& message);
@@ -158,18 +180,27 @@ void signalHandler(int signal) {
         g_network_priority_manager->stop();
     }
     
+    if (g_rpcClient) {
+        g_rpcClient->stop();
+    }
+    
+    if (g_operationProcessor) {
+        g_operationProcessor->shutdown();
+    }
+    
     exit(0);
 }
 
 void printUsage(const char* program_name) {
-    std::cout << "Usage: " << program_name << " -pkg_config <config_file_path>" << std::endl;
+    std::cout << "Usage: " << program_name << " -pkg_config <config_file_path> -rpc_config <rpc_config_file_path>" << std::endl;
     std::cout << std::endl;
     std::cout << "Options:" << std::endl;
     std::cout << "  -pkg_config <path>    Path to JSON configuration file" << std::endl;
+    std::cout << "  -rpc_config <path>    Path to RPC client configuration file" << std::endl;
     std::cout << "  -h, --help           Show this help message" << std::endl;
     std::cout << std::endl;
     std::cout << "Example:" << std::endl;
-    std::cout << "  " << program_name << " -pkg_config config/config.json" << std::endl;
+    std::cout << "  " << program_name << " -pkg_config config/config.json -rpc_config config/rpc_config.json" << std::endl;
 }
 
 void onMessage(const std::string& connection_id, const json& message) {
@@ -396,6 +427,7 @@ int main(int argc, char* argv[]) {
     }
     
     std::string config_path;
+    std::string rpc_config_path;
     
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-pkg_config") == 0) {
@@ -404,6 +436,15 @@ int main(int argc, char* argv[]) {
                 i++;
             } else {
                 std::cerr << "Error: -pkg_config requires a file path" << std::endl;
+                printUsage(argv[0]);
+                return 1;
+            }
+        } else if (strcmp(argv[i], "-rpc_config") == 0) {
+            if (i + 1 < argc) {
+                rpc_config_path = argv[i + 1];
+                i++;
+            } else {
+                std::cerr << "Error: -rpc_config requires a file path" << std::endl;
                 printUsage(argv[0]);
                 return 1;
             }
@@ -423,6 +464,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    if (rpc_config_path.empty()) {
+        std::cerr << "Error: -rpc_config argument is required" << std::endl;
+        printUsage(argv[0]);
+        return 1;
+    }
+    
     try {
         ConfigLoader config_loader;
         config_loader.loadFromFile(config_path);
@@ -436,6 +483,7 @@ int main(int argc, char* argv[]) {
         std::cout << "  Max connections: " << ws_config.max_connections << std::endl;
         std::cout << "  Timeout: " << ws_config.timeout_ms << "ms" << std::endl;
         std::cout << "  Logging: " << (ws_config.enable_logging ? "enabled" : "disabled") << std::endl;
+        std::cout << "  RPC Config: " << rpc_config_path << std::endl;
         std::cout << std::endl;
         
         signal(SIGINT, signalHandler);
@@ -447,6 +495,35 @@ int main(int argc, char* argv[]) {
             std::cerr << "Failed to initialize database" << std::endl;
             return 1;
         }
+        
+        // Initialize RPC client and operation processor
+        std::cout << "Initializing RPC client..." << std::endl;
+        g_rpcClient = std::make_unique<RpcClient>(rpc_config_path, "backend-datalink");
+        g_operationProcessor = std::make_unique<RpcOperationProcessor>(true);
+        
+        // Set message handler BEFORE starting the client
+        g_rpcClient->setMessageHandler([&](const std::string &topic, const std::string &payload) {
+            // Topic filtering for selective processing
+            if (topic.find("direct_messaging/backend-datalink/requests") == std::string::npos) {
+                return;
+            }
+            
+            // Delegate to operation processor
+            if (g_operationProcessor) {
+                g_operationProcessor->processRequest(payload.c_str(), payload.size());
+            }
+        });
+        
+        // Set response topic for operation processor
+        g_operationProcessor->setResponseTopic("direct_messaging/backend-datalink/responses");
+        
+        // Start RPC client
+        if (!g_rpcClient->start()) {
+            std::cerr << "Failed to start RPC client" << std::endl;
+            return 1;
+        }
+        
+        std::cout << "RPC client started successfully" << std::endl;
         
         // Initialize system data collector
         const auto& system_config = config_loader.getSystemDataConfig();
@@ -522,6 +599,18 @@ int main(int argc, char* argv[]) {
         }
         
         std::cout << "Shutting down server..." << std::endl;
+        
+        // Stop RPC client and operation processor
+        if (g_rpcClient) {
+            g_rpcClient->stop();
+            std::cout << "RPC client stopped" << std::endl;
+        }
+        
+        if (g_operationProcessor) {
+            g_operationProcessor->shutdown();
+            std::cout << "RPC operation processor shutdown" << std::endl;
+        }
+        
         // Stop system data collector
         if (g_system_collector) {
             g_system_collector->stop();

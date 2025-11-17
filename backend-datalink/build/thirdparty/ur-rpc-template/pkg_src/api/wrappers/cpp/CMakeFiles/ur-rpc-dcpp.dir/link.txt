@@ -1,0 +1,2 @@
+/usr/bin/ar qc libur-rpc-dcpp.a CMakeFiles/ur-rpc-dcpp.dir/extensions/direct_template.cpp.o CMakeFiles/ur-rpc-dcpp.dir/gateway/gateway.cpp.o
+/usr/bin/ranlib libur-rpc-dcpp.a

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -183,14 +183,14 @@ thirdparty/jwt-cpp/example/traits/clean: thirdparty/jwt-cpp/example/traits/CMake
 CMakeFiles/FrontendPP.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FrontendPP.dir/build.make CMakeFiles/FrontendPP.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FrontendPP.dir/build.make CMakeFiles/FrontendPP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target FrontendPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target FrontendPP"
 .PHONY : CMakeFiles/FrontendPP.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FrontendPP.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FrontendPP.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : CMakeFiles/FrontendPP.dir/rule
 
 # Convenience name for target.
@@ -209,14 +209,14 @@ CMakeFiles/FrontendPP.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=17,18 "Built target print-claims"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=17,18 "Built target print-claims"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/rule
 
 # Convenience name for target.
@@ -235,14 +235,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/all: thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target print-claims-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target print-claims-run"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/rule
 
 # Convenience name for target.
@@ -261,14 +261,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=19,20 "Built target private-claims"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=19,20 "Built target private-claims"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/rule
 
 # Convenience name for target.
@@ -287,14 +287,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/all: thirdparty/jwt-cpp/example/CMakeFiles/private-claims.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target private-claims-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target private-claims-run"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/rule
 
 # Convenience name for target.
@@ -313,14 +313,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/private-claims-run.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=21,22 "Built target rsa-create"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=21,22 "Built target rsa-create"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/rule
 
 # Convenience name for target.
@@ -339,14 +339,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/all: thirdparty/jwt-cpp/example/CMakeFiles/rsa-create.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target rsa-create-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target rsa-create-run"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/rule
 
 # Convenience name for target.
@@ -365,14 +365,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/rsa-create-run.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=23,24 "Built target rsa-verify"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=23,24 "Built target rsa-verify"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/rule
 
 # Convenience name for target.
@@ -391,14 +391,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/all: thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target rsa-verify-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target rsa-verify-run"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/rule
 
 # Convenience name for target.
@@ -417,14 +417,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=11,12 "Built target jwks-verify"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=11,12 "Built target jwks-verify"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/rule
 
 # Convenience name for target.
@@ -443,14 +443,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/all: thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify.dir/all
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target jwks-verify-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num= "Built target jwks-verify-run"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/rule
 
 # Convenience name for target.
@@ -469,14 +469,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/jwks-verify-run.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=9,10 "Built target es256k"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=9,10 "Built target es256k"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/rule
 
 # Convenience name for target.
@@ -495,14 +495,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/clean:
 thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/build.make thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=15,16 "Built target partial-claim-verifier"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=15,16 "Built target partial-claim-verifier"
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/rule
 
 # Convenience name for target.
@@ -521,14 +521,14 @@ thirdparty/jwt-cpp/example/CMakeFiles/partial-claim-verifier.dir/clean:
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/all:
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/depend
 	$(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=13,14 "Built target nlohmann-json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=13,14 "Built target nlohmann-json"
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/all
 
 # Build rule for subdir invocation for target.
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule
 
 # Convenience name for target.

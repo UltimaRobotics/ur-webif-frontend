@@ -1,4 +1,4 @@
-# Install script for directory: /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits
+# Install script for directory: /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

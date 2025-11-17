@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits//CMakeFiles/progress.marks
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles 0
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits//CMakeFiles/progress.marks
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/clean
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/preinstall
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/preinstall
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ nlohmann-json: thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/ru
 
 # fast build rule for target.
 nlohmann-json/fast:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build
 .PHONY : nlohmann-json/fast
 
 nlohmann-json.o: nlohmann-json.cpp.o
@@ -180,7 +180,7 @@ nlohmann-json.o: nlohmann-json.cpp.o
 
 # target to build an object file
 nlohmann-json.cpp.o:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o
 .PHONY : nlohmann-json.cpp.o
 
 nlohmann-json.i: nlohmann-json.cpp.i
@@ -188,7 +188,7 @@ nlohmann-json.i: nlohmann-json.cpp.i
 
 # target to preprocess a source file
 nlohmann-json.cpp.i:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i
 .PHONY : nlohmann-json.cpp.i
 
 nlohmann-json.s: nlohmann-json.cpp.s
@@ -196,7 +196,7 @@ nlohmann-json.s: nlohmann-json.cpp.s
 
 # target to generate assembly for a file
 nlohmann-json.cpp.s:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(MAKE) $(MAKESILENT) -f thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build.make thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s
 .PHONY : nlohmann-json.cpp.s
 
 # Help Target
@@ -226,6 +226,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

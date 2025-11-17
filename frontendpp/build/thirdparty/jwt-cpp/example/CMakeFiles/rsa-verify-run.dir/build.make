@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build
 
 # Utility rule file for rsa-verify-run.
 
@@ -67,7 +67,7 @@ include thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/compiler_depend
 include thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/progress.make
 
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && ./rsa-verify
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && ./rsa-verify
 
 rsa-verify-run: thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run
 rsa-verify-run: thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build.make
@@ -78,10 +78,10 @@ thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build: rsa-verify-run
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/build
 
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && $(CMAKE_COMMAND) -P CMakeFiles/rsa-verify-run.dir/cmake_clean.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && $(CMAKE_COMMAND) -P CMakeFiles/rsa-verify-run.dir/cmake_clean.cmake
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/clean
 
 thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/frontendpp /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/rsa-verify-run.dir/depend
 

@@ -6,8 +6,8 @@
 namespace FrontendPP {
     namespace BuildAttributes {
         // Build-time configuration
-        constexpr const char* BUILD_TIMESTAMP = "2025-11-15 19:46:32 UTC";
-        constexpr const char* GIT_COMMIT_HASH = "aa4e503";
+        constexpr const char* BUILD_TIMESTAMP = "2025-11-17 10:16:05 UTC";
+        constexpr const char* GIT_COMMIT_HASH = "734bcff";
         constexpr const char* BUILD_TYPE = "";
         constexpr const char* COMPILER_VERSION = "GCC 11.4.0";
         

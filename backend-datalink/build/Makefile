@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -158,6 +158,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -225,6 +226,84 @@ network_priority: cmake_check_build_system
 network_priority/fast:
 	$(MAKE) $(MAKESILENT) -f thirdparty/network-priority/CMakeFiles/network_priority.dir/build.make thirdparty/network-priority/CMakeFiles/network_priority.dir/build
 .PHONY : network_priority/fast
+
+#=============================================================================
+# Target rules for targets named ur-rpc-template
+
+# Build rule for target.
+ur-rpc-template: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ur-rpc-template
+.PHONY : ur-rpc-template
+
+# fast build rule for target.
+ur-rpc-template/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/CMakeFiles/ur-rpc-template.dir/build.make thirdparty/ur-rpc-template/CMakeFiles/ur-rpc-template.dir/build
+.PHONY : ur-rpc-template/fast
+
+#=============================================================================
+# Target rules for targets named cJSON
+
+# Build rule for target.
+cJSON: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cJSON
+.PHONY : cJSON
+
+# fast build rule for target.
+cJSON/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/deps/cJSON/CMakeFiles/cJSON.dir/build.make thirdparty/ur-rpc-template/deps/cJSON/CMakeFiles/cJSON.dir/build
+.PHONY : cJSON/fast
+
+#=============================================================================
+# Target rules for targets named mqtt-client-static
+
+# Build rule for target.
+mqtt-client-static: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mqtt-client-static
+.PHONY : mqtt-client-static
+
+# fast build rule for target.
+mqtt-client-static/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/deps/mqtt-client/CMakeFiles/mqtt-client-static.dir/build.make thirdparty/ur-rpc-template/deps/mqtt-client/CMakeFiles/mqtt-client-static.dir/build
+.PHONY : mqtt-client-static/fast
+
+#=============================================================================
+# Target rules for targets named logger_objects
+
+# Build rule for target.
+logger_objects: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 logger_objects
+.PHONY : logger_objects
+
+# fast build rule for target.
+logger_objects/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/deps/ur-logger-api/CMakeFiles/logger_objects.dir/build.make thirdparty/ur-rpc-template/deps/ur-logger-api/CMakeFiles/logger_objects.dir/build
+.PHONY : logger_objects/fast
+
+#=============================================================================
+# Target rules for targets named ur-logger-api-static
+
+# Build rule for target.
+ur-logger-api-static: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ur-logger-api-static
+.PHONY : ur-logger-api-static
+
+# fast build rule for target.
+ur-logger-api-static/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/deps/ur-logger-api/CMakeFiles/ur-logger-api-static.dir/build.make thirdparty/ur-rpc-template/deps/ur-logger-api/CMakeFiles/ur-logger-api-static.dir/build
+.PHONY : ur-logger-api-static/fast
+
+#=============================================================================
+# Target rules for targets named ur-rpc-dcpp
+
+# Build rule for target.
+ur-rpc-dcpp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ur-rpc-dcpp
+.PHONY : ur-rpc-dcpp
+
+# fast build rule for target.
+ur-rpc-dcpp/fast:
+	$(MAKE) $(MAKESILENT) -f thirdparty/ur-rpc-template/pkg_src/api/wrappers/cpp/CMakeFiles/ur-rpc-dcpp.dir/build.make thirdparty/ur-rpc-template/pkg_src/api/wrappers/cpp/CMakeFiles/ur-rpc-dcpp.dir/build
+.PHONY : ur-rpc-dcpp/fast
 
 src/config_loader.o: src/config_loader.cpp.o
 .PHONY : src/config_loader.o
@@ -322,6 +401,30 @@ src/managed_websocket_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/src/managed_websocket_server.cpp.s
 .PHONY : src/managed_websocket_server.cpp.s
 
+src/rpc_client.o: src/rpc_client.cpp.o
+.PHONY : src/rpc_client.o
+
+# target to build an object file
+src/rpc_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/src/rpc_client.cpp.o
+.PHONY : src/rpc_client.cpp.o
+
+src/rpc_client.i: src/rpc_client.cpp.i
+.PHONY : src/rpc_client.i
+
+# target to preprocess a source file
+src/rpc_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/src/rpc_client.cpp.i
+.PHONY : src/rpc_client.cpp.i
+
+src/rpc_client.s: src/rpc_client.cpp.s
+.PHONY : src/rpc_client.s
+
+# target to generate assembly for a file
+src/rpc_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/backend-datalink.dir/build.make CMakeFiles/backend-datalink.dir/src/rpc_client.cpp.s
+.PHONY : src/rpc_client.cpp.s
+
 src/websocket_server.o: src/websocket_server.cpp.o
 .PHONY : src/websocket_server.o
 
@@ -359,10 +462,16 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... backend-datalink"
+	@echo "... cJSON"
+	@echo "... logger_objects"
+	@echo "... mqtt-client-static"
 	@echo "... network_priority"
 	@echo "... system_data"
 	@echo "... threadmanager"
 	@echo "... threadmanager_cpp"
+	@echo "... ur-logger-api-static"
+	@echo "... ur-rpc-dcpp"
+	@echo "... ur-rpc-template"
 	@echo "... src/config_loader.o"
 	@echo "... src/config_loader.i"
 	@echo "... src/config_loader.s"
@@ -375,6 +484,9 @@ help:
 	@echo "... src/managed_websocket_server.o"
 	@echo "... src/managed_websocket_server.i"
 	@echo "... src/managed_websocket_server.s"
+	@echo "... src/rpc_client.o"
+	@echo "... src/rpc_client.i"
+	@echo "... src/rpc_client.s"
 	@echo "... src/websocket_server.o"
 	@echo "... src/websocket_server.i"
 	@echo "... src/websocket_server.s"
@@ -389,6 +501,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

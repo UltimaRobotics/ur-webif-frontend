@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DHAVE_NLOHMANN_JSON -DHAVE_SQLITE3
 
-CXX_INCLUDES = -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../ur-threadder-api/cpp/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../ur-threadder-api/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../../include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
+CXX_INCLUDES = -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../ur-threadder-api/cpp/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../ur-threadder-api/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/../../include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/include -I/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build
 
-CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++17
+CXX_FLAGS = -O3 -DNDEBUG -Wall -Wextra -O2 -std=gnu++17
 

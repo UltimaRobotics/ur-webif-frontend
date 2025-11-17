@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/es256k.cpp" "thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/es256k.cpp.o" "gcc" "thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/es256k.cpp.o.d"
+  "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/es256k.cpp" "thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/es256k.cpp.o" "gcc" "thirdparty/jwt-cpp/example/CMakeFiles/es256k.dir/es256k.cpp.o.d"
   )
 
 # Targets to which this target links.

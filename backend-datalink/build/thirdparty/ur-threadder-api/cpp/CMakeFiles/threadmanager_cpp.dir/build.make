@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build
 
 # Include any dependencies generated for this target.
 include thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/depend.make
@@ -72,16 +72,16 @@ include thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/flags.m
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o: thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/flags.make
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o: ../thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o: thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o -MF CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o.d -o CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o -MF CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o.d -o CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o -c /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp
 
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.i"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp > CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp > CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.i
 
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.s"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp -o CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp/src/ThreadManager.cpp -o CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.s
 
 # Object files for target threadmanager_cpp
 threadmanager_cpp_OBJECTS = \
@@ -93,19 +93,19 @@ threadmanager_cpp_EXTERNAL_OBJECTS =
 thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a: thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/src/ThreadManager.cpp.o
 thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a: thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build.make
 thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a: thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libthreadmanager_cpp.a"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -P CMakeFiles/threadmanager_cpp.dir/cmake_clean_target.cmake
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/threadmanager_cpp.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libthreadmanager_cpp.a"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -P CMakeFiles/threadmanager_cpp.dir/cmake_clean_target.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/threadmanager_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build: thirdparty/ur-threadder-api/cpp/libthreadmanager_cpp.a
 .PHONY : thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/build
 
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -P CMakeFiles/threadmanager_cpp.dir/cmake_clean.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp && $(CMAKE_COMMAND) -P CMakeFiles/threadmanager_cpp.dir/cmake_clean.cmake
 .PHONY : thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/clean
 
 thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/backend-datalink /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/ur-threadder-api/cpp /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/ur-threadder-api/cpp/CMakeFiles/threadmanager_cpp.dir/depend
 

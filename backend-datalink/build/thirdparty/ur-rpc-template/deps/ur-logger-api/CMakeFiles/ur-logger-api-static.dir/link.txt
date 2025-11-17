@@ -1,0 +1,2 @@
+/usr/bin/ar qc libur-logger-api.a CMakeFiles/logger_objects.dir/logger.c.o
+/usr/bin/ranlib libur-logger-api.a

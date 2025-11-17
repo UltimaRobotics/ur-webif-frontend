@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build
 
 # Utility rule file for print-claims-run.
 
@@ -67,7 +67,7 @@ include thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/compiler_depe
 include thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/progress.make
 
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && ./print-claims
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && ./print-claims
 
 print-claims-run: thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run
 print-claims-run: thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build.make
@@ -78,10 +78,10 @@ thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build: print-claims-r
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/build
 
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && $(CMAKE_COMMAND) -P CMakeFiles/print-claims-run.dir/cmake_clean.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example && $(CMAKE_COMMAND) -P CMakeFiles/print-claims-run.dir/cmake_clean.cmake
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/clean
 
 thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/frontendpp /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/jwt-cpp/example/CMakeFiles/print-claims-run.dir/depend
 

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build
 
 # Include any dependencies generated for this target.
 include thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/depend.make
@@ -72,16 +72,16 @@ include thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/flags.mak
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o: thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/flags.make
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o: ../thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o: thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o"
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o -MF CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o.d -o CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o -MF CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o.d -o CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.o -c /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp
 
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i"
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp > CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp > CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.i
 
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s"
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp -o CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits/nlohmann-json.cpp -o CMakeFiles/nlohmann-json.dir/nlohmann-json.cpp.s
 
 # Object files for target nlohmann-json
 nlohmann__json_OBJECTS = \
@@ -95,18 +95,18 @@ thirdparty/jwt-cpp/example/traits/nlohmann-json: thirdparty/jwt-cpp/example/trai
 thirdparty/jwt-cpp/example/traits/nlohmann-json: /usr/lib/x86_64-linux-gnu/libssl.so
 thirdparty/jwt-cpp/example/traits/nlohmann-json: /usr/lib/x86_64-linux-gnu/libcrypto.so
 thirdparty/jwt-cpp/example/traits/nlohmann-json: thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable nlohmann-json"
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nlohmann-json.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable nlohmann-json"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nlohmann-json.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build: thirdparty/jwt-cpp/example/traits/nlohmann-json
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/build
 
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && $(CMAKE_COMMAND) -P CMakeFiles/nlohmann-json.dir/cmake_clean.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits && $(CMAKE_COMMAND) -P CMakeFiles/nlohmann-json.dir/cmake_clean.cmake
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/clean
 
 thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/frontendpp /home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits /home/fyousfi/Documents/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/traits /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits /home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/build/thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/jwt-cpp/example/traits/CMakeFiles/nlohmann-json.dir/depend
 

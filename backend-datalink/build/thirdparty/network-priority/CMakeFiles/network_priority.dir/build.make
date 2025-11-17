@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink
+CMAKE_SOURCE_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build
+CMAKE_BINARY_DIR = /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build
 
 # Include any dependencies generated for this target.
 include thirdparty/network-priority/CMakeFiles/network_priority.dir/depend.make
@@ -72,16 +72,16 @@ include thirdparty/network-priority/CMakeFiles/network_priority.dir/flags.make
 thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o: thirdparty/network-priority/CMakeFiles/network_priority.dir/flags.make
 thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o: ../thirdparty/network-priority/src/NetworkPriorityManager.cpp
 thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o: thirdparty/network-priority/CMakeFiles/network_priority.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o -MF CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o.d -o CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o -c /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o -MF CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o.d -o CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o -c /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp
 
 thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.i"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp > CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.i
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp > CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.i
 
 thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.s"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp -o CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.s
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority/src/NetworkPriorityManager.cpp -o CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.s
 
 # Object files for target network_priority
 network_priority_OBJECTS = \
@@ -93,19 +93,19 @@ network_priority_EXTERNAL_OBJECTS =
 thirdparty/network-priority/libnetwork_priority.a: thirdparty/network-priority/CMakeFiles/network_priority.dir/src/NetworkPriorityManager.cpp.o
 thirdparty/network-priority/libnetwork_priority.a: thirdparty/network-priority/CMakeFiles/network_priority.dir/build.make
 thirdparty/network-priority/libnetwork_priority.a: thirdparty/network-priority/CMakeFiles/network_priority.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libnetwork_priority.a"
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -P CMakeFiles/network_priority.dir/cmake_clean_target.cmake
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/network_priority.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libnetwork_priority.a"
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -P CMakeFiles/network_priority.dir/cmake_clean_target.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/network_priority.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 thirdparty/network-priority/CMakeFiles/network_priority.dir/build: thirdparty/network-priority/libnetwork_priority.a
 .PHONY : thirdparty/network-priority/CMakeFiles/network_priority.dir/build
 
 thirdparty/network-priority/CMakeFiles/network_priority.dir/clean:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -P CMakeFiles/network_priority.dir/cmake_clean.cmake
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority && $(CMAKE_COMMAND) -P CMakeFiles/network_priority.dir/cmake_clean.cmake
 .PHONY : thirdparty/network-priority/CMakeFiles/network_priority.dir/clean
 
 thirdparty/network-priority/CMakeFiles/network_priority.dir/depend:
-	cd /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyousfi/Documents/ur-webif-frontend/backend-datalink /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/network-priority /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority /home/fyousfi/Documents/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/network_priority.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/network-priority /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority /home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/build/thirdparty/network-priority/CMakeFiles/network_priority.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : thirdparty/network-priority/CMakeFiles/network_priority.dir/depend
 

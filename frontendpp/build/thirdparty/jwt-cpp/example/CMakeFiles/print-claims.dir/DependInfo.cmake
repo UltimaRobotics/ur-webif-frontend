@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/fyousfi/Documents/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/print-claims.cpp" "thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/print-claims.cpp.o" "gcc" "thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/print-claims.cpp.o.d"
+  "/home/fyou/Downloads/ur-stack/ur-webif-frontend/frontendpp/thirdparty/jwt-cpp/example/print-claims.cpp" "thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/print-claims.cpp.o" "gcc" "thirdparty/jwt-cpp/example/CMakeFiles/print-claims.dir/print-claims.cpp.o.d"
   )
 
 # Targets to which this target links.

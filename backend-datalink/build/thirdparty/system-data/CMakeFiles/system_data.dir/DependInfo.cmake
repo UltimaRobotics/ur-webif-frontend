@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/fyousfi/Documents/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp" "thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o" "gcc" "thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o.d"
+  "/home/fyou/Downloads/ur-stack/ur-webif-frontend/backend-datalink/thirdparty/system-data/src/SystemDataCollector.cpp" "thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o" "gcc" "thirdparty/system-data/CMakeFiles/system_data.dir/src/SystemDataCollector.cpp.o.d"
   )
 
 # Targets to which this target links.
